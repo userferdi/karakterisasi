@@ -1,6 +1,6 @@
 @extends('layout.client')
 
-@section('title','HOME | PRINTG')
+@section('title','Contact · PRINTG')
 
 @section('content')
 	<h1 style="padding-top:10px;">Kontak Kami</h1>

@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/', function () {
-	return view('welcome');
+	return view('schedule.booking');
 });
 
 Auth::routes();
@@ -106,6 +106,17 @@ Route::prefix('schedule')->group(function(){
 	Route::get('edit/{id}', 'ScheduleController@edit')->name('schedule.edit');
 	Route::put('update/{id}', 'ScheduleController@update')->name('schedule.update');
 	Route::delete('delete/{id}', 'ScheduleController@delete')->name('schedule.delete');
+});
+Route::prefix('activities')->group(function(){
+	Route::prefix('registration')->group(function(){
+		Route::get('/', 'OrderController@registration')->name('order.registration');
+		Route::get('tool', 'OrderController@tool')->name('order.tool');
+		Route::get('form/{id}', 'OrderController@form')->name('order.form');
+		Route::post('store', 'ScheduleController@store')->name('schedule.store');
+	});
+	Route::get('status', 'OrderController@status')->name('order.status');
+		Route::post('edit', 'ScheduleController@store')->name('schedule.store');
+		Route::post('update/{id}', 'ScheduleController@store')->name('schedule.store');
 });
 
 Route::get('settings', function () {

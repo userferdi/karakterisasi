@@ -11,14 +11,14 @@
 <h2 style="padding-top:10px;"><strong>Jadwal Penggunaan Alat</strong></h2>
 <p> Silakan klik tombol <strong>Lihat Jadwal</strong> pada masing-masing kategori berikut.</p>
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-lg-4">
     <div class="card" >
       <div class="card-body">
         <table id="table" class="table table-striped table-hover table-bordered text-sm" style="width:100%"></table>
       </div>
     </div>
   </div>
-  <div class="col-md-8">
+  <div class="col-lg-8">
     <div class="card" >
       <div class="card-body text-sm">
         <div id='calendar'></div></br>
@@ -45,7 +45,9 @@
   });
 </script>
 <script>
-  var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
+document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendar');
+  var calendar = new FullCalendar.Calendar(calendarEl, {
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
@@ -56,7 +58,7 @@
     navLinks: true, // can click day/week names to navigate views
     dayMaxEvents: true, // allow "more" link when too many events
     events: {
-      url: '{{ route('calendar.data') }}',
+      url: '{{ route('schedule.ds') }}',
       failure: function(){
         alert('error fetch data')
       }
@@ -67,28 +69,15 @@
     //     alert('error fetch data')
     //   }
     // },
-    loading: function(bool) {
-      document.getElementById('loading').style.display =
-        bool ? 'block' : 'none';
-    }
+    // loading: function(bool) {
+    //   document.getElementById('loading').style.display =
+    //     bool ? 'block' : 'none';
+    // }
   });
+    calendar.render();
+});
 
-  calendar.render();
 
-  // var calendarEl = document.getElementById('calendar');
-
-  // var calendar = new FullCalendar.Calendar(calendarEl, {
-  //   header: {
-  //     left: 'prevYear,prev,next,nextYear today',
-  //     center: 'title',
-  //     right: 'dayGridMonth,dayGridWeek,dayGridDay'
-  //   },
-  //   navLinks: true, // can click day/week names to navigate views
-  //   editable: true,
-    
-  // });
-
-  // calendar.render();
 </script>
 
 @endpush

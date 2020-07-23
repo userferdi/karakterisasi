@@ -145,10 +145,10 @@
                 <li class="nav-item">
                   <a href="./index2.html" class="nav-link">
                     <i class="fas fa-caret-right nav-icon"></i>
-                    <p>Approved Schedule</p>
+                    <p>All Status Schedule</p>
                   </a>
                 </li>
-                <li class="nav-item">
+<!--                 <li class="nav-item">
                   <a href="./index3.html" class="nav-link">
                     <i class="fas fa-caret-right nav-icon"></i>
                     <p>Reschedule Offered List</p>
@@ -171,10 +171,10 @@
                     <i class="fas fa-caret-right nav-icon"></i>
                     <p>Canceled List</p>
                   </a>
-                </li>
+                </li> -->
               </ul>
             </li>
-            <li class="nav-item has-treeview">
+<!--             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-file-alt"></i>
                 <p>
@@ -216,7 +216,7 @@
                   History
                 </p>
               </a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-cogs"></i>

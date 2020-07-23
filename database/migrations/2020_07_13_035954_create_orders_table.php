@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->integer('tools_id')->unsigned();
             $table->datetime('start');
             $table->datetime('end');
-            $table->boolean('verification')->default('0');
+            $table->integer('approved_id')->default('1');
             $table->timestamps();
             $table->foreign('users_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');

@@ -19,6 +19,7 @@ class ScheduleController extends Controller
 	{
 		// $model = Order::get();
         $model = Tool::findOrFail($id);
+        // dd($model);
 		return view('schedule.show', ['model' => $model]);
 	}
 

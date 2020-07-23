@@ -5,13 +5,13 @@
 @section('content')
 <ul class="nav nav-tabs" id="myTab" role="tablist" style="padding-top:15px;">
   <li class="nav-item" role="presentation">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Tools List</a>
+    <a class="nav-link active" id="tool-tab" data-toggle="tab" href="#tool" role="tab" aria-controls="tool" aria-selected="true">Tools List</a>
   </li>
   <li class="nav-item" role="presentation">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Status</a>
+    <a class="nav-link" id="status-tab" data-toggle="tab" href="#status" role="tab" aria-controls="status" aria-selected="false">Status</a>
   </li>
   <li class="nav-item" role="presentation">
-    <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false">Time of Use</a>
+    <a class="nav-link" id="time-tab" data-toggle="tab" href="#time" role="tab" aria-controls="time" aria-selected="false">Time of Use</a>
   </li>
 </ul>
 
@@ -19,19 +19,19 @@
 <div class="card">
   <div class="card-body">
     <div class="tab-content">
-      <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <div class="tab-pane active" id="tool" role="tabpanel" aria-labelledby="tool-tab">
         <h4 class="panel-title mb-3"><strong>List Alat</strong>
           <a href="{{ route('tool.create') }}" class="btn btn-primary float-right btn-sm modal-show" name="Tambah Daftar Alat Baru"><i class="nav-icon fas fa-plus"></i> Add New</a>
         </h4>
         <table id="table_tool" class="table table-striped table-bordered text-sm" style="width:100%"></table>
       </div>
-      <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <div class="tab-pane" id="status" role="tabpanel" aria-labelledby="status-tab">
         <h4 class="panel-title mb-3"><strong>Status Alat</strong>
           <a href="{{ route('status.create') }}" class="btn btn-primary float-right btn-sm modal-show" name="Tambah Status Alat Baru"><i class="nav-icon fas fa-plus"></i> Add New</a>
         </h4>
         <table id="table_status" class="table table-striped table-bordered text-sm" style="width:100%"></table>
       </div>
-      <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+      <div class="tab-pane" id="time" role="tabpanel" aria-labelledby="time-tab">
         <h4 class="panel-title mb-3"><strong>Waktu Penggunaan Alat</strong>
           <a href="{{ route('status.create') }}" class="btn btn-primary float-right btn-sm modal-show" name="Create Brand"><i class="nav-icon fas fa-plus"></i> Create</a>
         </h4>

@@ -70,14 +70,14 @@ class ToolController extends Controller
         	->addColumn('status', function($model){
         		return $model->statuses->name;
         	})
-            ->addColumn('show', function($model){
+            ->addColumn('booking', function($model){
                 $button = 
-'<a href="" class="btn btn-primary btn-sm">show</a>';
+'<a href="'.route('order.form',$model->id).'" class="btn btn-primary btn-sm">Registrasi</a>';
                 return $button;
             })
             ->addColumn('schedule', function($model){
                 $button = 
-'<a href="'.route('schedule.show',$model->id).'" class="btn btn-primary btn-sm">Lihat Jadwal</a>';
+'<a href="'.route('schedule.show',$model->id).'" class="btn btn-primary btn-sm title" name="'.$model->name.'" id="title">Lihat Jadwal</a>';
                 return $button;
             })
             ->addColumn('action', function($model){
@@ -88,7 +88,7 @@ class ToolController extends Controller
                 return $button;
             })
             ->addIndexColumn()
-            ->rawColumns(['action','show','schedule'])
+            ->rawColumns(['action','booking','schedule'])
             ->make(true);
     }
 }

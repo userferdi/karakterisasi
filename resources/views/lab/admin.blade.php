@@ -1,13 +1,13 @@
 @extends('layout.admin')
 
-@section('title','Laboratorium | PRINTG')
+@section('title', 'Laboratorium | PRINTG')
 
 @section('content')
 <div class="row" style="padding-top:15px;">
   <div class="col-lg-12">
     <div class="card">
       <div class="card-body">
-        <h3 class="panel-title mb-3"><strong>Laboratorium</strong>
+        <h3 class="mb-3"><strong>Laboratorium</strong>
           <a href="{{ route('lab.create') }}" class="btn btn-primary float-right btn-sm modal-show" name="Tambah Daftar Lab Baru"><i class="nav-icon fas fa-plus"></i> Add New</a>
         </h3>
         <table id="table" class="table table-striped table-bordered text-sm" style="width:100%"></table>
@@ -28,7 +28,7 @@
       {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, width: '5%', className: 'dt-center'},
       {title: 'Nama', data: 'name', name: 'name', width: '20%', className: 'dt-head-center'},
       {title: 'Kepala Lab', data: 'head', name: 'head', width: '22.5%', className: 'dt-head-center'},
-      {title: 'Deskripsi', data: 'descrip', name: 'descrip', width: '47.5%', className: 'dt-head-center'},
+      {title: 'Deskripsi', data: 'descrip', name: 'descrip', width: '37.5%', className: 'dt-head-center'},
       {title: 'Opsi', data: 'action', name: 'action', orderable:false, width: '7.5%', className: 'dt-center'}
     ],
   });
