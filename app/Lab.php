@@ -10,4 +10,7 @@ class Lab extends Model
     public function tools(){
     	return $this->hasMany('App\Tool');
     }
+    public function details(){
+    	return $this->hasMany('App\Detail');
+    }
 }

@@ -10,18 +10,18 @@ class LabController extends Controller
 {
     public function index()
     {
-    	return view('lab.client');
+    	return view('labs.client');
     }
 
     public function admin()
     {
-        return view('lab.admin');
+        return view('labs.admin');
     }
 
     public function create()
     {
         $model = new Lab();
-        return view('lab.form', ['model' => $model]);
+        return view('labs.form', ['model' => $model]);
     }
 
     public function store(Request $request)
@@ -38,7 +38,7 @@ class LabController extends Controller
     public function edit($id)
     {
         $model = Lab::findOrFail($id);
-        return view('lab.form', ['model' => $model]);
+        return view('labs.form', ['model' => $model]);
     }
 
     public function update(Request $request, $id)
@@ -66,7 +66,7 @@ class LabController extends Controller
                 return $button;
             })
             ->addColumn('action', function($model){
-                return view('layout.action',[
+                return view('layouts.action',[
                     'model' => $model,
                     'title' => 'Laboratorium',
                     'edit' => route('lab.edit', $model->id),

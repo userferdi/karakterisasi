@@ -10,7 +10,4 @@ class Service extends Model
     public function tools(){
     	return $this->belongsTo('App\Tool');
     }
-    public function prices(){
-    	return $this->hasOne('App\Price');
-    }
 }

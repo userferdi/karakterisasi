@@ -10,18 +10,16 @@ class StatusController extends Controller
 {
     public function index()
     {
-    	return view('status.client');
     }
 
     public function admin()
     {
-        return view('status.admin');
     }
 
     public function create()
     {
         $model = new Status();
-        return view('status.form', ['model' => $model]);
+        return view('status', ['model' => $model]);
     }
 
     public function store(Request $request)
@@ -36,7 +34,7 @@ class StatusController extends Controller
     public function edit($id)
     {
         $model = Status::findOrFail($id);
-        return view('status.form', ['model' => $model]);
+        return view('status', ['model' => $model]);
     }
 
     public function update(Request $request, $id)
@@ -59,7 +57,7 @@ class StatusController extends Controller
         $model = Status::get();
         return DataTables::of($model)
             ->addColumn('action', function($model){
-                return view('layout.action',[
+                return view('layouts.action',[
                     'model' => $model,
                     'title' => 'Status Alat',
                     'edit' => route('status.edit', $model->id),

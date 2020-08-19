@@ -59,7 +59,7 @@ class TimeController extends Controller
         $model = Time::get();
         return DataTables::of($model)
             ->addColumn('action', function($model){
-                return view('layout.action',[
+                return view('layouts.action',[
                     'model' => $model,
                     'title' => 'Waktu Penggunaan Alat',
                     'edit' => route('time.edit', $model->id),

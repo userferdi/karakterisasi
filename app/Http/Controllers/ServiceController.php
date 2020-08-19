@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Service;
+use App\Tool;
 use DataTables;
 use Illuminate\Http\Request;
 
@@ -10,18 +11,21 @@ class ServiceController extends Controller
 {
     public function index()
     {
-    	return view('service.client');
+        $no = Tool::orderBy('id', 'desc')->value('id');
+        $tool = Tool::get();
+        $service = Service::get();
+        return view('services.client', ['tool' => $tool, 'service' => $service]);
     }
 
     public function admin()
     {
-        return view('service.admin');
+        return view('services.admin');
     }
 
     public function create()
     {
         $model = new Service();
-        return view('form', ['model' => $model]);
+        return view('services.form', ['model' => $model]);
     }
 
     public function store(Request $request)
@@ -36,7 +40,7 @@ class ServiceController extends Controller
     public function edit($id)
     {
         $model = Service::findOrFail($id);
-        return view('form', ['model' => $model]);
+        return view('services.form', ['model' => $model]);
     }
 
     public function update(Request $request, $id)
@@ -56,10 +60,21 @@ class ServiceController extends Controller
 
     public function datatable()
     {
-        $model = Service::get();
+        $model = Service::where(['tools_id'=>'1'])->get();
+        // $model = Service::get();
         return DataTables::of($model)
             ->addColumn('tool', function($model){
                 return $model->tools->name;
+            })
+            ->editColumn('price', function($model){
+                $price = 'Rp ';
+                $price .= number_format($model->price, 0, ',', '.');
+                return $price;
+            })
+            ->editColumn('discount', function($model){
+                $discount = $model->discount.'%';
+                // $price .= number_format($model->price, 0, ',', '.');
+                return $discount;
             })
             ->addColumn('show', function($model){
                 $button = 
@@ -67,7 +82,7 @@ class ServiceController extends Controller
                 return $button;
             })
             ->addColumn('action', function($model){
-                return view('layout.action',[
+                return view('layouts.action',[
                     'model' => $model,
                     'title' => 'Service',
                     'edit' => route('service.edit', $model->id),

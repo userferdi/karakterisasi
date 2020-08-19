@@ -20,17 +20,16 @@
     /*==================================================================
     [ Validate ]*/
     var input = $('.validate-input .input100');
+    
 
     $('.validate-form').on('submit',function(){
         var check = true;
-
         for(var i=0; i<input.length; i++) {
             if(validate(input[i]) == false){
                 showValidate(input[i]);
                 check=false;
             }
         }
-
         return check;
     });
 
@@ -72,14 +71,14 @@
     $('.btn-show-pass').on('click', function(){
         if(showPass == 0) {
             $(this).next('input').attr('type','text');
-            $(this).find('i').removeClass('fa-eye');
-            $(this).find('i').addClass('fa-eye-slash');
+            $(this).find('i.validates').removeClass('fa-eye');
+            $(this).find('i.validates').addClass('fa-eye-slash');
             showPass = 1;
         }
         else {
             $(this).next('input').attr('type','password');
-            $(this).find('i').addClass('fa-eye');
-            $(this).find('i').removeClass('fa-eye-slash');
+            $(this).find('i.validates').addClass('fa-eye');
+            $(this).find('i.validates').removeClass('fa-eye-slash');
             showPass = 0;
         }
         
