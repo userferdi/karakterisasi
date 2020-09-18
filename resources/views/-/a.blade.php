@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>PRINT-G</title>
+  <title>FINDER</title>
   <meta name="description" content="LAB Karakterisasi PRINT-G">
   <meta name="author" content="userferdi">
   <link rel="icon" href="{{ asset('printg.png') }}">

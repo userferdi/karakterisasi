@@ -1,99 +1,104 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.welcome')
 
-        <title>Laravel</title>
+@section('title', 'FINDER')
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+@section('content')
+<!-- Masthead-->
+<header class="masthead bg-light text-white text-center">
+<div class="container d-flex align-items-center flex-column">
+  <!-- Masthead Avatar Image-->
+  <img class="masthead-avatar m-t-20 m-b-80" src="finder.png" alt="" />
+  <!-- Masthead Heading-->
+  <h1 class="masthead-heading text-uppercase text-dark m-b-80">SISTEM INFORMASI<br>PENGELOLAAN ALAT</h1>
+  <!-- Masthead Subheading-->
+  <h2 class="masthead-subheading text-dark mb-0">FINDER</h2>
+  <h2 class="masthead-subheading text-dark m-b-20">Functional Nano Powder</h2>
+</div>
+</header>
+<!-- Portfolio Section-->
+<section class="page-section portfolio" id="portfolio">
+  <div class="container">
+    <h2 class="page-section-heading text-center text-uppercase text-dark m-b-60">Informasi Layanan</h2>
+    <div class="row">
+      <ol>
+        <li>
+          <h4>Layanan Login</h4>
+          <h5>Silakan 
+            <a href="https://sipa.nrcn.itb.ac.id/login">Login</a> dengan memasukkan username dan password yang Anda buat untuk melakukan registrasi penggunaan alat. Pilih menu Registrasi Penggunaan Alat setelah Anda Log-in.
+          </h5>
+        </li><br>
+        <li>
+          <h4>Daftar Akun</h4>
+          <h5>Silakan klik <a href="https://drive.google.com/open?id=1pw_FMr_0nes5t2KCVN_KWfg-PGtqKzeI">di sini</a> untuk mengunduh aturan registrasi akun SIPA. Kemudian silakan pilih role dibawah ini untuk melakukan registrasi. </h5>
+          <h5>Anda harus memiliki akun terlebih dahulu, sebelum Log-in. Silakan klik menu
+            <a href="https://sipa.nrcn.itb.ac.id/register_index">Register</a> untuk membuat akun. Akun SIPA tersedia untuk :
+          </h5>
+          <ul>
+            <li>
+              <h5>Dosen Unpad</h5>
+            </li>
+            <li>
+              <h5>Mahasiswa Unpad</h5>
+            </li>
+            <li>
+              <h5>Dosen Non Unpad</h5>
+            </li>
+            <li>
+              <h5>Mahasiswa Non Unpad</h5>
+            </li>
+            <li>
+              <h5>Umum</h5>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <h4>Daftar Alat & Harga</h4>
+          <ul>
+            <li>
+              <h5><a href ="https://sipa.nrcn.itb.ac.id/listtools">Daftar Alat</a></h5>
+            </li>
+            <li>
+              <h5><a href ="https://sipa.nrcn.itb.ac.id/pricelist">Daftar Harga</a></h5>
+            </li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+<!-- Footer-->
+<footer class="footer text-center">
+    <div class="container">
+        <div class="row">
+            <!-- Footer Location-->
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <h4 class="text-uppercase mb-4">Location</h4>
+                <p class="lead mb-0">
+                    Jl. Raya Bandung-Sumedang KM. 21 Universitas Padjadjaran<br/>
+                    Jawa Barat, Indonesia 45363
+                </p>
+            </div>
+            <!-- Footer Social Icons-->
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <h4 class="text-uppercase mb-4">Around the Web</h4>
+                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
+                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
+                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
+                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
+            </div>
+            <!-- Footer About Text-->
+            <div class="col-lg-4">
+                <h4 class="text-uppercase mb-4">About FINDER</h4>
+                <p class="lead mb-0">
+                    Research Center for Functional Nano Powder is .
+                </p>
             </div>
         </div>
-    </body>
-</html>
+    </div>
+</footer>
+@endsection
+
+@push('script')
+<script src="{{ asset('js/scripts.js') }}"></script>
+@endpush

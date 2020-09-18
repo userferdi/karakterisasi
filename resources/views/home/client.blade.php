@@ -1,6 +1,6 @@
-@extends('layouts.client')
+@extends('layouts.index')
 
-@section('title','Home - PRINTG')
+@section('title','FINDER · Home')
 
 @section('content')
 <div class="row" style="padding-top:15px;">

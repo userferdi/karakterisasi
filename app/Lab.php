@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lab extends Model
 {
-    protected $fillable = ['id','name','head','descrip'];
+    protected $fillable = ['id','name','code','head','descrip'];
     public function tools(){
     	return $this->hasMany('App\Tool');
     }

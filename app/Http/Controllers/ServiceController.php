@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Service;
 use App\Tool;
+use App\Order;
+
+use Auth;
 use DataTables;
 use Illuminate\Http\Request;
 
@@ -11,15 +14,21 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        $no = Tool::orderBy('id', 'desc')->value('id');
-        $tool = Tool::get();
-        $service = Service::get();
-        return view('services.client', ['tool' => $tool, 'service' => $service]);
-    }
-
-    public function admin()
-    {
-        return view('services.admin');
+        if(Auth::User()==NULL){
+            return view('services.index');
+        }
+        else if(Auth::User()->value('role')==0){
+            $no = Tool::orderBy('id', 'desc')->value('id');
+            $tool = Tool::get();
+            $service = Service::get();
+            return view('services.client', ['tool' => $tool, 'service' => $service]);
+        }
+        else if(Auth::User()->value('role')==1){
+            return view('services.admin');
+        }
+        else {
+            return redirect()->route('welcome');
+        }
     }
 
     public function create()
@@ -60,8 +69,7 @@ class ServiceController extends Controller
 
     public function datatable()
     {
-        $model = Service::where(['tools_id'=>'1'])->get();
-        // $model = Service::get();
+        $model = Service::get();
         return DataTables::of($model)
             ->addColumn('tool', function($model){
                 return $model->tools->name;
@@ -73,20 +81,14 @@ class ServiceController extends Controller
             })
             ->editColumn('discount', function($model){
                 $discount = $model->discount.'%';
-                // $price .= number_format($model->price, 0, ',', '.');
                 return $discount;
-            })
-            ->addColumn('show', function($model){
-                $button = 
-'<a href="" class="btn btn-primary btn-sm">show</a>';
-                return $button;
             })
             ->addColumn('action', function($model){
                 return view('layouts.action',[
                     'model' => $model,
                     'title' => 'Service',
-                    'edit' => route('service.edit', $model->id),
-                    'delete' => route('service.delete', $model->id)
+                    'edit' => route('price.edit', $model->id),
+                    'delete' => route('price.delete', $model->id)
                 ]);
             })
             ->addIndexColumn()

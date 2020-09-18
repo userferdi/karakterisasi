@@ -2,7 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+use Illuminate\Support\Facades\DB;
+
+require 'D:\Documents\xampp\htdocs\karakterisasi\vendor\autoload.php';
 
 class HomeController extends Controller
 {
@@ -11,10 +18,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+        // $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -23,6 +30,26 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $client = ['Dosen Unpad', 'Dosen Non Unpad', 'Mahasiswa Unpad', 'Mahasiswa Non Unpad', 'User Umum'];
+        if(Auth()->User()->hasRole('Admin')){
+            return view('home.admin');
+        }
+        else if(Auth()->User()->hasRole($client)){
+            return view('home.client');
+        }
+        else{
+            return redirect()->route('welcome');
+        }
     }
+
+    public function welcome()
+    {
+        if(Auth()->User()!=NULL){
+            return redirect()->route('home');
+        }
+        return view('welcome');
+    }
+    
+
+
 }

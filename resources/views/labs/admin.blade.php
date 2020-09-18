@@ -1,6 +1,6 @@
-@extends('layouts.admin')
+@extends('layouts.index')
 
-@section('title', 'Laboratorium | PRINTG')
+@section('title', 'FINDER · Laboratorium')
 
 @section('content')
 <div class="row" style="padding-top:15px;">
@@ -76,7 +76,6 @@
       url : url,
       method : method,
       data : form.serialize(),
-
       success: function(response){
         $('#modal').modal('hide');
         $('#table').DataTable().ajax.reload();
@@ -98,9 +97,7 @@
         })
         $('#modal-body').html('reset');
       },
-
       error: function(){
-        'use strict';
         var validation = Array.prototype.filter.call(form, function(form) {
           form.classList.add('was-validated');
         });

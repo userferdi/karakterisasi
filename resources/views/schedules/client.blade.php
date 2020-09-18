@@ -5,7 +5,7 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('css/disable.css') }}">
 @endpush
 
-@section('title','Shedules - PRINTG')
+@section('title','FINDER · Schedule')
 
 @section('content')
 <h2 style="padding-top:10px;"><strong>Jadwal Penggunaan Alat</strong></h2>
@@ -39,12 +39,11 @@
     info: false,
     ajax: "{{ route('tool.dt') }}",
     columns: [
-      {title: 'Nama', data: 'name', name: 'name', orderable:false, width: '70%', className: 'dt-head-center'},
-      {title: 'Schedule', data: 'schedule', name: 'show', orderable:false, width: '30%', className: 'dt-center'}
+      {title: 'Nama', data: 'name', name: 'name', orderable:false, className: 'dt-head-center'},
+      {title: 'Schedule', data: 'schedule', name: 'show', orderable:false, className: 'dt-center'}
     ],
   });
-</script>
-<script>
+
 document.addEventListener('DOMContentLoaded', function() {
   var calendarEl = document.getElementById('calendar');
   var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -53,8 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,listWeek'
     },
-  //   defaultDate: '2019-08-12',
-  //   editable: true,
+    // editable: true,
     firstDay: 1,
     navLinks: true, // can click day/week names to navigate views
     dayMaxEvents: true, // allow "more" link when too many events
@@ -75,10 +73,8 @@ document.addEventListener('DOMContentLoaded', function() {
     //     bool ? 'block' : 'none';
     // }
   });
-    calendar.render();
+  calendar.render();
 });
 
-
 </script>
-
 @endpush

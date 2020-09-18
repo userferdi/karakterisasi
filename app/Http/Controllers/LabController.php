@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Lab;
+
+use Auth;
 use DataTables;
 use Illuminate\Http\Request;
 
@@ -10,12 +12,25 @@ class LabController extends Controller
 {
     public function index()
     {
-    	return view('labs.client');
+        $client = ['Dosen Unpad', 'Dosen Non Unpad', 'Mahasiswa Unpad', 'Mahasiswa Non Unpad', 'User Umum'];
+        if(Auth()->User()->hasRole('Admin')){
+            return view('labs.admin');
+        }
+        else if(Auth()->User()->hasRole($client)){
+            return view('labs.client');
+        }
+        else if(Auth()->User()!=NULL){
+            return view('labs.index');
+        }
+        else{
+            abort(404);
+        }
     }
 
-    public function admin()
+    public function show($id)
     {
-        return view('labs.admin');
+        $model = Lab::find($id);
+        return view('labs.show', ['model'=>$model]);
     }
 
     public function create()
@@ -26,6 +41,7 @@ class LabController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request);
         $this->validate($request, [
             'name' => 'required',
             'head' => 'required',
@@ -62,7 +78,7 @@ class LabController extends Controller
         return DataTables::of($model)
             ->addColumn('show', function($model){
                 $button = 
-'<a href="" class="btn btn-primary btn-sm">show</a>';
+'<a href="'.route('lab.show', $model->id).'" class="btn btn-primary btn-sm">show</a>';
                 return $button;
             })
             ->addColumn('action', function($model){

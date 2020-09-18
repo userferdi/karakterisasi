@@ -18,6 +18,11 @@
                     <div class="invalid-feedback" id="invalid">Please fill out this field</div>
                 </div>
                 <div class="form-group">
+                    <label for="" class="control-label">Code</label>
+                    {!! Form::text('code', null, ['class' => 'form-control', 'id' => 'code', 'required']) !!}
+                    <div class="invalid-feedback" id="invalid">Please fill out this field</div>
+                </div>
+                <div class="form-group">
                     <label for="" class="control-label">Kepala Lab</label>
                     {!! Form::text('head', null, ['class' => 'form-control', 'id' => 'head', 'required']) !!}
                     <div class="invalid-feedback" id="invalid">Please fill out this field</div>

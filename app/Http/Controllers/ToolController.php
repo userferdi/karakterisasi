@@ -2,25 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Tool;
-use App\Status;
 use App\Lab;
 use App\Period;
+use App\Status;
+use App\Tool;
+
+use Auth;
 use DataTables;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ToolController extends Controller
 {
     public function index()
     {
-    	return view('tools.client');
-    }
-
-    public function admin()
-    {
-        // $model = Tool::with('Uses')->get();
-        // dd($model);
-        return view('tools.admin');
+        if(Auth::User()!=NULL){
+            if(Auth::User()->value('role')==0){
+                return view('tools.client');
+            }
+            else if(Auth::User()->value('role')==1){
+                return view('tools.admin');
+            }
+            else {
+                return redirect()->route('welcome');
+            }
+        }
+        else if(Auth::User()==NULL){
+            return view('tools.index');
+        }
     }
 
     public function show($id)
@@ -40,35 +49,22 @@ class ToolController extends Controller
 
     public function store(Request $request)
     {
-        // dd($model);
         $this->validate($request, [
             'name' => ['required', 'string'],
             'code' => ['required', 'string', 'min:2', 'max:4'],
-            'descrip' => ['required', 'string', 'max:255'],
-            'sample' => ['required', 'string', 'max:255'],
         ]);
 
         $model = new Tool;
         $model = $request->all();
         $model['image'] = null;
-        if($request->hasFile('image')){
+        if($request->file('image')!=null){
             $directory = '/upload/'.$request->code.'/';
             $filename = $request->name.'.'.$request->image->getClientOriginalExtension();
             $model['image'] = $directory.$filename;
             $request->image->move(public_path($directory), $filename);
         }
-        $baru = Tool::create($model);
-        // $baru->save();
-        dd($baru);
-        $model['name'] = $request->name;
-        $model['code'] = $request->code;
-        $model['descrip'] = $request->descrip;
-        $model['sample'] = $request->sample;
-        $model['statuses_id'] = $request->statuses_id;
-        $model['labs_id'] = $request->labs_id;
-        $model['periods_id'] = $request->periods_id;
-        $model->save();
-        return response()->json($model);
+        $save = Tool::create($model);
+        return response()->json($save);
     }
 
     public function edit($id)
@@ -82,43 +78,76 @@ class ToolController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'name' => ['required', 'string'],
+            'code' => ['required', 'string', 'min:2', 'max:4'],
+            'descrip' => ['required', 'string', 'max:1023'],
+            'sample' => ['required', 'string', 'max:1023'],
+        ]);
+
         $model = Tool::findOrFail($id);
-        if ($request->hasFile('image')){
+        if ($request->file('image')!=null){
             if ($model->image !== NULL){
                 unlink(public_path($model->image));
+                File::delete($model->image);
             }
         }
-
-        $this->validate($request, [
-            'name' => 'required'
-        ]);
-        $model = Tool::findOrFail($id)->update($request->all());
-        dd($request, $model);
+        $model = $request->all();
+        $model['image'] = null;
+        if($request->file('image')!=null){
+            $directory = '/upload/'.$request->code.'/';
+            $filename = $request->name.'.'.$request->image->getClientOriginalExtension();
+            $model['image'] = $directory.$filename;
+            $request->image->move(public_path($directory), $filename);
+        }
+        $model = Tool::findOrFail($id)->update($model);
         return response()->json($model);
     }
 
     public function delete($id)
     {
+        $model = Tool::findOrFail($id);
+        if ($model->image !== NULL){
+            File::delete($model->image);
+            unlink(public_path($model->image));
+        }
         $model = Tool::findOrFail($id)->delete();
         return response()->json($model);
     }
 
-    public function datatable()
+    public function datatableShow()
     {
         $model = Tool::get();
         return DataTables::of($model)
-            ->addColumn('lab', function($model){
-                return $model->labs->name;
-            })
-            ->addColumn('head', function($model){
-                return $model->labs->head;
-            })
-            ->addColumn('period', function($model){
-                return $model->periods->name;
-            })
-        	->addColumn('status', function($model){
-        		return $model->statuses->name;
+        	->editColumn('actives_id', function($model){
+        		return $model->actives->name;
         	})
+            ->addColumn('show', function($model){
+                $button = 
+'<a href="'.route('tool.show',$model->id).'" class="btn btn-primary btn-sm">show</a>';
+                return $button;
+            })
+            ->addIndexColumn()
+            ->rawColumns(['action','booking','schedule','image','show'])
+            ->make(true);
+    }
+
+    public function datatableAdmin()
+    {
+        $model = Tool::get();
+        return DataTables::of($model)
+         //    ->addColumn('lab', function($model){
+         //        return $model->labs->name;
+         //    })
+         //    ->addColumn('head', function($model){
+         //        return $model->labs->head;
+         //    })
+         //    ->addColumn('usage', function($model){
+         //        return $model->usages->name;
+         //    })
+            // ->addColumn('active', function($model){
+            //  return $model->actives->name;
+            // })
             ->addColumn('image', function($model){
                 if ($model->image == NULL){
                     return 'No Image';
@@ -153,5 +182,4 @@ class ToolController extends Controller
             ->rawColumns(['action','booking','schedule','image','show'])
             ->make(true);
     }
-
 }

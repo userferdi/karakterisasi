@@ -1,6 +1,6 @@
-@extends('layouts.client')
+@extends('layouts.index')
 
-@section('title','Laboratorium - PRINTG')
+@section('title','FINDER · Laboratorium')
 
 @section('content')
 <h2 style="padding-top:10px;"><strong>Laboratorium</strong></h2>

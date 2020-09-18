@@ -1,9 +1,8 @@
-@extends('layouts.admin')
+@extends('layouts.client')
 
-@section('title', 'FINDER')
+@section('title', 'FINDER · Tools List')
 
 @section('content')
-
 <div class="row" style="padding-top:15px;">
   <!-- <a href="{{ route('tool.create') }}" class="btn btn-primary btn-sm" name="Tambah Daftar Alat Baru"><i class="nav-icon fas fa-plus"></i> Add New</a> -->
   <div class="col-lg-12">
@@ -18,8 +17,8 @@
           </thead>
           <tbody>
             <tr>
-                <td>Nama Alat:</td>
-                <td>{{$model->name}}</td>
+                <td width="15%">Nama Alat:</td>
+                <td width="85%">{{$model->name}}</td>
             </tr>
             <tr>
                 <td>Deskripsi Alat:</td>
@@ -50,6 +49,7 @@
         </br>
         </br>
         <h4>Photos</h4>
+        <img src="{{ asset($model->image) }}" width="150"/>
       </div>
     </div>
   </div>

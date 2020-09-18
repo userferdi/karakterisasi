@@ -4,10 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class approve extends Model
+class Approve extends Model
 {
-    protected $fillable = ['id','name'];
     public function orders(){
-        return $this->hasMany('App\Order');
+        return $this->belongsTo('App\Order', 'order_id');
+    }
+    public function times(){
+    	return $this->belongsTo('App\Time', 'times_id');
     }
 }

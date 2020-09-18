@@ -1,9 +1,9 @@
-@extends('layout.client')
+@extends('layouts.client')
 
-@section('title','Contact · PRINTG')
+@section('title','FINDER · Contact')
 
 @section('content')
-	<h1 style="padding-top:10px;">Kontak Kami</h1>
+	<h1 style="padding-top:7.5px;">Kontak Kami</h1>
 	<p>
 	    Email : code@padjadjaranlab.com<br>
 	    WA : +62 859 4722 4853<br>

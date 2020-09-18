@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Tools List | PRINTG')
+@section('title', 'FINDER · Tools List')
 
 @section('content')
 <ul class="nav nav-tabs" id="myTab" role="tablist" style="padding-top:15px;">
@@ -122,7 +122,7 @@
   $('body').on('submit','.form', function(event){
     event.preventDefault();
 
-    var form = $('form'),
+    var form = $('.form'),
         url = form.attr('action'),
         method = $('input[name=_method]').val() == undefined ? 'POST' : 'PUT';
 
@@ -188,7 +188,7 @@
             '_token': csrf_token
           },
           success: function(response){
-            $('#table').DataTable().ajax.reload();
+            $('#table_tool').DataTable().ajax.reload();
             const Toast = Swal.mixin({
               toast: true,
               position: 'top-end',

@@ -46,13 +46,13 @@
         {!! Form::select('periods_id', $model->period, $model->periods_id, ['class' => 'form-control', 'id' => 'periods_id', 'required']) !!}
     </div>
     <div class="form-group">
-        <label class="control-label">Upload Image</label></br>
-        {!! Form::file('image', $attributes = ['accept'=>"image/bmp,image/jpeg,image/png"]) !!}
-        <!-- <input type="file" name="file"> -->
+        <label class="control-label">Upload Image</label><br>
+        {!! Form::file('image') !!}
     </div>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal" id="modal-close"></button>
+    <!-- {!! Form::submit('Save', ['class' => 'btn btn-primary', 'id' => 'modal-save']) !!} -->
     <button type="submit" class="btn btn-primary" id="modal-save"></button>
 </div>
 
