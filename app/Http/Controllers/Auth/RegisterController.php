@@ -121,13 +121,13 @@ class RegisterController extends Controller
                 'no_hp' => $data['no_hp'],
                 'university' => 'Universitas Padjadjaran',
                 'faculty' => $data['faculty'],
-                'program_study' => $data['program_study']
+                'study_program' => $data['study_program']
             ]);
             Auth::login($user);
             auth()->user()->assignRole('Dosen Unpad');
             return redirect()->route('home');
         }
-        else if($user=='dosennonunpad'){
+        else if($data['user']=='dosennonunpad'){
             $user = User::create([
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
@@ -136,13 +136,13 @@ class RegisterController extends Controller
                 'no_hp' => $data['no_hp'],
                 'university' => $data['university'],
                 'faculty' => $data['faculty'],
-                'program_study' => $data['program_study']
+                'study_program' => $data['study_program']
             ]);
             Auth::login($user);
             auth()->user()->assignRole('Dosen Non Unpad');
             return redirect()->route('home');
         }
-        else if($user=='mahasiswaunpad'){
+        else if($data['user']=='mahasiswaunpad'){
             $user = User::create([
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
@@ -151,13 +151,13 @@ class RegisterController extends Controller
                 'no_hp' => $data['no_hp'],
                 'university' => 'Universitas Padjadjaran',
                 'faculty' => $data['faculty'],
-                'program_study' => $data['program_study']
+                'study_program' => $data['study_program']
             ]);
             Auth::login($user);
             auth()->user()->assignRole('Mahasiswa Unpad');
             return redirect()->route('home');
         }
-        else if($user=='mahasiswanonunpad'){
+        else if($data['user']=='mahasiswanonunpad'){
             $user = User::create([
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
@@ -166,13 +166,13 @@ class RegisterController extends Controller
                 'no_hp' => $data['no_hp'],
                 'university' => $data['university'],
                 'faculty' => $data['faculty'],
-                'program_study' => $data['program_study']
+                'study_program' => $data['study_program']
             ]);
             Auth::login($user);
             auth()->user()->assignRole('Mahasiswa Non Unpad');
             return redirect()->route('home');
         }
-        else if($user=='userumum'){
+        else if($data['user']=='userumum'){
             $user = User::create([
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),

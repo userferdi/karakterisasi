@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Approve extends Model
 {
     public function orders(){
-        return $this->belongsTo('App\Order', 'order_id');
+        return $this->belongsTo('App\Order');
     }
     public function times(){
-    	return $this->belongsTo('App\Time', 'times_id');
+    	return $this->belongsTo('App\Time');
     }
 }

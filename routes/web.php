@@ -136,6 +136,8 @@ Route::middleware('auth')->group(function(){
 		Route::get('edit/{id}', 'ActivitiesController@edit')->name('activities.edit');
 		Route::put('update/{id}', 'ActivitiesController@update')->name('activities.update');
 		Route::delete('delete/{id}', 'ActivitiesController@delete')->name('activities.delete');
+		Route::get('confirm/{id}', 'ActivitiesController@confirm')->name('activities.confirm');
+		Route::get('reject/{id}', 'ActivitiesController@reject')->name('activities.reject');
 		Route::prefix('status')->group(function(){
 			// Booking Request 1,2
 			Route::get('booking', 'ActivitiesController@booking')->name('status.booking');

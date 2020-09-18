@@ -25,9 +25,9 @@
   <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.css') }}">
   <!-- DatePicker -->
   <link rel="stylesheet" href="{{ asset('css/gijgo.min.css') }}">
-@stack('css')
-</head>
+  @stack('style')
 
+</head>
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
     <!-- Navbar -->

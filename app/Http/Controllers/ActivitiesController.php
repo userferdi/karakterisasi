@@ -249,7 +249,6 @@ class ActivitiesController extends Controller
 
     public function datatableBooking()
     {
-        $id = Auth()->User()->id;
         $model = Booking::whereHas('orders', function ($query){
             return $query->where('users_id', '=', Auth()->User()->id);
         })->where(function($model){
@@ -331,7 +330,6 @@ class ActivitiesController extends Controller
 
     public function datatableLecturer()
     {
-        $id = Auth()->User()->id;
         $model = Booking::whereHas('orders', function ($query){
             return $query->where('users_id', '=', Auth()->User()->id);
         })->where('status',3)->get();
@@ -401,8 +399,9 @@ class ActivitiesController extends Controller
 
     public function datatableConfirmation()
     {
-        $id = Auth()->User()->id;
-        $model = Booking::where(['users_id'=>Auth()->User()->id, 'status'=>4])->get();
+        $model = Booking::whereHas('orders', function ($query){
+            return $query->where('users_id', '=', Auth()->User()->id);
+        })->where('status',4)->get();
         return DataTables::of($model)
             ->editColumn('date', function($model){
                 if($model->datetime == 1){
@@ -468,8 +467,9 @@ class ActivitiesController extends Controller
 
     public function datatableReschedule()
     {
-        $id = Auth()->User()->id;
-        $model = Booking::where(['users_id'=>Auth()->User()->id, 'status'=>4])->get();
+        $model = Booking::whereHas('orders', function ($query){
+            return $query->where('users_id', '=', Auth()->User()->id);
+        })->where('status',5)->get();
         return DataTables::of($model)
             ->editColumn('date1', function($model){
                 $date = date('d M Y', strtotime($model->date1));
@@ -533,8 +533,9 @@ class ActivitiesController extends Controller
 
     public function datatableApproved()
     {
-        $id = Auth()->User()->id;
-        $model = Approve::where(['users_id'=>$id, 'status'=>1])->get();
+        $model = Approve::whereHas('orders', function ($query){
+            return $query->where('users_id', '=', Auth()->User()->id);
+        })->where('status',1)->get();
         return DataTables::of($model)
             ->editColumn('date', function($model){
                 $date = date('d M Y', strtotime($model->date));
@@ -699,9 +700,7 @@ class ActivitiesController extends Controller
 
     public function adminBooking()
     {
-        // $id = Auth()->User()->id;
         $model = Booking::where('status',3)->get();
-        // $lecturer = Profile::where('user_id',$id)->get();
         return DataTables::of($model)
             ->editColumn('date1', function($model){
                 $date = date('d M Y', strtotime($model->date1));
@@ -748,19 +747,15 @@ class ActivitiesController extends Controller
                     return 'Menunggu konfirmasi dari Admin';
                 }
             })
-            ->addColumn('resend', function($model){
-                $button = 
-'<a href="'.route('activities.delete', $model->id).'" class="btn btn-primary btn-sm resend" name="'.$model->name.'">Resend</a>';
-                return $button;
-            })
             ->addColumn('detail', function($model){
                 $button = 
 '<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>';
                 return $button;
             })
-            ->addColumn('cancel', function($model){
+            ->addColumn('action', function($model){
                 $button = 
-'<a href="'.route('activities.delete', $model->id).'" class="btn btn-danger btn-sm delete" name="'.$model->no_form.'">Cancel</a>';
+'<a href="'.route('activities.confirm', $model->id).'" class="btn btn-primary btn-sm confirm" name="'.$model->no_form.'">Confirm</a>
+<a href="'.route('activities.reject', $model->id).'" class="btn btn-danger btn-sm reject" name="'.$model->no_form.'">Reject</a>';
                 return $button;
             })
             ->removeColumn('id')
@@ -771,7 +766,69 @@ class ActivitiesController extends Controller
             ->removeColumn('token')
             ->removeColumn('note')
             ->addIndexColumn()
-            ->rawColumns(['attend', 'resend', 'detail', 'cancel'])
+            ->rawColumns(['attend', 'detail', 'action'])
+            ->make(true);
+    }
+    public function adminApproved()
+    {
+        $model = Approve::whereHas('orders', function ($query){
+            return $query->where('users_id', '=', Auth()->User()->id);
+        })->where('status',1)->get();
+        return DataTables::of($model)
+            ->editColumn('date', function($model){
+                $date = date('d M Y', strtotime($model->date));
+                $time = $model->times->name;
+                return $date.' '.$time;
+            })
+            ->addColumn('user', function($model){
+                return $model->orders->users->name;
+            })
+            ->addColumn('tool', function($model){
+                return $model->orders->tools->name;
+            })
+            ->addColumn('lecturer', function($model){
+                return $model->orders->users->profiles->email_lecturer;
+            })
+            ->addColumn('plan', function($model){
+                return $model->orders->plans->name;
+            })
+            ->addColumn('attend', function($model){
+                if ($model->orders->attend == NULL){
+                    return '<i class="fas fa-times"></i>';
+                }
+                return '<i class="fas fa-check"></i>';
+            })
+            ->editColumn('status', function($model){
+                if ($model->status == 1){
+                    return 'Menunggu konfirmasi pada email Anda';
+                }
+                else if ($model->status == 2){
+                    return 'Menunggu konfirmasi dari Dosen Pembimbing Anda';
+                }
+                else if ($model->status == 3){
+                    return 'Menunggu konfirmasi dari Admin';
+                }
+            })
+            ->addColumn('detail', function($model){
+                $button = 
+'<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>';
+                return $button;
+            })
+            ->addColumn('action', function($model){
+                $button = 
+'<a href="'.route('activities.confirm', $model->id).'" class="btn btn-primary btn-sm confirm" name="'.$model->no_form.'">Confirm</a>
+<a href="'.route('activities.reject', $model->id).'" class="btn btn-danger btn-sm reject" name="'.$model->no_form.'">Reject</a>';
+                return $button;
+            })
+            ->removeColumn('id')
+            ->removeColumn('times1_id')
+            ->removeColumn('times2_id')
+            ->removeColumn('times3_id')
+            ->removeColumn('users_id')
+            ->removeColumn('token')
+            ->removeColumn('note')
+            ->addIndexColumn()
+            ->rawColumns(['attend', 'detail', 'action'])
             ->make(true);
     }
 }
