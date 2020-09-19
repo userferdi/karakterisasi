@@ -1,4 +1,4 @@
-@extends('layouts.client')
+@extends('layouts.index')
 
 @section('title', 'FINDER · Tools List')
 
@@ -38,11 +38,11 @@
             </tr>
             <tr>
                 <td>Status Alat</td>
-                <td>{{$model->statuses->name}}</td>
+                <td>{{$model->actives->name}}</td>
             </tr>
             <tr>
                 <td>Waktu Penggunaan</td>
-                <td>{{$model->periods->name}}</td>
+                <td>{{$model->usages->name}}</td>
             </tr>
           </tbody>
         </table>

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Profile;
 use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -105,11 +107,10 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
                 'name' => $data['name'],
-                'no_id' => $data['no_id'],
-                'no_hp' => $data['no_hp'],
             ]);
             Auth::login($user);
             auth()->user()->assignRole('Admin');
+            sleep(2);
             return redirect()->route('home');
         }
         else if($data['user']=='dosenunpad'){
@@ -117,14 +118,18 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
                 'name' => $data['name'],
-                'no_id' => $data['no_id'],
-                'no_hp' => $data['no_hp'],
-                'university' => 'Universitas Padjadjaran',
-                'faculty' => $data['faculty'],
-                'study_program' => $data['study_program']
             ]);
+            $id = DB::getPdo()->lastInsertId();
             Auth::login($user);
             auth()->user()->assignRole('Dosen Unpad');
+            $profile = Profile::create([
+                'user_id' => $id,
+                'no_id' => $data->no_id,
+                'no_hp' => $data->no_hp,
+                'university' => $data->university,
+                'faculty' => $data->faculty,
+                'study_program' => $data->study_program,
+            ]);
             return redirect()->route('home');
         }
         else if($data['user']=='dosennonunpad'){
@@ -132,14 +137,18 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
                 'name' => $data['name'],
-                'no_id' => $data['no_id'],
-                'no_hp' => $data['no_hp'],
-                'university' => $data['university'],
-                'faculty' => $data['faculty'],
-                'study_program' => $data['study_program']
             ]);
+            $id = DB::getPdo()->lastInsertId();
             Auth::login($user);
             auth()->user()->assignRole('Dosen Non Unpad');
+            $profile = Profile::create([
+                'user_id' => $id,
+                'no_id' => $data->no_id,
+                'no_hp' => $data->no_hp,
+                'university' => $data->university,
+                'faculty' => $data->faculty,
+                'study_program' => $data->study_program,
+            ]);
             return redirect()->route('home');
         }
         else if($data['user']=='mahasiswaunpad'){
@@ -147,29 +156,39 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
                 'name' => $data['name'],
-                'no_id' => $data['no_id'],
-                'no_hp' => $data['no_hp'],
-                'university' => 'Universitas Padjadjaran',
-                'faculty' => $data['faculty'],
-                'study_program' => $data['study_program']
             ]);
+            $id = DB::getPdo()->lastInsertId();
             Auth::login($user);
             auth()->user()->assignRole('Mahasiswa Unpad');
+            $profile = Profile::create([
+                'user_id' => $id,
+                'no_id' => $data->no_id,
+                'no_hp' => $data->no_hp,
+                'university' => $data->university,
+                'faculty' => $data->faculty,
+                'study_program' => $data->study_program,
+                'email_lecturer' => $data->email_lecturer
+            ]);
             return redirect()->route('home');
         }
         else if($data['user']=='mahasiswanonunpad'){
-            $user = User::create([
+            $user = User::insertGetId([
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
                 'name' => $data['name'],
-                'no_id' => $data['no_id'],
-                'no_hp' => $data['no_hp'],
-                'university' => $data['university'],
-                'faculty' => $data['faculty'],
-                'study_program' => $data['study_program']
             ]);
+            $id = DB::getPdo()->lastInsertId();
             Auth::login($user);
             auth()->user()->assignRole('Mahasiswa Non Unpad');
+            $profile = Profile::create([
+                'user_id' => $id,
+                'no_id' => $data->no_id,
+                'no_hp' => $data->no_hp,
+                'university' => $data->university,
+                'faculty' => $data->faculty,
+                'study_program' => $data->study_program,
+                'email_lecturer' => $data->email_lecturer
+            ]);
             return redirect()->route('home');
         }
         else if($data['user']=='userumum'){
@@ -177,13 +196,17 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
                 'name' => $data['name'],
-                'no_id' => $data['no_id'],
-                'no_hp' => $data['no_hp'],
-                'institution' => $data['institution'],
-                'address' => $data['address']
             ]);
+            $id = DB::getPdo()->lastInsertId();
             Auth::login($user);
             auth()->user()->assignRole('User Umum');
+            $profile = Profile::create([
+                'user_id' => $id,
+                'no_id' => $data->no_id,
+                'no_hp' => $data->no_hp,
+                'institution' => $data->institution,
+                'address' => $data->address
+            ]);
             return redirect()->route('home');
         }
         else{

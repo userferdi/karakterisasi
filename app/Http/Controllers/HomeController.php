@@ -9,8 +9,6 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 use Illuminate\Support\Facades\DB;
 
-require 'D:\Documents\xampp\htdocs\karakterisasi\vendor\autoload.php';
-
 class HomeController extends Controller
 {
     /**
@@ -31,11 +29,13 @@ class HomeController extends Controller
     public function index()
     {
         $client = ['Dosen Unpad', 'Dosen Non Unpad', 'Mahasiswa Unpad', 'Mahasiswa Non Unpad', 'User Umum'];
-        if(Auth()->User()->hasRole('Admin')){
-            return view('home.admin');
-        }
-        else if(Auth()->User()->hasRole($client)){
-            return view('home.client');
+        if(Auth()->User()!=NULL){
+            if(Auth()->User()->hasRole('Admin')){
+                return view('home.admin');
+            }
+            else if(Auth()->User()->hasRole($client)){
+                return view('home.client');
+            }
         }
         else{
             return redirect()->route('welcome');

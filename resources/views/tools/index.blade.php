@@ -19,7 +19,7 @@
     searching: false,
     paging: false,
     info: false,
-    ajax: "{{ route('tool.dt.show') }}",
+    ajax: "{{ route('tool.dt') }}",
     order: [[ 1, "asc" ]],
     columns: [
       {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, width: '5%', className: 'dt-center'},

@@ -78,9 +78,9 @@
         <hr class="formik"/>
         <p>Masukan alamat email dosen penanggung jawab Anda. Jika dosen Anda tidak memiliki account, Anda tidak dapat melanjutkan proses booking alat.</p>
         <div class="form-group row">
-            <label for="email_dosen" class="col-md-4 text-md-right p-l-25">E-Mail Address Your Lecturer</label>
+            <label for="email_lecturer" class="col-md-4 text-md-right p-l-25">E-Mail Address Your Lecturer</label>
             <div class="col-md-8">
-                <input id="email_dosen" type="email" class="form-control" name="email_dosen" value="" required>
+                <input id="email_lecturer" type="email" class="form-control" name="email_lecturer" value="" required>
             </div>
         </div>
         <legend>File Upload</legend>

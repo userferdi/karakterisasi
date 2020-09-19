@@ -1,4 +1,4 @@
-@extends('layouts.client')
+@extends('layouts.index')
 
 @section('title', 'FINDER · Laboratorium')
 

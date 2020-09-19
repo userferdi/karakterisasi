@@ -18,12 +18,13 @@ class VerificationController extends Controller
     public function verify($token)
     {
         $model = Booking::where('token', $token)->first();
-        // dd($model->orders->unique);
-        if($model->status == 1){
-            return view('verify.myself', ['model' => $model]);
-        }
-        else if($model->status == 2){
-            return view('verify.student', ['model' => $model]);
+        if($model!=NULL){
+            if($model->status == 1){
+                return view('verify.myself', ['model' => $model]);
+            }
+            else if($model->status == 2){
+                return view('verify.student', ['model' => $model]);
+            }
         }
         else{
             abort(404);

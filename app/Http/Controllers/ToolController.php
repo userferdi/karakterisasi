@@ -16,19 +16,20 @@ class ToolController extends Controller
 {
     public function index()
     {
-        if(Auth::User()!=NULL){
-            if(Auth::User()->value('role')==0){
-                return view('tools.client');
-            }
-            else if(Auth::User()->value('role')==1){
+        $client = ['Dosen Unpad', 'Dosen Non Unpad', 'Mahasiswa Unpad', 'Mahasiswa Non Unpad', 'User Umum'];
+        if(Auth()->User()!=NULL){
+            if(Auth()->User()->hasRole('Admin')){
                 return view('tools.admin');
             }
-            else {
-                return redirect()->route('welcome');
+            else if(Auth()->User()->hasRole($client)){
+                return view('tools.client');
             }
         }
-        else if(Auth::User()==NULL){
+        else if(Auth()->User()==NULL){
             return view('tools.index');
+        }
+        else{
+            abort(404);
         }
     }
 
@@ -115,7 +116,7 @@ class ToolController extends Controller
         return response()->json($model);
     }
 
-    public function datatableShow()
+    public function datatable()
     {
         $model = Tool::get();
         return DataTables::of($model)

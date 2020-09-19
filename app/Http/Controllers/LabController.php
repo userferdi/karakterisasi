@@ -13,13 +13,15 @@ class LabController extends Controller
     public function index()
     {
         $client = ['Dosen Unpad', 'Dosen Non Unpad', 'Mahasiswa Unpad', 'Mahasiswa Non Unpad', 'User Umum'];
-        if(Auth()->User()->hasRole('Admin')){
-            return view('labs.admin');
+        if(Auth()->User()!=NULL){
+            if(Auth()->User()->hasRole('Admin')){
+                return view('labs.admin');
+            }
+            else if(Auth()->User()->hasRole($client)){
+                return view('labs.client');
+            }
         }
-        else if(Auth()->User()->hasRole($client)){
-            return view('labs.client');
-        }
-        else if(Auth()->User()!=NULL){
+        else if(Auth()->User()==NULL){
             return view('labs.index');
         }
         else{

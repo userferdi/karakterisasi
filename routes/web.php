@@ -22,8 +22,8 @@ Route::prefix('lab')->group(function(){
 Route::prefix('tool')->group(function(){
 	Route::get('/', 'ToolController@index')->name('tool.index');
 	Route::get('show/{id}', 'ToolController@show')->name('tool.show');
+	Route::get('datatable', 'ToolController@datatable')->name('tool.dt');
 	Route::get('datatableadmin', 'ToolController@datatableAdmin')->name('tool.dt.admin');
-	Route::get('datatableshow', 'ToolController@datatableShow')->name('tool.dt.show');
 	Route::get('datatableschedule', 'ToolController@datatableSchedule')->name('tool.dt.schedule');
 });
 Route::prefix('price')->group(function(){

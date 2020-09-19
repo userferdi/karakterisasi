@@ -14,24 +14,22 @@ class PriceController extends Controller
 {
     public function index()
     {
-        if(Auth::User()==NULL){
-            // $no = Tool::orderBy('id', 'desc')->value('id');
-            $tool = Tool::get();
-            $price = Price::get();
+        $client = ['Dosen Unpad', 'Dosen Non Unpad', 'Mahasiswa Unpad', 'Mahasiswa Non Unpad', 'User Umum'];
+        $tool = Tool::get();
+        $price = Price::get();
+        if(Auth()->User()!=NULL){
+            if(Auth()->User()->hasRole('Admin')){
+                return view('prices.admin');
+            }
+            else if(Auth()->User()->hasRole($client)){
+                return view('prices.client', ['tool' => $tool, 'price' => $price]);
+            }
+        }
+        else if(Auth()->User()==NULL){
             return view('prices.index', ['tool' => $tool, 'price' => $price]);
-            // return view('prices.index');
         }
-        else if(Auth::User()->value('role')==0){
-            // $no = Tool::orderBy('id', 'desc')->value('id');
-            $tool = Tool::get();
-            $price = Price::get();
-            return view('prices.client', ['tool' => $tool, 'price' => $price]);
-        }
-        else if(Auth::User()->value('role')==1){
-            return view('prices.admin');
-        }
-        else {
-            return redirect()->route('welcome');
+        else{
+            abort(404);
         }
     }
 
