@@ -1,9 +1,9 @@
 @extends('layouts.index')
 
-@section('title', 'FINDER · Confirmation Schedule')
+@section('title','FINDER · Receipt')
 
 @section('content')
-<h2 style="padding-top:10px;"><strong>Confirmation Schedule</strong></h2>
+<h3 style="padding-top:20px;"><b>Receipt</b></h3>
 <div class="row">
   <div class="col-lg-12">
     <div class="card" >
@@ -20,21 +20,20 @@
   var detail = $('#table').DataTable({
     responsive: true,
     serverSide: true,
-    ajax: "{{ route('status.confirmation.dt') }}",
+    ajax: "{{ route('payment.datatableReceipt') }}",
     order: [[ 1, "asc" ]],
     columns: [
-      {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, width: '5%', className: 'dt-center'},
-      {title: 'No Formulir', data: 'no_form', name: 'no_form', width: '10%', className: 'dt-head-center'},
-      {title: 'Nama Alat', data: 'tool', name: 'tool', width: '10%', className: 'dt-center'},
-      {title: 'Akan Hadir', data: 'attend', name: 'attend', orderable:false, width: '10%', className: 'dt-center'},
-      {title: 'Jadwal yang disetujui', data: 'date', name: 'date', width: '20%', className: 'dt-head-center'},
-      {title: 'Detail', data: 'detail', name: 'detail', orderable:false, width: '7.5%', className: 'dt-center'},
-      {title: 'Confirm', data: 'confirm', name: 'confirm', orderable:false, width: '7.5%', className: 'dt-center'},
-      {title: 'Cancel', data: 'cancel', name: 'cancel', orderable:false, width: '7.5%', className: 'dt-center'}
+      {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, className: 'dt-center'},
+      {title: 'No Registration', data: 'no_regis', name: 'no_regis', className: 'dt-head-center'},
+      {title: 'Nama Pengguna', data: 'user', name: 'user', className: 'dt-head-center'},
+      {title: 'Nama Alat', data: 'tool', name: 'tool', className: 'dt-head-center'},
+      {title: 'Tanggal Penggunaan', data: 'date', name: 'date', className: 'dt-head-center'},
+      {title: 'Detail', data: 'detail', name: 'detail', orderable:false, className: 'dt-center'},
+      {title: 'Buat Tanda Terima', data: 'action', name: 'action', orderable:false, className: 'dt-center'}
     ],
   });
 
-  $('body').on('click', '.confirm', function (event) {
+  $('body').on('click', '.receipt', function (event) {
     event.preventDefault();
 
     var me = $(this),
@@ -43,13 +42,12 @@
         csrf_token = $('meta[name="csrf-token"]').attr('content');
 
     swal({
-      title: "Are you sure want to\nconfirm?",
-      text: "You won't be able to revert this!",
+      title: "Are you sure want to\nmake the receipt?",
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, resend it!'
+      confirmButtonText: 'Yes, make it!'
     }).then((result)=>{
       if(result.value){
         $.ajax({
@@ -78,62 +76,6 @@
               title: 'Email has been sent!'
             })
             $('#modal-body').html('reset');
-          },
-          error: function(xhr){
-            swal({
-              type: 'error',
-              title: 'Oops...',
-              text: 'Something went wrong!'
-            });
-          }
-        });
-      }
-    });
-  });
-
-  $('body').on('click', '.cancel', function (event) {
-    event.preventDefault();
-
-    var me = $(this),
-        url = me.attr('href'),
-        name = me.attr('name'),
-        csrf_token = $('meta[name="csrf-token"]').attr('content');
-
-    swal({
-      title: "Are you sure want to cancel '" + name + "'?",
-      text: "You won't be able to revert this!",
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, cancel it!'
-    }).then((result)=>{
-      if(result.value){
-        $.ajax({
-          url: url,
-          type: "POST",
-          data: {
-            '_method': 'PUT',
-            '_token': csrf_token
-          },
-          success: function(response){
-            $('#table').DataTable().ajax.reload();
-            const Toast = Swal.mixin({
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              background: '#BD362F',
-              onOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-              }
-            })
-            Toast.fire({
-              type: 'success',
-              text: 'Data has been deleted'
-            })
           },
           error: function(xhr){
             swal({
@@ -192,6 +134,5 @@
         tr.addClass('shown');
     }
   });
-
 </script>
 @endpush

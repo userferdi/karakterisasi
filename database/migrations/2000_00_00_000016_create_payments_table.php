@@ -15,14 +15,14 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('users_id')->unsigned();
+            $table->bigInteger('approves_id')->unsigned();
             $table->string('no_invoice')->nullable();
             $table->string('no_receipt')->nullable();
-            $table->bigInteger('approves_id')->unsigned();
             $table->integer('status');
+            $table->string('quantity')->nullable();
+            $table->string('service')->nullable();
+            $table->integer('total');
             $table->timestamps();
-            $table->foreign('users_id')->references('id')->on('users')
-                ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('approves_id')->references('id')->on('approves')
                 ->onUpdate('cascade')->onDelete('cascade');
         });

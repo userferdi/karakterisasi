@@ -97,14 +97,28 @@ Route::middleware('auth')->group(function(){
 	});
 	Route::prefix('payment')->group(function(){
 		// Cara Pembayaran
+		Route::get('coba', 'PaymentController@coba')->name('payment.coba');
 		Route::get('information', 'PaymentController@index')->name('payment.info');
+
+		Route::get('form/{id}', 'PaymentController@form')->name('payment.form');
 		// Informasi Tagihan (Invoice) dan Upload Bukti Transfer
 		Route::get('bill', 'PaymentController@bill')->name('payment.bill');
+		Route::get('bill/show/{id}', 'PaymentController@showBill')->name('payment.showBill');
+		Route::put('bill/form/{id}', 'PaymentController@formBill')->name('payment.formBill');
+		Route::get('bill/data', 'PaymentController@dataBill')->name('payment.dataBill');
+		Route::get('bill/datatable', 'PaymentController@datatableBill')->name('payment.datatableBill');
+		Route::put('bill/update/{id}', 'PaymentController@updateBill')->name('payment.updateBill');
 		// Informasi Terima Pembayaran (Receipt)
 		Route::get('receipt', 'PaymentController@receipt')->name('payment.receipt');
+		Route::put('receipt/form/{id}', 'PaymentController@formReceipt')->name('payment.formReceipt');
+		// Route::get('receipt/data', 'PaymentController@dataBill')->name('payment.dataBill');
+		Route::get('receipt/datatable', 'PaymentController@datatableReceipt')->name('payment.datatableReceipt');
+		Route::put('receipt/update/{id}', 'PaymentController@updateReceipt')->name('payment.updateReceipt');
 		// Udah ada receipt masuk ke history
 		Route::get('history', 'PaymentController@history')->name('payment.history');
 		Route::get('databill', 'PaymentController@databill')->name('payment.databill');
+
+		// amount
 	});
 	Route::prefix('student')->group(function(){
 		Route::get('/', 'StudentController@index')->name('student.index');
@@ -118,9 +132,10 @@ Route::middleware('auth')->group(function(){
 
 	Route::prefix('schedule')->group(function(){
 		Route::get('/', 'ScheduleController@index')->name('schedule.index');
-		Route::get('dataschedule', 'ScheduleController@dataschedule')->name('schedule.ds');
+		Route::get('dataschedule', 'ScheduleController@dataindex')->name('schedule.dataindex');
 		Route::get('{id}', 'ScheduleController@data')->name('schedule.data');
 		Route::get('{id}/show', 'ScheduleController@show')->name('schedule.show');
+		Route::get('show', 'ScheduleController@show')->name('schedule.show');
 	});
 	Route::prefix('activities')->group(function(){
 		Route::prefix('register')->group(function(){
@@ -136,18 +151,23 @@ Route::middleware('auth')->group(function(){
 		Route::get('edit/{id}', 'ActivitiesController@edit')->name('activities.edit');
 		Route::put('update/{id}', 'ActivitiesController@update')->name('activities.update');
 		Route::delete('delete/{id}', 'ActivitiesController@delete')->name('activities.delete');
-		Route::get('confirm/{id}', 'ActivitiesController@confirm')->name('activities.confirm');
-		Route::get('reject/{id}', 'ActivitiesController@reject')->name('activities.reject');
+
 		Route::prefix('status')->group(function(){
 			// Booking Request 1,2
-			Route::get('booking', 'ActivitiesController@booking')->name('status.booking');
-			Route::get('booking/datatable', 'ActivitiesController@datatableBooking')->name('status.booking.dt');
+			Route::prefix('booking')->group(function(){
+				Route::get('/', 'ActivitiesController@booking')->name('status.booking');
+				Route::get('datatable', 'ActivitiesController@datatableBooking')->name('status.booking.dt');
+			});
 			// Approved by Lecturer 3
-			Route::get('lecturer', 'ActivitiesController@lecturer')->name('status.lecturer');
-			Route::get('lecturer/datatable', 'ActivitiesController@datatableLecturer')->name('status.lecturer.dt');
+			Route::prefix('lecturer')->group(function(){
+				Route::get('/', 'ActivitiesController@lecturer')->name('status.lecturer');
+				Route::get('datatable', 'ActivitiesController@datatableLecturer')->name('status.lecturer.dt');
+			});
 			// Confirmation Schedule 4
-			Route::get('confirmation', 'ActivitiesController@confirmation')->name('status.confirmation');
-			Route::get('confirmation/datatable', 'ActivitiesController@datatableConfirmation')->name('status.confirmation.dt');
+			Route::prefix('confirmation')->group(function(){
+				Route::get('/', 'ActivitiesController@confirmation')->name('status.confirmation');
+				Route::get('datatable', 'ActivitiesController@datatableConfirmation')->name('status.confirmation.dt');
+			});
 			// Reschedule Offered List 5
 			Route::get('reschedule', 'ActivitiesController@reschedule')->name('status.reschedule');
 			Route::get('reschedule/datatable', 'ActivitiesController@datatableReschedule')->name('status.reschedule.dt');
@@ -172,8 +192,19 @@ Route::middleware('auth')->group(function(){
 			Route::get('{token}', 'VerificationController@verify')->name('verify');
 			Route::get('{token}/confirm', 'VerificationController@confirm')->name('verify.confirm');
 			Route::get('{token}/reject', 'VerificationController@reject')->name('verify.reject');
+			Route::get('{token}/cancel', 'VerificationController@cancel')->name('verify.cancel');
 		});
+		Route::get('confirm/{id}', 'VerificationController@showConfirm')->name('verify.showConfirm');
+		Route::get('reschedule/{id}', 'VerificationController@showReschedule')->name('verify.showReschedule');
+		Route::get('reject/{id}', 'VerificationController@showReject')->name('verify.showReject');
+		Route::get('cancel/{id}', 'VerificationController@showCancel')->name('verify.showCancel');
+		Route::get('coba/{id}', 'VerificationController@coba')->name('verify.coba');
+		Route::put('update/confirm/{id}', 'VerificationController@updateConfirm')->name('verify.updateConfirm');
+		Route::put('update/reschedule/{id}', 'VerificationController@updateReschedule')->name('verify.updateReschedule');
+		Route::put('update/reject/{id}', 'VerificationController@updateReject')->name('verify.updateReject');
+		Route::put('update/cancel/{id}', 'VerificationController@updateCancel')->name('verify.updateCancel');
 		Route::get('success', 'VerificationController@success')->name('verify.success');
+		Route::get('resend/{id}', 'VerificationController@resend')->name('verify.resend');
 	});
 });
 

@@ -95,6 +95,7 @@ class ActivitiesController extends Controller
             'sample' => $request->sample,
             'unique' => $request->unique
         ]);
+        $booking['orders_id'] = $id;
         $booking['date1'] = $request['date1'];
         $booking['date2'] = $request['date2'];
         $booking['date3'] = $request['date3'];
@@ -103,23 +104,14 @@ class ActivitiesController extends Controller
         $booking['times3_id'] = $request['times3_id'];
         $token = str::random(60);
         $booking['token'] = $token;
-        $booking['orders_id'] = $id;
         $save = $booking->save();
         if($save == true){
             $mail = new PHPMailer(true);
             $mail->CharSet = 'UTF-8';
             try{
-                // $mail->SMTPOptions = array(
-                //     'ssl' => array(
-                //         'verify_peer' => false,
-                //         'verify_peer_name' => false,
-                //         'allow_self_signed' => true
-                //     )
-                // );
                 $mail->Encoding = 'base64';
                 // Auth()->User()->email
                 // $model->users->email
-                // $mail->SMTPDebug = 2;
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
@@ -290,6 +282,15 @@ class ActivitiesController extends Controller
                 }
                 return '<i class="fas fa-check"></i>';
             })
+            ->addColumn('purpose', function($model){
+                return $model->orders->purpose;
+            })
+            ->addColumn('sample', function($model){
+                return $model->orders->sample;
+            })
+            ->addColumn('unique', function($model){
+                return $model->orders->unique;
+            })
             ->editColumn('status', function($model){
                 if ($model->status == 1){
                     return 'Menunggu konfirmasi pada email Anda';
@@ -303,7 +304,7 @@ class ActivitiesController extends Controller
             })
             ->addColumn('resend', function($model){
                 $button = 
-'<a href="'.route('activities.delete', $model->id).'" class="btn btn-primary btn-sm resend" name="'.$model->name.'">Resend</a>';
+'<a href="'.route('verify.resend', $model->id).'" class="btn btn-primary btn-sm resend">Resend</a>';
                 return $button;
             })
             ->addColumn('detail', function($model){
@@ -313,7 +314,7 @@ class ActivitiesController extends Controller
             })
             ->addColumn('cancel', function($model){
                 $button = 
-'<a href="'.route('activities.delete', $model->id).'" class="btn btn-danger btn-sm delete" name="'.$model->no_form.'">Cancel</a>';
+'<a href="'.route('verify.showCancel', $model->id).'" class="btn btn-danger btn-sm cancel" name="'.$model->no_form.'">Cancel</a>';
                 return $button;
             })
             ->removeColumn('id')
@@ -438,6 +439,15 @@ class ActivitiesController extends Controller
                 }
                 return '<i class="fas fa-check"></i>';
             })
+            ->addColumn('purpose', function($model){
+                return $model->orders->purpose;
+            })
+            ->addColumn('sample', function($model){
+                return $model->orders->sample;
+            })
+            ->addColumn('unique', function($model){
+                return $model->orders->unique;
+            })
             ->addColumn('detail', function($model){
                 $button = 
 '<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>';
@@ -445,12 +455,12 @@ class ActivitiesController extends Controller
             })
             ->addColumn('confirm', function($model){
                 $button = 
-'<a href="'.route('activities.delete', $model->id).'" class="btn btn-primary btn-sm resend" name="'.$model->name.'">Resend</a>';
+'<a href="'.route('verify.updateConfirm', $model->id).'" class="btn btn-primary btn-sm confirm" name="'.$model->name.'">Confirm</a>';
                 return $button;
             })
             ->addColumn('cancel', function($model){
                 $button = 
-'<a href="'.route('activities.delete', $model->id).'" class="btn btn-danger btn-sm delete" name="'.$model->no_form.'">Cancel</a>';
+'<a href="'.route('verify.updateCancel', $model->id).'" class="btn btn-danger btn-sm cancel" name="'.$model->no_form.'">Cancel</a>';
                 return $button;
             })
             ->removeColumn('id')
@@ -498,6 +508,15 @@ class ActivitiesController extends Controller
             ->addColumn('plan', function($model){
                 return $model->orders->plans->name;
             })
+            ->addColumn('purpose', function($model){
+                return $model->orders->purpose;
+            })
+            ->addColumn('sample', function($model){
+                return $model->orders->sample;
+            })
+            ->addColumn('unique', function($model){
+                return $model->orders->unique;
+            })
             ->addColumn('attend', function($model){
                 if ($model->attend == NULL){
                     return '<i class="fas fa-times"></i>';
@@ -511,12 +530,12 @@ class ActivitiesController extends Controller
             })
             ->addColumn('confirm', function($model){
                 $button = 
-'<a href="'.route('activities.delete', $model->id).'" class="btn btn-primary btn-sm resend" name="'.$model->name.'">Reschedule</a>';
+'<a href="'.route('verify.showReschedule', $model->id).'" class="btn btn-primary btn-sm modal-show" name="Reschedule: '.$model->no_form.'">Reschedule</a>';
                 return $button;
             })
             ->addColumn('cancel', function($model){
                 $button = 
-'<a href="'.route('activities.delete', $model->id).'" class="btn btn-danger btn-sm delete" name="'.$model->no_form.'">Cancel</a>';
+'<a href="'.route('verify.updateCancel', $model->id).'" class="btn btn-danger btn-sm cancel" name="'.$model->no_form.'">Cancel</a>';
                 return $button;
             })
             ->removeColumn('id')
@@ -554,6 +573,15 @@ class ActivitiesController extends Controller
             ->addColumn('plan', function($model){
                 return $model->orders->plans->name;
             })
+            ->addColumn('purpose', function($model){
+                return $model->orders->purpose;
+            })
+            ->addColumn('sample', function($model){
+                return $model->orders->sample;
+            })
+            ->addColumn('unique', function($model){
+                return $model->orders->unique;
+            })
             ->addColumn('attend', function($model){
                 if ($model->orders->attend == NULL){
                     return '<i class="fas fa-times"></i>';
@@ -576,8 +604,9 @@ class ActivitiesController extends Controller
 
     public function datatableRejected()
     {
-        $id = Auth()->User()->id;
-        $model = Booking::where('users_id',$id)->where(function($model){
+        $model = Booking::whereHas('orders', function ($query){
+            return $query->where('users_id', '=', Auth()->User()->id);
+        })->where(function($model){
             $model->where('status',7)
                   ->orWhere('status',8);
         })->get();
@@ -608,6 +637,15 @@ class ActivitiesController extends Controller
             })
             ->addColumn('plan', function($model){
                 return $model->orders->plans->name;
+            })
+            ->addColumn('purpose', function($model){
+                return $model->orders->purpose;
+            })
+            ->addColumn('sample', function($model){
+                return $model->orders->sample;
+            })
+            ->addColumn('unique', function($model){
+                return $model->orders->unique;
             })
             ->editColumn('status', function($model){
                 if ($model->status == 7){
@@ -642,8 +680,9 @@ class ActivitiesController extends Controller
 
     public function datatableCanceled()
     {
-        $id = Auth()->User()->id;
-        $model = Booking::where(['users_id'=>Auth()->User()->id, 'status'=>9])->get();
+        $model = Booking::whereHas('orders', function ($query){
+            return $query->where('users_id', '=', Auth()->User()->id);
+        })->where('status',9)->get();
         return DataTables::of($model)
             ->editColumn('date1', function($model){
                 $date = date('d M Y', strtotime($model->date1));
@@ -672,7 +711,16 @@ class ActivitiesController extends Controller
             ->addColumn('plan', function($model){
                 return $model->orders->plans->name;
             })
-            ->addColumn('hadir', function($model){
+            ->addColumn('purpose', function($model){
+                return $model->orders->purpose;
+            })
+            ->addColumn('sample', function($model){
+                return $model->orders->sample;
+            })
+            ->addColumn('unique', function($model){
+                return $model->orders->unique;
+            })
+            ->addColumn('attend', function($model){
                 if ($model->attend == NULL){
                     return '<i class="fas fa-times"></i>';
                 }
@@ -681,9 +729,9 @@ class ActivitiesController extends Controller
             ->editColumn('status', function($model){
                 return 'Canceled';
             })
-            ->addColumn('action', function($model){
+            ->addColumn('detail', function($model){
                 $button = 
-'<a href="'.route('tool.show', $model->id).'" class="details-control" name="Details Product: '.$model->name.'"><i class="nav-icon fas fa-eye text-primary"></i></a>';
+'<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>';
                 return $button;
             })
             ->removeColumn('id')
@@ -694,7 +742,7 @@ class ActivitiesController extends Controller
             ->removeColumn('token')
             ->removeColumn('note')
             ->addIndexColumn()
-            ->rawColumns(['hadir', 'action'])
+            ->rawColumns(['attend', 'detail'])
             ->make(true);
     }
 
@@ -727,14 +775,23 @@ class ActivitiesController extends Controller
                 $lecturer = User::where('email',$model->orders->users->profiles->email_lecturer)->value('name');
                 return $lecturer;
             })
-            ->addColumn('plan', function($model){
-                return $model->orders->plans->name;
-            })
             ->addColumn('attend', function($model){
                 if ($model->orders->attend == NULL){
                     return '<i class="fas fa-times"></i>';
                 }
                 return '<i class="fas fa-check"></i>';
+            })
+            ->addColumn('plan', function($model){
+                return $model->orders->plans->name;
+            })
+            ->addColumn('purpose', function($model){
+                return $model->orders->purpose;
+            })
+            ->addColumn('sample', function($model){
+                return $model->orders->sample;
+            })
+            ->addColumn('unique', function($model){
+                return $model->orders->unique;
             })
             ->editColumn('status', function($model){
                 if ($model->status == 1){
@@ -754,8 +811,9 @@ class ActivitiesController extends Controller
             })
             ->addColumn('action', function($model){
                 $button = 
-'<a href="'.route('activities.confirm', $model->id).'" class="btn btn-primary btn-sm confirm" name="'.$model->no_form.'">Confirm</a>
-<a href="'.route('activities.reject', $model->id).'" class="btn btn-danger btn-sm reject" name="'.$model->no_form.'">Reject</a>';
+'<a href="'.route('verify.showConfirm', $model->id).'" class="btn btn-primary btn-sm modal-show" name="Confirm: '.$model->no_form.'">Confirm</a>
+<a href="'.route('verify.showReschedule', $model->id).'" class="btn btn-warning btn-sm modal-show" name="Reschedule: '.$model->no_form.'">Reschedule</a>
+<a href="'.route('verify.showReject', $model->id).'" class="btn btn-danger btn-sm modal-show" name="Reject: '.$model->no_form.'">Reject</a>';
                 return $button;
             })
             ->removeColumn('id')

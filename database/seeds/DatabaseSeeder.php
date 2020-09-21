@@ -142,5 +142,8 @@ class DatabaseSeeder extends Seeder
 		DB::table('plans')->insert([
         	'name' => 'Transfer'
         ]);
+		DB::table('plans')->insert([
+        	'name' => 'Transfer Dosen'
+        ]);
     }
 }

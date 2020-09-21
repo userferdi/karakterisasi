@@ -1,4 +1,4 @@
-@extends('layouts.client')
+@extends('layouts.index')
 
 @push('css')
   <link rel="stylesheet" type="text/css" href="{{ asset('calendar/main.css') }}">
@@ -40,7 +40,7 @@
     ajax: "{{ route('tool.dt') }}",
     columns: [
       {title: 'Nama', data: 'name', name: 'name', orderable:false, className: 'dt-head-center'},
-      {title: 'Schedule', data: 'schedule', name: 'show', orderable:false, className: 'dt-center'}
+      {title: 'Lihat Jadwal', data: 'show', name: 'show', orderable:false, className: 'dt-center'}
     ],
   });
 
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
     navLinks: true, // can click day/week names to navigate views
     dayMaxEvents: true, // allow "more" link when too many events
     events: {
-      url: '{{ route('schedule.ds') }}',
+      url: '{{ route('schedule.dataindex') }}',
       failure: function(){
         alert('error fetch data')
       }

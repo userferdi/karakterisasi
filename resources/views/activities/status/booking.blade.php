@@ -22,7 +22,7 @@
 @push('scripts')
 <script>
   @role('Dosen Unpad|Dosen Non Unpad|Mahasiswa Unpad|Mahasiswa Non Unpad|User Umum')
-    $('#table').DataTable({
+    var detail = $('#table').DataTable({
       responsive: true,
       serverSide: true,
       scrollX: true,
@@ -42,9 +42,122 @@
         {title: 'Cancel', data: 'cancel', name: 'cancel', orderable:false, className: 'dt-center'}
       ],
     });
+
+  $('body').on('click', '.resend', function (event) {
+    event.preventDefault();
+
+    var me = $(this),
+        url = me.attr('href'),
+        name = me.attr('name'),
+        csrf_token = $('meta[name="csrf-token"]').attr('content');
+
+    swal({
+      title: "Are you sure want to\nresend the email?",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, resend it!'
+    }).then((result)=>{
+      if(result.value){
+        $.ajax({
+          url: url,
+          type: "GET",
+          data: {
+            '_method': 'GET',
+            '_token': csrf_token
+          },
+          success: function(response){
+            $('#table').DataTable().ajax.reload();
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              background: '#28a745',
+              onOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            })
+            Toast.fire({
+              type: 'success',
+              title: 'Email has been sent!'
+            })
+            $('#modal-body').html('reset');
+          },
+          error: function(xhr){
+            swal({
+              type: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!'
+            });
+          }
+        });
+      }
+    });
+  });
+
+  $('body').on('click', '.cancel', function (event) {
+    event.preventDefault();
+
+    var me = $(this),
+        url = me.attr('href'),
+        name = me.attr('name'),
+        csrf_token = $('meta[name="csrf-token"]').attr('content');
+
+    swal({
+      title: "Are you sure want to cancel '" + name + "'?",
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, cancel it!'
+    }).then((result)=>{
+      if(result.value){
+        $.ajax({
+          url: url,
+          type: "GET",
+          data: {
+            '_method': 'GET',
+            '_token': csrf_token
+          },
+          success: function(response){
+            $('#table').DataTable().ajax.reload();
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              background: '#BD362F',
+              onOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            })
+            Toast.fire({
+              type: 'success',
+              text: 'Data has been deleted'
+            })
+          },
+          error: function(xhr){
+            swal({
+              type: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!'
+            });
+          }
+        });
+      }
+    });
+  });
   @endrole;
+
   @role('Admin')
-    $('#table').DataTable({
+    var detail = $('#table').DataTable({
       responsive: true,
       serverSide: true,
       scrollX: true,
@@ -62,6 +175,131 @@
         {title: 'Opsi', data: 'action', name: 'action', orderable:false, className: 'dt-center'}
       ],
     });
+
+  $('body').on('click', '.modal-show', function(event){
+    event.preventDefault();
+
+    var me = $(this),
+        url = me.attr('href'),
+        title = me.attr('name');
+
+    var form = $('.form')
+    var validation = Array.prototype.filter.call(form, function(form) {
+      form.classList.remove('was-validated');
+    });
+    $('#modal-body').find("input,textarea,select")
+      .val('')
+      .end();
+    // $('#modal-title').text(title);
+    // $('#modal-close').text(me.hasClass('edit') ? 'Cancel' : 'Close');
+    // $('#modal-save').text(me.hasClass('edit') ? 'Update' : 'Create');
+
+    $.ajax({
+      url: url,
+      dataType: 'html',
+      success: function (response) {
+        $('#modal-body').html(response);
+        $('#modal-title').text(title);
+        $('#modal-close').text('Cancel');
+        $('#modal-save').text('Submit');
+      }
+    });
+
+    $('#modal').modal('show');
+  });
+
+  $('body').on('submit','.form', function(event){
+    event.preventDefault();
+
+    var form = $('.form'),
+        url = form.attr('action'),
+        method = $('input[name=_method]').val() == undefined ? 'POST' : 'PUT';
+
+    $.ajax({
+      url : url,
+      method : method,
+      data : form.serialize(),
+
+      success: function(response){
+        $('#modal-body').find("input,textarea,select")
+          .val('')
+          .end();
+        $('#modal').modal('hide');
+        $('#table').DataTable().ajax.reload();
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          background: '#28a745',
+          onOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        Toast.fire({
+          type: 'success',
+          title: 'Data has been saved!'
+        })
+        $('#modal-body').html('reset');
+      },
+
+      error: function(){
+        'use strict';
+        var validation = Array.prototype.filter.call(form, function(form) {
+          form.classList.add('was-validated');
+        });
+      }
+    });
+  });
   @endrole;
+
+  function format (d) {
+    return '<table>'+
+        '<tr>'+
+            '<td>Tujuan Pengamatan:</td>'+
+            '<td>'+d.purpose+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Deskripsi Sample:</td>'+
+            '<td>'+d.sample+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Preparasi Khusus:</td>'+
+            '<td>'+d.unique+'</td>'+
+        '</tr>'+
+        '<tr >'+
+            '<td>Pengguna hadir saat penggunaan alat:</td>'+
+            '<td>'+d.attend+'</td>'+
+        '</tr>'+
+        '<tr >'+
+            '<td>Rencana Pembayaran:</td>'+
+            '<td>'+d.plan+'</td>'+
+        '</tr>'+
+        @role('Mahasiswa Unpad|Mahasiswa Non Unpad')
+        '<tr >'+
+            '<td>Dosen Pembimbing:</td>'+
+            '<td>'+d.lecturer+'</td>'+
+        '</tr>'+
+        @endrole
+    '</table>';
+  };
+
+  $('#table tbody').on('click', '.details-control', function () {
+    event.preventDefault();
+    var tr = $(this).closest('tr');
+    var row = detail.row( tr );
+
+    if ( row.child.isShown() ) {
+        row.child.hide();
+        tr.removeClass('shown');
+    }
+    else {
+        row.child( format(row.data()) ).show();
+        tr.addClass('shown');
+    }
+  });
+
 </script>
 @endpush

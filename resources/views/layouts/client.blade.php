@@ -25,11 +25,13 @@
   <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.css') }}">
   <!-- DatePicker -->
   <link rel="stylesheet" href="{{ asset('css/gijgo.min.css') }}">
-  @stack('css')
 
+@stack('css')
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
+
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-dark">
       <!-- Left navbar links -->
@@ -38,7 +40,39 @@
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
       </ul>
+
+      <!-- Right navbar links -->
+      <!-- <ul class="navbar-nav ml-auto"> -->
+        <!-- Notifications Dropdown Menu -->
+<!--         <li class="nav-item dropdown">
+          <a class="nav-link" data-toggle="dropdown" href="#">
+            <i class="far fa-bell"></i>
+            <span class="badge badge-warning navbar-badge">15</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <span class="dropdown-item dropdown-header">15 Notifications</span>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+              <i class="fas fa-envelope mr-2"></i> 4 new messages
+              <span class="float-right text-muted text-sm">3 mins</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+              <i class="fas fa-users mr-2"></i> 8 friend requests
+              <span class="float-right text-muted text-sm">12 hours</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+              <i class="fas fa-file mr-2"></i> 3 new reports
+              <span class="float-right text-muted text-sm">2 days</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+          </div>
+        </li>
+      </ul> -->
     </nav>
+    <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-light-primary elevation-4">
@@ -63,105 +97,6 @@
                 </p>
               </a>
             </li>
-
-            @role('Admin')
-            <li class="nav-item has-treeview">
-              <a href="/#" class="nav-link {{ request()->is('lab*') ? 'active' : request()->is('tool*') ? 'active' : request()->is('price*') ? 'active' : request()->is('schedule*') ? 'active' : '' }}">
-                <i class="nav-icon fas fa-file-alt"></i>
-                <p>
-                  Input Data
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{ route('lab.index') }}" class="nav-link {{ (request()->is('lab*')) ? 'active' : '' }}">
-                    <i class="fas fa-flask nav-icon"></i>
-                    <p>Laboratorium</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('tool.index') }}" class="nav-link {{ (request()->is('tool*')) ? 'active' : '' }}">
-                    <i class="fas fa-cog nav-icon"></i>
-                    <p>Tools List</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('price.index') }}" class="nav-link {{ (request()->is('price*')) ? 'active' : '' }}">
-                    <i class="fas fa-dollar-sign nav-icon"></i>
-                    <p>Price List</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('schedule.index') }}" class="nav-link {{ (request()->is('schedule*')) ? 'active' : '' }}">
-                    <i class="fas fa-clock nav-icon"></i>
-                    <p>Schedules</p>
-                  </a>
-                </li>
-              </ul>
-              </li>
-            </li>
-            <li class="nav-item has-treeview">
-              <a href="/#" class="nav-link {{ (request()->is('activities*')) ? 'active' : '' }}">
-                <i class="nav-icon far fa-calendar"></i>
-                <p>
-                  Client Activities
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{ route('status.booking') }}" class="nav-link {{ (request()->is('activities/status/booking*')) ? 'active' : '' }}">
-                    <i class="fas fa-caret-right nav-icon"></i>
-                    <p>Booking Request</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('status.approved') }}" class="nav-link {{ (request()->is('activities/status/approved*')) ? 'active' : '' }}">
-                    <i class="fas fa-caret-right nav-icon"></i>
-                    <p>Approved List</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('status.rejected') }}" class="nav-link {{ (request()->is('activities/status/rejected*')) ? 'active' : '' }}">
-                    <i class="fas fa-caret-right nav-icon"></i>
-                    <p>Rejected List</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-money-bill"></i>
-                <p>
-                  Transaction Payment
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{ route('payment.bill') }}" class="nav-link">
-                    <i class="far fa-credit-card nav-icon"></i>
-                    <p>Invoice</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('payment.receipt') }}" class="nav-link">
-                    <i class="fas fa-print nav-icon"></i>
-                    <p>Receipt</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('payment.history') }}" class="nav-link">
-                    <i class="fas fa-calculator nav-icon"></i>
-                    <p>Transaction History</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            @endrole
-
-            @role('Dosen Unpad|Dosen Non Unpad|Mahasiswa Unpad|Mahasiswa Non Unpad|User Umum')
             <li class="nav-item has-treeview">
               <a href="/#" class="nav-link {{ request()->is('schedule*') ? 'active' : request()->is('lab*') ? 'active' : request()->is('tool*') ? 'active' : request()->is('price*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-file-alt"></i>
@@ -207,94 +142,43 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{ route('activities.index') }}" class="nav-link {{ (request()->is('activities/register*')) ? 'active' : '' }}">
+                  <a href="{{ route('schedule.register') }}" class="nav-link {{ (request()->is('activities/register*')) ? 'active' : '' }}">
                     <i class="fas fa-caret-right nav-icon"></i>
                     <p>Registration of Tool Usage</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('status.booking') }}" class="nav-link {{ (request()->is('activities/status/booking*')) ? 'active' : '' }}">
+                  <a href="{{ route('schedule.status') }}" class="nav-link {{ (request()->is('activities/status*')) ? 'active' : '' }}">
                     <i class="fas fa-caret-right nav-icon"></i>
-                    <p>Booking Request</p>
+                    <p>All Status Schedule</p>
                   </a>
                 </li>
-<!--                 @role('Mahasiswa Unpad|Mahasiswa Non Unpad')
-                <li class="nav-item">
-                  <a href="{{ route('status.lecturer') }}" class="nav-link {{ (request()->is('activities/status/lecturer*')) ? 'active' : '' }}">
-                    <i class="fas fa-caret-right nav-icon"></i>
-                    <p>Approved by Lecturer</p>
-                  </a>
-                </li>
-                @endrole -->
-                <li class="nav-item">
-                  <a href="{{ route('status.confirmation') }}" class="nav-link {{ (request()->is('activities/status/confirmation*')) ? 'active' : '' }}">
-                    <i class="fas fa-caret-right nav-icon"></i>
-                    <p>Confirmation Schedule</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('status.reschedule') }}" class="nav-link {{ (request()->is('activities/status/reschedule*')) ? 'active' : '' }}">
+<!--                 <li class="nav-item">
+                  <a href="./index3.html" class="nav-link">
                     <i class="fas fa-caret-right nav-icon"></i>
                     <p>Reschedule Offered List</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('status.approved') }}" class="nav-link {{ (request()->is('activities/status/approved*')) ? 'active' : '' }}">
+                  <a href="./index3.html" class="nav-link">
                     <i class="fas fa-caret-right nav-icon"></i>
-                    <p>Approved Schedule</p>
+                    <p>All Status Booking</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('status.rejected') }}" class="nav-link {{ (request()->is('activities/status/rejected*')) ? 'active' : '' }}">
+                  <a href="./index3.html" class="nav-link">
                     <i class="fas fa-caret-right nav-icon"></i>
                     <p>Rejected List</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('status.canceled') }}" class="nav-link {{ (request()->is('activities/status/canceled*')) ? 'active' : '' }}">
+                  <a href="./index3.html" class="nav-link">
                     <i class="fas fa-caret-right nav-icon"></i>
                     <p>Canceled List</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            @role('Dosen Unpad|Dosen Non Unpad')
-            <li class="nav-item has-treeview">
-              <a href="/#" class="nav-link {{ request()->is('student*') ? 'active' : '' }}">
-                <i class="nav-icon fas fa-users"></i>
-                <p>
-                  My Students
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{ route('student.index') }}" class="nav-link {{ (request()->is('list*')) ? 'active' : '' }}">
-                    <i class="fas fa-caret-right nav-icon"></i>
-                    <p>Students List</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('student.status') }}" class="nav-link {{ (request()->is('booking*')) ? 'active' : '' }}">
-                    <i class="fas fa-caret-right nav-icon"></i>
-                    <p>Booking Request</p>
-                  </a>
-                </li>
-<!--                 <li class="nav-item">
-                  <a href="{{ route('price.index') }}" class="nav-link {{ (request()->is('price*')) ? 'active' : '' }}">
-                    <i class="fas fa-dollar-sign nav-icon"></i>
-                    <p>Price List</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('schedule.index') }}" class="nav-link {{ (request()->is('schedule*')) ? 'active' : '' }}">
-                    <i class="fas fa-clock nav-icon"></i>
-                    <p>Schedules</p>
                   </a>
                 </li> -->
               </ul>
             </li>
-            @endrole
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-money-bill"></i>
@@ -354,16 +238,6 @@
                 </p>
               </a>
             </li>
-
-            @endrole
-<!--             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-cogs"></i>
-                <p>
-                  Settings
-                </p>
-              </a>
-            </li> -->
             <li class="nav-item">
               <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout').submit();">
                 <i class="nav-icon fas fa-sign-out-alt"></i>
@@ -378,10 +252,10 @@
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper text-sm">
+    <div class="content-wrapper">
       <!-- Main content -->
       <section class="content" >
-        <div class="container-fluid" id="content">
+        <div class="container-fluid">
           <!-- Small boxes (Stat box) -->
 
     @yield('content')
@@ -421,12 +295,7 @@
 <script src="{{ asset('js/adminlte.js') }}"></script>
 <!-- Sweet Alert 2 -->
 <script src="{{ asset('js/sweetalert2.all.js') }}"></script>
-<!-- FullCalendar -->
-<script src="{{ asset('calendar/main.js') }}"></script>
-<!-- DatePicker -->
-<script src="{{ asset('js/gijgo.min.js') }}"></script>
 
-<form id="logout" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
 @include('modal')
 @stack('scripts')
 </body>

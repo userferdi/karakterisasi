@@ -2,13 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Approve;
-use App\Lab;
-use App\Order;
-use App\Status;
-use App\Time;
+use App\Schedule;
 use App\Tool;
-use App\Usage;
 
 use Auth;
 use DataTables;
@@ -25,16 +20,28 @@ class ScheduleController extends Controller
 {
 	public function index()
 	{
-        if(Auth::User()->value('role')==0){
-            return view('schedules.client');
+        $client = ['Dosen Unpad', 'Dosen Non Unpad', 'Mahasiswa Unpad', 'Mahasiswa Non Unpad', 'User Umum'];
+        if(Auth()->User()!=NULL){
+            if(Auth()->User()->hasRole('Admin')){
+                return view('schedules.admin');
+            }
+            else if(Auth()->User()->hasRole($client)){
+                return view('schedules.client');
+            }
         }
-        else if(Auth::User()->value('role')==1){
-            return view('schedules.admin');
+        else if(Auth()->User()==NULL){
+            return view('labs.index');
         }
-        else {
-            return redirect()->route('welcome');
+        else{
+            abort(404);
         }
 	}
+
+    public function dataindex()
+    {
+        $event = Schedule::where(['approves_id'=>'2'])->get();
+        return json_encode($event);
+    }
 
     public function show($id)
     {
@@ -42,32 +49,23 @@ class ScheduleController extends Controller
         return view('schedules.show', ['model' => $model]);
     }
 
-	public function dataschedule()
-    {
-        $event = Order::where(['approves_id'=>'2'])->get();
-    	return json_encode($event);
-    }
-
     public function data($id)
     {
-        $event = Order::where(['approves_id'=>'2', 'tools_id'=>$id])->get();
+        $event = Schedule::where(['approves_id'=>'2', 'tools_id'=>$id])->get();
         return json_encode($event);
     }
 
-    public function tokenRequest($token)
+    public function datatable()
     {
-        $model = Order::where('token', $token)->update([
-            'token' => NULL,
-            'verif' => 2,
-        ]);
+        $model = Tool::get();
+        return DataTables::of($model)
+            ->addColumn('show', function($model){
+                $button = 
+'<a href="'.route('schedule.show',$model->id).'" class="btn btn-primary btn-sm">Lihat Jadwal</a>';
+                return $button;
+            })
+            ->addIndexColumn()
+            ->rawColumns(['show'])
+            ->make(true);
     }
-
-    public function verifyRequest($token)
-    {
-        $model = Order::where('token', $token)->update([
-            'token' => NULL,
-            'verif' => 2,
-        ]);
-    }
-
 }

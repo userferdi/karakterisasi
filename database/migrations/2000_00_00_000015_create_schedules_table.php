@@ -15,10 +15,13 @@ class CreateSchedulesTable extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('orders_id')->unsigned();
             $table->string('title');
             $table->datetime('start');
             $table->datetime('end');
             $table->timestamps();
+            $table->foreign('orders_id')->references('id')->on('orders')
+                ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Active;
+use App\Time;
 use App\Lab;
 use App\Period;
 use App\Status;
@@ -42,9 +44,10 @@ class ToolController extends Controller
     public function create()
     {
         $model = new Tool();
-        $model['status'] = Status::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
+        $model['status'] = Active::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
         $model['lab'] = Lab::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
-        $model['period'] = Period::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
+        $model['period'] = Time::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
+        dd($model);
         return view('tools.form', ['model' => $model]);
     }
 
@@ -71,9 +74,9 @@ class ToolController extends Controller
     public function edit($id)
     {
         $model = Tool::find($id);
-        $model['status'] = Status::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
+        $model['status'] = Active::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
         $model['lab'] = Lab::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
-        $model['period'] = Period::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
+        $model['period'] = Time::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
         return view('tools.form', ['model' => $model]);
     }
 
