@@ -36,6 +36,7 @@ class PriceController extends Controller
     public function create()
     {
         $model = new Price();
+        $model['tool'] = Tool::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
         return view('prices.form', ['model' => $model]);
     }
 

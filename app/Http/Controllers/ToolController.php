@@ -54,7 +54,7 @@ class ToolController extends Controller
     {
         $this->validate($request, [
             'name' => ['required', 'string'],
-            'code' => ['required', 'string', 'min:2', 'max:4'],
+            'code' => ['required', 'string'],
         ]);
 
         $model = new Tool;
@@ -83,9 +83,9 @@ class ToolController extends Controller
     {
         $this->validate($request, [
             'name' => ['required', 'string'],
-            'code' => ['required', 'string', 'min:2', 'max:4'],
-            'descrip' => ['required', 'string', 'max:1023'],
-            'sample' => ['required', 'string', 'max:1023'],
+            'code' => ['required', 'string'],
+            'descrip' => ['required', 'string'],
+            'sample' => ['required', 'string'],
         ]);
 
         $model = Tool::findOrFail($id);

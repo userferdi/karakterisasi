@@ -19,7 +19,7 @@ class CreatePricesTable extends Migration
             $table->integer('price1');
             $table->integer('price2');
             $table->integer('price3');
-            $table->integer('discount');
+            $table->integer('discount')->nullable();
             $table->integer('tools_id')->unsigned();
             $table->timestamps();
             $table->foreign('tools_id')->references('id')->on('tools')

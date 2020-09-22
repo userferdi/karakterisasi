@@ -7,7 +7,7 @@
   <title>@yield('title')</title>
   <meta name="description" content="LAB Karakterisasi PRINT-G">
   <meta name="author" content="userferdi">
-  <link rel="icon" href="{{ asset('finder.png') }}">
+  <link rel="icon" href="{{ asset('finder2.png') }}">
 
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">

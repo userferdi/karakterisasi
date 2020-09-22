@@ -26,10 +26,11 @@
     order: [[ 2, "asc" ]],
     columns: [
       {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, width: '5%', className: 'dt-center'},
-      {title: 'Nama', data: 'name', name: 'name', width: '25%', className: 'dt-head-center'},
-      {title: 'Alat', data: 'tool', name: 'tool', width: '25%', className: 'dt-head-center'},
-      {title: 'Harga', data: 'price', name: 'price', width: '20%', className: 'dt-center'},
-      {title: 'Diskon', data: 'discount', name: 'discount', width: '15%', className: 'dt-center'},
+      {title: 'Alat', data: 'tool', name: 'tool', width: '20%', className: 'dt-head-center'},
+      {title: 'Harga Unpad', data: 'price1', name: 'price1', width: '15%', className: 'dt-center'},
+      {title: 'Harga Non Unpad', data: 'price2', name: 'price2', width: '15%', className: 'dt-center'},
+      {title: 'Harga Umum', data: 'price3', name: 'price3', width: '15%', className: 'dt-center'},
+      {title: 'Diskon', data: 'discount', name: 'discount', width: '10%', className: 'dt-center'},
       {title: 'Opsi', data: 'action', name: 'action', width: '10%', orderable:false, className: 'dt-center'}
     ],
   });
