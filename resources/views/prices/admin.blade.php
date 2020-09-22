@@ -8,7 +8,7 @@
     <div class="card">
       <div class="card-body">
         <h3 class="panel-title mb-3"><strong>Price List</strong>
-          <a href="{{ route('status.create') }}" class="btn btn-primary float-right btn-sm modal-show" name="Create Brand"><i class="nav-icon fas fa-plus"></i> Create</a>
+          <a href="{{ route('price.create') }}" class="btn btn-primary float-right btn-sm modal-show" name="Create Brand"><i class="nav-icon fas fa-plus"></i> Create</a>
         </h3>
         <table id="table" class="table table-striped table-bordered text-sm" style="width:100%"></table>
       </div>

@@ -8,7 +8,7 @@
         <a href="#">
             <img src="{{ asset('finder.png') }}" height="90" width="90" class="logo_img">
         </a>
-        Register Admin FINDER
+        Register Admin
     </span>
     <form class="login100-form validate-form" method="POST" action="{{ route('register.store') }}">
         @csrf

@@ -29,7 +29,7 @@
         </li><br>
         <li>
           <h4>Daftar Akun</h4>
-          <h5>Silakan klik <a href="https://drive.google.com/open?id=1pw_FMr_0nes5t2KCVN_KWfg-PGtqKzeI">di sini</a> untuk mengunduh aturan registrasi akun SIPA. Kemudian silakan pilih role dibawah ini untuk melakukan registrasi. </h5>
+<!--           <h5>Silakan klik <a href="https://drive.google.com/open?id=1pw_FMr_0nes5t2KCVN_KWfg-PGtqKzeI">di sini</a> untuk mengunduh aturan registrasi akun FINDER. Kemudian silakan pilih role dibawah ini untuk melakukan registrasi. </h5> -->
           <h5>Anda harus memiliki akun terlebih dahulu, sebelum Log-in. Silakan klik menu
             <a href="{{ route('register') }}">Register</a> untuk membuat akun. Akun SIPA tersedia untuk :
           </h5>
