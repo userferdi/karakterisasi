@@ -159,12 +159,12 @@ sup {
 }
 
 a {
-  color: #1abc9c;
+  color: #007bff;
   text-decoration: none;
   background-color: transparent;
 }
 a:hover {
-  color: #117964;
+  color: #0056b3;
   text-decoration: underline;
 }
 
@@ -10116,11 +10116,11 @@ h3 {
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link.active {
     color: #fff;
-    background: #1abc9c;
+    background: #007bff;
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link.active:active, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:focus, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:hover {
     color: #fff;
-    background: #1abc9c;
+    background: #007bff;
   }
 
   #mainNav.navbar-shrink {

@@ -47,7 +47,6 @@ class ToolController extends Controller
         $model['status'] = Active::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
         $model['lab'] = Lab::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
         $model['period'] = Time::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
-        dd($model);
         return view('tools.form', ['model' => $model]);
     }
 

@@ -24,14 +24,14 @@
         <li>
           <h4>Layanan Login</h4>
           <h5>Silakan 
-            <a href="https://sipa.nrcn.itb.ac.id/login">Login</a> dengan memasukkan username dan password yang Anda buat untuk melakukan registrasi penggunaan alat. Pilih menu Registrasi Penggunaan Alat setelah Anda Log-in.
+            <a href="{{ route('login') }}">Login</a> dengan memasukkan username dan password yang Anda buat untuk melakukan registrasi penggunaan alat. Pilih menu Registrasi Penggunaan Alat setelah Anda Log-in.
           </h5>
         </li><br>
         <li>
           <h4>Daftar Akun</h4>
           <h5>Silakan klik <a href="https://drive.google.com/open?id=1pw_FMr_0nes5t2KCVN_KWfg-PGtqKzeI">di sini</a> untuk mengunduh aturan registrasi akun SIPA. Kemudian silakan pilih role dibawah ini untuk melakukan registrasi. </h5>
           <h5>Anda harus memiliki akun terlebih dahulu, sebelum Log-in. Silakan klik menu
-            <a href="https://sipa.nrcn.itb.ac.id/register_index">Register</a> untuk membuat akun. Akun SIPA tersedia untuk :
+            <a href="{{ route('register') }}">Register</a> untuk membuat akun. Akun SIPA tersedia untuk :
           </h5>
           <ul>
             <li>
@@ -55,10 +55,10 @@
           <h4>Daftar Alat & Harga</h4>
           <ul>
             <li>
-              <h5><a href ="https://sipa.nrcn.itb.ac.id/listtools">Daftar Alat</a></h5>
+              <h5><a href ="{{ route('tool.index') }}">Daftar Alat</a></h5>
             </li>
             <li>
-              <h5><a href ="https://sipa.nrcn.itb.ac.id/pricelist">Daftar Harga</a></h5>
+              <h5><a href ="{{ route('price.index') }}">Daftar Harga</a></h5>
             </li>
           </ul>
         </li>

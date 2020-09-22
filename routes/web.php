@@ -1,6 +1,6 @@
 <?php
 
-// Route::get('/', function () {
+// Route::get('/php', function () {
 // 	return view('welcome');
 // })->name('welcome');
 
@@ -68,23 +68,23 @@ Route::middleware('auth')->group(function(){
 		Route::delete('delete/{id}', 'PriceController@delete')->name('price.delete');
 	});
 
-	Route::prefix('status')->group(function(){
-		Route::get('/', 'StatusController@index')->name('status.index');
-		Route::get('create', 'StatusController@create')->name('status.create');
-		Route::post('store', 'StatusController@store')->name('status.store');
-		Route::get('edit/{id}', 'StatusController@edit')->name('status.edit');
-		Route::put('update/{id}', 'StatusController@update')->name('status.update');
-		Route::delete('delete/{id}', 'StatusController@delete')->name('status.delete');
-		Route::get('datatable', 'StatusController@datatable')->name('status.dt');
+	Route::prefix('usage')->group(function(){
+		Route::get('/', 'UsageController@index')->name('usage.index');
+		Route::get('create', 'UsageController@create')->name('usage.create');
+		Route::post('store', 'UsageController@store')->name('usage.store');
+		Route::get('edit/{id}', 'UsageController@edit')->name('usage.edit');
+		Route::put('update/{id}', 'UsageController@update')->name('usage.update');
+		Route::delete('delete/{id}', 'UsageController@delete')->name('usage.delete');
+		Route::get('datatable', 'UsageController@datatable')->name('usage.dt');
 	});
-	Route::prefix('period')->group(function(){
-		Route::get('/', 'PeriodController@index')->name('period.index');
-		Route::get('create', 'PeriodController@create')->name('period.create');
-		Route::post('store', 'PeriodController@store')->name('period.store');
-		Route::get('edit/{id}', 'PeriodController@edit')->name('period.edit');
-		Route::put('update/{id}', 'PeriodController@update')->name('period.update');
-		Route::delete('delete/{id}', 'PeriodController@delete')->name('period.delete');
-		Route::get('datatable', 'PeriodController@datatable')->name('period.dt');
+	Route::prefix('active')->group(function(){
+		Route::get('/', 'ActiveController@index')->name('active.index');
+		Route::get('create', 'ActiveController@create')->name('active.create');
+		Route::post('store', 'ActiveController@store')->name('active.store');
+		Route::get('edit/{id}', 'ActiveController@edit')->name('active.edit');
+		Route::put('update/{id}', 'ActiveController@update')->name('active.update');
+		Route::delete('delete/{id}', 'ActiveController@delete')->name('active.delete');
+		Route::get('datatable', 'ActiveController@datatable')->name('active.dt');
 	});
 	Route::prefix('time')->group(function(){
 		Route::get('/', 'TimeController@index')->name('time.index');

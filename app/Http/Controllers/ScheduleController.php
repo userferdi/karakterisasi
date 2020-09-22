@@ -14,8 +14,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require 'D:\Documents\xampp\htdocs\karakterisasi\vendor\autoload.php';
-
 class ScheduleController extends Controller
 {
 	public function index()

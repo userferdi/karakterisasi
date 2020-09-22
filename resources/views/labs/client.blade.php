@@ -24,10 +24,11 @@
     order: [[ 1, "asc" ]],
     columns: [
       {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, width: '5%', className: 'dt-center'},
-      {title: 'Nama', data: 'name', name: 'name', width: '22.5%', className: 'dt-head-center'},
-      {title: 'Kepala Lab', data: 'head', name: 'head', width: '20%', className: 'dt-head-center'},
-      {title: 'Deskripsi', data: 'descrip', name: 'descrip', width: '45%', className: 'dt-head-center'},
-      {title: 'Detail', data: 'show', name: 'show', orderable:false, width: '7.5%', className: 'dt-center'}
+      {title: 'Nama', data: 'name', name: 'name', width: '20%', className: 'dt-head-center'},
+      {title: 'Kode Lab', data: 'code', name: 'code', width: '12.5%', className: 'dt-head-center'},
+      {title: 'Kepala Lab', data: 'head', name: 'head', width: '22.5%', className: 'dt-head-center'},
+      {title: 'Deskripsi', data: 'descrip', name: 'descrip', width: '32.5%', className: 'dt-head-center'},
+      {title: 'Opsi', data: 'action', name: 'action', orderable:false, width: '7.5%', className: 'dt-center'}
     ],
   });
 </script>

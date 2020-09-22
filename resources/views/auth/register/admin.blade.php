@@ -42,53 +42,7 @@
                 <input id="name" type="text" class="form-control" name="name" required>
             </div>
         </div>
-        <div class="form-group row">
-            <label for="no_id" class="col-md-4 col-form-label text-md-right">NIDN</label>
-            <div class="col-md-8">
-                <input id="no_id" type="text" class="form-control" name="no_id" required>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="no_hp" class="col-md-4 col-form-label text-md-right">Phone Number</label>
-            <div class="col-md-8">
-                <input id="no_hp" type="text" class="form-control" name="no_hp" required>
-            </div>
-        </div>
 
-    <!--     <div class="form-group wrap-input100 validate-input" data-validate = "Name required">
-            <input class="input100" type="text" name="name" id="name" value="{{ old('name') }}" autocomplete="name">
-            <span class="focus-input100" data-placeholder="Nama"></span>
-        </div>
-        <div class="form-group wrap-input100 validate-input" data-validate = "No ID required">
-            <input class="input100" type="text" name="no_id" id="no_id" value="{{ old('no_id') }}" autocomplete="no_id">
-            <span class="focus-input100" data-placeholder="No ID"></span>
-        </div>
-        <div class="form-group wrap-input100 validate-input" data-validate = "No HP required">
-            <input class="input100" type="text" name="no_hp" id="no_hp" value="{{ old('no_hp') }}" autocomplete="no_hp">
-            <span class="focus-input100" data-placeholder="No HP"></span>
-        </div> -->
-    <!--     <div class="form-group wrap-input100 validate-input" data-validate = "Email required">
-            <input class="input100" type="text" name="institution" id="institution" value="{{ old('institution') }}" autocomplete="institution">
-            <span class="focus-input100" data-placeholder="Lembaga"></span>
-        </div> -->
-    <!--     <div class="form-group wrap-input100 validate-input" data-validate = "Email required">
-            <input class="input100" type="text" name="email" id="email" value="{{ old('email') }}" autocomplete="email">
-            <span class="focus-input100" data-placeholder="Email"></span>
-        </div>
-        <div class="form-group wrap-input100 validate-input" data-validate="Password required">
-            <span class="btn-show-pass">
-                <i class="fa fa-eye nav-icon validates"></i>
-            </span>
-            <input class="input100" type="password" name="password" id="password" autocomplete="new-password">
-            <span class="focus-input100" data-placeholder="Password"></span>
-        </div>
-        <div class="form-group wrap-input100 validate-input" data-validate="Password required">
-            <span class="btn-show-pass">
-                <i class="fa fa-eye nav-icon validates"></i>
-            </span>
-            <input class="input100" type="password" name="password_confirmation" id="password-confirm" autocomplete="new-password">
-            <span class="focus-input100" data-placeholder="Confirm Password"></span>
-        </div> -->
         <div class="form-group container-login100-form-btn">
             <div class="wrap-login100-form-btn">
                 <div class="login100-form-bgbtn"></div>

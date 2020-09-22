@@ -14,17 +14,17 @@
 </div>
 <div class="modal-body">
     <div class="form-group">
-        <label class="control-label">Nama</label>
+        <label class="control-label">Nama Alat</label>
         {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name', 'required']) !!}
         <div class="invalid-feedback" id="invalid">Please fill out this field</div>
     </div>
     <div class="form-group">
-        <label class="control-label">Code</label>
+        <label class="control-label">Kode Alat</label>
         {!! Form::text('code', null, ['class' => 'form-control', 'id' => 'code', 'required']) !!}
         <div class="invalid-feedback" id="invalid">Please fill out this field</div>
     </div>
     <div class="form-group">
-        <label class="control-label">Deskripsi</label>
+        <label class="control-label">Deskripsi Alat</label>
         {!! Form::textarea('descrip', null, ['class' => 'form-control', 'id' => 'descrip', 'required']) !!}
         <div class="invalid-feedback" id="invalid">Please fill out this field</div>
     </div>

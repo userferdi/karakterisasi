@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.index')
 
 @section('title', 'FINDER · Tools List')
 
@@ -27,13 +27,13 @@
       </div>
       <div class="tab-pane" id="status" role="tabpanel" aria-labelledby="status-tab">
         <h4 class="panel-title mb-3"><strong>Status Alat</strong>
-          <a href="{{ route('status.create') }}" class="btn btn-primary float-right btn-sm modal-show" name="Tambah Status Alat Baru"><i class="nav-icon fas fa-plus"></i> Add New</a>
+          <a href="{{ route('active.create') }}" class="btn btn-primary float-right btn-sm modal-show" name="Tambah Status Alat Baru"><i class="nav-icon fas fa-plus"></i> Add New</a>
         </h4>
         <table id="table_status" class="table table-striped table-bordered text-sm" style="width:100%"></table>
       </div>
       <div class="tab-pane" id="time" role="tabpanel" aria-labelledby="time-tab">
         <h4 class="panel-title mb-3"><strong>Waktu Penggunaan Alat</strong>
-          <a href="{{ route('status.create') }}" class="btn btn-primary float-right btn-sm modal-show" name="Create Brand"><i class="nav-icon fas fa-plus"></i> Create</a>
+          <a href="{{ route('usage.create') }}" class="btn btn-primary float-right btn-sm modal-show" name="Tambah Waktu Penggunaan Alat Baru"><i class="nav-icon fas fa-plus"></i> Create</a>
         </h4>
         <table id="table_time" class="table table-striped table-bordered text-sm" style="width:100%"></table>
       </div>
@@ -66,7 +66,7 @@
   $('#table_status').DataTable({
     responsive: true,
     serverSide: true,
-    ajax: "{{ route('status.dt') }}",
+    ajax: "{{ route('active.dt') }}",
     order: [[ 1, "asc" ]],
     columns: [
       {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, width: '5%', className: 'dt-center'},
@@ -78,7 +78,7 @@
   $('#table_time').DataTable({
     responsive: true,
     serverSide: true,
-    ajax: "{{ route('period.dt') }}",
+    ajax: "{{ route('usage.dt') }}",
     order: [[ 2, "asc" ]],
     columns: [
       {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, width: '5%', className: 'dt-center'},

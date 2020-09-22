@@ -25,8 +25,6 @@ class CreateApprovesTable extends Migration
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('times_id')->references('id')->on('times')
                 ->onUpdate('cascade')->onDelete('cascade');
-            // $table->foreign('statuses_id')->references('id')->on('statuses')
-            //     ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

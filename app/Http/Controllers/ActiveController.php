@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Status;
+use App\Active;
+
 use DataTables;
 use Illuminate\Http\Request;
 
-class StatusController extends Controller
+class ActiveController extends Controller
 {
     public function index()
     {
@@ -18,23 +19,23 @@ class StatusController extends Controller
 
     public function create()
     {
-        $model = new Status();
-        return view('status', ['model' => $model]);
+        $model = new Active();
+        return view('active', ['model' => $model]);
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required'
+            'name' => 'required',
         ]);
-        $model = Status::create($request->all());
+        $model = Active::create($request->all());
         return response()->json($model);
     }
 
     public function edit($id)
     {
-        $model = Status::findOrFail($id);
-        return view('status', ['model' => $model]);
+        $model = Active::findOrFail($id);
+        return view('active', ['model' => $model]);
     }
 
     public function update(Request $request, $id)
@@ -42,30 +43,35 @@ class StatusController extends Controller
         $this->validate($request, [
             'name' => 'required'
         ]);
-        $model = Status::findOrFail($id)->update($request->all());
+        $model = Active::findOrFail($id)->update($request->all());
         return response()->json($model);
     }
 
     public function delete($id)
     {
-        $model = Status::findOrFail($id)->delete();
+        $model = Active::findOrFail($id)->delete();
         return response()->json($model);
     }
 
     public function datatable()
     {
-        $model = Status::get();
+        $model = Active::get();
         return DataTables::of($model)
+            ->addColumn('show', function($model){
+                $button = 
+'<a href="" class="btn btn-primary btn-sm">show</a>';
+                return $button;
+            })
             ->addColumn('action', function($model){
                 return view('layouts.action',[
                     'model' => $model,
-                    'title' => 'Status Alat',
-                    'edit' => route('status.edit', $model->id),
-                    'delete' => route('status.delete', $model->id)
+                    'title' => 'Waktu Penggunaan',
+                    'edit' => route('active.edit', $model->id),
+                    'delete' => route('active.delete', $model->id)
                 ]);
             })
             ->addIndexColumn()
-            ->rawColumns(['action'])
+            ->rawColumns(['show', 'action'])
             ->make(true);
     }
 }

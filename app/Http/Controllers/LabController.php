@@ -21,9 +21,6 @@ class LabController extends Controller
                 return view('labs.client');
             }
         }
-        else if(Auth()->User()==NULL){
-            return view('labs.index');
-        }
         else{
             abort(404);
         }

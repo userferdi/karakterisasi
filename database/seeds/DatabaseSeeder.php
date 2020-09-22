@@ -21,45 +21,45 @@ class DatabaseSeeder extends Seeder
         }
 
         // PermissionSeeder
-        $name = ['Client', 'Dosen', 'Mahasiswa', 'Unpad', 'Non Unpad'];
-        for($i=0;$i<5;$i++){
-			DB::table('permissions')->insert([
-	        	'name' => $name[$i],
-	        	'guard_name' => 'web',
-	        ]);
-        }
+		// $name = ['Client', 'Dosen', 'Mahasiswa', 'Unpad', 'Non Unpad'];
+		// for($i=0;$i<5;$i++){
+		// 	DB::table('permissions')->insert([
+		// 		'name' => $name[$i],
+		// 		'guard_name' => 'web',
+		// 	]);
+		// }
 
         // RoleHasPermissionSeeder
-        for($i=2;$i<7;$i++){
-			DB::table('role_has_permissions')->insert([
-	        	'permission_id' => 1,
-	        	'role_id' => $i,
-	        ]);
-        }
-        for($i=2;$i<4;$i++){
-			DB::table('role_has_permissions')->insert([
-	        	'permission_id' => 2,
-	        	'role_id' => $i,
-	        ]);
-		}
-        for($i=4;$i<6;$i++){
-			DB::table('role_has_permissions')->insert([
-	        	'permission_id' => 3,
-	        	'role_id' => $i,
-	        ]);
-		}
-        for($i=2;$i<5;$i+=2){
-			DB::table('role_has_permissions')->insert([
-	        	'permission_id' => 4,
-	        	'role_id' => $i,
-	        ]);
-		}
-        for($i=3;$i<6;$i+=2){
-			DB::table('role_has_permissions')->insert([
-	        	'permission_id' => 5,
-	        	'role_id' => $i,
-	        ]);
-		}
+		// for($i=2;$i<7;$i++){
+		// 	DB::table('role_has_permissions')->insert([
+		// 		'permission_id' => 1,
+		// 		'role_id' => $i,
+		// 	]);
+		// }
+		// for($i=2;$i<4;$i++){
+		// 	DB::table('role_has_permissions')->insert([
+		// 		'permission_id' => 2,
+		// 		'role_id' => $i,
+		// 	]);
+		// }
+		// for($i=4;$i<6;$i++){
+		// 	DB::table('role_has_permissions')->insert([
+		// 		'permission_id' => 3,
+		// 		'role_id' => $i,
+		// 	]);
+		// }
+		// for($i=2;$i<5;$i+=2){
+		// 	DB::table('role_has_permissions')->insert([
+		// 		'permission_id' => 4,
+		// 		'role_id' => $i,
+		// 	]);
+		// }
+		// for($i=3;$i<6;$i+=2){
+		// 	DB::table('role_has_permissions')->insert([
+		// 		'permission_id' => 5,
+		// 		'role_id' => $i,
+		// 	]);
+		// }
 
 		// ActiveSeeder
 		DB::table('actives')->insert([
@@ -117,33 +117,34 @@ class DatabaseSeeder extends Seeder
 			'time_end' => '17:00',
 		]);
 
-        // UsageTimeSeeder
-        for($i=1;$i<5;$i++){
+		// UsageTimeSeeder
+		for($i=1;$i<5;$i++){
 			DB::table('time_usage')->insert([
-	        	'usage_id' => 1,
-	        	'time_id' => $i,
-	        ]);
-        }
-        for($i=5;$i<7;$i++){
+				'usage_id' => 1,
+				'time_id' => $i,
+			]);
+		}
+		for($i=5;$i<7;$i++){
 			DB::table('time_usage')->insert([
-	        	'usage_id' => 2,
-	        	'time_id' => $i,
-	        ]);
-        }
+				'usage_id' => 2,
+				'time_id' => $i,
+			]);
+		}
 		DB::table('time_usage')->insert([
-        	'usage_id' => 3,
-        	'time_id' => 7,
-        ]);
+			'usage_id' => 3,
+			'time_id' => 7,
+		]);
 
 		// PlanSeeder
 		DB::table('plans')->insert([
-        	'name' => 'Tunai',
-        ]);
+			'name' => 'Tunai',
+		]);
 		DB::table('plans')->insert([
-        	'name' => 'Transfer'
-        ]);
+			'name' => 'Transfer'
+		]);
 		DB::table('plans')->insert([
-        	'name' => 'Transfer Dosen'
-        ]);
-    }
+			'name' => 'Transfer Dosen'
+		]);
+
+	}
 }

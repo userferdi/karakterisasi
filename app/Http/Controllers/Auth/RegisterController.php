@@ -110,7 +110,6 @@ class RegisterController extends Controller
             ]);
             Auth::login($user);
             auth()->user()->assignRole('Admin');
-            sleep(2);
             return redirect()->route('home');
         }
         else if($data['user']=='dosenunpad'){

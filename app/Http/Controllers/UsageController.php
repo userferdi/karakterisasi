@@ -2,39 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\Period;
+use App\Usage;
 use DataTables;
 use Illuminate\Http\Request;
 
-class PeriodController extends Controller
+class UsageController extends Controller
 {
     public function index()
     {
     }
 
-    public function admin()
-    {
-    }
-
     public function create()
     {
-        $model = new Period();
-        return view('period', ['model' => $model]);
+        $model = new Usage();
+        return view('usage', ['model' => $model]);
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required'
         ]);
-        $model = Period::create($request->all());
+        $model = Usage::create($request->all());
         return response()->json($model);
     }
 
     public function edit($id)
     {
-        $model = Period::findOrFail($id);
-        return view('period', ['model' => $model]);
+        $model = Usage::findOrFail($id);
+        return view('usage', ['model' => $model]);
     }
 
     public function update(Request $request, $id)
@@ -42,35 +38,30 @@ class PeriodController extends Controller
         $this->validate($request, [
             'name' => 'required'
         ]);
-        $model = Period::findOrFail($id)->update($request->all());
+        $model = Usage::findOrFail($id)->update($request->all());
         return response()->json($model);
     }
 
     public function delete($id)
     {
-        $model = Period::findOrFail($id)->delete();
+        $model = Usage::findOrFail($id)->delete();
         return response()->json($model);
     }
 
     public function datatable()
     {
-        $model = Period::get();
+        $model = Usage::get();
         return DataTables::of($model)
-            ->addColumn('show', function($model){
-                $button = 
-'<a href="" class="btn btn-primary btn-sm">show</a>';
-                return $button;
-            })
             ->addColumn('action', function($model){
                 return view('layouts.action',[
                     'model' => $model,
-                    'title' => 'Waktu Penggunaan',
-                    'edit' => route('period.edit', $model->id),
-                    'delete' => route('period.delete', $model->id)
+                    'title' => 'Status Alat',
+                    'edit' => route('usage.edit', $model->id),
+                    'delete' => route('usage.delete', $model->id)
                 ]);
             })
             ->addIndexColumn()
-            ->rawColumns(['action', 'show'])
+            ->rawColumns(['action'])
             ->make(true);
     }
 }

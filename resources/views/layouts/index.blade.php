@@ -7,7 +7,7 @@
   <title>@yield('title')</title>
   <meta name="description" content="LAB Karakterisasi PRINT-G">
   <meta name="author" content="userferdi">
-  <link rel="icon" href="{{ asset('finder.png') }}">
+  <link rel="icon" href="{{ asset('finder2.png') }}">
 
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -426,8 +426,8 @@
 <!-- DatePicker -->
 <script src="{{ asset('js/gijgo.min.js') }}"></script>
 
-<form id="logout" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
 @include('modal')
 @stack('scripts')
+<form id="logout" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
 </body>
 </html>
