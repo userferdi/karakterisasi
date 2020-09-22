@@ -135,6 +135,20 @@ class ToolController extends Controller
             ->make(true);
     }
 
+    public function datatableSchedule()
+    {
+        $model = Tool::get();
+        return DataTables::of($model)
+            ->addColumn('show', function($model){
+                $button = 
+'<a href="'.route('schedule.show',$model->id).'" class="btn btn-primary btn-sm">show</a>';
+                return $button;
+            })
+            ->addIndexColumn()
+            ->rawColumns(['show'])
+            ->make(true);
+    }
+
     public function datatableAdmin()
     {
         $model = Tool::get();
@@ -162,11 +176,6 @@ class ToolController extends Controller
             ->addColumn('booking', function($model){
                 $button = 
 '<a href="'.route('schedule.create',$model->id).'" class="btn btn-primary btn-sm">Registrasi</a>';
-                return $button;
-            })
-            ->addColumn('schedule', function($model){
-                $button = 
-'<a href="'.route('schedule.show',$model->id).'" class="btn btn-primary btn-sm">Lihat Jadwal</a>';
                 return $button;
             })
             ->addColumn('show', function($model){

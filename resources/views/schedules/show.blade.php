@@ -1,10 +1,10 @@
-@extends('layouts.client')
+@extends('layouts.index')
 
 @push('css')
   <link rel="stylesheet" type="text/css" href="{{ asset('calendar/main.css') }}">
 @endpush
 
-@section('title','Shedules - PRINTG')
+@section('title','FINDER · Shedules')
 
 @section('content')
 <div class="row" style="padding-top:15px;">

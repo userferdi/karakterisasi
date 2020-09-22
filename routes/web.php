@@ -133,9 +133,8 @@ Route::middleware('auth')->group(function(){
 	Route::prefix('schedule')->group(function(){
 		Route::get('/', 'ScheduleController@index')->name('schedule.index');
 		Route::get('dataschedule', 'ScheduleController@dataindex')->name('schedule.dataindex');
-		Route::get('{id}', 'ScheduleController@data')->name('schedule.data');
 		Route::get('{id}/show', 'ScheduleController@show')->name('schedule.show');
-		Route::get('show', 'ScheduleController@show')->name('schedule.show');
+		Route::get('{id}', 'ScheduleController@data')->name('schedule.data');
 	});
 	Route::prefix('activities')->group(function(){
 		Route::prefix('register')->group(function(){

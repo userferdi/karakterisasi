@@ -37,8 +37,8 @@ class ScheduleController extends Controller
 
     public function dataindex()
     {
-        $event = Schedule::where(['approves_id'=>'2'])->get();
-        return json_encode($event);
+        $model = Schedule::get();
+        return json_encode($model);
     }
 
     public function show($id)
@@ -49,8 +49,10 @@ class ScheduleController extends Controller
 
     public function data($id)
     {
-        $event = Schedule::where(['approves_id'=>'2', 'tools_id'=>$id])->get();
-        return json_encode($event);
+        $model = Schedule::whereHas('orders', function ($query)use($id){
+            return $query->where('tools_id', '=', $id);
+        })->get();
+        return json_encode($model);
     }
 
     public function datatable()

@@ -63,9 +63,9 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="program_study" class="col-md-4 col-form-label text-md-right">Study Program</label>
+            <label for="study_program" class="col-md-4 col-form-label text-md-right">Study Program</label>
             <div class="col-md-8">
-                <input id="program_study" type="text" class="form-control" name="program_study" required>
+                <input id="study_program" type="text" class="form-control" name="study_program" required>
             </div>
         </div>
         <legend>File Upload</legend>

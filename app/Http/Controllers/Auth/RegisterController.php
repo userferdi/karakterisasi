@@ -125,7 +125,7 @@ class RegisterController extends Controller
                 'user_id' => $id,
                 'no_id' => $data->no_id,
                 'no_hp' => $data->no_hp,
-                'university' => $data->university,
+                'university' => 'Universitas Padjadjaran',
                 'faculty' => $data->faculty,
                 'study_program' => $data->study_program,
             ]);
@@ -163,7 +163,7 @@ class RegisterController extends Controller
                 'user_id' => $id,
                 'no_id' => $data->no_id,
                 'no_hp' => $data->no_hp,
-                'university' => $data->university,
+                'university' => 'Universitas Padjadjaran',
                 'faculty' => $data->faculty,
                 'study_program' => $data->study_program,
                 'email_lecturer' => $data->email_lecturer
@@ -171,7 +171,7 @@ class RegisterController extends Controller
             return redirect()->route('home');
         }
         else if($data['user']=='mahasiswanonunpad'){
-            $user = User::insertGetId([
+            $user = User::create([
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
                 'name' => $data['name'],

@@ -79,7 +79,7 @@
         <p>Silakan Upload file ID yang menunjukan bahwa Anda adalah dosen.</p>
         <div class="form-group">
             <label>File</label>
-            <input type="file" name="image" required>
+            <input type="file" name="image">
             <span class="help-block text-danger"></span>
         </div>
 

@@ -81,7 +81,7 @@
         <hr class="formik"/>
         <div class="form-group">
             <label>File</label>
-            <input type="file" name="image" required>
+            <input type="file" name="image">
             <span class="help-block text-danger"></span>
         </div>
 

@@ -54,7 +54,15 @@ class ActivitiesController extends Controller
         $model = new Order();
         $tool = Tool::where('id',$id)->get();
         $model['tool'] = $tool->pluck('name', 'id');
-        $model['plan'] = Plan::pluck('name', 'id');
+        if(Auth()->User()->hasRole('Mahasiswa Unpad|Mahasiswa Non Unpad')){
+            $model['plan'] = Plan::pluck('name', 'id');
+        }
+        else{
+            $plan = Plan::get();
+            $model['plan'] = $plan->reject(function ($query){
+                return $query->id > 2;
+            })->pluck('name', 'id');
+        }
         $model['time'] = Time::leftJoin('time_usage', 'time_usage.time_id', '=', 'times.id')
             ->where('usage_id',$tool[0]->usages_id)->pluck('name','times.id');
         return view('activities.create', ['model' => $model]);
@@ -63,6 +71,9 @@ class ActivitiesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'tools_id' => 'required',
+            'attend' => 'required',
+            'plans_id' => 'required',
             'purpose' => 'required',
             'sample' => 'required',
             'unique' => 'required'
@@ -110,8 +121,6 @@ class ActivitiesController extends Controller
             $mail->CharSet = 'UTF-8';
             try{
                 $mail->Encoding = 'base64';
-                // Auth()->User()->email
-                // $model->users->email
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
@@ -121,15 +130,16 @@ class ActivitiesController extends Controller
                 $mail->SMTPSecure = 'ssl';
                 $mail->Port = 465;
                 $mail->SetFrom('ferdi.maulana@gmail.com', 'Ferdian Maulana');
-                $mail->AddAddress('indomainster@gmail.com');
+                $mail->AddAddress(Auth()->User()->email);
                 $mail->Subject = 'Permintaan Verifikasi Booking Alat';
                 $mail->Body = '
-<p>Sistem Informasi Pengelolaan Alat (SIPA) Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari Anda.</p>
-<p>Sebelum melanjutkan proses pemesanan, kami perlu memastikan bahwa ini memang Anda. Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$token).'">di sini!</a></p><br/>
+<p>Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari Anda.</p>
+<p>Sebelum melanjutkan proses pemesanan, kami perlu memastikan bahwa ini memang Anda.</p>
+<p>Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$token).'">di sini!</a></p><br/>
 <p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('status.booking').'">login!</a></p>
 <p>Silahkan Masuk ke Menu <strong>My Activities -> Registration of Tool Usage</strong> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda.</p>
 <p>Jika bukan Anda yang melakukan transaksi tersebut, harap mengabaikan pesan ini.</p><br/><br/>
-<p>Hormat Kami,</p><br/>
+<p>Hormat Kami,</p>
 <p>Sekretariat SIPA FINDER</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>
 ';
