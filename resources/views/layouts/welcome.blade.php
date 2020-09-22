@@ -49,7 +49,7 @@
   @yield('content')
 
   <!-- Copyright Section-->
-  <div class="copyright py-4 text-center text-white">
+  <div class="copyright py-4 text-center">
       <div class="container"><small>Copyright © 2020 Functional Nano Powder - Universitas Padjadjaran</small></div>
   </div>
 
