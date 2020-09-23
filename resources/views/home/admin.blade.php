@@ -3,7 +3,11 @@
 @section('title','FINDER · Home')
 
 @section('content')
-<div class="row" style="padding-top:15px;">
+<h2 style="padding-top:15px;">Selamat Datang, <strong>{{$model->name}}</strong></h2>
+<a href="https://drive.google.com/file/d/1ZZJEDmb_dlf9WHoV8-fpZi52JPtHDWwB/view" class="btn btn-primary btn-sm">Unduh Workflow Booking Alat</a>
+<a href="https://drive.google.com/open?id=1gcDbrORgSCctPLyy4Mh-xFXBxkgbkWUu" class="btn btn-success btn-sm">Unduh Deskripsi Alur Booking Alat</a>
+<a href="https://drive.google.com/open?id=1pw_FMr_0nes5t2KCVN_KWfg-PGtqKzeI" class="btn btn-warning btn-sm">Unduh Aturan Registrasi Akun</a><br><br>
+<div class="row">
   <div class="col-lg-3">
     <!-- small box -->
     <div class="small-box bg-info">
@@ -66,10 +70,6 @@
   <!-- ./col -->
 </div>
 
-<h2>Selamat Datang, <strong>{{$model->name}}</strong></h2>
-<a href="https://drive.google.com/file/d/1ZZJEDmb_dlf9WHoV8-fpZi52JPtHDWwB/view" class="btn btn-primary btn-sm">Unduh Workflow Booking Alat</a>
-<a href="https://drive.google.com/open?id=1gcDbrORgSCctPLyy4Mh-xFXBxkgbkWUu" class="btn btn-success btn-sm">Unduh Deskripsi Alur Booking Alat</a>
-<a href="https://drive.google.com/open?id=1pw_FMr_0nes5t2KCVN_KWfg-PGtqKzeI" class="btn btn-warning btn-sm">Unduh Aturan Registrasi Akun</a><br><br>
 <h4><strong>Status Penggunaan Alat Anda</strong></h4>
 <h6>Tidak ada proses Penggunaan Alat yang tercatat dalam sistem kami.</h6>
 

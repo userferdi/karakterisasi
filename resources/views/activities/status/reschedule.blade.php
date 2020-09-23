@@ -69,63 +69,6 @@
     $('#modal').modal('show');
   });
 
-  $('body').on('click', '.confirm', function (event) {
-    event.preventDefault();
-
-    var me = $(this),
-        url = me.attr('href'),
-        name = me.attr('name'),
-        csrf_token = $('meta[name="csrf-token"]').attr('content');
-
-    swal({
-      title: "Are you sure want to\nconfirm?",
-      text: "You won't be able to revert this!",
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, resend it!'
-    }).then((result)=>{
-      if(result.value){
-        $.ajax({
-          url: url,
-          type: "POST",
-          data: {
-            '_method': 'PUT',
-            '_token': csrf_token
-          },
-          success: function(response){
-            $('#table').DataTable().ajax.reload();
-            const Toast = Swal.mixin({
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              background: '#28a745',
-              onOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-              }
-            })
-            Toast.fire({
-              type: 'success',
-              title: 'Email has been sent!'
-            })
-            $('#modal-body').html('reset');
-          },
-          error: function(xhr){
-            swal({
-              type: 'error',
-              title: 'Oops...',
-              text: 'Something went wrong!'
-            });
-          }
-        });
-      }
-    });
-  });
-
   $('body').on('click', '.cancel', function (event) {
     event.preventDefault();
 
@@ -182,6 +125,52 @@
     });
   });
 
+  $('body').on('submit','.form', function(event){
+    event.preventDefault();
+
+    var form = $('.form'),
+        url = form.attr('action'),
+        method = $('input[name=_method]').val() == undefined ? 'POST' : 'PUT';
+
+    $.ajax({
+      url : url,
+      method : method,
+      data : form.serialize(),
+
+      success: function(response){
+        $('#modal-body').find("input,textarea,select")
+          .val('')
+          .end();
+        $('#modal').modal('hide');
+        $('#table').DataTable().ajax.reload();
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          background: '#28a745',
+          onOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        Toast.fire({
+          type: 'success',
+          title: 'Data has been saved!'
+        })
+        $('#modal-body').html('reset');
+      },
+
+      error: function(){
+        'use strict';
+        var validation = Array.prototype.filter.call(form, function(form) {
+          form.classList.add('was-validated');
+        });
+      }
+    });
+  });
+
   function format (d) {
     return '<table>'+
         '<tr>'+
@@ -227,67 +216,5 @@
         tr.addClass('shown');
     }
   });
-
-  $("#datepicker1").datepicker({
-    uiLibrary: 'bootstrap4',
-    locale: 'en-us',
-    format: 'yyyy-mm-dd',
-    weekStartDay: 1,
-    disableDaysOfWeek: [0, 6],
-    showOtherMonths: false,
-    showOnFocus: true,
-    showRightIcon: false,
-    minDate: function() {
-            var date = new Date();
-            date.setDate(date.getDate()+7);
-            return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    },
-    maxDate: function() {
-        var date = new Date();
-        date.setDate(date.getDate()+34);
-        return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    },
-  });
-  $("#datepicker2").datepicker({
-    uiLibrary: 'bootstrap4',
-    locale: 'en-us',
-    format: 'yyyy-mm-dd',
-    weekStartDay: 1,
-    disableDaysOfWeek: [0, 6],
-    showOtherMonths: false,
-    showOnFocus: true,
-    showRightIcon: false,
-    minDate: function() {
-            var date = new Date();
-            date.setDate(date.getDate()+7);
-            return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    },
-    maxDate: function() {
-        var date = new Date();
-        date.setDate(date.getDate()+34);
-        return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    },
-  });
-  $("#datepicker3").datepicker({
-    uiLibrary: 'bootstrap4',
-    locale: 'en-us',
-    format: 'yyyy-mm-dd',
-    weekStartDay: 1,
-    disableDaysOfWeek: [0, 6],
-    showOtherMonths: false,
-    showOnFocus: true,
-    showRightIcon: false,
-    minDate: function() {
-            var date = new Date();
-            date.setDate(date.getDate()+7);
-            return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    },
-    maxDate: function() {
-        var date = new Date();
-        date.setDate(date.getDate()+34);
-        return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    },
-  });
-
 </script>
 @endpush

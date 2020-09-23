@@ -35,7 +35,7 @@
     </div>
     <div class="form-group">
         <label class="control-label">Status</label>
-        {!! Form::select('statuses_id', $model->status, $model->statuses_id, ['class' => 'form-control', 'id' => 'statuses_id', 'required']) !!}
+        {!! Form::select('actives_id', $model->status, $model->statuses_id, ['class' => 'form-control', 'id' => 'statuses_id', 'required']) !!}
     </div>
     <div class="form-group">
         <label class="control-label">Laboratorium</label>
@@ -43,7 +43,7 @@
     </div>
     <div class="form-group">
         <label class="control-label">Waktu Penggunaan</label>
-        {!! Form::select('periods_id', $model->period, $model->periods_id, ['class' => 'form-control', 'id' => 'periods_id', 'required']) !!}
+        {!! Form::select('usages_id', $model->period, $model->periods_id, ['class' => 'form-control', 'id' => 'periods_id', 'required']) !!}
     </div>
     <div class="form-group">
         <label class="control-label">Upload Image</label><br>
@@ -52,7 +52,6 @@
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal" id="modal-close"></button>
-    <!-- {!! Form::submit('Save', ['class' => 'btn btn-primary', 'id' => 'modal-save']) !!} -->
     <button type="submit" class="btn btn-primary" id="modal-save"></button>
 </div>
 

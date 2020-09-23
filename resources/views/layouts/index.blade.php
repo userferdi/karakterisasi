@@ -31,7 +31,7 @@
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-dark">
+    <nav class="main-header navbar navbar-expand navbar-light">
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -41,11 +41,11 @@
     </nav>
 
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-light-primary elevation-4">
+    <aside class="main-sidebar sidebar-light-danger elevation-4">
       <!-- Brand Logo -->
-      <a class="brand-link" style="background-color: #343a40">
+      <a class="brand-link">
         <img src="{{ asset('finder.jpg') }}" class="brand-image img-circle elevation-3" style="font-size: 16px;">
-        <span class="brand-text" style="color: #fff;"><strong>FINDER</strong></span>
+        <span class="brand-text"><strong>FINDER</strong></span>
       </a>
 
       <!-- Sidebar -->
@@ -131,7 +131,7 @@
               </ul>
             </li>
             <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
+              <a href="#" class="nav-link {{ (request()->is('payment*')) ? 'active' : '' }}">
                 <i class="nav-icon fas fa-money-bill"></i>
                 <p>
                   Transaction Payment
@@ -140,19 +140,19 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{ route('payment.bill') }}" class="nav-link">
+                  <a href="{{ route('payment.bill') }}" class="nav-link {{ (request()->is('payment/bill*')) ? 'active' : '' }}">
                     <i class="far fa-credit-card nav-icon"></i>
                     <p>Invoice</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('payment.receipt') }}" class="nav-link">
+                  <a href="{{ route('payment.receipt') }}" class="nav-link {{ (request()->is('payment/receipt*')) ? 'active' : '' }}">
                     <i class="fas fa-print nav-icon"></i>
                     <p>Receipt</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('payment.history') }}" class="nav-link">
+                  <a href="{{ route('payment.history') }}" class="nav-link {{ (request()->is('payment/history*')) ? 'active' : '' }}">
                     <i class="fas fa-calculator nav-icon"></i>
                     <p>Transaction History</p>
                   </a>
@@ -269,13 +269,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{ route('student.index') }}" class="nav-link {{ (request()->is('list*')) ? 'active' : '' }}">
+                  <a href="{{ route('student.index') }}" class="nav-link {{ (request()->is('student/list*')) ? 'active' : '' }}">
                     <i class="fas fa-caret-right nav-icon"></i>
                     <p>Students List</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('student.status') }}" class="nav-link {{ (request()->is('booking*')) ? 'active' : '' }}">
+                  <a href="{{ route('student.status') }}" class="nav-link {{ (request()->is('student/request*')) ? 'active' : '' }}">
                     <i class="fas fa-caret-right nav-icon"></i>
                     <p>Booking Request</p>
                   </a>
@@ -296,7 +296,7 @@
             </li>
             @endrole
             <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
+              <a href="#" class="nav-link {{ (request()->is('payment*')) ? 'active' : '' }}">
                 <i class="nav-icon fas fa-money-bill"></i>
                 <p>
                   Financial
@@ -305,25 +305,25 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{ route('payment.info') }}" class="nav-link">
+                  <a href="{{ route('payment.info') }}" class="nav-link {{ (request()->is('payment/information*')) ? 'active' : '' }}">
                     <i class="fas fa-credit-card nav-icon"></i>
                     <p>Payment Information</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('payment.bill') }}" class="nav-link">
+                  <a href="{{ route('payment.bill') }}" class="nav-link {{ (request()->is('payment/bill*')) ? 'active' : '' }}">
                     <i class="far fa-credit-card nav-icon"></i>
                     <p>Bill</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('payment.receipt') }}" class="nav-link">
+                  <a href="{{ route('payment.receipt') }}" class="nav-link {{ (request()->is('payment/receipt*')) ? 'active' : '' }}">
                     <i class="fas fa-print nav-icon"></i>
                     <p>Print Receipt</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('payment.history') }}" class="nav-link">
+                  <a href="{{ route('payment.history') }}" class="nav-link {{ (request()->is('payment/history*')) ? 'active' : '' }}">
                     <i class="fas fa-calculator nav-icon"></i>
                     <p>Transaction History</p>
                   </a>
@@ -331,7 +331,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('activities.history') }}" class="nav-link {{ (request()->is('history*')) ? 'active' : '' }}">
                 <i class="nav-icon fas fa-history"></i>
                 <p>
                   History
@@ -339,7 +339,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('settings') }}" class="nav-link">
+              <a href="{{ route('setting') }}" class="nav-link {{ (request()->is('setting*')) ? 'active' : '' }}">
                 <i class="nav-icon fas fa-cogs"></i>
                 <p>
                   Settings
@@ -428,6 +428,7 @@
 
 @include('modal')
 @stack('scripts')
+
 <form id="logout" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
 </body>
 </html>

@@ -17,21 +17,39 @@
 
 @push('scripts')
 <script>
-  var detail = $('#table').DataTable({
-    responsive: true,
-    serverSide: true,
-    ajax: "{{ route('payment.datatableReceipt') }}",
-    order: [[ 1, "asc" ]],
-    columns: [
-      {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, className: 'dt-center'},
-      {title: 'No Registration', data: 'no_regis', name: 'no_regis', className: 'dt-head-center'},
-      {title: 'Nama Pengguna', data: 'user', name: 'user', className: 'dt-head-center'},
-      {title: 'Nama Alat', data: 'tool', name: 'tool', className: 'dt-head-center'},
-      {title: 'Tanggal Penggunaan', data: 'date', name: 'date', className: 'dt-head-center'},
-      {title: 'Detail', data: 'detail', name: 'detail', orderable:false, className: 'dt-center'},
-      {title: 'Buat Tanda Terima', data: 'action', name: 'action', orderable:false, className: 'dt-center'}
-    ],
-  });
+  @role('Dosen Unpad|Dosen Non Unpad|Mahasiswa Unpad|Mahasiswa Non UnpadUser Umum')
+    var detail = $('#table').DataTable({
+      responsive: true,
+      serverSide: true,
+      ajax: "{{ route('payment.dataReceipt') }}",
+      order: [[ 1, "asc" ]],
+      columns: [
+        {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, className: 'dt-center'},
+        {title: 'No Receipt', data: 'no_receipt', name: 'no_receipt', className: 'dt-head-center'},
+        {title: 'No Registration', data: 'no_regis', name: 'no_regis', className: 'dt-head-center'},
+        {title: 'Nama Alat', data: 'tool', name: 'tool', className: 'dt-head-center'},
+        {title: 'Tanggal Penggunaan', data: 'date', name: 'date', className: 'dt-head-center'},
+        {title: 'Lihat Tanda Terima', data: 'action', name: 'action', orderable:false, className: 'dt-center'}
+      ],
+    });
+  @endrole;
+
+  @role('Admin')
+    var detail = $('#table').DataTable({
+      responsive: true,
+      serverSide: true,
+      ajax: "{{ route('payment.datatableReceipt') }}",
+      order: [[ 1, "asc" ]],
+      columns: [
+        {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, className: 'dt-center'},
+        {title: 'No Registration', data: 'no_regis', name: 'no_regis', className: 'dt-head-center'},
+        {title: 'Nama Pengguna', data: 'user', name: 'user', className: 'dt-head-center'},
+        {title: 'Nama Alat', data: 'tool', name: 'tool', className: 'dt-head-center'},
+        {title: 'Tanggal Penggunaan', data: 'date', name: 'date', className: 'dt-head-center'},
+        {title: 'Detail', data: 'detail', name: 'detail', orderable:false, className: 'dt-center'},
+        {title: 'Buat Tanda Terima', data: 'action', name: 'action', orderable:false, className: 'dt-center'}
+      ],
+    });
 
   $('body').on('click', '.receipt', function (event) {
     event.preventDefault();
@@ -90,34 +108,41 @@
   });
 
   function format (d) {
-    return '<table>'+
-        '<tr>'+
-            '<td>Tujuan Pengamatan:</td>'+
-            '<td>'+d.purpose+'</td>'+
-        '</tr>'+
-        '<tr>'+
-            '<td>Deskripsi Sample:</td>'+
-            '<td>'+d.sample+'</td>'+
-        '</tr>'+
-        '<tr>'+
-            '<td>Preparasi Khusus:</td>'+
-            '<td>'+d.unique+'</td>'+
-        '</tr>'+
-        '<tr >'+
-            '<td>Pengguna hadir saat penggunaan alat:</td>'+
-            '<td>'+d.attend+'</td>'+
-        '</tr>'+
-        '<tr >'+
-            '<td>Rencana Pembayaran:</td>'+
-            '<td>'+d.plan+'</td>'+
-        '</tr>'+
-        @role('Mahasiswa Unpad|Mahasiswa Non Unpad')
-        '<tr >'+
-            '<td>Dosen Pembimbing:</td>'+
-            '<td>'+d.lecturer+'</td>'+
-        '</tr>'+
-        @endrole
-    '</table>';
+    return '<div class="row">'+
+      '<div class="col-lg-8">'+
+        '<table style="width:100%">'+
+          '<tr>'+
+              '<td>Tujuan Pengamatan:</td>'+
+              '<td>'+d.purpose+'</td>'+
+          '</tr>'+
+          '<tr>'+
+              '<td>Deskripsi Sample:</td>'+
+              '<td>'+d.sample+'</td>'+
+          '</tr>'+
+          '<tr>'+
+              '<td>Preparasi Khusus:</td>'+
+              '<td>'+d.unique+'</td>'+
+          '</tr>'+
+          '<tr >'+
+              '<td>Pengguna hadir saat penggunaan alat:</td>'+
+              '<td>'+d.attend+'</td>'+
+          '</tr>'+
+          '<tr >'+
+              '<td>Rencana Pembayaran:</td>'+
+              '<td>'+d.plan+'</td>'+
+          '</tr>'+
+          @role('Mahasiswa Unpad|Mahasiswa Non Unpad')
+          '<tr >'+
+              '<td>Dosen Pembimbing:</td>'+
+              '<td>'+d.lecturer+'</td>'+
+          '</tr>'+
+          @endrole
+        '</table>'+
+      '</div>'+
+      '<div class="col-lg-4">'+
+        '<div class="text-center">'+'<img src="'+d.image+'" width="150"/>'+'</div>'+
+      '</div>'+
+    '</div>';
   };
 
   $('#table tbody').on('click', '.details-control', function () {
@@ -134,5 +159,6 @@
         tr.addClass('shown');
     }
   });
+  @endrole;
 </script>
 @endpush

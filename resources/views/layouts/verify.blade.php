@@ -33,13 +33,13 @@
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
     <!-- Navbar -->
-    <nav class="main-header header navbar navbar-expand navbar-dark">
+    <nav class="main-header header navbar navbar-expand navbar-light">
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
-      <a class="brand-link" style="background-color: #343a40;">
+      <a class="brand-link">
         <img src="{{ asset('finder.jpg') }}" class="brand-image img-circle elevation-3" style="font-size: 16px;">
-        <span class="brand-text" style="color: #fff;"><strong>FINDER</strong></span>
+        <span class="brand-text"><strong>FINDER</strong></span>
       </a>
           <!-- <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a> -->
         </li>

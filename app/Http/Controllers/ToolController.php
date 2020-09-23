@@ -61,7 +61,7 @@ class ToolController extends Controller
         $model = $request->all();
         $model['image'] = null;
         if($request->file('image')!=null){
-            $directory = '/upload/'.$request->code.'/';
+            $directory = '/upload/tools/'.$request->code.'/';
             $filename = $request->name.'.'.$request->image->getClientOriginalExtension();
             $model['image'] = $directory.$filename;
             $request->image->move(public_path($directory), $filename);

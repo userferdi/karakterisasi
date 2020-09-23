@@ -9,7 +9,7 @@
     <div class="card">
       <div class="card-body">
         <h3 class="text-center" style="padding-bottom:15px;"><strong>Verifikasi Penggunaan Alat</strong></h3>
-        <p>Sistem Informasi Pengelolaan Alat (SIPA) Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p>
+        <p>Functional Nano Powder (FINDER) menerima permintaan penggunaan alat dari:</p>
         <table id="table" class="table row-border hover order-column text-sm">
           <thead class="thead-light"></thead>
           <tbody>
@@ -107,18 +107,34 @@
                 <td>{{$model->orders->unique}}</td>
             </tr>
             <tr>
+                <td>Pengguna Hadir saat Penggunaan Alat:</td>
+                <td>
+                    @if($model->orders->attend=='on')
+                        <i class="fas fa-check"></i>
+                    @else
+                        <i class="fas fa-times"></i>
+                    @endif
+                </td>
+            </tr>
+            <tr>
+                <td>Rencana Pembayaran:</td>
+                <td>{{$model->orders->plans->name}}</td>
+            </tr>
+            <tr>
                 <td></td>
                 <td></td>
             </tr>
           </tbody>
         </table>
-<!--         <p>
-            Klik tombol <strong>konfirmasi</strong>, </br>
-            Klik tombol <strong>reject</strong>, 
-        </p> -->
         <div class="float-right">
-          <a href="{{route('verify.confirm',$model->token)}}" class="btn btn-primary btn-sm edit modal-show center" name="$model->title">Confirm</a>
-          <a href="{{route('verify.reject',$model->token)}}" class="btn btn-danger btn-sm edit modal-show center" name="$model->title">Reject</a>
+            <a href="{{ route('verify.confirm',$model->token) }}" class="btn btn-primary btn-sm" onclick="event.preventDefault(); document.getElementById('confirm').submit();">Confirm</a>
+            <form id="confirm" action="{{ route('verify.confirm',$model->token) }}" method="PUT" style="display: none;">
+                <input id="status" type="hidden" class="form-control" name="status" value="confirm">
+            </form>
+            <a href="{{ route('verify.reject',$model->token) }}" class="btn btn-danger btn-sm" onclick="event.preventDefault(); document.getElementById('reject').submit();">Reject</a>
+            <form id="reject" action="{{ route('verify.reject',$model->token) }}" method="PUT" style="display: none;">
+                <input id="status" type="hidden" class="form-control" name="status" value="reject">
+            </form>
         </div>
       </div>
     </div>

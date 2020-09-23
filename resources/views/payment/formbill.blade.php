@@ -2,7 +2,6 @@
     'route' => ['payment.updateBill', $model->id],
     'method' => 'PUT',
     'class' => 'needs-validation form',
-    'id' => 'service',
     'novalidate'
 ]) !!}
 
@@ -29,7 +28,6 @@
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal" id="modal-close"></button>
-    <!-- {!! Form::submit('Save', ['class' => 'btn btn-primary', 'id' => 'modal-save']) !!} -->
     <button type="submit" class="btn btn-primary" id="modal-save"></button>
 </div>
 

@@ -14,6 +14,6 @@ class Approve extends Model
     	return $this->belongsTo('App\Time');
     }
     public function payments(){
-        return $this->hasOne('App\Payment');
+        return $this->hasOne('App\Payment', 'approves_id');
     }
 }

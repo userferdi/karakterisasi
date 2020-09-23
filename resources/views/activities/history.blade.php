@@ -1,9 +1,9 @@
 @extends('layouts.index')
 
-@section('title','FINDER · Transaction History')
+@section('title','FINDER · History')
 
 @section('content')
-<h3 style="padding-top:15px;"><b>Histori Transaksi</b></h3>
+<h3 style="padding-top:15px;"><b>Histori Penggunaan Alat</b></h3>
 <div class="row">
   <div class="col-lg-12">
     <div class="card" >
@@ -20,7 +20,7 @@
   $('#table').DataTable({
     responsive: true,
     serverSide: true,
-    ajax: "{{ route('payment.dataHistory') }}",
+    ajax: "{{ route('activities.history.dt') }}",
     order: [[ 1, "asc" ]],
     columns: [
       {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, className: 'dt-center'},

@@ -9,10 +9,8 @@ use App\Time;
 use App\Tool;
 
 use Auth;
-// use DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-// use Illuminate\Support\Facades\DB;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -35,56 +33,60 @@ class VerificationController extends Controller
         }
     }
 
-    public function confirm($token)
+    public function confirm(Request $request, $token)
     {
-        $model = Booking::where('token', $token)->get();
-        $model = $model[0];
-       if($model['status']==1){
+        $model = Booking::where('token', $token)->first();
+        if($model['status']==1){
             if($model->orders->users->hasRole('Mahasiswa Unpad|Mahasiswa Non Unpad')){
-                $newtoken = str::random(60);
-                $save = Booking::where('token', $token)->update([
-                    'token' => $newtoken,
-                    'status' => 2,
-                ]);
-                if($save == true){
-                    $mail = new PHPMailer(true);
-                    try{
-                        $mail->Encoding = 'base64';
-                        $mail->isSMTP();
-                        $mail->Host = 'smtp.gmail.com';
-                        $mail->SMTPAuth = true;
-                        $mail->Username = 'ferdi.maulana@gmail.com';
-                        $mail->Password = 'oiuuiookmmko';
-                        // SSL: 465, TLS: 587
-                        $mail->SMTPSecure = 'ssl';
-                        $mail->Port = 465;
-                        $mail->SetFrom('ferdi.maulana@gmail.com', 'Admin');
-                        $mail->AddAddress($model->orders->users->profiles->email_lecturer);
-                        $mail->Subject = 'Permintaan Verifikasi Booking Alat';
-                        $mail->Body = '
-<p>Sistem Informasi Pengelolaan Alat (SIPA) Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br/>
-<p>Nama Mahasiswa : <strong>'.$model->orders->users->name.'</strong></p>
-<p>NIM : <strong>'.$model->orders->users->profiles->no_id.'</strong></p>
-<p>Email : <strong>'.$model->orders->users->email.'</strong></p>
-<p>Program Studi : <strong>'.$model->orders->users->profiles->study_program.'</strong></p>
-<p>Fakultas : <strong>'.$model->orders->users->profiles->faculty.'</strong></p>
-<p>Universitas : <strong>'.$model->orders->users->profiles->university.'</strong></p><br/>
-<p>Anda diminta untuk melakukan verifikasi sebagai Dosen Penanggungjawab terhadap permintaan penggunaan alat dari Mahasiswa tersebut. Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$newtoken).'">di sini!</a></p>
-<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('student.status').'">login!</a></p>
-<p>Silahkan Masuk ke Menu <strong>My Students -> Booking Request</strong> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda. Apabila Anda tidak melakukan verifikasi maka mahasiswa Anda tidak dapat melanjutkan proses permintaan penggunaan alat di PPNN ITB.</p><br/><br/>
-<p>Hormat Kami,</p><br/>
-<p>Sekretariat SIPA FINDER</p>
-<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>
-';
-                        $mail->isHTML(true);
-                        $mail->Send();
-				        return redirect()->route('verify.success');
-                    }catch (Exception $e) {
-                        echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+                if($model->orders->users->profiles->email_lecturer!=NULL){
+                    $newtoken = str::random(60);
+                    $save = Booking::where('token', $token)->update([
+                        'token' => $newtoken,
+                        'status' => 2,
+                    ]);
+                    if($save == true){
+                        $mail = new PHPMailer(true);
+                        try{
+                            $mail->Encoding = 'base64';
+                            $mail->isSMTP();
+                            $mail->Host = 'smtp.gmail.com';
+                            $mail->SMTPAuth = true;
+                            $mail->Username = 'ferdi.maulana@gmail.com';
+                            $mail->Password = 'oiuuiookmmko';
+                            // SSL: 465, TLS: 587
+                            $mail->SMTPSecure = 'ssl';
+                            $mail->Port = 465;
+                            $mail->SetFrom('ferdi.maulana@gmail.com', 'Admin');
+                            $mail->AddAddress($model->orders->users->profiles->email_lecturer);
+                            $mail->Subject = 'Permintaan Verifikasi Booking Alat';
+                            $mail->Body = '
+    <p>Sistem Informasi Pengelolaan Alat (SIPA) Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br/>
+    <p>Nama Mahasiswa : <strong>'.$model->orders->users->name.'</strong></p>
+    <p>NIM : <strong>'.$model->orders->users->profiles->no_id.'</strong></p>
+    <p>Email : <strong>'.$model->orders->users->email.'</strong></p>
+    <p>Program Studi : <strong>'.$model->orders->users->profiles->study_program.'</strong></p>
+    <p>Fakultas : <strong>'.$model->orders->users->profiles->faculty.'</strong></p>
+    <p>Universitas : <strong>'.$model->orders->users->profiles->university.'</strong></p><br/>
+    <p>Anda diminta untuk melakukan verifikasi sebagai Dosen Penanggungjawab terhadap permintaan penggunaan alat dari Mahasiswa tersebut. Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$newtoken).'">di sini!</a></p>
+    <p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('student.status').'">login!</a></p>
+    <p>Silahkan Masuk ke Menu <strong>My Students -> Booking Request</strong> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda. Apabila Anda tidak melakukan verifikasi maka mahasiswa Anda tidak dapat melanjutkan proses permintaan penggunaan alat di PPNN ITB.</p><br/><br/>
+    <p>Hormat Kami,</p><br/>
+    <p>Sekretariat SIPA FINDER</p>
+    <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>
+    ';
+                            $mail->isHTML(true);
+                            $mail->Send();
+                            return redirect()->route('verify.success');
+                        }catch (Exception $e) {
+                            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+                        }
                     }
                 }
+                else{
+                    return redirect()->route('verify.success');
+                }
             }
-            else if($model->orders->users->hasRole('Dosen Unpad|Dosen Non Unpad|User Umum')){
+            else{
                 $newtoken = str::random(60);
                 $save = Booking::where('token', $token)->update([
                     'token' => $newtoken,
@@ -128,9 +130,6 @@ class VerificationController extends Controller
                     }
                 }
             }
-            else{
-                abort(404);
-            }
         }
         else if($model['status']==2){
             $newtoken = str::random(60);
@@ -168,51 +167,48 @@ class VerificationController extends Controller
 <p>Sekretariat SIPA FINDER</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>
 ';
-                        $mail->isHTML(true);
-                        $mail->Send();
-                        return redirect()->route('verify.success');
-                    }catch (Exception $e) {
-                        echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
-                    }
+                    $mail->isHTML(true);
+                    $mail->Send();
+                    return redirect()->route('verify.success');
+                }catch (Exception $e) {
+                    echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
                 }
+            }
         }
-        else if($model['status']==3){
-            $newtoken = str::random(60);
-            $model = Booking::where('token', $token)->update([
-                'token' => $newtoken,
-                'status' => 3,
-            ]);
-        }
+        // else if($model['status']==3){
+        //     $model = Booking::where('token', $token)->update([
+        //         'token' => NULL,
+        //         'status' => 4,
+        //     ]);
+        // }
         else{
             abort(404);
         }
     }
 
-    public function reject($token)
+    public function reject(Request $request, $token)
     {
-        $model = Booking::where('token', $token)->get();
-        $model = $model[0];
+        $model = Booking::where('token', $token)->first();
         if($model['status']==1){
 	        $save = Booking::where('token', $token)->update([
 	            'token' => NULL,
-	            'status' => 4,
-	            'statuses_id' => 5,
+	            'status' => 9,
 	        ]);
 	        return redirect()->route('verify.success');
         }
         else if($model['status']==2){
 	        $save = Booking::where('token', $token)->update([
 	            'token' => NULL,
-	            'status' => 4,
-	            'statuses_id' => 3,
+	            'status' => 7,
+                'note' => $request->note,
 	        ]);
             return redirect()->route('verify.success');
         }
         else if($model['status']==3){
 	        $save = Booking::where('token', $token)->update([
 	            'token' => NULL,
-	            'status' => 4,
-	            'statuses_id' => 4,
+	            'status' => 8,
+                'note' => $request->note,
 	        ]);
             return redirect()->route('verify.success');
         }
@@ -347,6 +343,49 @@ class VerificationController extends Controller
             $model = $request->all();
             $model['status'] = 5;
             $model = Booking::findOrFail($id)->update($model);
+            return response()->json($model);
+        }
+        if($model->status == 5){
+            $token = str::random(60);
+            $model = $request->all();
+            $model['token'] = $token;
+            $model['status'] = 1;
+            $model = Booking::findOrFail($id)->update($model);
+            if($model == true){
+                $mail = new PHPMailer(true);
+                $mail->CharSet = 'UTF-8';
+                try{
+                    $mail->Encoding = 'base64';
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.gmail.com';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'ferdi.maulana@gmail.com';
+                    $mail->Password = 'oiuuiookmmko';
+                    // SSL: 465, TLS: 587
+                    $mail->SMTPSecure = 'ssl';
+                    $mail->Port = 465;
+                    $mail->SetFrom('ferdi.maulana@gmail.com', 'Ferdian Maulana');
+                    $mail->AddAddress(Auth()->User()->email);
+                    $mail->Subject = 'Permintaan Verifikasi Booking Alat';
+                    $mail->Body = '
+<p>Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari Anda.</p>
+<p>Sebelum melanjutkan proses pemesanan, kami perlu memastikan bahwa ini memang Anda.</p>
+<p>Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$token).'">di sini!</a></p><br/>
+<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('status.booking').'">login!</a></p>
+<p>Silahkan Masuk ke Menu <strong>My Activities -> Registration of Tool Usage</strong> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda.</p>
+<p>Jika bukan Anda yang melakukan transaksi tersebut, harap mengabaikan pesan ini.</p><br/><br/>
+<p>Hormat Kami,</p>
+<p>Sekretariat SIPA FINDER</p>
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>
+';
+                    $mail->isHTML(true);
+                    $mail->Send();
+                    return response()->json($model);
+                    // return redirect()->route('status.booking');
+                }catch (Exception $e) {
+                    echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+                }
+            }
             return response()->json($model);
         }
         else{

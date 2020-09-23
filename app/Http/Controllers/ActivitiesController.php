@@ -255,8 +255,8 @@ class ActivitiesController extends Controller
             return $query->where('users_id', '=', Auth()->User()->id);
         })->where(function($model){
             $model->where('status',1)
-                  ->orWhere('status',2)
-                  ->orWhere('status',3);
+                ->orWhere('status',2)
+                ->orWhere('status',3);
         })->get();
         return DataTables::of($model)
             ->editColumn('date1', function($model){
@@ -894,6 +894,50 @@ class ActivitiesController extends Controller
             ->removeColumn('times3_id')
             ->removeColumn('users_id')
             ->removeColumn('token')
+            ->removeColumn('note')
+            ->addIndexColumn()
+            ->rawColumns(['attend', 'detail', 'action'])
+            ->make(true);
+    }
+
+    public function history()
+    {
+        return view('activities.history');
+    }
+
+    public function datatableHistory()
+    {
+        $model = Approve::where('status',2)->get();
+        return DataTables::of($model)
+            ->addColumn('tool', function($model){
+                return $model->orders->tools->name;
+            })
+            ->addColumn('total', function($model){
+                $total = 'Rp ';
+                $total .= number_format($model->payments->total, 0, ',', '.');
+                return $total;
+            })
+            ->editColumn('date', function($model){
+                $date = date('d M Y', strtotime($model->date));
+                $time = $model->times->name;
+                return $date.' '.$time;
+            })
+            ->addColumn('status', function($model){
+                if($model->status==2){
+                    return 'Completed';
+                }
+            })
+            ->addColumn('plan', function($model){
+                return $model->orders->plans->name;
+            })
+            ->addColumn('action', function($model){
+                $button = 
+'<a href="'.route('payment.showHistory', $model->id).'" class="btn btn-primary btn-sm" name="'.$model->no_regis.'">show</a>';
+                return $button;
+            })
+            ->removeColumn('id')
+            ->removeColumn('times_id')
+            ->removeColumn('users_id')
             ->removeColumn('note')
             ->addIndexColumn()
             ->rawColumns(['attend', 'detail', 'action'])

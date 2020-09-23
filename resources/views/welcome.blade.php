@@ -7,12 +7,11 @@
 <header class="masthead bg-light text-white text-center">
 <div class="container d-flex align-items-center flex-column">
   <!-- Masthead Avatar Image-->
-  <img class="masthead-avatar m-t-20 m-b-80" src="finder.png" alt="" />
+  <img class="masthead-avatar" src="finder.png" alt="" />
   <!-- Masthead Heading-->
-  <h1 class="masthead-heading text-uppercase text-dark m-b-80">SISTEM INFORMASI<br>PENGELOLAAN ALAT</h1>
+  <h1 class="masthead-heading text-uppercase text-dark">SISTEM INFORMASI<br>PENGELOLAAN ALAT</h1>
   <!-- Masthead Subheading-->
-  <h2 class="masthead-subheading text-dark mb-0">FINDER</h2>
-  <h2 class="masthead-subheading text-dark m-b-20">Functional Nano Powder</h2>
+  <h2 class="masthead-subheading text-dark">FINDER<br>Functional Nano Powder</h2>
 </div>
 </header>
 <!-- Portfolio Section-->

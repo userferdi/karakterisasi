@@ -3,7 +3,7 @@
 @section('title', 'FINDER · Register')
 
 @section('content')
-<div class="wrap-login100 p-l-45 p-r-45 p-t-45 p-b-30" style="width: 512px;">
+<div class="wrap-login100 p-l-45 p-r-45 p-t-45 p-b-30">
     <span class="login100-form-title p-b-30" style="font-size: 30px;">
         <a href="#">
             <img src="{{ asset('finder.png') }}" height="90" width="90" class="logo_img">

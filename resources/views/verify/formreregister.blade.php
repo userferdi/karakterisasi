@@ -1,5 +1,5 @@
 {!! Form::model($booking, [
-    'route' => ['verify.updateConfirm', $booking->id],
+    'route' => ['verify.updateReschedule', $booking->id],
     'method' => 'PUT',
     'class' => 'needs-validation form',
     'novalidate'
@@ -34,5 +34,68 @@
     <!-- {!! Form::submit('Save', ['class' => 'btn btn-primary', 'id' => 'modal-save']) !!} -->
     <button type="submit" class="btn btn-primary" id="modal-save"></button>
 </div>
+
+<script>
+  $("#datepicker1").datepicker({
+    uiLibrary: 'bootstrap4',
+    locale: 'en-us',
+    format: 'yyyy-mm-dd',
+    weekStartDay: 1,
+    disableDaysOfWeek: [0, 6],
+    showOtherMonths: false,
+    showOnFocus: true,
+    showRightIcon: false,
+    minDate: function() {
+            var date = new Date();
+            date.setDate(date.getDate()+7);
+            return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    },
+    maxDate: function() {
+        var date = new Date();
+        date.setDate(date.getDate()+34);
+        return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    },
+  });
+  $("#datepicker2").datepicker({
+    uiLibrary: 'bootstrap4',
+    locale: 'en-us',
+    format: 'yyyy-mm-dd',
+    weekStartDay: 1,
+    disableDaysOfWeek: [0, 6],
+    showOtherMonths: false,
+    showOnFocus: true,
+    showRightIcon: false,
+    minDate: function() {
+            var date = new Date();
+            date.setDate(date.getDate()+7);
+            return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    },
+    maxDate: function() {
+        var date = new Date();
+        date.setDate(date.getDate()+34);
+        return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    },
+  });
+  $("#datepicker3").datepicker({
+    uiLibrary: 'bootstrap4',
+    locale: 'en-us',
+    format: 'yyyy-mm-dd',
+    weekStartDay: 1,
+    disableDaysOfWeek: [0, 6],
+    showOtherMonths: false,
+    showOnFocus: true,
+    showRightIcon: false,
+    minDate: function() {
+            var date = new Date();
+            date.setDate(date.getDate()+7);
+            return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    },
+    maxDate: function() {
+        var date = new Date();
+        date.setDate(date.getDate()+34);
+        return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    },
+  });
+</script>
 
 {!! Form::close() !!}
