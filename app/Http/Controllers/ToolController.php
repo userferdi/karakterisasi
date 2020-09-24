@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Active;
 use App\Time;
 use App\Lab;
-use App\Period;
 use App\Status;
+use App\Usage;
 use App\Tool;
 
 use Auth;
@@ -44,19 +44,14 @@ class ToolController extends Controller
     public function create()
     {
         $model = new Tool();
-        $model['status'] = Active::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
-        $model['lab'] = Lab::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
-        $model['period'] = Time::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
+        $model['actives_id'] = Active::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
+        $model['labs_id'] = Lab::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
+        $model['usages_id'] = Usage::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
         return view('tools.form', ['model' => $model]);
     }
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => ['required', 'string'],
-            'code' => ['required', 'string'],
-        ]);
-
         $model = new Tool;
         $model = $request->all();
         $model['image'] = null;
@@ -153,18 +148,18 @@ class ToolController extends Controller
     {
         $model = Tool::get();
         return DataTables::of($model)
-         //    ->addColumn('lab', function($model){
-         //        return $model->labs->name;
-         //    })
-         //    ->addColumn('head', function($model){
-         //        return $model->labs->head;
-         //    })
-         //    ->addColumn('usage', function($model){
-         //        return $model->usages->name;
-         //    })
-            // ->addColumn('active', function($model){
-            //  return $model->actives->name;
-            // })
+            ->editColumn('actives_id', function($model){
+                return $model->actives->name;
+            })
+            ->addColumn('head', function($model){
+                return $model->labs->head;
+            })
+            ->editColumn('labs_id', function($model){
+                return $model->labs->name;
+            })
+            ->editColumn('usages_id', function($model){
+                return $model->usages->name;
+            })
             ->addColumn('image', function($model){
                 if ($model->image == NULL){
                     return 'No Image';
@@ -172,11 +167,6 @@ class ToolController extends Controller
                 $url= asset($model->image);
                 $image = '<img src="'.$url.'" width="100"/>';
                 return $image;
-            })
-            ->addColumn('booking', function($model){
-                $button = 
-'<a href="'.route('schedule.create',$model->id).'" class="btn btn-primary btn-sm">Registrasi</a>';
-                return $button;
             })
             ->addColumn('show', function($model){
                 $button = 

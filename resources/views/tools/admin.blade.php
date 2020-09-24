@@ -50,15 +50,15 @@
   var detail = $('#table_tool').DataTable({
     responsive: true,
     serverSide: true,
-    ajax: "{{ route('tool.dt') }}",
+    ajax: "{{ route('tool.dt.admin') }}",
     order: [[ 1, "asc" ]],
     columns: [
       {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, width: '5%', className: 'dt-center'},
       {title: 'Nama Alat', data: 'name', name: 'name', width: '30%', className: 'dt-head-center'},
       {title: 'Kode', data: 'code', name: 'code', width: '10%', className: 'dt-center'},
-      {title: 'Status', data: 'status', name: 'status', width: '10%', className: 'dt-center'},
-      {title: 'Laboratorium', data: 'lab', name: 'lab', width: '15%', className: 'dt-center'},
-      {title: 'Waktu Penggunaan', data: 'period', name: 'period', width: '20%', className: 'dt-center'},
+      {title: 'Status', data: 'actives_id', name: 'actives_id', width: '10%', className: 'dt-center'},
+      {title: 'Laboratorium', data: 'labs_id', name: 'labs_id', width: '15%', className: 'dt-center'},
+      {title: 'Waktu Penggunaan', data: 'usages_id', name: 'usages_id', width: '20%', className: 'dt-center'},
       {title: 'Opsi', data: 'action', name: 'action', orderable:false, width: '10%', className: 'dt-center'}
     ],
   });
@@ -124,16 +124,19 @@
 
     var form = $('.form'),
         url = form.attr('action'),
-        method = $('input[name=_method]').val() == undefined ? 'POST' : 'PUT';
+        method = form.attr('method');
 
     $.ajax({
       url : url,
       method : method,
-      data : form.serialize(),
+      data: new FormData(this),
+      dataType: 'JSON',
+      contentType: false,
+      processData: false,
 
-      success: function(response){
+      success: function(data){
         $('#modal').modal('hide');
-        $('#table_tool').DataTable().ajax.reload();
+        $('#table').DataTable().ajax.reload();
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',

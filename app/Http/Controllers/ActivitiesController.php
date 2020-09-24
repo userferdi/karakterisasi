@@ -72,7 +72,6 @@ class ActivitiesController extends Controller
     {
         $this->validate($request, [
             'tools_id' => 'required',
-            'attend' => 'required',
             'plans_id' => 'required',
             'purpose' => 'required',
             'sample' => 'required',

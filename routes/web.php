@@ -23,8 +23,8 @@ Route::prefix('tool')->group(function(){
 	Route::get('/', 'ToolController@index')->name('tool.index');
 	Route::get('show/{id}', 'ToolController@show')->name('tool.show');
 	Route::get('datatable', 'ToolController@datatable')->name('tool.dt');
-	Route::get('datatableadmin', 'ToolController@datatableAdmin')->name('tool.dt.admin');
 	Route::get('datatableschedule', 'ToolController@datatableSchedule')->name('tool.dt.schedule');
+	Route::get('datatableadmin', 'ToolController@datatableAdmin')->name('tool.dt.admin');
 });
 Route::prefix('price')->group(function(){
 	Route::get('/', 'PriceController@index')->name('price.index');

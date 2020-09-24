@@ -434,8 +434,6 @@ class VerificationController extends Controller
                 $mail->CharSet = 'UTF-8';
                 try{
                     $mail->Encoding = 'base64';
-                    // Auth()->User()->email
-                    // $model->users->email
                     $mail->isSMTP();
                     $mail->Host = 'smtp.gmail.com';
                     $mail->SMTPAuth = true;
@@ -459,9 +457,9 @@ class VerificationController extends Controller
 ';
                     $mail->isHTML(true);
                     $mail->Send();
-                    return response()->json($save);
+                    return response()->json(true);
                 }catch (Exception $e) {
-                    echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+                    return response()->json(false);
                 }
             }
         }
@@ -502,10 +500,10 @@ class VerificationController extends Controller
 ';
                     $mail->isHTML(true);
                     $mail->Send();
-                    return response()->json($save);
-                    // return redirect()->route('verify.success');
+                    return response()->json(true);
                 }catch (Exception $e) {
-                    echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+                    return response()->json(false);
+                    // echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
                 }
             }
         }
@@ -546,9 +544,10 @@ class VerificationController extends Controller
 ';
                     $mail->isHTML(true);
                     $mail->Send();
-                    return response()->json($save);
+                    return response()->json(true);
                 }catch (Exception $e) {
-                    echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+                    return response()->json(false);
+                    // echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
                 }
             }
         }
