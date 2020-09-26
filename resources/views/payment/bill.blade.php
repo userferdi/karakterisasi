@@ -3,7 +3,7 @@
 @section('title','FINDER · Bill')
 
 @section('content')
-<h3 style="padding-top:20px;"><b>Bill</b></h3>
+<h3 style="padding-top:10px;"><b>Tagihan</b></h3>
 <div class="row">
   <div class="col-lg-12">
     <div class="card" >
@@ -17,25 +17,73 @@
 
 @push('scripts')
 <script>
-  @role('Dosen Unpad|Dosen Non Unpad|Mahasiswa Unpad|Mahasiswa Non UnpadUser Umum')
+  @role('Dosen Unpad|Dosen Non Unpad')
     var detail = $('#table').DataTable({
       responsive: true,
       serverSide: true,
+      scrollX: true,
       ajax: "{{ route('payment.dataBill') }}",
       order: [[ 1, "asc" ]],
       columns: [
-        {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, className: 'dt-center'},
-        {title: 'No Tagihan', data: 'no_invoice', name: 'no_invoice', className: 'dt-head-center'},
-        {title: 'No Registration', data: 'no_regis', name: 'no_regis', className: 'dt-head-center'},
-        {title: 'Nama Alat', data: 'tool', name: 'tool', className: 'dt-head-center'},
-        {title: 'Tanggal Penggunaan', data: 'date', name: 'date', className: 'dt-center'},
-        {title: 'Total Tagihan', data: 'total', name: 'total', className: 'dt-center'},
-        {title: 'Rencana Pembayaran', data: 'plan', name: 'plan', className: 'dt-center'},
-        // {title: 'Detail', data: 'detail', name: 'detail', orderable:false, className: 'dt-center'},
-        {title: 'Upload Bukti Transfer', data: 'upload', name: 'upload', className: 'dt-center'},
-        {title: 'Lihat Tagihan', data: 'action', name: 'action', orderable:false, className: 'dt-center'}
+        {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, width: '5%', className: 'dt-center'},
+        {title: 'No Tagihan', data: 'no_invoice', name: 'no_invoice', width: '12.5%', className: 'dt-head-center'},
+        {title: 'Nama Pengguna', data: 'user', name: 'user', width: '12.5%', className: 'dt-head-center'},
+        {title: 'Nama Alat', data: 'tool', name: 'tool', width: '15%', className: 'dt-head-center'},
+        {title: 'Tanggal Penggunaan', data: 'date', name: 'date', width: '12.5%', className: 'dt-center'},
+        {title: 'Total Tagihan', data: 'total', name: 'total', width: '12.5%', className: 'dt-center'},
+        {title: 'Metode Pembayaran', data: 'plan', name: 'plan', width: '20%', className: 'dt-center'},
+        {title: 'Lihat Tagihan', data: 'show', name: 'show', width: '10%', orderable:false, className: 'dt-center'}
       ],
     });
+  @endrole;
+  @role('Mahasiswa Unpad|Mahasiswa Non Unpad|User Umum')
+    var detail = $('#table').DataTable({
+      responsive: true,
+      serverSide: true,
+      scrollX: true,
+      ajax: "{{ route('payment.dataBill') }}",
+      order: [[ 1, "asc" ]],
+      columns: [
+        {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, width: '5%', className: 'dt-center'},
+        {title: 'No Tagihan', data: 'no_invoice', name: 'no_invoice', width: '15%', className: 'dt-head-center'},
+        {title: 'Nama Alat', data: 'tool', name: 'tool', width: '20%', className: 'dt-head-center'},
+        {title: 'Tanggal Penggunaan', data: 'date', name: 'date', width: '12.5%', className: 'dt-center'},
+        {title: 'Total Tagihan', data: 'total', name: 'total', width: '15%', className: 'dt-center'},
+        {title: 'Metode Pembayaran', data: 'plan', name: 'plan', width: '22.5%', className: 'dt-center'},
+        {title: 'Lihat Tagihan', data: 'show', name: 'show', width: '10%', orderable:false, className: 'dt-center'}
+      ],
+    });
+  @endrole;
+
+  @role('Dosen Unpad|Dosen Non Unpad|Mahasiswa Unpad|Mahasiswa Non UnpadUser Umum')
+  $('body').on('click', '.modal-show', function(event){
+    event.preventDefault();
+
+    var me = $(this),
+        url = me.attr('href'),
+        title = me.attr('name');
+
+    var form = $('.form')
+    var validation = Array.prototype.filter.call(form, function(form) {
+      form.classList.remove('was-validated');
+    });
+    $('#modal-body').find("input,textarea,select")
+      .val('')
+      .end();
+
+    $.ajax({
+      url: url,
+      dataType: 'html',
+      success: function (response) {
+        $('#modal-body').html(response);
+        $('#modal-title').text(title);
+        $('#modal-close').text('Cancel');
+        $('#modal-save').text('Save');
+      }
+    });
+
+    $('#modal').modal('show');
+  });
 
   $('body').on('submit','.form', function(event){
     event.preventDefault();
@@ -116,41 +164,72 @@
       {title: 'Nama Alat', data: 'tool', name: 'tool', className: 'dt-head-center'},
       {title: 'Tanggal Penggunaan', data: 'date', name: 'date', className: 'dt-center'},
       {title: 'Detail', data: 'detail', name: 'detail', orderable:false, className: 'dt-center'},
-      {title: 'Buat Tagihan', data: 'action', name: 'action', orderable:false, className: 'dt-center'}
+      {title: 'Tagihan', data: 'action', name: 'action', orderable:false, className: 'dt-center'}
     ],
   });
 
-  $('body').on('submit','#quantity', function(event){
+  $('body').on('click', '.modal-show', function(event){
     event.preventDefault();
-    var form = $('.form'),
+
+    var me = $(this),
+        url = me.attr('href'),
+        title = me.attr('name');
+
+    var form = $('.form')
+    var validation = Array.prototype.filter.call(form, function(form) {
+      form.classList.remove('was-validated');
+    });
+    $('#modal-body').find("input,textarea,select")
+      .val('')
+      .end();
+
+    $.ajax({
+      url: url,
+      dataType: 'html',
+      success: function (response) {
+        $('#modal-body').html(response);
+        $('#modal-title').text(title);
+        // $('#modal-close').text('Cancel');
+        $('#many-save').text('Save');
+      }
+    });
+
+    $('#modal').modal('show');
+  });
+
+  $('body').on('submit','#prepare', function(event){
+    event.preventDefault();
+
+    var form = $('#prepare'),
         url = form.attr('action'),
-        method = form.attr('method');
+        method = form.attr('method'),
+        many = $('input[name=many]').val();
+        csrf_token = $('meta[name="csrf-token"]').attr('content');
+
+    var validation = Array.prototype.filter.call(form, function(form) {
+      form.classList.remove('was-validated');
+    });
+    // $('#modal-body').find("input,textarea,select")
+    //   .val('')
+    //   .end();
 
     $.ajax({
       url : url,
-      method : method,
-      data : form.serialize(),
-
+      dataType: 'html',
+      data : {'_method' : method, '_token' : csrf_token, 'many': many},
       success: function(response){
-        $('#modal-body').html(response);
+        $('#modal-bill').html(response);
         $('#modal-title').text('Banyak Layanan');
         $('#modal-close').text('Cancel');
         $('#modal-save').text('Submit');
       },
-
-      error: function(){
-        'use strict';
-        var validation = Array.prototype.filter.call(form, function(form) {
-          form.classList.add('was-validated');
-        });
-      }
     });
   });
 
-  $('body').on('submit','.form', function(event){
+  $('body').on('submit','#bill', function(event){
     event.preventDefault();
 
-    var form = $('.form'),
+    var form = $('#bill'),
         url = form.attr('action'),
         method = $('input[name=_method]').val() == undefined ? 'POST' : 'PUT';
 
@@ -239,35 +318,6 @@
     }
   });
   @endrole;
-
-  $('body').on('click', '.modal-show', function(event){
-    event.preventDefault();
-
-    var me = $(this),
-        url = me.attr('href'),
-        title = me.attr('name');
-
-    var form = $('.form')
-    var validation = Array.prototype.filter.call(form, function(form) {
-      form.classList.remove('was-validated');
-    });
-    $('#modal-body').find("input,textarea,select")
-      .val('')
-      .end();
-
-    $.ajax({
-      url: url,
-      dataType: 'html',
-      success: function (response) {
-        $('#modal-body').html(response);
-        $('#modal-title').text(title);
-        $('#modal-close').text('Cancel');
-        $('#modal-save').text('Submit');
-      }
-    });
-
-    $('#modal').modal('show');
-  });
 
 </script>
 @endpush

@@ -17,7 +17,7 @@
 
 @push('scripts')
 <script>
-  $('#table').DataTable({
+  var detail = $('#table').DataTable({
     responsive: true,
     serverSide: true,
     ajax: "{{ route('student.dt') }}",
@@ -88,5 +88,32 @@
     });
   });
 
+  function format (d) {
+    return '<table class="table-striped table-bordered text-sm">'+
+        '<tr>'+
+            '<td>NIM:</td>'+
+            '<td>'+d.no_id+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Phone Number:</td>'+
+            '<td>'+d.no_hp+'</td>'+
+        '</tr>'+
+    '</table>';
+  };
+
+  $('#table tbody').on('click', '.details-control', function () {
+    event.preventDefault();
+    var tr = $(this).closest('tr');
+    var row = detail.row( tr );
+
+    if ( row.child.isShown() ) {
+        row.child.hide();
+        tr.removeClass('shown');
+    }
+    else {
+        row.child( format(row.data()) ).show();
+        tr.addClass('shown');
+    }
+  });
 </script>
 @endpush

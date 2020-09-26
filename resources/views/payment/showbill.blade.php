@@ -1,6 +1,6 @@
 @extends('layouts.index')
 
-@section('title', 'FINDER · Show Bill')
+@section('title', 'FINDER · Bill')
 
 @section('content')
 <div class="row">
@@ -35,9 +35,9 @@
             <tr>
                 <td><b>Status Pembayaran</b></td>
                 <td>
-                  @if($model->status == 1 || $model->status == 2)
+                  @if($model->status == 1 || $model->status == 2 || $model->status == 3)
                     Belum dibayar
-                  @elseif($model->status == 3)
+                  @elseif($model->status == 4)
                     Lunas
                   @endif
                 </td>
@@ -75,7 +75,7 @@
             </tr>
           </tbody>
         </table>
-        @if($model->status == 3)
+        @if($model->status==4|$model->status==5)
         <h4 class="mb-3">Pembayaran yang telah diterima</h4>
         <table id="table" class="table row-border hover order-column text-sm">
           <thead class="thead-light">
@@ -92,15 +92,130 @@
           </tbody>
         </table>
         @endif
-        <br/>
-        <br/>
       </div>
+      <br>
+
+<?php
+$array = str_split($model->quantity);
+$i=0; $j=0; $k=0; $l=0;
+  foreach ($array as $char){
+    if($char == ' '){
+      $quantity[$k] = 0;
+      for($j=$l;$j<$i;$j++){
+        if(empty($quantity[$k])){
+          $quantity[$k] = $array[$j];
+        }
+        else{
+          $quantity[$k] .= $array[$j];
+        }
+      }
+      $l=$i+1;
+      $k++;
+    }
+    $i++;
+  }
+$array = str_split($model->service);
+$i=0; $j=0; $k=0; $l=0;
+  foreach ($array as $char){
+    if($char == ' '){
+      $service[$k] = 0;
+      for($j=$l;$j<$i;$j++){
+        if(empty($service[$k])){
+          $service[$k] = $array[$j];
+        }
+        else{
+          $service[$k] .= $array[$j];
+        }
+      }
+      $l=$i+1;
+      $k++;
+    }
+    $i++;
+  }
+?>
+
+      <div class="col-lg-12">
+        <h4 class="mb-3">Detail Tagihan</h4>
+        <table id="table" class="table row-border hover order-column text-sm" width="100%">
+          <thead class="thead-light">
+            <tr>
+              <th> </th>
+              <th>Quantity</th>
+              <!-- <th>Waktu Penggunaan Layanan</th> -->
+              <th>Harga</th>
+              <th>Diskon</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <td><b>Layanan</b></td>
+                <td> </td>
+                <!-- <td> </td> -->
+                <td> </td>
+                <td> </td>
+                <td> </td>
+            </tr>
+            <?php $i=0; ?>
+            @foreach($service as $s)
+            @role('Dosen Unpad|Mahasiswa Unpad')
+            <?php
+                $harga = $price[$s-1]->price1;
+            ?>
+            @endrole
+            @role('Dosen Non Unpad|Mahasiswa Non Unpad')
+            <?php
+                $harga = $price[$s-1]->price2;
+            ?>
+            @endrole
+            @role('User Umum')
+            <?php
+                $harga = $price[$s-1]->price3;
+            ?>
+            @endrole
+            <?php
+              $banyak = $quantity[$i];
+              $total = $banyak*$harga;
+            ?>
+            <tr>
+                <td>{{$price[$s-1]->service}}</td>
+                <td>{{$quantity[$i]}}</td>
+                <!-- <td></td> -->
+                <td>Rp {{ number_format($harga, 0, ',', '.') }}</td>
+                <td>-</td>
+                <td>Rp {{ number_format($total, 0, ',', '.') }}</td>
+            </tr>
+            <?php $i=$i+1; ?>
+            @endforeach
+            <tr>
+                <td><b>Total</b></td>
+                <td> </td>
+                <!-- <td> </td> -->
+                <td> </td>
+                <td> </td>
+                <td>Rp {{ number_format($model->total, 0, ',', '.') }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table row-border hover order-column text-sm" width="100%">
+          <thead></thead>
+          <tbody>
+            <tr>
+                <td width="30%"><b>Keterangan Waktu Penggunaan Alat</b></td>
+                <td width="20%">{{$model->approves->times->name}}</td>
+                <td width="50%"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      @if($model->status==2|$model->status==3)
+      <div class="col-lg-12">
+        <p><b>Silakan Transfer ke No Rekening : 988-00411-07000000 FINDER - BNI.</b></p>
+        <p><b>Silakan upload bukti transfer Anda dan tunggu sampai admin kami mengkonfirmasi pembayaran Anda.</b></p>
+      </div>
+      @endif
     </div>
   </div>
 </div>
+<br><br>
 @endsection
-
-@push('scripts')
-<script>
-</script>
-@endpush

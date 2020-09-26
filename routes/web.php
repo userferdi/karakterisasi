@@ -105,13 +105,13 @@ Route::middleware('auth')->group(function(){
 		// Informasi Tagihan (Invoice) dan Upload Bukti Transfer
 		Route::get('bill', 'PaymentController@bill')->name('payment.bill');
 		Route::get('bill/show/{id}', 'PaymentController@showBill')->name('payment.showBill');
-		Route::put('bill/form/{id}', 'PaymentController@formBill')->name('payment.formBill');
+		Route::get('bill/form/{id}', 'PaymentController@formBill')->name('payment.formBill');
 		Route::put('bill/update/{id}', 'PaymentController@updateBill')->name('payment.updateBill');
 		Route::get('bill/data', 'PaymentController@dataBill')->name('payment.dataBill');
 		Route::get('bill/datatable', 'PaymentController@datatableBill')->name('payment.datatableBill');
 		// Informasi Terima Pembayaran (Receipt)
 		Route::get('receipt', 'PaymentController@receipt')->name('payment.receipt');
-		Route::put('receipt/show/{id}', 'PaymentController@showReceipt')->name('payment.showReceipt');
+		Route::get('receipt/show/{id}', 'PaymentController@showReceipt')->name('payment.showReceipt');
 		Route::put('receipt/form/{id}', 'PaymentController@formReceipt')->name('payment.formReceipt');
 		Route::put('receipt/update/{id}', 'PaymentController@updateReceipt')->name('payment.updateReceipt');
 		Route::get('receipt/data', 'PaymentController@dataReceipt')->name('payment.dataReceipt');
@@ -120,19 +120,21 @@ Route::middleware('auth')->group(function(){
 		Route::get('history', 'PaymentController@history')->name('payment.history');
 		Route::get('history/show/{id}', 'PaymentController@showHistory')->name('payment.showHistory');
 		Route::get('history/data', 'PaymentController@dataHistory')->name('payment.dataHistory');
-		Route::get('history/datatable', 'PaymentController@dataHistory')->name('payment.dataHistory');
+		Route::get('history/datatable', 'PaymentController@datatableHistory')->name('payment.datatableHistory');
 
 		// amount
 	});
 	Route::prefix('student')->group(function(){
-		Route::get('/', 'StudentController@index')->name('student.index');
-		Route::get('show/{id}', 'StudentController@show')->name('student.show');
+		Route::get('list', 'StudentController@index')->name('student.index');
 		Route::get('delete/{id}', 'StudentController@delete')->name('student.delete');
 		Route::get('datatable', 'StudentController@datatable')->name('student.dt');
 		Route::get('status', 'StudentController@status')->name('student.status');
 		// Route::get('receipt', 'StatusController@index')->name('payment.receipt');
 		// Route::get('history', 'StatusController@index')->name('payment.history');
 	});
+	Route::get('history', 'ActivitiesController@history')->name('activities.history');
+	Route::get('history/show/{id}', 'ActivitiesController@showHistory')->name('activities.showHistory');
+	Route::get('history/datatable', 'ActivitiesController@datatableHistory')->name('activities.datatableHistory');
 
 	Route::prefix('schedule')->group(function(){
 		Route::get('/', 'ScheduleController@index')->name('schedule.index');
@@ -183,16 +185,39 @@ Route::middleware('auth')->group(function(){
 			// Canceled List 9
 			Route::get('canceled', 'ActivitiesController@canceled')->name('status.canceled');
 			Route::get('canceled/datatable', 'ActivitiesController@datatableCanceled')->name('status.canceled.dt');
+
+			Route::get('finished', 'ActivitiesController@finished')->name('status.finished');
+			Route::get('completed', 'ActivitiesController@completed')->name('status.completed');
+
 			Route::prefix('admin')->group(function(){
 				Route::get('booking', 'ActivitiesController@adminBooking')->name('admin.booking');
 				Route::get('approved', 'ActivitiesController@adminApproved')->name('admin.approved');
 				Route::get('rejected', 'ActivitiesController@adminRejected')->name('admin.rejected');
+				Route::get('finished', 'ActivitiesController@adminFinished')->name('admin.finished');
+				Route::get('completed', 'ActivitiesController@adminCompleted')->name('admin.completed');
 			});
 		});
 	});
+
+	Route::prefix('verification')->group(function(){
+		Route::get('confirm/{id}', 'VerificationController@showConfirm')->name('verify.showConfirm');
+		Route::get('reschedule/{id}', 'VerificationController@showReschedule')->name('verify.showReschedule');
+		Route::get('reject/{id}', 'VerificationController@showReject')->name('verify.showReject');
+		Route::put('update/confirm/{id}', 'VerificationController@updateConfirm')->name('verify.updateConfirm');
+		Route::put('update/reschedule/{id}', 'VerificationController@updateReschedule')->name('verify.updateReschedule');
+		Route::put('update/reject/{id}', 'VerificationController@updateReject')->name('verify.updateReject');
+		Route::put('update/cancel/{id}', 'VerificationController@updateCancel')->name('verify.updateCancel');
+		Route::get('success', 'VerificationController@success')->name('verify.success');
+		Route::get('resend/{id}', 'VerificationController@resend')->name('verify.resend');
+	});
+
+	Route::get('settings', function () {
+		return view('settings');
+	})->name('settings');
+	Route::get('contact', function () {
+		return view('contact');
+	})->name('contact');
 });
-Route::get('history', 'ActivitiesController@history')->name('activities.history');
-Route::get('history/datatable', 'ActivitiesController@datatableHistory')->name('activities.history.dt');
 
 Route::prefix('verification')->group(function(){
 	Route::prefix('request')->group(function(){
@@ -201,23 +226,4 @@ Route::prefix('verification')->group(function(){
 		Route::get('{token}/reject', 'VerificationController@reject')->name('verify.reject');
 		Route::get('{token}/cancel', 'VerificationController@cancel')->name('verify.cancel');
 	});
-	Route::get('confirm/{id}', 'VerificationController@showConfirm')->name('verify.showConfirm');
-	Route::get('reschedule/{id}', 'VerificationController@showReschedule')->name('verify.showReschedule');
-	Route::get('reject/{id}', 'VerificationController@showReject')->name('verify.showReject');
-	Route::get('cancel/{id}', 'VerificationController@showCancel')->name('verify.showCancel');
-	Route::put('update/confirm/{id}', 'VerificationController@updateConfirm')->name('verify.updateConfirm');
-	Route::put('update/reschedule/{id}', 'VerificationController@updateReschedule')->name('verify.updateReschedule');
-	Route::put('update/reject/{id}', 'VerificationController@updateReject')->name('verify.updateReject');
-	Route::put('update/cancel/{id}', 'VerificationController@updateCancel')->name('verify.updateCancel');
-	Route::get('success', 'VerificationController@success')->name('verify.success');
-	Route::get('resend/{id}', 'VerificationController@resend')->name('verify.resend');
 });
-
-
-Route::get('setting', function () {
-	return view('setting');
-})->name('setting');
-
-Route::get('contact', function () {
-	return view('contact');
-})->name('contact');

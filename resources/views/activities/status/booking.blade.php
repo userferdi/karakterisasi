@@ -12,7 +12,7 @@
   <div class="col-lg-12">
     <div class="card" >
       <div class="card-body">
-        <table id="table" class="table table-striped table-bordered text-sm"></table>
+        <table id="table" class="table table-striped table-bordered text-sm" style="width:100%"></table>
       </div>
     </div>
   </div>
@@ -31,8 +31,7 @@
       columns: [
         {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, className: 'dt-center'},
         {title: 'No Formulir', data: 'no_form', name: 'no_form', className: 'dt-head-center'},
-        {title: 'Nama Alat', data: 'tool', name: 'tool', className: 'dt-center'},
-        {title: 'Akan Hadir', data: 'attend', name: 'attend', orderable:false, className: 'dt-center'},
+        {title: 'Nama Alat', data: 'tool', name: 'tool', className: 'dt-head-center'},
         {title: 'Pilihan 1', data: 'date1', name: 'date1', className: 'dt-head-center'},
         {title: 'Pilihan 2', data: 'date2', name: 'date2', className: 'dt-head-center'},
         {title: 'Pilihan 3', data: 'date3', name: 'date3', className: 'dt-head-center'},
@@ -119,9 +118,9 @@
       if(result.value){
         $.ajax({
           url: url,
-          type: "GET",
+          type: "PUT",
           data: {
-            '_method': 'GET',
+            '_method': 'PUT',
             '_token': csrf_token
           },
           success: function(response){

@@ -20,7 +20,7 @@
   $('#table').DataTable({
     responsive: true,
     serverSide: true,
-    ajax: "{{ route('activities.history.dt') }}",
+    ajax: "{{ route('activities.datatableHistory') }}",
     order: [[ 1, "asc" ]],
     columns: [
       {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, className: 'dt-center'},

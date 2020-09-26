@@ -35,15 +35,15 @@
     </div>
     <div class="form-group">
         <label class="control-label">Status</label>
-        {!! Form::select('actives_id', $model->actives_id, null, ['class' => 'form-control', 'id' => 'actives_id', 'required']) !!}
+        {!! Form::select('actives_id', $model->actives, $model->actives_id, ['class' => 'form-control', 'id' => 'actives_id', 'required']) !!}
     </div>
     <div class="form-group">
         <label class="control-label">Laboratorium</label>
-        {!! Form::select('labs_id', $model->labs_id, null, ['class' => 'form-control', 'id' => 'labs_id', 'required']) !!}
+        {!! Form::select('labs_id', $model->labs, $model->labs_id, ['class' => 'form-control', 'id' => 'labs_id', 'required']) !!}
     </div>
     <div class="form-group">
         <label class="control-label">Waktu Penggunaan</label>
-        {!! Form::select('usages_id', $model->usages_id, null, ['class' => 'form-control', 'id' => 'usages_id', 'required']) !!}
+        {!! Form::select('usages_id', $model->usages, $model->usages_id, ['class' => 'form-control', 'id' => 'usages_id', 'required']) !!}
     </div>
     <div class="form-group">
         <label class="control-label">Upload Image</label><br>

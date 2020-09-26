@@ -1,8 +1,8 @@
 {!! Form::model($model, [
     'route' => ['payment.formBill', $model->id],
-    'method' => 'PUT',
+    'method' => 'GET',
     'class' => 'needs-validation',
-    'id' => 'quantity',
+    'id' => 'prepare',
     'novalidate'
 ]) !!}
 
@@ -12,16 +12,19 @@
         &times;
     </button>
 </div>
-<div class="modal-body">
+<div class="modal-body" style="margin-bottom:20px;">
     <div class="form-group">
         <label class="control-label">Banyak Layanan</label>
-        {!! Form::text('many', null, ['class' => 'form-control', 'required']) !!}
+        {!! Form::text('many', null, ['class' => 'form-control', 'id' => 'many', 'required']) !!}
+    </div>
+    <div class="float-right" style="margin-right:5px;">
+        <!-- <button type="button" class="btn btn-default" data-dismiss="modal" id="modal-close"></button> -->
+        <button type="submit" class="btn btn-primary" id="many-save"></button>
     </div>
 </div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal" id="modal-close"></button>
-    <!-- {!! Form::submit('Save', ['class' => 'btn btn-primary', 'id' => 'modal-save']) !!} -->
-    <button type="submit" class="btn btn-primary" id="modal-save"></button>
-</div>
-
 {!! Form::close() !!}
+
+<div class="modal-body" id="modal-bill">
+    <!-- </div> -->
+<!-- </div> -->
+

@@ -136,7 +136,9 @@
 
       success: function(data){
         $('#modal').modal('hide');
-        $('#table').DataTable().ajax.reload();
+        $('#table_tool').DataTable().ajax.reload();
+        $('#table_status').DataTable().ajax.reload();
+        $('#table_time').DataTable().ajax.reload();
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',

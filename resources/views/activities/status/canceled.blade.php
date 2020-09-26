@@ -24,14 +24,14 @@
     ajax: "{{ route('status.canceled.dt') }}",
     order: [[ 1, "asc" ]],
     columns: [
-      {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, width: '5%', className: 'dt-center'},
-      {title: 'No Formulir', data: 'no_form', name: 'no_form', width: '28.15%', className: 'dt-head-center'},
-      {title: 'Nama Alat', data: 'tool', name: 'tool', width: '11.2%', className: 'dt-center'},
-      {title: 'Pilihan 1', data: 'date1', name: 'date1', width: '28.15%', className: 'dt-head-center'},
-      {title: 'Pilihan 2', data: 'date2', name: 'date2', width: '28.15%', className: 'dt-head-center'},
-      {title: 'Pilihan 3', data: 'date3', name: 'date3', width: '28.15%', className: 'dt-head-center'},
-      {title: 'Status', data: 'status', name: 'status', orderable:false, width: '7.5%', className: 'dt-center'},
-      {title: 'Detail', data: 'detail', name: 'detail', orderable:false, width: '7.5%', className: 'dt-center'}
+      {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, className: 'dt-center'},
+      {title: 'No Formulir', data: 'no_form', name: 'no_form', className: 'dt-head-center'},
+      {title: 'Nama Alat', data: 'tool', name: 'tool', className: 'dt-center'},
+      {title: 'Pilihan 1', data: 'date1', name: 'date1', className: 'dt-head-center'},
+      {title: 'Pilihan 2', data: 'date2', name: 'date2', className: 'dt-head-center'},
+      {title: 'Pilihan 3', data: 'date3', name: 'date3', className: 'dt-head-center'},
+      {title: 'Status', data: 'status', name: 'status', orderable:false, className: 'dt-center'},
+      {title: 'Detail', data: 'detail', name: 'detail', orderable:false, className: 'dt-center'}
     ],
   });
 

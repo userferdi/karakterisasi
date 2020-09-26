@@ -44,9 +44,9 @@ class ToolController extends Controller
     public function create()
     {
         $model = new Tool();
-        $model['actives_id'] = Active::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
-        $model['labs_id'] = Lab::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
-        $model['usages_id'] = Usage::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
+        $model['actives'] = Active::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
+        $model['labs'] = Lab::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
+        $model['usages'] = Usage::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
         return view('tools.form', ['model' => $model]);
     }
 
@@ -68,9 +68,9 @@ class ToolController extends Controller
     public function edit($id)
     {
         $model = Tool::find($id);
-        $model['status'] = Active::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
-        $model['lab'] = Lab::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
-        $model['period'] = Time::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
+        $model['actives'] = Active::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
+        $model['labs'] = Lab::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
+        $model['usages'] = Usage::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
         return view('tools.form', ['model' => $model]);
     }
 
@@ -87,7 +87,6 @@ class ToolController extends Controller
         if ($request->file('image')!=null){
             if ($model->image !== NULL){
                 unlink(public_path($model->image));
-                File::delete($model->image);
             }
         }
         $model = $request->all();

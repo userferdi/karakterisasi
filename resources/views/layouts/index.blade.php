@@ -141,13 +141,13 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="{{ route('payment.bill') }}" class="nav-link {{ (request()->is('payment/bill*')) ? 'active' : '' }}">
-                    <i class="far fa-credit-card nav-icon"></i>
+                    <i class="fas fa-money-check-alt nav-icon"></i>
                     <p>Invoice</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="{{ route('payment.receipt') }}" class="nav-link {{ (request()->is('payment/receipt*')) ? 'active' : '' }}">
-                    <i class="fas fa-print nav-icon"></i>
+                    <i class="fas fa-file-invoice-dollar nav-icon"></i>
                     <p>Receipt</p>
                   </a>
                 </li>
@@ -158,6 +158,22 @@
                   </a>
                 </li>
               </ul>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('status.completed') }}" class="nav-link {{ (request()->is('history*')) ? 'active' : '' }}">
+                <i class="nav-icon fas fa-clipboard-list"></i>
+                <p>
+                  Complete Activities
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('activities.history') }}" class="nav-link {{ (request()->is('history*')) ? 'active' : '' }}">
+                <i class="nav-icon fas fa-history"></i>
+                <p>
+                  History
+                </p>
+              </a>
             </li>
             @endrole
 
@@ -189,12 +205,12 @@
                     <p>Price List</p>
                   </a>
                 </li>
-                <li class="nav-item">
+<!--                 <li class="nav-item">
                   <a href="{{ route('schedule.index') }}" class="nav-link {{ (request()->is('schedule*')) ? 'active' : '' }}">
                     <i class="fas fa-clock nav-icon"></i>
                     <p>Schedules</p>
                   </a>
-                </li>
+                </li> -->
               </ul>
             </li>
             <li class="nav-item has-treeview">
@@ -218,14 +234,6 @@
                     <p>Booking Request</p>
                   </a>
                 </li>
-<!--                 @role('Mahasiswa Unpad|Mahasiswa Non Unpad')
-                <li class="nav-item">
-                  <a href="{{ route('status.lecturer') }}" class="nav-link {{ (request()->is('activities/status/lecturer*')) ? 'active' : '' }}">
-                    <i class="fas fa-caret-right nav-icon"></i>
-                    <p>Approved by Lecturer</p>
-                  </a>
-                </li>
-                @endrole -->
                 <li class="nav-item">
                   <a href="{{ route('status.confirmation') }}" class="nav-link {{ (request()->is('activities/status/confirmation*')) ? 'active' : '' }}">
                     <i class="fas fa-caret-right nav-icon"></i>
@@ -306,20 +314,20 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="{{ route('payment.info') }}" class="nav-link {{ (request()->is('payment/information*')) ? 'active' : '' }}">
-                    <i class="fas fa-credit-card nav-icon"></i>
+                    <i class="far fa-credit-card nav-icon"></i>
                     <p>Payment Information</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="{{ route('payment.bill') }}" class="nav-link {{ (request()->is('payment/bill*')) ? 'active' : '' }}">
-                    <i class="far fa-credit-card nav-icon"></i>
+                    <i class="fas fa-money-check-alt nav-icon"></i>
                     <p>Bill</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="{{ route('payment.receipt') }}" class="nav-link {{ (request()->is('payment/receipt*')) ? 'active' : '' }}">
-                    <i class="fas fa-print nav-icon"></i>
-                    <p>Print Receipt</p>
+                    <i class="fas fa-file-invoice-dollar nav-icon"></i>
+                    <p>Receipt</p>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -339,7 +347,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('setting') }}" class="nav-link {{ (request()->is('setting*')) ? 'active' : '' }}">
+              <a href="{{ route('settings') }}" class="nav-link {{ (request()->is('setting*')) ? 'active' : '' }}">
                 <i class="nav-icon fas fa-cogs"></i>
                 <p>
                   Settings

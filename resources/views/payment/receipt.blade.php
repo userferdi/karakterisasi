@@ -3,7 +3,7 @@
 @section('title','FINDER · Receipt')
 
 @section('content')
-<h3 style="padding-top:20px;"><b>Receipt</b></h3>
+<h3 style="padding-top:10px;"><b>Receipt</b></h3>
 <div class="row">
   <div class="col-lg-12">
     <div class="card" >
@@ -17,7 +17,7 @@
 
 @push('scripts')
 <script>
-  @role('Dosen Unpad|Dosen Non Unpad|Mahasiswa Unpad|Mahasiswa Non UnpadUser Umum')
+  @role('Dosen Unpad|Dosen Non Unpad')
     var detail = $('#table').DataTable({
       responsive: true,
       serverSide: true,
@@ -26,10 +26,28 @@
       columns: [
         {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, className: 'dt-center'},
         {title: 'No Receipt', data: 'no_receipt', name: 'no_receipt', className: 'dt-head-center'},
-        {title: 'No Registration', data: 'no_regis', name: 'no_regis', className: 'dt-head-center'},
+        {title: 'Nama Pengguna', data: 'user', name: 'user', className: 'dt-head-center'},
         {title: 'Nama Alat', data: 'tool', name: 'tool', className: 'dt-head-center'},
-        {title: 'Tanggal Penggunaan', data: 'date', name: 'date', className: 'dt-head-center'},
-        {title: 'Lihat Tanda Terima', data: 'action', name: 'action', orderable:false, className: 'dt-center'}
+        {title: 'Tanggal Penggunaan', data: 'date', name: 'date', className: 'dt-center'},
+        {title: 'Total Pembayaran', data: 'total', name: 'total', className: 'dt-center'},
+        {title: 'Lihat Receipt', data: 'show', name: 'show', orderable:false, className: 'dt-center'}
+      ],
+    });
+  @endrole;
+
+  @role('Mahasiswa Unpad|Mahasiswa Non Unpad|User Umum')
+    var detail = $('#table').DataTable({
+      responsive: true,
+      serverSide: true,
+      ajax: "{{ route('payment.dataReceipt') }}",
+      order: [[ 1, "asc" ]],
+      columns: [
+        {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, className: 'dt-center'},
+        {title: 'No Receipt', data: 'no_receipt', name: 'no_receipt', className: 'dt-head-center'},
+        {title: 'Nama Alat', data: 'tool', name: 'tool', className: 'dt-head-center'},
+        {title: 'Tanggal Penggunaan', data: 'date', name: 'date', className: 'dt-center'},
+        {title: 'Total Pembayaran', data: 'total', name: 'total', className: 'dt-center'},
+        {title: 'Lihat Receipt', data: 'show', name: 'show', orderable:false, className: 'dt-center'}
       ],
     });
   @endrole;
@@ -42,10 +60,12 @@
       order: [[ 1, "asc" ]],
       columns: [
         {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, className: 'dt-center'},
+        {title: 'No Tagihan', data: 'no_invoice', name: 'no_invoice', className: 'dt-head-center'},
         {title: 'No Registration', data: 'no_regis', name: 'no_regis', className: 'dt-head-center'},
         {title: 'Nama Pengguna', data: 'user', name: 'user', className: 'dt-head-center'},
         {title: 'Nama Alat', data: 'tool', name: 'tool', className: 'dt-head-center'},
         {title: 'Tanggal Penggunaan', data: 'date', name: 'date', className: 'dt-head-center'},
+        {title: 'Total Pembayaran', data: 'total', name: 'total', className: 'dt-center'},
         {title: 'Detail', data: 'detail', name: 'detail', orderable:false, className: 'dt-center'},
         {title: 'Buat Tanda Terima', data: 'action', name: 'action', orderable:false, className: 'dt-center'}
       ],

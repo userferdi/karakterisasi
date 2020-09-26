@@ -8,7 +8,7 @@
 <a href="https://drive.google.com/open?id=1gcDbrORgSCctPLyy4Mh-xFXBxkgbkWUu" class="btn btn-success btn-sm">Unduh Deskripsi Alur Booking Alat</a>
 <a href="https://drive.google.com/open?id=1pw_FMr_0nes5t2KCVN_KWfg-PGtqKzeI" class="btn btn-warning btn-sm">Unduh Aturan Registrasi Akun</a><br><br>
 <div class="row">
-  <div class="col-lg-6">
+  <div class="col-lg-3">
     <!-- small box -->
     <div class="small-box bg-info">
       <div class="inner">
@@ -23,7 +23,7 @@
     </div>
   </div>
   <!-- ./col -->
-  <div class="col-lg-6">
+  <div class="col-lg-3">
     <!-- small box -->
     <div class="small-box bg-success">
       <div class="inner">
@@ -38,7 +38,7 @@
     </div>
   </div>
   <!-- ./col -->
-  <div class="col-lg-6">
+  <div class="col-lg-3">
     <!-- small box -->
     <div class="small-box bg-warning">
       <div class="inner">
@@ -53,7 +53,7 @@
     </div>
   </div>
   <!-- ./col -->
-  <div class="col-lg-6">
+  <div class="col-lg-3">
     <!-- small box -->
     <div class="small-box bg-danger">
       <div class="inner">

@@ -23,14 +23,13 @@
     ajax: "{{ route('status.confirmation.dt') }}",
     order: [[ 1, "asc" ]],
     columns: [
-      {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, width: '5%', className: 'dt-center'},
-      {title: 'No Formulir', data: 'no_form', name: 'no_form', width: '10%', className: 'dt-head-center'},
-      {title: 'Nama Alat', data: 'tool', name: 'tool', width: '10%', className: 'dt-center'},
-      {title: 'Akan Hadir', data: 'attend', name: 'attend', orderable:false, width: '10%', className: 'dt-center'},
-      {title: 'Jadwal yang disetujui', data: 'date', name: 'date', width: '20%', className: 'dt-head-center'},
-      {title: 'Detail', data: 'detail', name: 'detail', orderable:false, width: '7.5%', className: 'dt-center'},
-      {title: 'Confirm', data: 'confirm', name: 'confirm', orderable:false, width: '7.5%', className: 'dt-center'},
-      {title: 'Cancel', data: 'cancel', name: 'cancel', orderable:false, width: '7.5%', className: 'dt-center'}
+      {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, className: 'dt-center'},
+      {title: 'No Formulir', data: 'no_form', name: 'no_form', className: 'dt-head-center'},
+      {title: 'Nama Alat', data: 'tool', name: 'tool', className: 'dt-center'},
+      {title: 'Jadwal yang disetujui', data: 'date', name: 'date', className: 'dt-head-center'},
+      {title: 'Detail', data: 'detail', name: 'detail', orderable:false, className: 'dt-center'},
+      {title: 'Confirm', data: 'confirm', name: 'confirm', orderable:false, className: 'dt-center'},
+      {title: 'Cancel', data: 'cancel', name: 'cancel', orderable:false, className: 'dt-center'}
     ],
   });
 
@@ -43,13 +42,13 @@
         csrf_token = $('meta[name="csrf-token"]').attr('content');
 
     swal({
-      title: "Are you sure want to\nconfirm?",
+      title: "Are you sure want to confirm\n'" + name + "'?",
       text: "You won't be able to revert this!",
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, resend it!'
+      confirmButtonText: 'Yes, confirm it!'
     }).then((result)=>{
       if(result.value){
         $.ajax({
@@ -100,7 +99,7 @@
         csrf_token = $('meta[name="csrf-token"]').attr('content');
 
     swal({
-      title: "Are you sure want to cancel '" + name + "'?",
+      title: "Are you sure want to cancel\n'" + name + "'?",
       text: "You won't be able to revert this!",
       type: 'warning',
       showCancelButton: true,

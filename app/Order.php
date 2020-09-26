@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $fillable = ['id', 'no_form', 'no_regis', 'users_id', 'tools_id', 'date1', 'times1_id', 'date2', 'times2_id', 'date3', 'times3_id', 'attend', 'purpose', 'sample', 'unique', 'statuses_id'];
+    protected $fillable = ['id', 'users_id', 'tools_id', 'plans_id', 'attend', 'purpose', 'sample', 'unique'];
     public function plans(){
         return $this->belongsTo('App\Plan');
     }
@@ -15,12 +15,6 @@ class Order extends Model
     }
     public function users(){
     	return $this->belongsTo('App\User');
-    }
-    public function statuses(){
-        return $this->belongsTo('App\Status');
-    }
-    public function verifs(){
-        return $this->belongsTo('App\Verif');
     }
     public function schedules(){
         return $this->hasOne('App\Schedule');

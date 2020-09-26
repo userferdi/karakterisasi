@@ -131,9 +131,9 @@
             <form id="confirm" action="{{ route('verify.confirm',$model->token) }}" method="PUT" style="display: none;">
                 <input id="status" type="hidden" class="form-control" name="status" value="confirm">
             </form>
-            <a href="{{ route('verify.reject',$model->token) }}" class="btn btn-danger btn-sm" onclick="event.preventDefault(); document.getElementById('reject').submit();">Reject</a>
-            <form id="reject" action="{{ route('verify.reject',$model->token) }}" method="PUT" style="display: none;">
-                <input id="status" type="hidden" class="form-control" name="status" value="reject">
+            <a href="{{ route('verify.cancel',$model->token) }}" class="btn btn-danger btn-sm" onclick="event.preventDefault(); document.getElementById('cancel').submit();">Cancel</a>
+            <form id="cancel" action="{{ route('verify.cancel',$model->token) }}" method="PUT" style="display: none;">
+                <input id="status" type="hidden" class="form-control" name="status" value="cancel">
             </form>
         </div>
       </div>

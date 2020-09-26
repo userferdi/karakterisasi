@@ -17,28 +17,18 @@ class StudentController extends Controller
         return view('students.index');
     }
 
-    public function show($id)
-    {
-        $model = Profile::find($id);
-        return view('students.show', ['model'=>$model]);
-    }
-
     public function delete(Request $request, $id)
     {
-        $model = Profile::findOrFail($id);
-        $model->update([
-            'email_dosen' => NULL,
+        $model = Profile::findOrFail($id)->update([
+            'email_lecturer' => NULL,
         ]);
-        // $model['email_dosen'] = 'NULL';
-        // dd($model);
-        // $model = Profile::findOrFail($id)->update($model);
         return response()->json($model);
     }
 
     public function datatable()
     {
         $email = Auth()->User();
-        $mahasiswa = Profile::where('email_dosen', $email['email'])->get();
+        $mahasiswa = Profile::where('email_lecturer', $email['email'])->get();
         return DataTables::of($mahasiswa)
             ->editColumn('faculty', function($model){
                 $faculty = $model->faculty;
@@ -186,12 +176,12 @@ class StudentController extends Controller
                 return $faculty;
             })
             ->addColumn('name', function($model){
-                return $model->users->name;
+                return $model->user->name;
             })
             ->addColumn('action', function($model){
                 $button = 
-'<a href="'.route('student.show',$model->id).'" class="btn btn-primary btn-sm">Detail</a>  
-<a href="'.route('student.delete',$model->id).'" class="btn btn-danger btn-sm delete" name="'.$model->users->name.'">Remove</a>';
+'<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>  
+<a href="'.route('student.delete',$model->id).'" class="btn btn-danger btn-sm delete" name="'.$model->user->name.'">Remove</a>';
                 return $button;
             })
             ->addIndexColumn()

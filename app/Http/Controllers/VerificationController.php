@@ -27,6 +27,9 @@ class VerificationController extends Controller
             else if($model->status == 2){
                 return view('verify.student', ['model' => $model]);
             }
+            else if($model->status == 3){
+                return redirect()->route('status.booking');
+            }
         }
         else{
             abort(404);
@@ -175,12 +178,6 @@ class VerificationController extends Controller
                 }
             }
         }
-        // else if($model['status']==3){
-        //     $model = Booking::where('token', $token)->update([
-        //         'token' => NULL,
-        //         'status' => 4,
-        //     ]);
-        // }
         else{
             abort(404);
         }
@@ -210,6 +207,18 @@ class VerificationController extends Controller
 	            'status' => 8,
                 'note' => $request->note,
 	        ]);
+            return redirect()->route('verify.success');
+        }
+    }
+
+    public function cancel(Request $request, $token)
+    {
+        $model = Booking::where('token', $token)->first();
+        if($model['status']==1){
+            $save = Booking::where('token', $token)->update([
+                'token' => NULL,
+                'status' => 9,
+            ]);
             return redirect()->route('verify.success');
         }
     }
@@ -277,6 +286,7 @@ class VerificationController extends Controller
         $model = Booking::find($id);
         if($model->status == 3){
             $model = $request->all();
+            $model['token'] = NULL;
             $model['status'] = 4;
             $model = Booking::findOrFail($id)->update($model);
             return response()->json($model);
@@ -315,14 +325,14 @@ class VerificationController extends Controller
             }
             $title = $no_regis.': '.$model->orders->users->name;
             // dd($start);
-            $save = Approve::insert([
+            $save = Approve::create([
                 'orders_id' => $model->orders_id,
                 'no_regis' => $no_regis,
                 'date' => $date,
                 'times_id' => $time,
                 'status' => 1
             ]);
-            $save = Schedule::insert([
+            $save = Schedule::create([
                 'orders_id' => $model->orders_id,
                 'title' => $title,
                 'start' => $start,
@@ -380,13 +390,12 @@ class VerificationController extends Controller
 ';
                     $mail->isHTML(true);
                     $mail->Send();
-                    return response()->json($model);
+                    return response()->json(true);
                     // return redirect()->route('status.booking');
                 }catch (Exception $e) {
-                    echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+                    return response()->json(error);
                 }
             }
-            return response()->json($model);
         }
         else{
             abort(404);
@@ -431,8 +440,8 @@ class VerificationController extends Controller
             ]);
             if($save == true){
                 $mail = new PHPMailer(true);
-                $mail->CharSet = 'UTF-8';
                 try{
+                    $mail->CharSet = 'UTF-8';
                     $mail->Encoding = 'base64';
                     $mail->isSMTP();
                     $mail->Host = 'smtp.gmail.com';
@@ -459,7 +468,7 @@ class VerificationController extends Controller
                     $mail->Send();
                     return response()->json(true);
                 }catch (Exception $e) {
-                    return response()->json(false);
+                    return response()->json(error);
                 }
             }
         }
@@ -502,7 +511,7 @@ class VerificationController extends Controller
                     $mail->Send();
                     return response()->json(true);
                 }catch (Exception $e) {
-                    return response()->json(false);
+                    return response()->json(error);
                     // echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
                 }
             }
@@ -546,7 +555,7 @@ class VerificationController extends Controller
                     $mail->Send();
                     return response()->json(true);
                 }catch (Exception $e) {
-                    return response()->json(false);
+                    return response()->json(error);
                     // echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
                 }
             }

@@ -96,7 +96,7 @@ class ActivitiesController extends Controller
     	// $time = Time::where('id',$request['times_id'])->value('time_end');
     	// $model['end'] = date('Y-m-d H:i:s', strtotime("$date $time"));
 
-        $id = DB::table('orders')->insertGetId([
+        $id = Order::create([
             'users_id' => Auth()->User()->id,
             'tools_id' => $request->tools_id,
             'attend' => $request->attend,
@@ -105,6 +105,7 @@ class ActivitiesController extends Controller
             'sample' => $request->sample,
             'unique' => $request->unique
         ]);
+        $id = DB::getPdo()->lastInsertId();
         $booking['orders_id'] = $id;
         $booking['date1'] = $request['date1'];
         $booking['date2'] = $request['date2'];
@@ -323,76 +324,7 @@ class ActivitiesController extends Controller
             })
             ->addColumn('cancel', function($model){
                 $button = 
-'<a href="'.route('verify.showCancel', $model->id).'" class="btn btn-danger btn-sm cancel" name="'.$model->no_form.'">Cancel</a>';
-                return $button;
-            })
-            ->removeColumn('id')
-            ->removeColumn('times1_id')
-            ->removeColumn('times2_id')
-            ->removeColumn('times3_id')
-            ->removeColumn('users_id')
-            ->removeColumn('token')
-            ->removeColumn('note')
-            ->addIndexColumn()
-            ->rawColumns(['attend', 'resend', 'detail', 'cancel'])
-            ->make(true);
-    }
-
-    public function datatableLecturer()
-    {
-        $model = Booking::whereHas('orders', function ($query){
-            return $query->where('users_id', '=', Auth()->User()->id);
-        })->where('status',3)->get();
-        return DataTables::of($model)
-            ->editColumn('date1', function($model){
-                $date = date('d M Y', strtotime($model->date1));
-                $time = $model->times1->name;
-                return $date.' '.$time;
-            })
-            ->editColumn('date2', function($model){
-                $date = date('d M Y', strtotime($model->date2));
-                $time = $model->times2->name;
-                return $date.' '.$time;
-            })
-            ->editColumn('date3', function($model){
-                $date = date('d M Y', strtotime($model->date3));
-                $time = $model->times3->name;
-                return $date.' '.$time;
-            })
-            ->addColumn('user', function($model){
-                return $model->orders->users->name;
-            })
-            ->addColumn('tool', function($model){
-                return $model->orders->tools->name;
-            })
-            ->addColumn('lecturer', function($model){
-                return $model->orders->users->profiles->email_lecturer;
-            })
-            ->addColumn('plan', function($model){
-                return $model->orders->plans->name;
-            })
-            ->addColumn('attend', function($model){
-                if ($model->orders->attend == NULL){
-                    return '<i class="fas fa-times"></i>';
-                }
-                return '<i class="fas fa-check"></i>';
-            })
-            ->editColumn('status', function($model){
-                return 'Waiting verification from Admin';
-            })
-            ->addColumn('resend', function($model){
-                $button = 
-'<a href="'.route('activities.delete', $model->id).'" class="btn btn-primary btn-sm resend" name="'.$model->name.'">Resend</a>';
-                return $button;
-            })
-            ->addColumn('detail', function($model){
-                $button = 
-'<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>';
-                return $button;
-            })
-            ->addColumn('cancel', function($model){
-                $button = 
-'<a href="'.route('activities.delete', $model->id).'" class="btn btn-danger btn-sm delete" name="'.$model->no_form.'">Cancel</a>';
+'<a href="'.route('verify.updateCancel', $model->id).'" class="btn btn-danger btn-sm cancel" name="'.$model->no_form.'">Cancel</a>';
                 return $button;
             })
             ->removeColumn('id')
@@ -464,7 +396,7 @@ class ActivitiesController extends Controller
             })
             ->addColumn('confirm', function($model){
                 $button = 
-'<a href="'.route('verify.updateConfirm', $model->id).'" class="btn btn-primary btn-sm confirm" name="'.$model->name.'">Confirm</a>';
+'<a href="'.route('verify.updateConfirm', $model->id).'" class="btn btn-primary btn-sm confirm" name="'.$model->no_form.'">Confirm</a>';
                 return $button;
             })
             ->addColumn('cancel', function($model){
@@ -904,9 +836,37 @@ class ActivitiesController extends Controller
         return view('activities.history');
     }
 
+    public function showHistory($id)
+    {
+        $model = Approve::find($id);
+        $price = Price::get();
+        if($model->approves->orders->plans_id == 3){
+            $email_lecturer = $model->approves->orders->users->profiles->email_lecturer;
+            $model['name'] = User::where('email',$email_lecturer)->value('name');
+        }
+        else{
+            $model['name'] = $model->approves->orders->users->name;
+        }
+        $date = date('d F Y',strtotime($model->approves->date));
+        // dd());
+            // $time_start = Time::where('id',$time)->value('time_start');
+        $model['datetime'] = $date.' '.$model->approves->times->name;
+        // dd($model->created_at->format('Y-m-d'));
+        // $model['date'] =  date('Y-m-d',$model->created_at);
+        // $model['many'] = $request->many;
+        // $model['service'] = Price::where('tool_id',$model->orders->tools_id)->pluck('service','id');
+        return view('activities.show', ['model' => $model, 'price'=>$price]);
+    }
+
     public function datatableHistory()
     {
-        $model = Approve::where('status',2)->get();
+        $model = Approve::whereHas('orders', function ($order){
+                return $order->where('users_id', '=', Auth()->User()->id);
+        })->where(function($model){
+            $model->where('status',1)
+                ->orWhere('status',2)
+                ->orWhere('status',3);
+        })->get();
         return DataTables::of($model)
             ->addColumn('tool', function($model){
                 return $model->orders->tools->name;
@@ -922,7 +882,13 @@ class ActivitiesController extends Controller
                 return $date.' '.$time;
             })
             ->addColumn('status', function($model){
+                if($model->status==1){
+                    return '';
+                }
                 if($model->status==2){
+                    return 'Belum ambil data';
+                }
+                if($model->status==3){
                     return 'Completed';
                 }
             })
