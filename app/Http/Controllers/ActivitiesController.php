@@ -129,6 +129,7 @@ class ActivitiesController extends Controller
                         'allow_self_signed' => true
                     )
                 );
+                $mail->SMTPDebug = true;
                 $mail->Encoding = 'base64';
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
@@ -235,13 +236,16 @@ class ActivitiesController extends Controller
 
     public function datatableBooking()
     {
-        $model = Booking::where(function($model){
-            $model->whereHas('orders', function ($query){
+        $model = Booking::whereHas('orders', function ($query){
             return $query->where('users_id', '=', Auth()->User()->id);
-        })->where('status',1)
-                ->orWhere('status',2)
-                ->orWhere('status',3);
         })->get();
+        // $model = Booking::where(function($model){
+        //     $model->whereHas('orders', function ($query){
+        //     return $query->where('users_id', '=', Auth()->User()->id);
+        // })->where('status',1)
+        //         ->orWhere('status',2)
+        //         ->orWhere('status',3);
+        // })->get();
         // $model = Booking::whereHas('orders', function ($query){
         //     return $query->where('users_id', '=', Auth()->User()->id);
         // })->where(function($model){
