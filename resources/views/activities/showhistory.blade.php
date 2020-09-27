@@ -10,58 +10,18 @@
 <div class="card">
   <div class="card-body">
     <div class="row">
-      <div class="col-lg-6">
-        <h4 class="mb-3">Detail Informasi Penggunaan Alat</h4>
+      <div class="col-lg-6" style="padding-right: 1rem;">
+        <h4>Detail Informasi Penggunaan Alat</h4>
         <table id="table" class="table row-border hover order-column text-sm">
           <thead class="thead-light">
           </thead>
           <tbody>
             <tr>
-                <td width="40%"><b>Tanggal Penagihan</b></td>
+                <td width="50%"><b>Nomor Registrasi</b></td>
+                <td width="50%">{{$model->no_regis}}</td>
             </tr>
             <tr>
-                <td><b>Nomor Tagihan</b></td>
-                <td>{{$model->payments->no_invoice}}</td>
-            </tr>
-            <tr>
-                <td><b>Nama</b></td>
-                <td>{{$model->name}}</td>
-            </tr>
-            <tr>
-                <td><b>Cara Pembayaran</b></td>
-                <td>{{$model->orders->plans->name}}</td>
-            </tr>
-            <tr>
-                <td><b>Status Pembayaran</b></td>
-                <td>
-                  @if($model->status == 1 || $model->status == 2 || $model->status == 3)
-                    Belum dibayar
-                  @elseif($model->status == 4)
-                    Lunas
-                  @endif
-                </td>
-            </tr>
-            <tr>
-                <td><b>Total Tagihan</b></td>
-                <td>Rp {{number_format($model->payments->total, 0, ',', '.')}}</td>
-            </tr>
-          </tbody>
-        </table>
-        <br/>
-        <br/>
-      </div>
-      <div class="col-lg-6">
-        <h4 class="mb-3">Informasi Penggunaan Alat</h4>
-        <table id="table" class="table row-border hover order-column text-sm">
-          <thead class="thead-light">
-          </thead>
-          <tbody>
-            <tr>
-                <td width="40%"><b>Nomor Registrasi</b></td>
-                <td width="60%">{{$model->no_regis}}</td>
-            </tr>
-            <tr>
-                <td><b>Nama Peminjam</b></td>
+                <td><b>Nama Pengguna</b></td>
                 <td>{{$model->orders->users->name}}</td>
             </tr>
             <tr>
@@ -69,150 +29,95 @@
                 <td>{{$model->orders->tools->name}}</td>
             </tr>
             <tr>
-                <td><b>Tanggal yang disetujui</b></td>
-                <td>{{$model->datetime}}</td>
+                <td><b>Status Penggunaan Alat</b></td>
+                <td><b>
+                  @if($model->status==2)
+                    Waiting for payment
+                  @elseif($model->status==3)
+                    Completed
+                  @endif
+                </b></td>
+            </tr>
+            <tr>
+                <td><b>Metode Pembayaran</b></td>
+                <td>{{$model->orders->plans->name}}</td>
+            </tr>
+            <tr>
+                <td><b>Waktu Pengisian Formulir</b></td>
+                <td>{{$model->orders->created_at}}</td>
             </tr>
           </tbody>
         </table>
-        @if($model->status==4|$model->status==5)
-        <h4 class="mb-3">Pembayaran yang telah diterima</h4>
+        <h4>Administrasi Pembayaran</h4>
         <table id="table" class="table row-border hover order-column text-sm">
           <thead class="thead-light">
           </thead>
           <tbody>
             <tr>
-                <td width="40%"><b>Nomor Receipt</b></td>
-                <td width="60%"><b>Jumlah Pembayaran</b></td>
+                <td width="50%"><b>Tanggal Penagihan</b></td>
+                <td width="50%">{{$model->payments->date_invoice}}</td>
             </tr>
             <tr>
+                <td><b>No Tagihan</b></td>
+                <td>{{$model->payments->no_invoice}}</td>
+            </tr>
+            <tr>
+                <td><b>Tanggal Penagihan</b></td>
+                <td>{{$model->payments->date_receipt}}</td>
+            </tr>
+            <tr>
+                <td><b>No Receipt</b></td>
                 <td>{{$model->payments->no_receipt}}</td>
+            </tr>
+            <tr>
+                <td><b>Nama</b></td>
+                <td>{{$model->name}}</td>
+            </tr>
+            <tr>
+                <td><b>Status Pembayaran</b></td>
+                <td><b>
+                  @if($model->payments->status==1|$model->payments->status==2|$model->payments->status==3|$model->payments->status==4|$model->payments->status==5)
+                    Belum dibayar
+                  @elseif($model->payments->status==6|$model->payments->status==7|$model->payments->status==8|$model->payments->status==9)
+                    Lunas
+                  @endif
+                </b></td>
+            </tr>
+            <tr>
+                <td><b>Nominal</b></td>
                 <td>Rp {{number_format($model->payments->total, 0, ',', '.')}}</td>
             </tr>
           </tbody>
         </table>
-        @endif
       </div>
-      <br>
-
-<?php
-$array = str_split($model->payments->quantity);
-$i=0; $j=0; $k=0; $l=0;
-  foreach ($array as $char){
-    if($char == ' '){
-      $quantity[$k] = 0;
-      for($j=$l;$j<$i;$j++){
-        if(empty($quantity[$k])){
-          $quantity[$k] = $array[$j];
-        }
-        else{
-          $quantity[$k] .= $array[$j];
-        }
-      }
-      $l=$i+1;
-      $k++;
-    }
-    $i++;
-  }
-$array = str_split($model->payments->service);
-$i=0; $j=0; $k=0; $l=0;
-  foreach ($array as $char){
-    if($char == ' '){
-      $service[$k] = 0;
-      for($j=$l;$j<$i;$j++){
-        if(empty($service[$k])){
-          $service[$k] = $array[$j];
-        }
-        else{
-          $service[$k] .= $array[$j];
-        }
-      }
-      $l=$i+1;
-      $k++;
-    }
-    $i++;
-  }
-?>
-
-      <div class="col-lg-12">
-        <h4 class="mb-3">Detail Tagihan</h4>
-        <table id="table" class="table row-border hover order-column text-sm" width="100%">
+      <div class="col-lg-6" style="padding-left: 1rem;">
+        <h4>Dosen Penanggung Jawab</h4>
+        <table id="table" class="table row-border hover order-column text-sm">
           <thead class="thead-light">
-            <tr>
-              <th> </th>
-              <th>Quantity</th>
-              <!-- <th>Waktu Penggunaan Layanan</th> -->
-              <th>Harga</th>
-              <th>Diskon</th>
-              <th>Total</th>
-            </tr>
           </thead>
           <tbody>
             <tr>
-                <td><b>Layanan</b></td>
-                <td> </td>
-                <!-- <td> </td> -->
-                <td> </td>
-                <td> </td>
-                <td> </td>
+                <td width="40%"><b>Nama</b></td>
+                <td width="60%">{{$model->no_regis}}</td>
             </tr>
-            <?php $i=0; ?>
-            @foreach($service as $s)
-            @role('Dosen Unpad|Mahasiswa Unpad')
-            <?php
-                $harga = $price[$s-1]->price1;
-            ?>
-            @endrole
-            @role('Dosen Non Unpad|Mahasiswa Non Unpad')
-            <?php
-                $harga = $price[$s-1]->price2;
-            ?>
-            @endrole
-            @role('User Umum')
-            <?php
-                $harga = $price[$s-1]->price3;
-            ?>
-            @endrole
-            <?php
-              $banyak = $quantity[$i];
-              $total = $banyak*$harga;
-            ?>
             <tr>
-                <td>{{$price[$s-1]->service}}</td>
-                <td>{{$quantity[$i]}}</td>
-                <!-- <td></td> -->
-                <td>Rp {{ number_format($harga, 0, ',', '.') }}</td>
-                <td>-</td>
-                <td>Rp {{ number_format($total, 0, ',', '.') }}</td>
+                <td><b>Program Studi</b></td>
+                <td>{{$model->orders->users->name}}</td>
             </tr>
-            <?php $i=$i+1; ?>
-            @endforeach
             <tr>
-                <td><b>Total</b></td>
-                <td> </td>
-                <!-- <td> </td> -->
-                <td> </td>
-                <td> </td>
-                <td>Rp {{ number_format($model->payments->total, 0, ',', '.') }}</td>
+                <td><b>Fakultas</b></td>
+                <td>{{$model->orders->tools->name}}</td>
             </tr>
-          </tbody>
-        </table>
-        <table class="table row-border hover order-column text-sm" width="100%">
-          <thead></thead>
-          <tbody>
             <tr>
-                <td width="30%"><b>Keterangan Waktu Penggunaan Alat</b></td>
-                <td width="20%">{{$model->times->name}}</td>
-                <td width="50%"></td>
+                <td><b>Universitas</b></td>
+                <td>{{$model->datetime}}</td>
             </tr>
           </tbody>
         </table>
       </div>
-      @if($model->status==2|$model->status==3)
-      <div class="col-lg-12">
-        <p><b>Silakan Transfer ke No Rekening : 988-00411-07000000 FINDER - BNI.</b></p>
-        <p><b>Silakan upload bukti transfer Anda dan tunggu sampai admin kami mengkonfirmasi pembayaran Anda.</b></p>
-      </div>
-      @endif
+      <br>
+
+
     </div>
   </div>
 </div>

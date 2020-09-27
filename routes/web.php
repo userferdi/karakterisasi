@@ -31,20 +31,6 @@ Route::prefix('price')->group(function(){
 	Route::get('datatable', 'PriceController@datatable')->name('price.dt');
 });
 
-Route::prefix('admin')->group(function(){
-	Route::prefix('activities')->group(function(){
-	});
-	Route::prefix('payment')->group(function(){
-		// Informasi Tagihan (Invoice) dan Upload Bukti Transfer
-		Route::get('bill', 'PaymentController@bill')->name('payment.bill');
-		// Informasi Terima Pembayaran (Receipt)
-		Route::get('receipt', 'PaymentController@receipt')->name('payment.receipt');
-		// Udah ada receipt masuk ke history
-		Route::get('history', 'PaymentController@history')->name('payment.history');
-		Route::get('databill', 'PaymentController@databill')->name('payment.databill');
-	});
-});
-
 Route::middleware('auth')->group(function(){
 	Route::prefix('lab')->group(function(){
 		Route::get('create', 'LabController@create')->name('lab.create');

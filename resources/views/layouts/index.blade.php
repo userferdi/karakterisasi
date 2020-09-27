@@ -205,12 +205,12 @@
                     <p>Price List</p>
                   </a>
                 </li>
-<!--                 <li class="nav-item">
+                <li class="nav-item">
                   <a href="{{ route('schedule.index') }}" class="nav-link {{ (request()->is('schedule*')) ? 'active' : '' }}">
                     <i class="fas fa-clock nav-icon"></i>
                     <p>Schedules</p>
                   </a>
-                </li> -->
+                </li>
               </ul>
             </li>
             <li class="nav-item has-treeview">
@@ -283,7 +283,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('student.booking') }}" class="nav-link {{ (request()->is('student/request*')) ? 'active' : '' }}">
+                  <a href="{{ route('student.booking') }}" class="nav-link {{ (request()->is('student/booking*')) ? 'active' : '' }}">
                     <i class="fas fa-caret-right nav-icon"></i>
                     <p>Booking Request</p>
                   </a>

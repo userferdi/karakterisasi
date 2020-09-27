@@ -34,41 +34,57 @@ class LabController extends Controller
 
     public function create()
     {
-        $model = new Lab();
-        return view('labs.form', ['model' => $model]);
+        if(Auth()->User()->hasRole('Admin')){
+            $model = new Lab();
+            return view('labs.form', ['model' => $model]);
+        }
+        else{
+            abort(404);
+        }
     }
 
     public function store(Request $request)
     {
-        // dd($request);
-        $this->validate($request, [
-            'name' => 'required',
-            'head' => 'required',
-            'descrip' => 'required'
-        ]);
-        $model = Lab::create($request->all());
-        return response()->json($model);
+        if(Auth()->User()->hasRole('Admin')){
+            $model = Lab::create($request->all());
+            return response()->json($model);
+        }
+        else{
+            abort(404);
+        }
     }
 
     public function edit($id)
     {
-        $model = Lab::findOrFail($id);
-        return view('labs.form', ['model' => $model]);
+        if(Auth()->User()->hasRole('Admin')){
+            $model = Lab::findOrFail($id);
+            return view('labs.form', ['model' => $model]);
+        }
+        else{
+            abort(404);
+        }
     }
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required'
-        ]);
-        $model = Lab::findOrFail($id)->update($request->all());
-        return response()->json($model);
+        if(Auth()->User()->hasRole('Admin')){
+            $model = Lab::findOrFail($id)->update($request->all());
+            return response()->json($model);
+        }
+        else{
+            abort(404);
+        }
     }
 
     public function delete($id)
     {
-        $model = Lab::findOrFail($id)->delete();
-        return response()->json($model);
+        if(Auth()->User()->hasRole('Admin')){
+            $model = Lab::findOrFail($id)->delete();
+            return response()->json($model);
+        }
+        else{
+            abort(404);
+        }
     }
 
     public function datatable()
@@ -89,6 +105,7 @@ class LabController extends Controller
                 ]);
             })
             ->addIndexColumn()
+            ->removeColumn(['id','created_at','updated_at'])
             ->rawColumns(['action', 'show'])
             ->make(true);
     }

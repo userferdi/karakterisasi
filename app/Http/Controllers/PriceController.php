@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Price;
 use App\Tool;
-use App\Order;
 
 use Auth;
 use DataTables;
@@ -35,39 +34,58 @@ class PriceController extends Controller
 
     public function create()
     {
-        $model = new Price();
-        $model['tool'] = Tool::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
-        return view('prices.form', ['model' => $model]);
+        if(Auth()->User()->hasRole('Admin')){
+            $model = new Price();
+            $model['tool'] = Tool::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
+            return view('prices.form', ['model' => $model]);
+        }
+        else{
+            abort(404);
+        }
     }
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required'
-        ]);
-        $model = Price::create($request->all());
-        return response()->json($model);
+        if(Auth()->User()->hasRole('Admin')){
+            $model = Price::create($request->all());
+            return response()->json($model);
+        }
+        else{
+            abort(404);
+        }
     }
 
     public function edit($id)
     {
-        $model = Price::findOrFail($id);
-        return view('prices.form', ['model' => $model]);
+        if(Auth()->User()->hasRole('Admin')){
+            $model = Price::findOrFail($id);
+            return view('prices.form', ['model' => $model]);
+        }
+        else{
+            abort(404);
+        }
     }
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required'
-        ]);
-        $model = Price::findOrFail($id)->update($request->all());
-        return response()->json($model);
+        if(Auth()->User()->hasRole('Admin')){
+            $model = Price::findOrFail($id)->update($request->all());
+            return response()->json($model);
+        }
+        else{
+            abort(404);
+        }
     }
 
     public function delete($id)
     {
-        $model = Price::findOrFail($id)->delete();
-        return response()->json($model);
+        if(Auth()->User()->hasRole('Admin')){
+            $model = Price::findOrFail($id)->delete();
+            return response()->json($model);
+        }
+        else{
+            abort(404);
+        }
     }
 
     public function datatable()
@@ -78,23 +96,16 @@ class PriceController extends Controller
                 return $model->tools->name;
             })
             ->editColumn('price1', function($model){
-                $price = 'Rp ';
-                $price .= number_format($model->price1, 0, ',', '.');
-                return $price;
+                return 'Rp '.number_format($model->price1, 0, ',', '.');
             })
             ->editColumn('price2', function($model){
-                $price = 'Rp ';
-                $price .= number_format($model->price2, 0, ',', '.');
-                return $price;
+                return 'Rp '.number_format($model->price2, 0, ',', '.');
             })
             ->editColumn('price3', function($model){
-                $price = 'Rp ';
-                $price .= number_format($model->price3, 0, ',', '.');
-                return $price;
+                return 'Rp '.number_format($model->price3, 0, ',', '.');
             })
             ->editColumn('discount', function($model){
-                $discount = $model->discount.'%';
-                return $discount;
+                return $model->discount.'%';
             })
             ->addColumn('action', function($model){
                 return view('layouts.action',[
@@ -105,6 +116,7 @@ class PriceController extends Controller
                 ]);
             })
             ->addIndexColumn()
+            ->removeColumn(['id','created_at','updated_at'])
             ->rawColumns(['action','show'])
             ->make(true);
     }

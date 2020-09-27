@@ -54,11 +54,11 @@
     order: [[ 1, "asc" ]],
     columns: [
       {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, width: '5%', className: 'dt-center'},
-      {title: 'Nama Alat', data: 'name', name: 'name', width: '30%', className: 'dt-head-center'},
-      {title: 'Kode', data: 'code', name: 'code', width: '10%', className: 'dt-center'},
+      {title: 'Nama Alat', data: 'name', name: 'name', width: '27.5%', className: 'dt-head-center'},
+      {title: 'Kode', data: 'code', name: 'code', orderable:false, width: '7.5%', className: 'dt-center'},
       {title: 'Status', data: 'actives_id', name: 'actives_id', width: '10%', className: 'dt-center'},
-      {title: 'Laboratorium', data: 'labs_id', name: 'labs_id', width: '15%', className: 'dt-center'},
-      {title: 'Waktu Penggunaan', data: 'usages_id', name: 'usages_id', width: '20%', className: 'dt-center'},
+      {title: 'Laboratorium', data: 'labs_id', name: 'labs_id', width: '22.5%', className: 'dt-center'},
+      {title: 'Waktu Penggunaan', data: 'usages_id', name: 'usages_id', width: '17.5%', className: 'dt-center'},
       {title: 'Opsi', data: 'action', name: 'action', orderable:false, width: '10%', className: 'dt-center'}
     ],
   });
