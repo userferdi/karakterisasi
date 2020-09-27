@@ -131,7 +131,7 @@
               </ul>
             </li>
             <li class="nav-item has-treeview">
-              <a href="#" class="nav-link {{ (request()->is('payment*')) ? 'active' : '' }}">
+              <a href="/#" class="nav-link {{ (request()->is('payment*')) ? 'active' : '' }}">
                 <i class="nav-icon fas fa-money-bill"></i>
                 <p>
                   Transaction Payment
@@ -304,7 +304,7 @@
             </li>
             @endrole
             <li class="nav-item has-treeview">
-              <a href="#" class="nav-link {{ (request()->is('payment*')) ? 'active' : '' }}">
+              <a href="/#" class="nav-link {{ (request()->is('payment*')) ? 'active' : '' }}">
                 <i class="nav-icon fas fa-money-bill"></i>
                 <p>
                   Financial

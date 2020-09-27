@@ -122,6 +122,13 @@ class ActivitiesController extends Controller
             $mail = new PHPMailer(true);
             $mail->CharSet = 'UTF-8';
             try{
+                $mail->SMTPOptions = array(
+                    'ssl' => array(
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                        'allow_self_signed' => true
+                    )
+                );
                 $mail->Encoding = 'base64';
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';

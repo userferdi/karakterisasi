@@ -13,6 +13,11 @@ use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
 {
+    public function settings()
+    {
+    	return view('settings', ['model' => Auth()->User()]);
+    }
+
     public function datatable()
     {
         $users = User::get();

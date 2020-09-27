@@ -207,9 +207,7 @@ Route::middleware('auth')->group(function(){
 		Route::get('resend/{id}', 'VerificationController@resend')->name('verify.resend');
 	});
 
-	Route::get('settings', function () {
-		return view('settings');
-	})->name('settings');
+	Route::get('settings', 'AdminController@settings')->name('settings');
 	Route::get('contact', function () {
 		return view('contact');
 	})->name('contact');
