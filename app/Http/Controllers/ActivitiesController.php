@@ -13,6 +13,8 @@ use App\Usage;
 use App\Profile;
 use App\User;
 use App\Plan;
+use App\Price;
+use App\Payment;
 
 use Auth;
 use DataTables;
@@ -181,68 +183,43 @@ class ActivitiesController extends Controller
 
     public function booking()
     {
-        if(Auth()->User()!=NULL){
-            return view('activities.status.booking');
-        }
-        else{
-            abort(404);
-        }
+        return view('activities.status.booking');
     }
 
     public function lecturer()
     {
-        if(Auth()->User()!=NULL){
-            return view('activities.status.lecturer');
-        }
-        else{
-            abort(404);
-        }
+        return view('activities.status.lecturer');
     }
 
     public function confirmation()
     {
-        if(Auth()->User()!=NULL){
-            return view('activities.status.confirmation');
-        }
-        else{
-            abort(404);
-        }
+        return view('activities.status.confirmation');
     }
 
     public function reschedule()
     {
-        if(Auth()->User()!=NULL){
-            return view('activities.status.reschedule');
-        }
-        else{
-            abort(404);
-        }
+        return view('activities.status.reschedule');
     }
 
     public function approved()
     {
-        if(Auth()->User()!=NULL){
-            return view('activities.status.approved');
-        }
-        else{
-            abort(404);
-        }
+        return view('activities.status.approved');
     }
 
     public function rejected()
     {
-        if(Auth()->User()!=NULL){
-            return view('activities.status.rejected');
-        }
-        else{
-            abort(404);
-        }
+        return view('activities.status.rejected');
     }
 
     public function canceled()
     {
-        if(Auth()->User()!=NULL){
-            return view('activities.status.canceled');
+        return view('activities.status.canceled');
+    }
+
+    public function completed()
+    {
+        if(Auth()->User()->hasRole('Admin')){
+            return view('activities.status.complete');
         }
         else{
             abort(404);
@@ -768,6 +745,7 @@ class ActivitiesController extends Controller
             ->rawColumns(['attend', 'detail', 'action'])
             ->make(true);
     }
+
     public function adminApproved()
     {
         $model = Approve::whereHas('orders', function ($query){
@@ -831,6 +809,148 @@ class ActivitiesController extends Controller
             ->make(true);
     }
 
+    public function adminRejected()
+    {
+        $model = Booking::where('status',3)->get();
+        return DataTables::of($model)
+            ->editColumn('date1', function($model){
+                $date = date('d M Y', strtotime($model->date1));
+                $time = $model->times1->name;
+                return $date.' '.$time;
+            })
+            ->editColumn('date2', function($model){
+                $date = date('d M Y', strtotime($model->date2));
+                $time = $model->times2->name;
+                return $date.' '.$time;
+            })
+            ->editColumn('date3', function($model){
+                $date = date('d M Y', strtotime($model->date3));
+                $time = $model->times3->name;
+                return $date.' '.$time;
+            })
+            ->addColumn('user', function($model){
+                return $model->orders->users->name;
+            })
+            ->addColumn('tool', function($model){
+                return $model->orders->tools->name;
+            })
+            ->addColumn('lecturer', function($model){
+                $lecturer = User::where('email',$model->orders->users->profiles->email_lecturer)->value('name');
+                return $lecturer;
+            })
+            ->addColumn('attend', function($model){
+                if ($model->orders->attend == NULL){
+                    return '<i class="fas fa-times"></i>';
+                }
+                return '<i class="fas fa-check"></i>';
+            })
+            ->addColumn('plan', function($model){
+                return $model->orders->plans->name;
+            })
+            ->addColumn('purpose', function($model){
+                return $model->orders->purpose;
+            })
+            ->addColumn('sample', function($model){
+                return $model->orders->sample;
+            })
+            ->addColumn('unique', function($model){
+                return $model->orders->unique;
+            })
+            ->editColumn('status', function($model){
+                if ($model->status == 1){
+                    return 'Menunggu konfirmasi pada email Anda';
+                }
+                else if ($model->status == 2){
+                    return 'Menunggu konfirmasi dari Dosen Pembimbing Anda';
+                }
+                else if ($model->status == 3){
+                    return 'Menunggu konfirmasi dari Admin';
+                }
+            })
+            ->addColumn('detail', function($model){
+                $button = 
+'<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>';
+                return $button;
+            })
+            ->addColumn('action', function($model){
+                $button = 
+'<a href="'.route('verify.showConfirm', $model->id).'" class="btn btn-primary btn-sm modal-show" name="Confirm: '.$model->no_form.'">Confirm</a>
+<a href="'.route('verify.showReschedule', $model->id).'" class="btn btn-warning btn-sm modal-show" name="Reschedule: '.$model->no_form.'">Reschedule</a>
+<a href="'.route('verify.showReject', $model->id).'" class="btn btn-danger btn-sm modal-show" name="Reject: '.$model->no_form.'">Reject</a>';
+                return $button;
+            })
+            ->removeColumn('id')
+            ->removeColumn('times1_id')
+            ->removeColumn('times2_id')
+            ->removeColumn('times3_id')
+            ->removeColumn('users_id')
+            ->removeColumn('token')
+            ->removeColumn('note')
+            ->addIndexColumn()
+            ->rawColumns(['attend', 'detail', 'action'])
+            ->make(true);
+    }
+
+    public function datatableCompleted()
+    {
+        $model = Approve::where('status',2)->get();
+        return DataTables::of($model)
+            ->editColumn('date', function($model){
+                $date = date('d M Y', strtotime($model->date));
+                $time = $model->times->name;
+                return $date.' '.$time;
+            })
+            ->addColumn('user', function($model){
+                return $model->orders->users->name;
+            })
+            ->addColumn('tool', function($model){
+                return $model->orders->tools->name;
+            })
+            ->addColumn('plan', function($model){
+                return $model->orders->plans->name;
+            })
+            ->editColumn('total', function($model){
+                $total = 'Rp ';
+                $total .= number_format($model->payments->total, 0, ',', '.');
+                return $total;
+            })
+            // ->editColumn('status', function($model){
+            //     return 'Menunggu konfirmasi pada email Anda';
+            // })
+            ->addColumn('confirm', function($model){
+                $button = 
+'<a href="'.route('status.updateCompleted', $model->id).'" class="btn btn-primary btn-sm confirm" name="'.$model->no_regis.'">Confirm</a>';
+                return $button;
+            })
+            ->addIndexColumn()
+            ->rawColumns(['confirm'])
+            ->make(true);
+    }
+
+    public function updateCompleted(Request $request, $id)
+    {
+        $model = Approve::findOrFail($id);
+        if($model->status==2){
+            $save = $model->update([
+                'status' => 3
+            ]);
+            if($model->payments->status==6){
+                $save = Payment::where('id',$model->payments->id)->update([
+                    'status' => 8
+                ]);
+            }
+            if($model->payments->status==7){
+                $save = Payment::where('id',$model->payments->id)->update([
+                    'status' => 9
+                ]);
+            }
+            return response()->json($save);
+        }
+        else{
+            abort(404);
+        }
+    }
+
     public function history()
     {
         return view('activities.history');
@@ -840,34 +960,58 @@ class ActivitiesController extends Controller
     {
         $model = Approve::find($id);
         $price = Price::get();
-        if($model->approves->orders->plans_id == 3){
-            $email_lecturer = $model->approves->orders->users->profiles->email_lecturer;
+        if($model->orders->plans_id == 3){
+            $email_lecturer = $model->orders->users->profiles->email_lecturer;
             $model['name'] = User::where('email',$email_lecturer)->value('name');
         }
         else{
-            $model['name'] = $model->approves->orders->users->name;
+            $model['name'] = $model->orders->users->name;
         }
-        $date = date('d F Y',strtotime($model->approves->date));
+        $date = date('d F Y',strtotime($model->date));
         // dd());
             // $time_start = Time::where('id',$time)->value('time_start');
-        $model['datetime'] = $date.' '.$model->approves->times->name;
+        $model['datetime'] = $date.' '.$model->times->name;
         // dd($model->created_at->format('Y-m-d'));
         // $model['date'] =  date('Y-m-d',$model->created_at);
         // $model['many'] = $request->many;
         // $model['service'] = Price::where('tool_id',$model->orders->tools_id)->pluck('service','id');
-        return view('activities.show', ['model' => $model, 'price'=>$price]);
+        return view('activities.showhistory', ['model' => $model, 'price'=>$price]);
     }
 
     public function datatableHistory()
     {
-        $model = Approve::whereHas('orders', function ($order){
-                return $order->where('users_id', '=', Auth()->User()->id);
-        })->where(function($model){
-            $model->where('status',1)
-                ->orWhere('status',2)
-                ->orWhere('status',3);
-        })->get();
+        $model=Auth()->User();
+        if($model->hasRole('Dosen Unpad|Dosen Non Unpad')){
+            $model = Approve::where(function($model){
+                $model->whereHas('orders', function ($order){
+                        return $order->where('users_id', '=', Auth()->User()->id);
+                    })->Where('status',3)
+                    ->orWhereHas('orders', function ($order){
+                        return $order->whereHas('users', function ($user){
+                            return $user->whereHas('profiles', function ($profile){
+                                return $profile->where('email_lecturer', '=', Auth()->User()->email);
+                            });
+                        });
+                    })->where('status',3);
+            })->get();
+        }
+        else if($model->hasRole('Mahasiswa Unpad|Mahasiswa Non Unpad|User Umum')){
+            $model = Approve::where(function($model){
+                $model->whereHas('orders', function ($order){
+                    return $order->where('users_id', '=', Auth()->User()->id);
+                });
+            })->where('status',3)->get();
+        }
+        else if($model->hasRole('Admin')){
+            $model = Approve::where('status',3)->get();
+        }
+        else{
+            abort(404);
+        }
         return DataTables::of($model)
+            ->addColumn('user', function($model){
+                return $model->orders->users->name;
+            })
             ->addColumn('tool', function($model){
                 return $model->orders->tools->name;
             })
@@ -882,22 +1026,14 @@ class ActivitiesController extends Controller
                 return $date.' '.$time;
             })
             ->addColumn('status', function($model){
-                if($model->status==1){
-                    return '';
-                }
-                if($model->status==2){
-                    return 'Belum ambil data';
-                }
-                if($model->status==3){
-                    return 'Completed';
-                }
+                return 'Completed';
             })
             ->addColumn('plan', function($model){
                 return $model->orders->plans->name;
             })
             ->addColumn('action', function($model){
                 $button = 
-'<a href="'.route('payment.showHistory', $model->id).'" class="btn btn-primary btn-sm" name="'.$model->no_regis.'">show</a>';
+'<a href="'.route('activities.showHistory', $model->id).'" class="btn btn-primary btn-sm" name="'.$model->no_regis.'">show</a>';
                 return $button;
             })
             ->removeColumn('id')

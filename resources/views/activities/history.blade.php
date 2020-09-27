@@ -25,6 +25,7 @@
     columns: [
       {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, className: 'dt-center'},
       {title: 'No Registration', data: 'no_regis', name: 'no_regis', className: 'dt-head-center'},
+      {title: 'Nama Pengguna', data: 'user', name: 'user', className: 'dt-head-center'},
       {title: 'Nama Alat', data: 'tool', name: 'tool', className: 'dt-head-center'},
       {title: 'Tanggal Penggunaan', data: 'date', name: 'date', className: 'dt-head-center'},
       {title: 'Total Tagihan', data: 'total', name: 'total', orderable:false, className: 'dt-center'},

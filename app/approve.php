@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Approve extends Model
 {
-    protected $fillable = ['id','order_id','no_regis','date','times_id'];
+    protected $fillable = ['id','orders_id','no_regis','date','times_id','status'];
     public function orders(){
         return $this->belongsTo('App\Order');
     }

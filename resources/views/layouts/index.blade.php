@@ -160,7 +160,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a href="{{ route('status.completed') }}" class="nav-link {{ (request()->is('history*')) ? 'active' : '' }}">
+              <a href="{{ route('status.completed') }}" class="nav-link {{ (request()->is('complete*')) ? 'active' : '' }}">
                 <i class="nav-icon fas fa-clipboard-list"></i>
                 <p>
                   Complete Activities
@@ -283,7 +283,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('student.status') }}" class="nav-link {{ (request()->is('student/request*')) ? 'active' : '' }}">
+                  <a href="{{ route('student.booking') }}" class="nav-link {{ (request()->is('student/request*')) ? 'active' : '' }}">
                     <i class="fas fa-caret-right nav-icon"></i>
                     <p>Booking Request</p>
                   </a>

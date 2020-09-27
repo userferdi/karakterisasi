@@ -284,6 +284,52 @@ class VerificationController extends Controller
     public function updateConfirm(Request $request, $id)
     {
         $model = Booking::find($id);
+        // dd($model->orders->users->profiles);
+        if($model->status == 2){
+            $newtoken = str::random(60);
+            $save = Booking::find($id)->update([
+                'token' => $newtoken,
+                'status' => 3,
+            ]);
+            // if($save == true){
+                $model = Booking::find($id);
+                $mail = new PHPMailer(true);
+                try{
+                    $mail->Encoding = 'base64';
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.gmail.com';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'ferdi.maulana@gmail.com';
+                    $mail->Password = 'oiuuiookmmko';
+                    // SSL: 465, TLS: 587
+                    $mail->SMTPSecure = 'ssl';
+                    $mail->Port = 465;
+                    $mail->SetFrom('ferdi.maulana@gmail.com', 'Admin');
+                    $mail->AddAddress('ferdi.maulana@gmail.com');
+                    $mail->Subject = 'Permintaan Verifikasi Booking Alat';
+                    $mail->Body = '
+<p>Sistem Informasi Pengelolaan Alat (SIPA) Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br/>
+<p>Nama Mahasiswa : <strong>'.$model->orders->users->name.'</strong></p>
+<p>NIM : <strong>'.$model->orders->users->profiles->no_id.'</strong></p>
+<p>Email : <strong>'.$model->orders->users->email.'</strong></p>
+<p>Program Studi : <strong>'.$model->orders->users->profiles->study_program.'</strong></p>
+<p>Fakultas : <strong>'.$model->orders->users->profiles->faculty.'</strong></p>
+<p>Universitas : <strong>'.$model->orders->users->profiles->university.'</strong></p><br/>
+<p>Anda diminta untuk melakukan verifikasi sebagai Dosen Penanggungjawab terhadap permintaan penggunaan alat dari Mahasiswa tersebut. Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$newtoken).'">di sini!</a></p>
+<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('student.status').'">login!</a></p>
+<p>Silahkan Masuk ke Menu <strong>My Students -> Booking Request</strong> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda. Apabila Anda tidak melakukan verifikasi maka mahasiswa Anda tidak dapat melanjutkan proses permintaan penggunaan alat di PPNN ITB.</p><br/><br/>
+<p>Hormat Kami,</p><br/>
+<p>Sekretariat SIPA FINDER</p>
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>
+';
+                    $mail->isHTML(true);
+                    $mail->Send();
+                    return response()->json(true);
+                }catch (Exception $e) {
+                    return response()->json(error);
+                }
+            // }
+        }
         if($model->status == 3){
             $model = $request->all();
             $model['token'] = NULL;
@@ -391,7 +437,6 @@ class VerificationController extends Controller
                     $mail->isHTML(true);
                     $mail->Send();
                     return response()->json(true);
-                    // return redirect()->route('status.booking');
                 }catch (Exception $e) {
                     return response()->json(error);
                 }
@@ -405,8 +450,16 @@ class VerificationController extends Controller
     public function updateReject(Request $request, $id)
     {
         $model = Booking::find($id);
+        if($model->status == 2){
+            $model = Booking::findOrFail($id)->update([
+                'token' => NULL,
+                'status' => 7
+            ]);
+            return response()->json($model);
+        }
         if($model->status == 3){
             $model = $request->all();
+            $model['token'] = NULL;
             $model['status'] = 8;
             $model = Booking::findOrFail($id)->update($model);
             return response()->json($model);

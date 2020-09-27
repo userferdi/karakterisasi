@@ -179,14 +179,14 @@ class PaymentController extends Controller
             ]);
             $payment = new Payment;
             $no = Payment::orderBy('id', 'desc')->value('id');
-            $date = date("/m/Y");
+            $payment['date_invoice'] = date("/m/Y");
             if($no == NULL){
                 $no = 1;
-                $payment['no_invoice'] = $no.'/'.$model->orders->tools->labs->code.'/'.$model->orders->tools->code.$date;
+                $payment['no_invoice'] = $no.'/'.$model->orders->tools->labs->code.'/'.$model->orders->tools->code.$payment->date_invoice;
             }
             else{
                 $no+=1;
-                $payment['no_invoice'] = $no.'/'.$model->orders->tools->labs->code.'/'.$model->orders->tools->code.$date;
+                $payment['no_invoice'] = $no.'/'.$model->orders->tools->labs->code.'/'.$model->orders->tools->code.$payment->date_invoice;
             }
             if($model->orders->users->hasRole('Dosen Unpad|Mahasiswa Unpad')){
                 $price = Price::where('id',$request->service1)->first();
@@ -594,14 +594,14 @@ class PaymentController extends Controller
         $model = Payment::find($id);
         if($model->status==1|$model->status==4|$model->status==5){
             $no = Payment::orderBy('id', 'desc')->value('id');
-            $date = date("/m/Y");
+            $payment['date_receipt'] = date("/m/Y");
             if($no == NULL){
                 $no = 1;
-                $payment['no_receipt'] = $no.'/'.$model->approves->orders->tools->labs->code.'/'.$model->approves->orders->tools->code.$date;
+                $payment['no_receipt'] = $no.'/'.$model->approves->orders->tools->labs->code.'/'.$model->approves->orders->tools->code.$payment->date_receipt;
             }
             else{
                 $no+=1;
-                $payment['no_receipt'] = $no.'/'.$model->approves->orders->tools->labs->code.'/'.$model->approves->orders->tools->code.$date;
+                $payment['no_receipt'] = $no.'/'.$model->approves->orders->tools->labs->code.'/'.$model->approves->orders->tools->code.$payment->date_receipt;
             }
             if($model->status==1|$model->status==4){
                 $payment['status'] = 6;
@@ -660,12 +660,6 @@ class PaymentController extends Controller
         }
         else if($model->hasRole('Admin')){
             $model = Payment::where(function($model){
-                $model->whereHas('approves', function ($query){
-                    return $query->whereHas('orders', function ($order){
-                        return $order->where('users_id', '=', Auth()->User()->id);
-                    });
-                });
-            })->where(function($model){
                 $model->where('status',8)
                     ->orWhere('status',9);
             })->get();
@@ -674,26 +668,43 @@ class PaymentController extends Controller
             abort(404);
         }
         return DataTables::of($model)
+            ->addColumn('user', function($model){
+                return $model->approves->orders->users->name;
+            })
             ->addColumn('tool', function($model){
-                return $model->orders->tools->name;
+                return $model->approves->orders->tools->name;
             })
             ->addColumn('total', function($model){
                 $total = 'Rp ';
-                $total .= number_format($model->payments->total, 0, ',', '.');
+                $total .= number_format($model->total, 0, ',', '.');
                 return $total;
+            })
+            ->addColumn('plan', function($model){
+                $plan = $model->approves->orders->plans->name;
+                if($plan=='Tunai'){
+                    return $plan;
+                }
+//                 else if($model->image!=NULL){
+//                     $button = 
+// '<p>'.$plan.'</p><a href="#" class="btn btn-primary btn-sm details-control">Show Image</a>&nbsp;
+// <a href="'.route('payment.formUpload', $model->id).'" class="btn btn-primary btn-sm modal-show" name="Upload Bukti Transfer">Reupload</a>';
+//                     return $button;
+//                 }
+                else{
+                    $button = 
+'<p>'.$plan.'</p><a href="#" class="btn btn-primary btn-sm details-control">Show Image</a>';
+                    return $button;
+                }
             })
             ->editColumn('date', function($model){
                 $date = date('d M Y', strtotime($model->date));
-                $time = $model->times->name;
+                $time = $model->approves->times->name;
                 return $date.' '.$time;
             })
             ->addColumn('status', function($model){
                 if($model->status==2){
                     return 'Completed';
                 }
-            })
-            ->addColumn('plan', function($model){
-                return $model->orders->plans->name;
             })
             ->addColumn('action', function($model){
                 $button = 
@@ -705,7 +716,7 @@ class PaymentController extends Controller
             ->removeColumn('users_id')
             ->removeColumn('note')
             ->addIndexColumn()
-            ->rawColumns(['attend', 'detail', 'action'])
+            ->rawColumns(['plan'])
             ->make(true);
     }
 }
