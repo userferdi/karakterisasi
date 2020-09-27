@@ -213,7 +213,7 @@ Route::middleware('auth')->group(function(){
 		Route::get('confirm/{id}', 'VerificationController@showConfirm')->name('verify.showConfirm');
 		Route::get('reschedule/{id}', 'VerificationController@showReschedule')->name('verify.showReschedule');
 		Route::get('reject/{id}', 'VerificationController@showReject')->name('verify.showReject');
-		Route::get('update/confirm/{id}', 'VerificationController@updateConfirm')->name('verify.updateConfirm');
+		Route::put('update/confirm/{id}', 'VerificationController@updateConfirm')->name('verify.updateConfirm');
 		Route::put('update/reschedule/{id}', 'VerificationController@updateReschedule')->name('verify.updateReschedule');
 		Route::put('update/reject/{id}', 'VerificationController@updateReject')->name('verify.updateReject');
 		Route::put('update/cancel/{id}', 'VerificationController@updateCancel')->name('verify.updateCancel');
