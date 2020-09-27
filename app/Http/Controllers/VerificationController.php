@@ -71,7 +71,7 @@ class VerificationController extends Controller
     <p>Fakultas : <strong>'.$model->orders->users->profiles->faculty.'</strong></p>
     <p>Universitas : <strong>'.$model->orders->users->profiles->university.'</strong></p><br/>
     <p>Anda diminta untuk melakukan verifikasi sebagai Dosen Penanggungjawab terhadap permintaan penggunaan alat dari Mahasiswa tersebut. Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$newtoken).'">di sini!</a></p>
-    <p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('student.status').'">login!</a></p>
+    <p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
     <p>Silahkan Masuk ke Menu <strong>My Students -> Booking Request</strong> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda. Apabila Anda tidak melakukan verifikasi maka mahasiswa Anda tidak dapat melanjutkan proses permintaan penggunaan alat di PPNN ITB.</p><br/><br/>
     <p>Hormat Kami,</p><br/>
     <p>Sekretariat SIPA FINDER</p>
@@ -119,7 +119,7 @@ class VerificationController extends Controller
 <p>Fakultas : <strong>'.$model->orders->users->profiles->faculty.'</strong></p>
 <p>Universitas : <strong>'.$model->orders->users->profiles->university.'</strong></p><br/>
 <p>Anda diminta untuk melakukan verifikasi sebagai Dosen Penanggungjawab terhadap permintaan penggunaan alat dari Mahasiswa tersebut. Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$newtoken).'">di sini!</a></p>
-<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('student.status').'">login!</a></p>
+<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
 <p>Silahkan Masuk ke Menu <strong>My Students -> Booking Request</strong> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda. Apabila Anda tidak melakukan verifikasi maka mahasiswa Anda tidak dapat melanjutkan proses permintaan penggunaan alat di PPNN ITB.</p><br/><br/>
 <p>Hormat Kami,</p><br/>
 <p>Sekretariat SIPA FINDER</p>
@@ -164,7 +164,7 @@ class VerificationController extends Controller
 <p>Fakultas : <strong>'.$model->orders->users->profiles->faculty.'</strong></p>
 <p>Universitas : <strong>'.$model->orders->users->profiles->university.'</strong></p><br/>
 <p>Anda diminta untuk melakukan verifikasi sebagai Dosen Penanggungjawab terhadap permintaan penggunaan alat dari Mahasiswa tersebut. Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$newtoken).'">di sini!</a></p>
-<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('student.status').'">login!</a></p>
+<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
 <p>Silahkan Masuk ke Menu <strong>My Students -> Booking Request</strong> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda. Apabila Anda tidak melakukan verifikasi maka mahasiswa Anda tidak dapat melanjutkan proses permintaan penggunaan alat di PPNN ITB.</p><br/><br/>
 <p>Hormat Kami,</p><br/>
 <p>Sekretariat SIPA FINDER</p>
@@ -316,7 +316,7 @@ class VerificationController extends Controller
 <p>Fakultas : <strong>'.$model->orders->users->profiles->faculty.'</strong></p>
 <p>Universitas : <strong>'.$model->orders->users->profiles->university.'</strong></p><br/>
 <p>Anda diminta untuk melakukan verifikasi sebagai Dosen Penanggungjawab terhadap permintaan penggunaan alat dari Mahasiswa tersebut. Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$newtoken).'">di sini!</a></p>
-<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('student.status').'">login!</a></p>
+<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
 <p>Silahkan Masuk ke Menu <strong>My Students -> Booking Request</strong> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda. Apabila Anda tidak melakukan verifikasi maka mahasiswa Anda tidak dapat melanjutkan proses permintaan penggunaan alat di PPNN ITB.</p><br/><br/>
 <p>Hormat Kami,</p><br/>
 <p>Sekretariat SIPA FINDER</p>
@@ -427,7 +427,7 @@ class VerificationController extends Controller
 <p>Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari Anda.</p>
 <p>Sebelum melanjutkan proses pemesanan, kami perlu memastikan bahwa ini memang Anda.</p>
 <p>Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$token).'">di sini!</a></p><br/>
-<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('status.booking').'">login!</a></p>
+<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
 <p>Silahkan Masuk ke Menu <strong>My Activities -> Registration of Tool Usage</strong> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda.</p>
 <p>Jika bukan Anda yang melakukan transaksi tersebut, harap mengabaikan pesan ini.</p><br/><br/>
 <p>Hormat Kami,</p>
@@ -554,7 +554,7 @@ class VerificationController extends Controller
 <p>Fakultas : <strong>'.$model->orders->users->profiles->faculty.'</strong></p>
 <p>Universitas : <strong>'.$model->orders->users->profiles->university.'</strong></p><br/>
 <p>Anda diminta untuk melakukan verifikasi sebagai Dosen Penanggungjawab terhadap permintaan penggunaan alat dari Mahasiswa tersebut. Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$newtoken).'">di sini!</a></p>
-<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('student.status').'">login!</a></p>
+<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
 <p>Silahkan Masuk ke Menu <strong>My Students -> Booking Request</strong> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda. Apabila Anda tidak melakukan verifikasi maka mahasiswa Anda tidak dapat melanjutkan proses permintaan penggunaan alat di PPNN ITB.</p><br/><br/>
 <p>Hormat Kami,</p><br/>
 <p>Sekretariat SIPA FINDER</p>
@@ -598,7 +598,7 @@ class VerificationController extends Controller
 <p>Fakultas : <strong>'.$model->orders->users->profiles->faculty.'</strong></p>
 <p>Universitas : <strong>'.$model->orders->users->profiles->university.'</strong></p><br/>
 <p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Mahasiswa tersebut. Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$newtoken).'">di sini!</a></p>
-<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('student.status').'">login!</a></p>
+<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
 <p>Silahkan Masuk ke Menu <strong>My Students -> Booking Request</strong> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda. Apabila Anda tidak melakukan verifikasi maka mahasiswa Anda tidak dapat melanjutkan proses permintaan penggunaan alat di PPNN ITB.</p><br/><br/>
 <p>Hormat Kami,</p><br/>
 <p>Sekretariat SIPA FINDER</p>
