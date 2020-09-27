@@ -235,13 +235,20 @@ class ActivitiesController extends Controller
 
     public function datatableBooking()
     {
-        $model = Booking::whereHas('orders', function ($query){
+        $model = Booking::where(function($model){
+            $model->whereHas('orders', function ($query){
             return $query->where('users_id', '=', Auth()->User()->id);
-        })->where(function($model){
-            $model->where('status',1)
+        })->where('status',1)
                 ->orWhere('status',2)
                 ->orWhere('status',3);
         })->get();
+        // $model = Booking::whereHas('orders', function ($query){
+        //     return $query->where('users_id', '=', Auth()->User()->id);
+        // })->where(function($model){
+        //     $model->where('status',1)
+        //         ->orWhere('status',2)
+        //         ->orWhere('status',3);
+        // })->get();
         return DataTables::of($model)
             ->editColumn('date1', function($model){
                 $date = date('d M Y', strtotime($model->date1));
