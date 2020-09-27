@@ -3,7 +3,7 @@
 @section('title','FINDER · Laboratorium')
 
 @section('content')
-<h2 style="padding-top:10px;"><strong>Laboratorium</strong></h2>
+<h3 style="padding-top:10px;"><strong>Laboratorium</strong></h3>
 <div class="row">
   <div class="col-lg-12">
     <div class="card" >

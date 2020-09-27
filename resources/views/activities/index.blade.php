@@ -3,13 +3,12 @@
 @section('title', 'FINDER')
 
 @section('content')
-<div class="row" style="padding-top:15px;">
+<div class="row">
+  &ensp;<a href="{{ route('activities.showform') }}" class="btn btn-primary float-right btn-sm modal-show" name="Tambah Daftar Lab Baru" style="margin-bottom:15px; margin-top:15px;"><i class="nav-icon fas fa-plus"></i> Registrasi Penggunaan Alat</a>
   <div class="col-lg-12">
     <div class="card">
       <div class="card-body">
-        <h4 class="mb-3"><strong>Cara Registrasi Penggunaan Alat</strong>
-          <a href="{{ route('activities.showform') }}" class="btn btn-primary float-right btn-sm modal-show" name="Tambah Daftar Lab Baru"><i class="nav-icon fas fa-plus"></i> Registrasi Penggunaan Alat</a>
-        </h4>
+        <h4 class="mb-3"><strong>Cara Registrasi Penggunaan Alat</strong></h4>
         <p>1. Klik tombol Registrasi Penggunaan Alat untuk melakukan booking penggunaan alat.</p>
         <p>2. Pilih Alat yang akan Anda pinjam kemudian isi form yang disediakan.</p>
         <p>3. Booking Penggunaan Alat yang belum kami terima akan masuk pada menu <strong>Pending Request</strong>.</p>
