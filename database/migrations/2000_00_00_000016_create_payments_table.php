@@ -24,6 +24,7 @@ class CreatePaymentsTable extends Migration
             $table->string('quantity')->nullable();
             $table->string('service')->nullable();
             $table->integer('total')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
             $table->foreign('approves_id')->references('id')->on('approves')
                 ->onUpdate('cascade')->onDelete('cascade');

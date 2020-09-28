@@ -18,7 +18,7 @@
           <tbody>
             <tr>
                 <td width="40%"><b>Tanggal Penagihan</b></td>
-                <td width="60%">{{$model->date_invoice->format('d F Y')}}</td>
+                <td width="60%">{{$model->date_invoice}}</td>
             </tr>
             <tr>
                 <td><b>Nomor Tagihan</b></td>
