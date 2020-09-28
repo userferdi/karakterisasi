@@ -869,14 +869,11 @@ class ActivitiesController extends Controller
                 return $model->orders->unique;
             })
             ->editColumn('status', function($model){
-                if ($model->status == 1){
-                    return 'Menunggu konfirmasi pada email Anda';
+                if ($model->status == 7){
+                    return 'Rejected by Lecturer';
                 }
-                else if ($model->status == 2){
-                    return 'Menunggu konfirmasi dari Dosen Pembimbing Anda';
-                }
-                else if ($model->status == 3){
-                    return 'Menunggu konfirmasi dari Admin';
+                else if ($model->status == 8){
+                    return 'Rejected by Admin';
                 }
             })
             ->addColumn('detail', function($model){
