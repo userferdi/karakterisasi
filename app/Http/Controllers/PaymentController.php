@@ -593,19 +593,19 @@ class PaymentController extends Controller
     public function updateReceipt($id)
     {
         $model = Payment::find($id);
-        if($model->status==1|$model->status==4|$model->status==5){
+        if($model->status==1||$model->status==4||$model->status==5){
             $no = Payment::orderBy('id', 'desc')->value('id');
             $payment['date_receipt'] = date('Y-m-d');
             // $payment['date_receipt'] = date("/m/Y");
             if($no == NULL){
                 $no = 1;
-                $payment['no_receipt'] = $no.'/'.$model->approves->orders->tools->labs->code.'/'.$model->approves->orders->tools->code.'/'.$payment->date_receipt;
+                $payment['no_receipt'] = $no.'/'.$model->approves->orders->tools->labs->code.'/'.$model->approves->orders->tools->code.'/'.$payment['date_receipt'];
             }
             else{
                 $no+=1;
-                $payment['no_receipt'] = $no.'/'.$model->approves->orders->tools->labs->code.'/'.$model->approves->orders->tools->code.'/'.$payment->date_receipt;
+                $payment['no_receipt'] = $no.'/'.$model->approves->orders->tools->labs->code.'/'.$model->approves->orders->tools->code.'/'.$payment['date_receipt'];
             }
-            if($model->status==1|$model->status==4){
+            if($model->status==1||$model->status==4){
                 $payment['status'] = 6;
             }
             else if($model->status==5){
