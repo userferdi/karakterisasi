@@ -202,9 +202,20 @@ Route::middleware('auth')->group(function(){
 		Route::put('update/{id}', 'ActivitiesController@updateCompleted')->name('status.updateCompleted');
 	});
 	Route::prefix('history')->group(function(){
-		Route::get('/', 'ActivitiesController@history')->name('activities.history');
-		Route::get('show/{id}', 'ActivitiesController@showHistory')->name('activities.showHistory');
-		Route::get('datatable', 'ActivitiesController@datatableHistory')->name('activities.datatableHistory');
+		Route::get('/', 'HistoryController@activities')->name('activities.history');
+		Route::prefix('tool')->group(function(){
+			Route::get('/', 'HistoryController@tool')->name('history.tool');
+			Route::get('datatable', 'HistoryController@dataTool')->name('history.dataTool');
+			Route::get('{id}/show', 'HistoryController@showTool')->name('history.showTool');
+			Route::get('{id}', 'HistoryController@dataShowTool')->name('history.dataShowTool');
+		});
+		Route::prefix('user')->group(function(){
+			Route::get('/', 'HistoryController@user')->name('history.user');
+			Route::get('datatable', 'HistoryController@dataUser')->name('history.dataUser');
+			Route::get('show/{id}', 'HistoryController@showUser')->name('history.showUser');
+		});
+		Route::get('show/{id}', 'HistoryController@showHistory')->name('activities.showHistory');
+		Route::get('datatable', 'HistoryController@datatableHistory')->name('activities.datatableHistory');
 	});
 
 	Route::prefix('verification')->group(function(){
