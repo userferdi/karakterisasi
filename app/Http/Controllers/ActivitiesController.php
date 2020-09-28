@@ -797,12 +797,6 @@ class ActivitiesController extends Controller
 '<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>';
                 return $button;
             })
-            ->addColumn('action', function($model){
-                $button = 
-'<a href="'.route('activities.confirm', $model->id).'" class="btn btn-primary btn-sm confirm" name="'.$model->no_form.'">Confirm</a>
-<a href="'.route('activities.reject', $model->id).'" class="btn btn-danger btn-sm reject" name="'.$model->no_form.'">Reject</a>';
-                return $button;
-            })
             ->removeColumn('id')
             ->removeColumn('times1_id')
             ->removeColumn('times2_id')
@@ -879,13 +873,6 @@ class ActivitiesController extends Controller
             ->addColumn('detail', function($model){
                 $button = 
 '<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>';
-                return $button;
-            })
-            ->addColumn('action', function($model){
-                $button = 
-'<a href="'.route('verify.showConfirm', $model->id).'" class="btn btn-primary btn-sm modal-show" name="Confirm: '.$model->no_form.'">Confirm</a>
-<a href="'.route('verify.showReschedule', $model->id).'" class="btn btn-warning btn-sm modal-show" name="Reschedule: '.$model->no_form.'">Reschedule</a>
-<a href="'.route('verify.showReject', $model->id).'" class="btn btn-danger btn-sm modal-show" name="Reject: '.$model->no_form.'">Reject</a>';
                 return $button;
             })
             ->removeColumn('id')
