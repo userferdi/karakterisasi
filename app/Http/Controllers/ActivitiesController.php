@@ -775,6 +775,15 @@ class ActivitiesController extends Controller
             ->addColumn('plan', function($model){
                 return $model->orders->plans->name;
             })
+            ->addColumn('purpose', function($model){
+                return $model->orders->purpose;
+            })
+            ->addColumn('sample', function($model){
+                return $model->orders->sample;
+            })
+            ->addColumn('unique', function($model){
+                return $model->orders->unique;
+            })
             ->addColumn('attend', function($model){
                 if ($model->orders->attend == NULL){
                     return '<i class="fas fa-times"></i>';
