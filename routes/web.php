@@ -184,7 +184,7 @@ Route::middleware('auth')->group(function(){
 		Route::get('receipt', 'PaymentController@receipt')->name('payment.receipt');
 		Route::get('receipt/show/{id}', 'PaymentController@showReceipt')->name('payment.showReceipt');
 		Route::put('receipt/form/{id}', 'PaymentController@formReceipt')->name('payment.formReceipt');
-		Route::get('receipt/update/{id}', 'PaymentController@updateReceipt')->name('payment.updateReceipt');
+		Route::put('receipt/update/{id}', 'PaymentController@updateReceipt')->name('payment.updateReceipt');
 		Route::get('receipt/data', 'PaymentController@dataReceipt')->name('payment.dataReceipt');
 		Route::get('receipt/datatable', 'PaymentController@datatableReceipt')->name('payment.datatableReceipt');
 		// Udah ada receipt masuk ke history
