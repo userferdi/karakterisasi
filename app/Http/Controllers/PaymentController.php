@@ -182,11 +182,11 @@ class PaymentController extends Controller
             $payment['date_invoice'] = date('Y-m-d');
             if($no == NULL){
                 $no = 1;
-                $payment['no_invoice'] = $no.'/'.$model->orders->tools->labs->code.'/'.$model->orders->tools->code.$payment->date_invoice->date("/m/Y");
+                $payment['no_invoice'] = $no.'/'.$model->orders->tools->labs->code.'/'.$model->orders->tools->code.$payment->date_invoice;
             }
             else{
                 $no+=1;
-                $payment['no_invoice'] = $no.'/'.$model->orders->tools->labs->code.'/'.$model->orders->tools->code.$payment->date_invoice->date("/m/Y");
+                $payment['no_invoice'] = $no.'/'.$model->orders->tools->labs->code.'/'.$model->orders->tools->code.$payment->date_invoice;
             }
             if($model->orders->users->hasRole('Dosen Unpad|Mahasiswa Unpad')){
                 $price = Price::where('id',$request->service1)->first();
