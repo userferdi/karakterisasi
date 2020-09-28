@@ -887,7 +887,6 @@ class ActivitiesController extends Controller
             ->removeColumn('times3_id')
             ->removeColumn('users_id')
             ->removeColumn('token')
-            ->removeColumn('note')
             ->addIndexColumn()
             ->rawColumns(['attend', 'detail', 'action'])
             ->make(true);
