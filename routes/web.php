@@ -87,6 +87,16 @@ Route::middleware('auth')->group(function(){
 		Route::delete('delete/{id}', 'TimeController@delete')->name('time.delete');
 		Route::get('datatable', 'TimeController@datatable')->name('time.dt');
 	});
+	Route::prefix('timeofusage')->group(function(){
+		Route::get('/', 'TimeofUsageController@index')->name('timeusage.index');
+		Route::get('createprepare', 'TimeofUsageController@createPrepare')->name('timeusage.createprepare');
+		Route::get('createproses', 'TimeofUsageController@createProses')->name('timeusage.createproses');
+		Route::post('store', 'TimeofUsageController@store')->name('timeusage.store');
+		Route::get('edit/{id}', 'TimeofUsageController@edit')->name('timeusage.edit');
+		Route::put('update', 'TimeofUsageController@update')->name('timeusage.update');
+		Route::delete('delete/{id}', 'TimeofUsageController@delete')->name('timeusage.delete');
+		Route::get('datatable', 'TimeofUsageController@datatable')->name('timeusage.dt');
+	});
 
 	Route::prefix('activities')->group(function(){
 		Route::prefix('register')->group(function(){

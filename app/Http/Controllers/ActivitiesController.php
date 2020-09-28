@@ -756,9 +756,7 @@ class ActivitiesController extends Controller
 
     public function adminApproved()
     {
-        $model = Approve::whereHas('orders', function ($query){
-            return $query->where('users_id', '=', Auth()->User()->id);
-        })->where('status',1)->get();
+        $model = Approve::where('status',1)->get();
         return DataTables::of($model)
             ->editColumn('date', function($model){
                 $date = date('d M Y', strtotime($model->date));
@@ -819,7 +817,10 @@ class ActivitiesController extends Controller
 
     public function adminRejected()
     {
-        $model = Booking::where('status',3)->get();
+        $model = Booking::where(function($model){
+            $model->where('status',7)
+                  ->orWhere('status',8);
+        })->get();
         return DataTables::of($model)
             ->editColumn('date1', function($model){
                 $date = date('d M Y', strtotime($model->date1));

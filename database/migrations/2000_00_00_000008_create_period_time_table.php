@@ -14,6 +14,7 @@ class CreatePeriodTimeTable extends Migration
     public function up()
     {
         Schema::create('time_usage', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('usage_id')->unsigned();
             $table->integer('time_id')->unsigned();
             $table->timestamps();

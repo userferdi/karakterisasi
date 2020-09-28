@@ -14,7 +14,7 @@ class TimeController extends Controller
     {
         if(Auth()->User()->hasRole('Admin')){
             $model = new Time();
-            return view('form', ['model' => $model]);
+            return view('time', ['model' => $model]);
         }
         else{
             abort(404);
@@ -36,7 +36,7 @@ class TimeController extends Controller
     {
         if(Auth()->User()->hasRole('Admin')){
             $model = Time::findOrFail($id);
-            return view('form', ['model' => $model]);
+            return view('time', ['model' => $model]);
         }
         else{
             abort(404);
