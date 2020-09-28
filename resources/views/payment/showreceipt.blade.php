@@ -5,7 +5,7 @@
 @section('content')
 <div class="row">
 &ensp;<a href=".." type="button" class="btn btn-secondary btn-sm" style="margin-bottom:15px; margin-top:15px;">Back</a>&ensp;
-<a href=".." type="button" class="btn btn-secondary btn-sm" style="margin-bottom:15px; margin-top:15px;"><i class="fa fa-print fa-sm"></i> Convert into pdf</a>
+<a href="{{ route('payment.pdfReceipt',$model->id) }}" type="button" class="btn btn-secondary btn-sm" style="margin-bottom:15px; margin-top:15px;"><i class="fa fa-print fa-sm"></i> Convert into pdf</a>
 </div>
 <div class="card">
   <div class="card-body">
@@ -109,9 +109,17 @@ $i=0; $j=0; $k=0; $l=0;
             </tr>
             <?php $i=0; ?>
             @foreach($service as $s)
-            <?php
+            <?php 
+              if($model->approves->orders->users->hasRole('Dosen Unpad|Mahasiswa Unpad')){ 
+                $harga = $price[$s-1]->price1;
+              }
+              if($model->approves->orders->users->hasRole('Dosen Non Unpad|Mahasiswa Non Unpad')){ 
+                $harga = $price[$s-1]->price2;
+              }
+              if($model->approves->orders->users->hasRole('User Umum')){ 
+                $harga = $price[$s-1]->price3;
+              }
               $banyak = $quantity[$i];
-              $harga = $price[$s-1]->price1;
               $total = $banyak*$harga;
             ?>
             <tr>

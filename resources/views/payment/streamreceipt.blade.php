@@ -41,7 +41,7 @@
 	<head>
 	<style type="text/css">
 		body {
-		  background: white; 
+		  background: white;
 		  /*border: 1px solid black;*/
 		  padding: 1.8cm;
 		  padding-left: 1.68cm;
@@ -100,41 +100,41 @@
 		  text-align: justify;
 		}
 		h5 {
-		  font-size: 15px;
-		  line-height: 15px;
+		  font-size: 16px;
+		  line-height: 16px;
 		  margin-top: 0;
-		  margin-bottom: 15px;
+		  margin-bottom: 8px;
 		}
 		p{
-		  font-size: 12px;
-		  line-height: 16.5px;
+		  font-size: 13px;
+		  line-height: 19.5px;
 		  margin-top: 0;
 		  margin-bottom: 0;
 		}
 		th {
-		  font-size: 13.5px;
-		  line-height: 27px;
+		  font-size: 16px;
+		  line-height: 30px;
 		  margin-top: 0;
 		  margin-bottom: 0;
 		}
 		td {
-		  font-size: 12px;
-		  line-height: 12px;
+		  font-size: 13px;
+		  line-height: 19.5px;
 		  margin-top: 0;
 		  margin-bottom: 0;
 		}
 		.table td {
-		  font-size: 12px;
-		  line-height: 24px;
+		  font-size: 13px;
+		  line-height: 26px;
 		  margin-top: 0;
 		  margin-bottom: 0;
 		}
 		.border {
-		  border-top: 1px solid #ddd;
-		  border-bottom: 1px solid #ddd;
+		  border-top: 1px solid #aaa;
+		  border-bottom: 1px solid #aaa;
 		}
 		.border-bottom{
-		  border-bottom: 1px solid #ddd;
+		  border-bottom: 1px solid #aaa;
 		}
 	</style>
 	</head>
@@ -147,33 +147,42 @@
     <br/>
     <br/>
     <br/>
-    <p class="right">Bandung, {{ date('d F Y', strtotime("$model->date_invoice")) }}</p>
     <table width="100%">
       <thead></thead>
       <tbody>
         <tr>
-          <td width="20%"><b>Nomor Tagihan</b></td>
-          <td width="80%">{{$model->no_invoice}}</td>
+          <td width="30%"><b>Date</b></td>
+          <td width="70%">{{ date('l, d F Y', strtotime("$model->date_receipt")) }}</td>
         </tr>
         <tr>
-          <td><b>Perihal</b></td>
-          <td>Penagihan Penggunaan Alat {{ $model->approves->orders->tools->name }}</td>
+          <td><b>Receipt No</b></td>
+          <td>{{ $model->no_receipt }}</td>
         </tr>
         <tr>
-          <td><b>Lampiran</b></td>
+          <td><b>Invoice No</b></td>
+          <td>{{ $model->no_invoice }}</td>
+        </tr>
+        <tr>
+          <td><b>Receipt with thanks from</b></td>
+          <td>{{ $model->name }}</td>
+        </tr>
+        <tr>
+          <td><b>Payment Method</b></td>
+          <td>{{ $model->approves->orders->plans->name }}</td>
+        </tr>
+        <tr>
+          <td><b>The sum of</b></td>
+          <td><b>Rp {{ number_format($model->total, 0, ',', '.') }}</b></td>
+        </tr>
+<!--         <tr>
+          <td><b>Rest of the bill</b></td>
           <td>-</td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
     <br/>
-    <p class="text"><b>Kepada Yth.</b></p>
-    <p class="text"><b>{{ $model->name }}</b></p>
-    <p class="text"><b>di Tempat</b></p>
-	  <br/>
-	  <br/>
-    <p class="text justify">Dengan ini kami informasikan tagihan Ibu/Bapak untuk penggunaan alat {{ $model->approves->orders->tools->name }} di Functional Nano Powder Universitas Padjadjaran. Selanjutnya kami sertakan nota tagihan sebagai berikut.</p>
-	  <br/>
-    <h5 class="text center"><b>INVOICE</b></h5>
+		<br/>
+    <h5 class="text"><b>Description</b></h5>
     <table id="table" class="text-md table row-border" width="100%">
       <thead class="thead-light border">
         <tr>
@@ -227,8 +236,7 @@
     </table>
     <br/>
     <br/>
-    <p class="text">Demikian informasi ini kami sampaikan, atas perhatian dan kerjasamanya, kami ucapkan terima kasih.</p>
-    <img src="right" width="612" height="792"/>
+    <img src="" width="612" height="792"/>
     <br/>
     <br/>
     <br/>

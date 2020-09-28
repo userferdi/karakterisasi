@@ -69,6 +69,8 @@
 <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 <!-- Data Tables -->
 <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
+<!-- Tidio Live Chat -->
+<script src="//code.tidio.co/vxc1ocely84hemzj08gjvedthwszjyap.js" async></script>
 @stack('scripts')
 
 </body>

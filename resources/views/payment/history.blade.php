@@ -17,6 +17,7 @@
 
 @push('scripts')
 <script>
+  @role('Dosen Unpad|Dosen Non Unpad|Mahasiswa Unpad|Mahasiswa Non Unpad|User Umum')
   var detail = $('#table').DataTable({
     responsive: true,
     serverSide: true,
@@ -32,6 +33,26 @@
       {title: 'Metode Pembayaran', data: 'plan', name: 'plan', orderable:false, className: 'dt-center'}
     ],
   });
+  @endrole;
+
+  @role('Admin')
+  var detail = $('#table').DataTable({
+    responsive: true,
+    serverSide: true,
+    ajax: "{{ route('payment.datatableHistory') }}",
+    order: [[ 1, "asc" ]],
+    columns: [
+      {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, className: 'dt-center'},
+      {title: 'No Invoice', data: 'no_invoice', name: 'no_invoice', className: 'dt-head-center'},
+      {title: 'No Receipt', data: 'no_receipt', name: 'no_receipt', className: 'dt-head-center'},
+      {title: 'Nama Pengguna', data: 'user', name: 'user', className: 'dt-head-center'},
+      {title: 'Nama Alat', data: 'tool', name: 'tool', className: 'dt-head-center'},
+      {title: 'Nominal', data: 'total', name: 'total', orderable:false, className: 'dt-center'},
+      {title: 'Metode Pembayaran', data: 'plan', name: 'plan', orderable:false, className: 'dt-center'},
+      {title: 'Show', data: 'show', name: 'show', orderable:false, className: 'dt-center'}
+    ],
+  });
+  @endrole;
 
   function format (d) {
     return  '<div class="text-center">'+'<img src="'+d.image+'" width="150"/>'+'</div>';

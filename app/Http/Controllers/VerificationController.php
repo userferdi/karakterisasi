@@ -424,7 +424,7 @@ class VerificationController extends Controller
                     $mail->AddAddress(Auth()->User()->email);
                     $mail->Subject = 'Permintaan Verifikasi Booking Alat';
                     $mail->Body = '
-<p>Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari Anda.</p>
+<p>Functional Nano Powder (FINDER) Unpad menerima permintaan reschedule penggunaan alat dari Anda.</p>
 <p>Sebelum melanjutkan proses pemesanan, kami perlu memastikan bahwa ini memang Anda.</p>
 <p>Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$token).'">di sini!</a></p><br/>
 <p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>

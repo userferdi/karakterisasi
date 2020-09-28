@@ -83,7 +83,8 @@ class TimeofUsageController extends Controller
     {
         if(Auth()->User()->hasRole('Admin')){
             $model = Usage::findOrFail($request->usage_id);
-            if(count($model->times)){
+            if($model->times()->exists()){
+            // if(count($model->times)){
 				$model = DB::table('time_usage')->where('usage_id',$request->usage_id)->delete();
             }
 			for($i=0;$i<$request->count;$i++){
@@ -104,8 +105,11 @@ class TimeofUsageController extends Controller
     public function delete($id)
     {
         if(Auth()->User()->hasRole('Admin')){
-            $model = Time::findOrFail($id)->delete();
-            return response()->json($model);
+            $model = Usage::findOrFail($request->usage_id);
+            if($model->times()->exists()){
+                $model = DB::table('time_usage')->where('usage_id',$request->usage_id)->delete();
+                return response()->json($model);
+            }
         }
         else{
             abort(404);
@@ -117,12 +121,10 @@ class TimeofUsageController extends Controller
         if(Auth()->User()->hasRole('Admin')){
             $model = Usage::get();
             return DataTables::of($model)
-            	// ->addColumn('name_usage', function($model){
-            	// 	return $model->usages[0]->name;
-            	// })
             	->addColumn('time', function($model){
             		$i = 0;
-		            if(count($model->times)){
+                    if($model->times()->exists()){
+		            // if(count($model->times)){
 	            		foreach($model->times as $a){
 		            		$b[$i] = $a->name;
 		            		$i++;

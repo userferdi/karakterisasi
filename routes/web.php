@@ -180,6 +180,7 @@ Route::middleware('auth')->group(function(){
 		Route::put('bill/update/{id}', 'PaymentController@updateBill')->name('payment.updateBill');
 		Route::get('bill/data', 'PaymentController@dataBill')->name('payment.dataBill');
 		Route::get('bill/datatable', 'PaymentController@datatableBill')->name('payment.datatableBill');
+		Route::get('bill/pdf/{id}', 'PaymentController@pdfBill')->name('payment.pdfBill');
 		// Informasi Terima Pembayaran (Receipt)
 		Route::get('receipt', 'PaymentController@receipt')->name('payment.receipt');
 		Route::get('receipt/show/{id}', 'PaymentController@showReceipt')->name('payment.showReceipt');
@@ -187,9 +188,10 @@ Route::middleware('auth')->group(function(){
 		Route::put('receipt/update/{id}', 'PaymentController@updateReceipt')->name('payment.updateReceipt');
 		Route::get('receipt/data', 'PaymentController@dataReceipt')->name('payment.dataReceipt');
 		Route::get('receipt/datatable', 'PaymentController@datatableReceipt')->name('payment.datatableReceipt');
+		Route::get('receipt/pdf/{id}', 'PaymentController@pdfReceipt')->name('payment.pdfReceipt');
 		// Udah ada receipt masuk ke history
 		Route::get('history', 'PaymentController@history')->name('payment.history');
-		// Route::get('history/show/{id}', 'PaymentController@showHistory')->name('payment.showHistory');
+		Route::get('history/show/{id}', 'PaymentController@showHistory')->name('payment.showHistory');
 		Route::get('history/data', 'PaymentController@dataHistory')->name('payment.dataHistory');
 		Route::get('history/datatable', 'PaymentController@datatableHistory')->name('payment.datatableHistory');
 	});

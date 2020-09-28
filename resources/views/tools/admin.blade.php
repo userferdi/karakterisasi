@@ -110,7 +110,7 @@
     responsive: true,
     serverSide: true,
     ajax: "{{ route('timeusage.dt') }}",
-    order: [[ 2, "asc" ]],
+    order: [[ 1, "asc" ]],
     columns: [
       {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, width: '5%', className: 'dt-center'},
       {title: 'Usage', data: 'name', name: 'name', width: '10%', className: 'dt-head-center'},
@@ -123,7 +123,7 @@
     responsive: true,
     serverSide: true,
     ajax: "{{ route('usage.dt') }}",
-    order: [[ 2, "asc" ]],
+    order: [[ 1, "asc" ]],
     columns: [
       {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, width: '5%', className: 'dt-center'},
       {title: 'Nama', data: 'name', name: 'name', width: '85%', className: 'dt-head-center'},
@@ -135,7 +135,7 @@
     responsive: true,
     serverSide: true,
     ajax: "{{ route('time.dt') }}",
-    order: [[ 2, "asc" ]],
+    order: [[ 1, "asc" ]],
     columns: [
       {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, width: '5%', className: 'dt-center'},
       {title: 'Nama', data: 'name', name: 'name', width: '35%', className: 'dt-head-center'},
@@ -311,7 +311,7 @@
         csrf_token = $('meta[name="csrf-token"]').attr('content');
 
     swal({
-      title: "Are you sure want to delete '" + name + "'?",
+      title: "Are you sure want to delete\n'" + name + "'?",
       text: "You won't be able to revert this!",
       type: 'warning',
       showCancelButton: true,

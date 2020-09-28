@@ -5,7 +5,7 @@
 @section('content')
 <div class="row">
 &ensp;<a href=".." type="button" class="btn btn-secondary btn-sm" style="margin-bottom:15px; margin-top:15px;">Back</a>&ensp;
-<a href=".." type="button" class="btn btn-secondary btn-sm" style="margin-bottom:15px; margin-top:15px;"><i class="fa fa-print fa-sm"></i> Convert into pdf</a>
+<a href="{{ route('payment.pdfBill',$model->id) }}" type="button" class="btn btn-secondary btn-sm" style="margin-bottom:15px; margin-top:15px;"><i class="fa fa-print fa-sm"></i> Convert into pdf</a>
 </div>
 <div class="card">
   <div class="card-body">
@@ -75,7 +75,7 @@
             </tr>
           </tbody>
         </table>
-        @if($model->status==4|$model->status==5)
+        @if($model->status==4|$model->status==5|$model->status==6|$model->status==7|$model->status==8|$model->status==9)
         <h4 class="mb-3">Pembayaran yang telah diterima</h4>
         <table id="table" class="table row-border hover order-column text-sm">
           <thead class="thead-light">
@@ -158,22 +158,16 @@ $i=0; $j=0; $k=0; $l=0;
             </tr>
             <?php $i=0; ?>
             @foreach($service as $s)
-            @role('Dosen Unpad|Mahasiswa Unpad')
-            <?php
+            <?php 
+              if($model->approves->orders->users->hasRole('Dosen Unpad|Mahasiswa Unpad')){ 
                 $harga = $price[$s-1]->price1;
-            ?>
-            @endrole
-            @role('Dosen Non Unpad|Mahasiswa Non Unpad')
-            <?php
+              }
+              if($model->approves->orders->users->hasRole('Dosen Non Unpad|Mahasiswa Non Unpad')){ 
                 $harga = $price[$s-1]->price2;
-            ?>
-            @endrole
-            @role('User Umum')
-            <?php
+              }
+              if($model->approves->orders->users->hasRole('User Umum')){ 
                 $harga = $price[$s-1]->price3;
-            ?>
-            @endrole
-            <?php
+              }
               $banyak = $quantity[$i];
               $total = $banyak*$harga;
             ?>

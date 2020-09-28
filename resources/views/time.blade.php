@@ -13,8 +13,18 @@
 </div>
 <div class="modal-body">
     <div class="form-group">
-        <label for="" class="control-label">Waktu Penggunaan Alat</label>
+        <label for="" class="control-label">Nama</label>
         {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name', 'required', 'placeholder'=>'isi']) !!}
+        <div class="invalid-feedback" id="invalid">Please fill out this field</div>
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label">Waktu Start</label>
+        <input id="timepicker1" class="form-control" name="time_start" value="{{$model->time_start}}"/>
+        <div class="invalid-feedback" id="invalid">Please fill out this field</div>
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label">Waktu Start</label>
+        <input id="timepicker2" class="form-control" name="time_end" value="{{$model->time_end}}"/>
         <div class="invalid-feedback" id="invalid">Please fill out this field</div>
     </div>
 </div>
@@ -22,5 +32,9 @@
     <button type="button" class="btn btn-default" data-dismiss="modal" id="modal-close"></button>
     <button type="submit" class="btn btn-primary" id="modal-save"></button>
 </div>
+<script>
+    $('#timepicker1').timepicker();
+    $('#timepicker2').timepicker();
+</script>
 
 {!! Form::close() !!}

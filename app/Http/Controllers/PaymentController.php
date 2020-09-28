@@ -160,14 +160,25 @@ class PaymentController extends Controller
             $model['name'] = $model->approves->orders->users->name;
         }
         $date = date('d F Y',strtotime($model->approves->date));
-        // dd());
-            // $time_start = Time::where('id',$time)->value('time_start');
         $model['datetime'] = $date.' '.$model->approves->times->name;
-        // dd($model->created_at->format('Y-m-d'));
-        // $model['date'] =  date('Y-m-d',$model->created_at);
-        // $model['many'] = $request->many;
-        // $model['service'] = Price::where('tool_id',$model->orders->tools_id)->pluck('service','id');
         return view('payment.showbill', ['model' => $model, 'price'=>$price]);
+    }
+
+    public function pdfBill($id)
+    {
+        $model = Payment::find($id);
+        $price = Price::get();
+        if($model->approves->orders->plans_id == 3){
+            $email_lecturer = $model->approves->orders->users->profiles->email_lecturer;
+            $model['name'] = User::where('email',$email_lecturer)->value('name');
+        }
+        else{
+            $model['name'] = $model->approves->orders->users->name;
+        }
+        $date = date('d F Y',strtotime($model->approves->date));
+        $model['datetime'] = $date.' '.$model->approves->times->name;
+        $pdf = PDF::loadview('payment.streambill', ['model' => $model, 'price' => $price]);
+        return $pdf->stream();
     }
 
     public function updateBill(Request $request, $id)
@@ -364,7 +375,11 @@ class PaymentController extends Controller
 
     public function datatableBill()
     {
-        $model = Approve::where('status',1)->get();
+
+        $model = Approve::where(function($model){
+            $model->where('status',1)
+                ->orWhere('status',2);
+        })->get();
         return DataTables::of($model)
             ->editColumn('date', function($model){
                 $date = date('d M Y', strtotime($model->date));
@@ -404,11 +419,19 @@ class PaymentController extends Controller
                 return $button;
             })
             ->addColumn('action', function($model){
-                if ($model->payments()->exists()){
+                if($model->payments()->exists()){
                 // if (count($model->payments)){
-                    $button = 
-'<a href="'.route('payment.form', $model->id).'" class="btn btn-primary btn-sm modal-show" name="'.$model->no_regis.'">Edit</a>';
-                    return $button;
+                    if($model->payments->status==1|$model->payments->status==2|$model->payments->status==3){
+                        $button = 
+'<a href="'.route('payment.form', $model->id).'" class="btn btn-primary btn-sm modal-show" name="'.$model->no_regis.'">Edit</a>
+<a href="'.route('payment.showBill', $model->id).'" class="btn btn-primary btn-sm">show</a>';
+                        return $button;
+                    }
+                    else{
+                        $button = 
+'<a href="'.route('payment.showBill', $model->id).'" class="btn btn-primary btn-sm">show</a>';
+                        return $button;
+                    }
                 }
                 else{
                     $button = 
@@ -450,6 +473,23 @@ class PaymentController extends Controller
         // $model['many'] = $request->many;
         // $model['service'] = Price::where('tool_id',$model->orders->tools_id)->pluck('service','id');
         return view('payment.showreceipt', ['model' => $model, 'price'=>$price]);
+    }
+
+    public function pdfReceipt($id)
+    {
+        $model = Payment::find($id);
+        $price = Price::get();
+        if($model->approves->orders->plans_id == 3){
+            $email_lecturer = $model->approves->orders->users->profiles->email_lecturer;
+            $model['name'] = User::where('email',$email_lecturer)->value('name');
+        }
+        else{
+            $model['name'] = $model->approves->orders->users->name;
+        }
+        $date = date('d F Y',strtotime($model->approves->date));
+        $model['datetime'] = $date.' '.$model->approves->times->name;
+        $pdf = PDF::loadview('payment.streamreceipt', ['model' => $model, 'price' => $price]);
+        return $pdf->stream();
     }
 
     public function dataReceipt()
@@ -528,7 +568,9 @@ class PaymentController extends Controller
         $model = Payment::where(function($model){
             $model->where('status',1)
                 ->orWhere('status',4)
-                ->orWhere('status',5);
+                ->orWhere('status',5)
+                ->orWhere('status',6)
+                ->orWhere('status',7);
         })->get();
         return DataTables::of($model)
             ->editColumn('total', function($model){
@@ -577,9 +619,16 @@ class PaymentController extends Controller
                 return $button;
             })
             ->addColumn('action', function($model){
-                $button = 
-'<a href="'.route('payment.updateReceipt', $model->id).'" class="btn btn-primary btn-sm receipt" name="'.$model->no_regis.'">Receipt</a>';
-                return $button;
+                if($model->status==6|$model->status==7){
+                    $button = 
+'<a href="'.route('payment.showReceipt', $model->id).'" class="btn btn-primary btn-sm">show</a>';
+                    return $button;
+                }
+                else{
+                    $button = 
+'<a href="'.route('payment.updateReceipt', $model->id).'" class="btn btn-primary btn-sm receipt" name="'.$model->no_regis.'">Buat</a>';
+                    return $button;
+                }
             })
             ->removeColumn('id')
             ->removeColumn('times_id')
@@ -662,7 +711,14 @@ class PaymentController extends Controller
         }
         else if($model->hasRole('Admin')){
             $model = Payment::where(function($model){
-                $model->where('status',8)
+                $model->where('status',1)
+                    ->orWhere('status',2)
+                    ->orWhere('status',3)
+                    ->orWhere('status',4)
+                    ->orWhere('status',5)
+                    ->orWhere('status',6)
+                    ->orWhere('status',7)
+                    ->orWhere('status',8)
                     ->orWhere('status',9);
             })->get();
         }
@@ -686,12 +742,6 @@ class PaymentController extends Controller
                 if($plan=='Tunai'){
                     return $plan;
                 }
-//                 else if($model->image!=NULL){
-//                     $button = 
-// '<p>'.$plan.'</p><a href="#" class="btn btn-primary btn-sm details-control">Show Image</a>&nbsp;
-// <a href="'.route('payment.formUpload', $model->id).'" class="btn btn-primary btn-sm modal-show" name="Upload Bukti Transfer">Reupload</a>';
-//                     return $button;
-//                 }
                 else{
                     $button = 
 '<p>'.$plan.'</p><a href="#" class="btn btn-primary btn-sm details-control">Show Image</a>';
@@ -704,13 +754,23 @@ class PaymentController extends Controller
                 return $date.' '.$time;
             })
             ->addColumn('status', function($model){
-                if($model->status==2){
+                if($model->status==2|$model->status==3){
+                    return 'Menunggu transaksi client';
+                }
+                if($model->status==1|$model->status==4|$model->status==5){
+                    return 'Menunggu pembuatan receipt';
+                }
+                if($model->status==6|$model->status==7){
+                    return 'Menunggu verifikasi akhir';
+                }
+                if($model->status==8|$model->status==9){
                     return 'Completed';
                 }
             })
-            ->addColumn('action', function($model){
+            ->addColumn('show', function($model){
                 $button = 
-'<a href="'.route('payment.showHistory', $model->id).'" class="btn btn-primary btn-sm" name="'.$model->no_regis.'">show</a>';
+'<a href="'.route('payment.showBill', $model->id).'" class="btn btn-primary btn-sm">Bill</a>
+<a href="'.route('payment.showReceipt', $model->id).'" class="btn btn-primary btn-sm">Receipt</a>';
                 return $button;
             })
             ->removeColumn('id')
@@ -718,7 +778,7 @@ class PaymentController extends Controller
             ->removeColumn('users_id')
             ->removeColumn('note')
             ->addIndexColumn()
-            ->rawColumns(['plan'])
+            ->rawColumns(['plan','show'])
             ->make(true);
     }
 }

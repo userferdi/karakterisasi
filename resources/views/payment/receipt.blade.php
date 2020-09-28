@@ -30,7 +30,7 @@
         {title: 'Nama Alat', data: 'tool', name: 'tool', className: 'dt-head-center'},
         {title: 'Tanggal Penggunaan', data: 'date', name: 'date', className: 'dt-center'},
         {title: 'Total Pembayaran', data: 'total', name: 'total', className: 'dt-center'},
-        {title: 'Lihat Receipt', data: 'show', name: 'show', orderable:false, className: 'dt-center'}
+        {title: 'Receipt', data: 'show', name: 'show', orderable:false, className: 'dt-center'}
       ],
     });
   @endrole;
@@ -47,7 +47,7 @@
         {title: 'Nama Alat', data: 'tool', name: 'tool', className: 'dt-head-center'},
         {title: 'Tanggal Penggunaan', data: 'date', name: 'date', className: 'dt-center'},
         {title: 'Total Pembayaran', data: 'total', name: 'total', className: 'dt-center'},
-        {title: 'Lihat Receipt', data: 'show', name: 'show', orderable:false, className: 'dt-center'}
+        {title: 'Receipt', data: 'show', name: 'show', orderable:false, className: 'dt-center'}
       ],
     });
   @endrole;
@@ -67,7 +67,7 @@
         {title: 'Tanggal Penggunaan', data: 'date', name: 'date', className: 'dt-head-center'},
         {title: 'Total Pembayaran', data: 'total', name: 'total', className: 'dt-center'},
         {title: 'Detail', data: 'detail', name: 'detail', orderable:false, className: 'dt-center'},
-        {title: 'Buat Tanda Terima', data: 'action', name: 'action', orderable:false, className: 'dt-center'}
+        {title: 'Receipt', data: 'action', name: 'action', orderable:false, className: 'dt-center'}
       ],
     });
 
