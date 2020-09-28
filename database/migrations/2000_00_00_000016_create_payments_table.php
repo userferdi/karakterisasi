@@ -17,9 +17,9 @@ class CreatePaymentsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('approves_id')->unsigned();
             $table->string('no_invoice')->nullable();
-            $table->date('date_invoice')->nullable();
+            $table->string('date_invoice')->nullable();
             $table->string('no_receipt')->nullable();
-            $table->date('date_receipt')->nullable();
+            $table->string('date_receipt')->nullable();
             $table->integer('status');
             $table->string('quantity')->nullable();
             $table->string('service')->nullable();
