@@ -404,7 +404,7 @@ class PaymentController extends Controller
                 return $button;
             })
             ->addColumn('action', function($model){
-                if ($model->payments->exists()){
+                if ($model->payments()->exists()){
                 // if (count($model->payments)){
                     $button = 
 '<a href="'.route('payment.form', $model->id).'" class="btn btn-primary btn-sm modal-show" name="'.$model->no_regis.'">Edit</a>';
