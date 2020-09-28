@@ -433,7 +433,8 @@
 <script src="{{ asset('calendar/main.js') }}"></script>
 <!-- DatePicker -->
 <script src="{{ asset('js/gijgo.min.js') }}"></script>
-
+<!-- Tidio Live Chat -->
+<script src="//code.tidio.co/vxc1ocely84hemzj08gjvedthwszjyap.js" async></script>
 @include('modal')
 @stack('scripts')
 
