@@ -179,14 +179,14 @@ class PaymentController extends Controller
             ]);
             $payment = new Payment;
             $no = Payment::orderBy('id', 'desc')->value('id');
-            $payment['date_invoice'] = date("/m/Y");
+            $payment['date_invoice'] = date('Y-m-d');
             if($no == NULL){
                 $no = 1;
-                $payment['no_invoice'] = $no.'/'.$model->orders->tools->labs->code.'/'.$model->orders->tools->code.$payment->date_invoice;
+                $payment['no_invoice'] = $no.'/'.$model->orders->tools->labs->code.'/'.$model->orders->tools->code.$payment->date_invoice->format("/m/Y");
             }
             else{
                 $no+=1;
-                $payment['no_invoice'] = $no.'/'.$model->orders->tools->labs->code.'/'.$model->orders->tools->code.$payment->date_invoice;
+                $payment['no_invoice'] = $no.'/'.$model->orders->tools->labs->code.'/'.$model->orders->tools->code.$payment->date_invoice->format("/m/Y");
             }
             if($model->orders->users->hasRole('Dosen Unpad|Mahasiswa Unpad')){
                 $price = Price::where('id',$request->service1)->first();
