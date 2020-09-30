@@ -20,7 +20,7 @@
   $('#table').DataTable({
     responsive: true,
     serverSide: true,
-    ajax: "{{ route('activities.datatableHistory') }}",
+    ajax: "{{ route('history.data') }}",
     order: [[ 1, "asc" ]],
     columns: [
       {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, className: 'dt-center'},
@@ -28,7 +28,7 @@
       {title: 'Nama Pengguna', data: 'user', name: 'user', className: 'dt-head-center'},
       {title: 'Nama Alat', data: 'tool', name: 'tool', className: 'dt-head-center'},
       {title: 'Tanggal Penggunaan', data: 'date', name: 'date', className: 'dt-head-center'},
-      {title: 'Total Tagihan', data: 'total', name: 'total', orderable:false, className: 'dt-center'},
+      {title: 'Nominal', data: 'total', name: 'total', orderable:false, className: 'dt-center'},
       {title: 'Status', data: 'status', name: 'status', orderable:false, className: 'dt-center'},
       {title: '', data: 'action', name: 'action', orderable:false, className: 'dt-center'}
     ],

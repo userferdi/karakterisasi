@@ -16,22 +16,22 @@
     <div class="form-group">
         <label class="control-label">Nama Alat</label>
         {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name', 'required']) !!}
-        <div class="invalid-feedback" id="invalid">Please fill out this field</div>
+        <!-- <div class="invalid-feedback d-block" id="invalid">Please fill out this field</div> -->
     </div>
     <div class="form-group">
         <label class="control-label">Kode Alat</label>
         {!! Form::text('code', null, ['class' => 'form-control', 'id' => 'code', 'required']) !!}
-        <div class="invalid-feedback" id="invalid">Please fill out this field</div>
+        <!-- <div class="invalid-feedback" id="invalid">Please fill out this field</div> -->
     </div>
     <div class="form-group">
         <label class="control-label">Deskripsi Alat</label>
         {!! Form::textarea('descrip', null, ['class' => 'form-control', 'id' => 'descrip', 'required']) !!}
-        <div class="invalid-feedback" id="invalid">Please fill out this field</div>
+        <!-- <div class="invalid-feedback" id="invalid">Please fill out this field</div> -->
     </div>
     <div class="form-group">
         <label class="control-label">Preparasi Sampel</label>
         {!! Form::textarea('sample', null, ['class' => 'form-control', 'id' => 'sample', 'required']) !!}
-        <div class="invalid-feedback" id="invalid">Please fill out this field</div>
+        <!-- <div class="invalid-feedback" id="invalid">Please fill out this field</div> -->
     </div>
     <div class="form-group">
         <label class="control-label">Status</label>

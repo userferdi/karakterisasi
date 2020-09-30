@@ -21,12 +21,12 @@
   $('#table').DataTable({
     responsive: true,
     serverSide: true,
-    ajax: "{{ route('history.dataShowTool',$model->id) }}",
+    ajax: "{{ route('history.dataShowUser',$model->id) }}",
     order: [[ 1, "asc" ]],
     columns: [
       {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, className: 'dt-center'},
       {title: 'No Registration', data: 'no_regis', name: 'no_regis', className: 'dt-head-center'},
-      {title: 'Nama Pengguna', data: 'user', name: 'user', className: 'dt-head-center'},
+      {title: 'Alat', data: 'tool', name: 'tool', className: 'dt-head-center'},
       {title: 'Tanggal Penggunaan', data: 'date', name: 'date', className: 'dt-center'},
       {title: 'Nominal', data: 'total', name: 'total', orderable:false, className: 'dt-center'},
       {title: 'Status', data: 'status', name: 'status', orderable:false, className: 'dt-center'},

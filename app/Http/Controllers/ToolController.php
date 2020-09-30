@@ -52,6 +52,12 @@ class ToolController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+          'name' => 'required|max:1',
+          'code' => 'required',
+          'descrip' => 'required',
+          'sample' => 'required'
+        ]);
         $model = new Tool;
         $model = $request->all();
         $model['image'] = null;

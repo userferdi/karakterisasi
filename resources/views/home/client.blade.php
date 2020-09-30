@@ -3,7 +3,7 @@
 @section('title','FINDER · Home')
 
 @section('content')
-<h2 style="padding-top:10px;">Selamat Datang, <strong>{{$model->name}}</strong></h2>
+<h2 style="padding-top:10px;">Selamat Datang, <strong>{{$user->name}}</strong></h2>
 <a href="https://drive.google.com/file/d/1ZZJEDmb_dlf9WHoV8-fpZi52JPtHDWwB/view" class="btn btn-outline-danger btn-sm">Unduh Workflow Booking Alat</a> &ensp;
 <a href="https://drive.google.com/open?id=1gcDbrORgSCctPLyy4Mh-xFXBxkgbkWUu" class="btn btn-outline-danger btn-sm">Unduh Deskripsi Alur Booking Alat</a> &ensp;
 <a href="https://drive.google.com/open?id=1pw_FMr_0nes5t2KCVN_KWfg-PGtqKzeI" class="btn btn-outline-danger btn-sm">Unduh Aturan Registrasi Akun</a><br><br>
@@ -71,8 +71,36 @@
 </div>
 
 <h4><strong>Status Penggunaan Alat Anda</strong></h4>
-<h6>Tidak ada proses Penggunaan Alat yang tercatat dalam sistem kami.</h6>
 
+
+@if($model[0]->exists())
+  <table id="table" class="table row-border hover order-column text-sm" width="100%">
+    <thead class="thead-light">
+      <tr>
+        <th>No Registrasi</th>
+        <th>Nama Alat</th>
+        <th>Tanggal Penggunaan Alat</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+  @foreach($model as $approve)
+      <tr>
+        <td>{{$approve->no_regis}}</td>
+        <td>{{$approve->orders->tools->name}}</td>
+        <td>{{date('d M Y', strtotime($approve->date))}} {{$approve->times->name}}</td>
+        <td>
+          @if($approve->status==1)Menunggu Jadwal
+          @elseif($approve->status==2)Menunggu Pembayaran
+          @endif
+        </td>
+      </tr>
+  @endforeach
+    </tbody>
+  </table>
+@else
+  <h6>Tidak ada proses Penggunaan Alat yang tercatat dalam sistem kami.</h6>
+@endif
 @endsection
 
 @push('scripts')

@@ -2,18 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Approve;
 use Auth;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $model=Auth()->User();
-        if($model!=NULL){
-            if($model->hasRole('Admin')){
-                return view('home.admin', ['model'=>$model]);
+        $user=Auth()->User();
+        if($user!=NULL){
+            if($user->hasRole('Admin')){
+                return view('home.admin', ['user'=>$user]);
             }
-            return view('home.client', ['model'=>$model]);
+            $model = Approve::whereHas('orders', function ($query){
+                return $query->where('users_id', '=', Auth()->User()->id);
+            })->where(function($model){
+                $model->where('status',1)
+                    ->orWhere('status',2);
+            })->get();
+            return view('home.client', ['user'=>$user, 'model'=>$model]);
         }
         return redirect()->route('welcome');
     }

@@ -243,11 +243,21 @@
         $('#modal-body').html('reset');
       },
 
-      error: function(){
+      error: function(xhr){
         'use strict';
-        var validation = Array.prototype.filter.call(form, function(form) {
+        // var validation = Array.prototype.filter.call(form, function(form) {
+        //   form.classList.add('was-validated');
+        // });
+        var res = xhr.responseJSON;
+        if ($.isEmptyObject(res) == false) {
           form.classList.add('was-validated');
-        });
+          $.each(res.errors, function (key, value) {
+            $('#' + key)
+              .closest('.form-group')
+              .addClass('has-error')
+              .append('<div class="alert alert-danger" role="alert">'+value+'</div>');
+          });
+        }
       }
     });
   });
@@ -293,11 +303,19 @@
         $('#modal-body').html('reset');
       },
 
-      error: function(){
-        'use strict';
-        var validation = Array.prototype.filter.call(form, function(form) {
-          form.classList.add('was-validated');
-        });
+      error: function(xhr){
+        // 'use strict';
+        // var validation = Array.prototype.filter.call(form, function(form) {
+        //   form.classList.add('was-validated');
+        // });
+        var res = xhr.responseJSON;
+        if ($.isEmptyObject(res) == false) {
+          form.find('.invalid-feedback').remove();
+          $.each(res.errors, function (key, value) {
+            $('#' + key).addClass('is-invalid');
+            $('<div class="invalid-feedback d-block">'+value+'</div>').insertAfter($('#' + key));
+          });
+        }
       }
     });
   });

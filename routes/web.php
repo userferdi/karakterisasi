@@ -212,10 +212,11 @@ Route::middleware('auth')->group(function(){
 		Route::prefix('user')->group(function(){
 			Route::get('/', 'HistoryController@user')->name('history.user');
 			Route::get('datatable', 'HistoryController@dataUser')->name('history.dataUser');
-			Route::get('show/{id}', 'HistoryController@showUser')->name('history.showUser');
+			Route::get('{id}/show', 'HistoryController@showUser')->name('history.showUser');
+			Route::get('{id}', 'HistoryController@dataShowUser')->name('history.dataShowUser');
 		});
-		Route::get('show/{id}', 'HistoryController@showHistory')->name('activities.showHistory');
-		Route::get('datatable', 'HistoryController@datatableHistory')->name('activities.datatableHistory');
+		Route::get('show/{id}', 'HistoryController@showHistory')->name('history.show');
+		Route::get('datatable', 'HistoryController@data')->name('history.data');
 	});
 
 	Route::prefix('verification')->group(function(){
@@ -230,7 +231,12 @@ Route::middleware('auth')->group(function(){
 		Route::get('resend/{id}', 'VerificationController@resend')->name('verify.resend');
 	});
 
-	Route::get('settings', 'AdminController@settings')->name('settings');
+	Route::prefix('settings')->group(function(){
+		Route::get('/', 'AdminController@settings')->name('settings');
+		Route::get('edit', 'AdminController@edit')->name('settings.edit');
+		Route::put('update', 'AdminController@update')->name('settings.update');
+		Route::put('password', 'AdminController@password')->name('settings.password');
+	});
 	Route::get('contact', function () {
 		return view('contact');
 	})->name('contact');
