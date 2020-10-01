@@ -62,7 +62,7 @@ class PaymentController extends Controller
     public function form($id)
     {
         $model = Approve::find($id);
-        if($model->status == 1){
+        if($model->status==1|$model->status==2){
             return view('payment.form', ['model' => $model]);
         }
         else{
@@ -270,8 +270,85 @@ class PaymentController extends Controller
             $save = $payment->save();
             return response()->json($save);
         }
+        if($model->status==2){
+            $save = Order::where('id', $model->orders_id)->update([
+                'plans_id' => $request->plans_id
+            ]);
+            // $payment = Payment::where('approves_id',$id);
+            if($model->orders->users->hasRole('Dosen Unpad|Mahasiswa Unpad')){
+                $price = Price::where('id',$request->service1)->first();
+                $price = $price->price1;
+                $quantity = $request->quantity1;
+                $total = $price*$quantity;
+                for($i=1;$i<$request->many;$i++){
+                    $quantity = 'quantity'.($i+1);
+                    $quantity = $request->$quantity;
+                    $service = 'service'.($i+1);
+                    $service = $request->$service;
+                    $price = Price::where('id',$service)->first();
+                    $price = $price->price1;
+                    $total = $total+($price*$quantity);
+                }
+            }
+            else if($model->orders->users->hasRole('Dosen Non Unpad|Mahasiswa Non Unpad')){
+                $price = Price::where('id',$request->service1)->first();
+                $price = $price->price2;
+                $quantity = $request->quantity1;
+                $total = $price*$quantity;
+                for($i=1;$i<$request->many;$i++){
+                    $quantity = 'quantity'.($i+1);
+                    $quantity = $request->$quantity;
+                    $service = 'service'.($i+1);
+                    $service = $request->$service;
+                    $price = Price::where('id',$service)->first();
+                    $price = $price->price2;
+                    $total = $total+($price*$quantity);
+                }
+            }
+            else if($model->orders->users->hasRole('User Umum')){
+                $price = Price::where('id',$request->service1)->first();
+                $price = $price->price3;
+                $quantity = $request->quantity1;
+                $total = $price*$quantity;
+                for($i=1;$i<$request->many;$i++){
+                    $quantity = 'quantity'.($i+1);
+                    $quantity = $request->$quantity;
+                    $service = 'service'.($i+1);
+                    $service = $request->$service;
+                    $price = Price::where('id',$service)->first();
+                    $price = $price->price3;
+                    $total = $total+($price*$quantity);
+                }
+            }
+
+            $payment['quantity'] = $request->quantity1.' ';
+            $payment['service'] = $request->service1.' ';
+            for($i=1;$i<$request->many;$i++){
+                $quantity = 'quantity'.($i+1);
+                $service = 'service'.($i+1);
+                $payment['quantity'] .= $request->$quantity.' ';
+                $payment['service'] .= $request->$service.' ';
+            }
+            $payment['approves_id'] = $id;
+            $payment['total'] = $total;
+            if($model->orders->plans_id == 1){
+                $payment['status'] = 1;
+                $save = Approve::findOrFail($id)->update([
+                    'status' => 2
+                ]);
+            }
+            else if($model->orders->plans_id == 2){
+                $payment['status'] = 2;
+            }
+            else{
+                $payment['status'] = 3;
+            }
+            $save = Payment::where('approves_id',$id)->update($payment);
+            // $save = $payment->update();
+            return response()->json($save);
+        }
         else{
-            abort(404);
+            return response()->json(error);
         }
     }
 

@@ -131,6 +131,7 @@
     });
   });
 
+  // Harus direset
   function format (d) {
     return  '<div class="text-center">'+'<img src="'+d.image+'" width="150"/>'+'</div>';
   };

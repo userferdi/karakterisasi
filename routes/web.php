@@ -16,7 +16,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('lab')->group(function(){
 	Route::get('/', 'LabController@index')->name('lab.index');
-	Route::get('show/{id}', 'labController@show')->name('lab.show');
+	Route::get('show/{id}', 'LabController@show')->name('lab.show');
 	Route::get('datatable', 'LabController@datatable')->name('lab.dt');
 });
 Route::prefix('tool')->group(function(){
@@ -227,14 +227,17 @@ Route::middleware('auth')->group(function(){
 		Route::put('update/reschedule/{id}', 'VerificationController@updateReschedule')->name('verify.updateReschedule');
 		Route::put('update/reject/{id}', 'VerificationController@updateReject')->name('verify.updateReject');
 		Route::put('update/cancel/{id}', 'VerificationController@updateCancel')->name('verify.updateCancel');
-		Route::get('success', 'VerificationController@success')->name('verify.success');
 		Route::get('resend/{id}', 'VerificationController@resend')->name('verify.resend');
 	});
 
 	Route::prefix('settings')->group(function(){
 		Route::get('/', 'AdminController@settings')->name('settings');
 		Route::get('edit', 'AdminController@edit')->name('settings.edit');
+		Route::get('editemail', 'AdminController@editEmail')->name('settings.edit.email');
+		Route::get('editlecturer', 'AdminController@editLecturer')->name('settings.edit.lecturer');
 		Route::put('update', 'AdminController@update')->name('settings.update');
+		Route::put('updateemail', 'AdminController@updateEmail')->name('settings.update.email');
+		Route::put('updatelecturer', 'AdminController@updateLecturer')->name('settings.update.lecturer');
 		Route::put('password', 'AdminController@password')->name('settings.password');
 	});
 	Route::get('contact', function () {
@@ -248,5 +251,6 @@ Route::prefix('verification')->group(function(){
 		Route::get('{token}/confirm', 'VerificationController@confirm')->name('verify.confirm');
 		Route::get('{token}/reject', 'VerificationController@reject')->name('verify.reject');
 		Route::get('{token}/cancel', 'VerificationController@cancel')->name('verify.cancel');
+		Route::get('success', 'VerificationController@success')->name('verify.success');
 	});
 });

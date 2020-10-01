@@ -29,7 +29,17 @@ class AdminController extends Controller
             $model['faculty'] = $model->profiles->faculty;
             $model['study_program'] = $model->profiles->study_program;
         }
-        return view('editprofile', ['model' => Auth()->User()]);
+        return view('editprofile', ['model' => $model]);
+    }
+
+    public function editemail()
+    {
+        return view('editemail', ['model' => Auth()->User()]);
+    }
+
+    public function editlecturer()
+    {
+        return view('editlecturer', ['model' => Auth()->User()->profiles]);
     }
 
     public function update(Request $request)
@@ -77,6 +87,48 @@ class AdminController extends Controller
             abort(404);
         }
         return redirect()->route('settings');
+    }
+
+    public function updateEmail(Request $request)
+    {
+        $request->validate([
+            'email_lecturer' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required'],
+        ]);
+        $model = Auth()->User();
+        if(password_verify($request->password, $model->password)){
+            $model = Profile::where('user_id',$model->id)->update([
+                'email_lecturer' => $request->email_lecturer
+            ]);
+            return redirect()->route('settings');
+        }
+        else{
+            $returnData = array(
+                'errors' => ['password'=>'The password is wrong']
+            );
+            return response()->json($returnData, 422);
+        }
+    }
+
+    public function updateLecturer(Request $request)
+    {
+        $request->validate([
+            'email_lecturer' => ['required'],
+            'password' => ['required'],
+        ]);
+        $model = Auth()->User();
+        if(password_verify($request->password, $model->password)){
+            $model = $model->profiles->update([
+                'email' => $request->email
+            ]);
+            return redirect()->route('settings');
+        }
+        else{
+            $returnData = array(
+                'errors' => ['password'=>'The password is wrong']
+            );
+            return response()->json($returnData, 422);
+        }
     }
 
     public function password(Request $request)

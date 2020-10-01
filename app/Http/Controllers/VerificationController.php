@@ -136,7 +136,7 @@ class VerificationController extends Controller
         }
         else if($model['status']==2){
             $newtoken = str::random(60);
-            $model = Booking::where('token', $token)->update([
+            $save = Booking::where('token', $token)->update([
                 'token' => $newtoken,
                 'status' => 3,
             ]);

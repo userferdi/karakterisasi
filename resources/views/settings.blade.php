@@ -40,6 +40,7 @@
                 <td>{{$model->profiles->email_lecturer}}</td>
               @endrole
             </tr>
+            @role('Dosen Unpad|Dosen Non Unpad|Mahasiswa Unpad|Mahasiswa Non Unpad')
             <tr>
                 <td><b>Universitas</b></td>
                 <td>{{$model->profiles->university}}</td>
@@ -52,9 +53,10 @@
                 <td><b>Program Studi</b></td>
                 <td>{{$model->profiles->study_program}}</td>
             </tr>
+            @endrole
             <tr>
                 <td><b>Email</b></td>
-                <td>{{$model->email}} @if($model->email_verified_at!=NULL)<i class="fa fa-check">verified</i>@endif <a href="" class="btn-sm btn-primary">Change email</a></td>
+                <td>{{$model->email}} @if($model->email_verified_at!=NULL)<i class="fa fa-check">verified</i>@endif <a href="{{ route('settings.edit.email') }}" class="btn-sm btn-primary">Change email</a></td>
             </tr>
             <tr>
                 <td><b>No Hp</b></td>

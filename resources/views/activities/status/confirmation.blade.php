@@ -74,7 +74,7 @@
             })
             Toast.fire({
               type: 'success',
-              title: 'Email has been sent!'
+              title: 'Data has been saved!'
             })
             $('#modal-body').html('reset');
           },
