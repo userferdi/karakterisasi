@@ -17,12 +17,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::prefix('lab')->group(function(){
 	Route::get('/', 'LabController@index')->name('lab.index');
 	Route::get('show/{id}', 'LabController@show')->name('lab.show');
+	Route::get('show/{id}/datatable', 'ToolController@datatableLab')->name('tool.dt.lab');
 	Route::get('datatable', 'LabController@datatable')->name('lab.dt');
 });
 Route::prefix('tool')->group(function(){
 	Route::get('/', 'ToolController@index')->name('tool.index');
 	Route::get('show/{id}', 'ToolController@show')->name('tool.show');
 	Route::get('datatable', 'ToolController@datatable')->name('tool.dt');
+	Route::get('datatableclient', 'ToolController@datatableClient')->name('tool.dt.client');
 	Route::get('datatableschedule', 'ToolController@datatableSchedule')->name('tool.dt.schedule');
 	Route::get('datatableadmin', 'ToolController@datatableAdmin')->name('tool.dt.admin');
 });

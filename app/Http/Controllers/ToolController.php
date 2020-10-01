@@ -143,6 +143,23 @@ class ToolController extends Controller
             ->make(true);
     }
 
+    public function datatableLab($id)
+    {
+        $model = Tool::where('labs_id',$id);
+        return DataTables::of($model)
+            ->editColumn('actives_id', function($model){
+                return $model->actives->name;
+            })
+            ->addColumn('show', function($model){
+                $button = 
+'<a href="'.route('tool.show',$model->id).'" class="btn btn-danger btn-sm">show</a>';
+                return $button;
+            })
+            ->addIndexColumn()
+            ->rawColumns(['action','booking','schedule','image','show'])
+            ->make(true);
+    }
+
     public function datatableClient()
     {
         $model = Tool::get();
