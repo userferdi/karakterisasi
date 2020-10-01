@@ -1,11 +1,11 @@
-@extends('layouts.welcome')
+@extends('layouts.list')
 
 @section('title', 'FINDER · Tools List')
 
 @section('content')
 <section class="page-section tool" id="tool" style="padding:40px; margin-top:100px">
   <h3><strong>Daftar Alat</strong></h3>
-  <table id="table" class="table table-striped table-bordered text-sm tool" style="width:100%"></table>
+  <table id="table" class="table table-striped table-bordered table-hover text-sm tool" style="width:100%"></table>
 </section>
 @endsection
 
@@ -14,7 +14,6 @@
   $('#table').DataTable({
     aLengthMenu: [[-1], ["All"]],
     responsive: true,
-    // processing: true,
     serverSide: true,
     searching: false,
     paging: false,

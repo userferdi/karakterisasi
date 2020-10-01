@@ -38,7 +38,15 @@ class ToolController extends Controller
     public function show($id)
     {
         $model = Tool::find($id);
-        return view('tools.show', ['model'=>$model]);
+        if(Auth()->User()!=NULL){
+            return view('tools.show', ['model'=>$model]);
+        }
+        else if(Auth()->User()==NULL){
+            return view('tools.show_index', ['model'=>$model]);
+        }
+        else{
+            abort(404);
+        }
     }
 
     public function create()
@@ -125,6 +133,23 @@ class ToolController extends Controller
         	->editColumn('actives_id', function($model){
         		return $model->actives->name;
         	})
+            ->addColumn('show', function($model){
+                $button = 
+'<a href="'.route('tool.show',$model->id).'" class="btn btn-danger btn-sm">show</a>';
+                return $button;
+            })
+            ->addIndexColumn()
+            ->rawColumns(['action','booking','schedule','image','show'])
+            ->make(true);
+    }
+
+    public function datatableClient()
+    {
+        $model = Tool::get();
+        return DataTables::of($model)
+            ->editColumn('actives_id', function($model){
+                return $model->actives->name;
+            })
             ->addColumn('show', function($model){
                 $button = 
 '<a href="'.route('tool.show',$model->id).'" class="btn btn-primary btn-sm">show</a>';

@@ -102,6 +102,8 @@
 
       success: function(data){
         $('#modal').modal('hide');
+        detail.row($(this).closest('tr')).child.hide();
+        $(this).closest('tr').removeClass('shown');
         $('#table').DataTable().ajax.reload();
         const Toast = Swal.mixin({
           toast: true,

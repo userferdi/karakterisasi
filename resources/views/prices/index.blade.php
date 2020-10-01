@@ -1,4 +1,4 @@
-@extends('layouts.welcome')
+@extends('layouts.list')
 
 @section('title', 'FINDER · Price List')
 
