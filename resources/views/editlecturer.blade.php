@@ -5,7 +5,7 @@
 @section('content')
 <h4 style="padding-top:10px;">Management Account</h4>
 {!! Form::model($model, [
-    'route' => ['settings.update.email'],
+    'route' => ['settings.update.lecturer'],
     'method' => 'PUT',
     'class' => 'needs-validation form',
     'novalidate'
@@ -33,6 +33,7 @@
 @push('scripts')
 <script>
   $('body').on('submit','.form', function(event){
+    event.preventDefault();
 
     var form = $('.form'),
         url = form.attr('action'),
@@ -47,22 +48,7 @@
       processData: false,
 
       success: function(data){
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          background: '#28a745',
-          onOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        })
-        Toast.fire({
-          type: 'success',
-          title: 'Data has been saved!'
-        })
+        window.location.href = "/settings";
       },
       error: function(xhr){
         var res = xhr.responseJSON;

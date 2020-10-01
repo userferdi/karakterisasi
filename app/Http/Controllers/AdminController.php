@@ -16,6 +16,10 @@ class AdminController extends Controller
 {
     public function settings()
     {
+        $model = Auth()->User();
+        if($model->profiles->email_lecturer!=NULL){
+            $model['lecturer'] = User::where('email',$model->profiles->email_lecturer)->first()->name;
+        }
         return view('settings', ['model' => Auth()->User()]);
     }
 
@@ -118,10 +122,11 @@ class AdminController extends Controller
         ]);
         $model = Auth()->User();
         if(password_verify($request->password, $model->password)){
-            $model = $model->profiles->update([
-                'email' => $request->email
+            $model = Profile::where('user_id',$model->id)->update([
+                'email_lecturer' => $request->email_lecturer
             ]);
-            return redirect()->route('settings');
+            return response()->json($model);
+            // return redirect()->route('settings');
         }
         else{
             $returnData = array(

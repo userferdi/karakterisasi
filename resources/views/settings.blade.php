@@ -36,8 +36,17 @@
                 <td>{{$model->profiles->no_id}}</td>
             </tr>
             <tr>
+              @if($model->profiles->email_lecturer!=NULL)
                 <td><b>Dosen Penanggung Jawab</b></td>
-                <td>{{$model->profiles->email_lecturer}}</td>
+                <td>
+                  {{$model->lecturer}}
+                </td>
+              @else
+                <td><b>Dosen Penanggung Jawab</b></td>
+                <td>
+                  <a href="{{ route('settings.edit.lecturer') }}" class="btn-sm btn-primary">Insert Email Dosen</a>
+                </td>
+              @endif
               @endrole
             </tr>
             @role('Dosen Unpad|Dosen Non Unpad|Mahasiswa Unpad|Mahasiswa Non Unpad')
