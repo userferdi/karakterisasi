@@ -103,6 +103,11 @@ class RegisterController extends Controller
     }
     public function storeForm(Request $data)
     {
+        // $data->validate([
+        //     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        //     'password' => ['required', 'string', 'min:8', 'confirmed'],
+        //     'name' => ['required', 'string', 'max:255'],
+        // ]);
         // $this->validate($data, [
         //     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         //     'password' => ['required', 'string', 'min:8', 'confirmed'],

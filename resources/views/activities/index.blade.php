@@ -11,10 +11,11 @@
         <h4 class="mb-3"><strong>Cara Registrasi Penggunaan Alat</strong></h4>
         <p>1. Klik tombol Registrasi Penggunaan Alat untuk melakukan booking penggunaan alat.</p>
         <p>2. Pilih Alat yang akan Anda pinjam kemudian isi form yang disediakan.</p>
-        <p>3. Booking Penggunaan Alat yang belum kami terima akan masuk pada menu <strong>Pending Request</strong>.</p>
-        <p>4. Kami akan melihat ketersediaan jadwal dan menentukan jadwal penggunaan untuk Anda. Anda dapat melihat jadwal yang telah disetujui pada menu <a href="https://sipa.nrcn.itb.ac.id/booking/user/approved_schedule"><strong>Approved Schedule</strong></a>. Anda diharuskan melakukan konfirmasi terhadap jadwal telah kami setujui pada laman tersebut.</p>
-        <p>5. Apabila jadwal penuh, Anda dapat melakukan booking ulang. Silakan lihat menu <a href="https://sipa.nrcn.itb.ac.id/booking/user/rescheduled"><strong>Reschedule Offered List</strong></a>.</p>
-        <p>6. Untuk melihat status penggunaan alat secara keseluruhan Anda dapat melihat pada menu <a href="https://sipa.nrcn.itb.ac.id/booking/user/status"><strong>Status Penggunaan Alat</strong></a>.</p>
+        <p>3. Booking Penggunaan Alat yang baru diterima akan masuk pada menu <b>Booking Request</b></p>
+        <!-- <p>3. Booking Penggunaan Alat yang belum kami terima akan masuk pada menu <strong>Pending Request</strong>.</p> -->
+        <p>4. Kami akan melihat ketersediaan jadwal dan menentukan jadwal penggunaan untuk Anda. Anda dapat melihat jadwal yang telah disetujui pada menu <a href=""><b>Approved Schedule</b></a>. Anda harus melakukan konfirmasi terhadap jadwal telah kami setujui pada laman tersebut.</p>
+        <p>5. Apabila jadwal penuh, Anda dapat melakukan booking ulang. Silakan lihat menu <a href=""><b>Reschedule Offered List</b></a>.</p>
+        <p>6. Untuk melihat status penggunaan alat secara keseluruhan Anda dapat melihat pada menu <a href=""><strong>Status Penggunaan Alat</strong></a>.</p>
       </div>
     </div>
   </div>

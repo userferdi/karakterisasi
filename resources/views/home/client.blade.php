@@ -71,36 +71,6 @@
 </div>
 
 <h4><strong>Status Penggunaan Alat Anda</strong></h4>
-
-
-@if($model[0]->exists())
-  <table id="table" class="table row-border hover order-column text-sm" width="100%">
-    <thead class="thead-light">
-      <tr>
-        <th>No Registrasi</th>
-        <th>Nama Alat</th>
-        <th>Tanggal Penggunaan Alat</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-  @foreach($model as $approve)
-      <tr>
-        <td>{{$approve->no_regis}}</td>
-        <td>{{$approve->orders->tools->name}}</td>
-        <td>{{date('d M Y', strtotime($approve->date))}} {{$approve->times->name}}</td>
-        <td>
-          @if($approve->status==1)Menunggu Jadwal
-          @elseif($approve->status==2)Menunggu Pembayaran
-          @endif
-        </td>
-      </tr>
-  @endforeach
-    </tbody>
-  </table>
-@else
-  <h6>Tidak ada proses Penggunaan Alat yang tercatat dalam sistem kami.</h6>
-@endif
 @endsection
 
 @push('scripts')

@@ -6,15 +6,14 @@ use App\Approve;
 use App\Booking;
 use App\Lab;
 use App\Order;
-use App\Status;
+use App\Payment;
+use App\Plan;
+use App\Price;
+use App\Profile;
 use App\Time;
 use App\Tool;
 use App\Usage;
-use App\Profile;
 use App\User;
-use App\Plan;
-use App\Price;
-use App\Payment;
 
 use Auth;
 use DataTables;
@@ -93,10 +92,6 @@ class ActivitiesController extends Controller
             $no+=1;
             $booking['no_form'] = $no.'/'.$tool->labs->code.'/'.$tool->code;
         }
-    	// $time = Time::where('id',$request['times_id'])->value('time_start');
-    	// $model['start'] = date('Y-m-d H:i:s', strtotime("$date $time"));
-    	// $time = Time::where('id',$request['times_id'])->value('time_end');
-    	// $model['end'] = date('Y-m-d H:i:s', strtotime("$date $time"));
 
         $id = Order::create([
             'users_id' => Auth()->User()->id,
@@ -480,7 +475,10 @@ class ActivitiesController extends Controller
     {
         $model = Approve::whereHas('orders', function ($query){
             return $query->where('users_id', '=', Auth()->User()->id);
-        })->where('status',1)->get();
+        })->where(function($model){
+            $model->where('status',1)
+                  ->orWhere('status',2);
+        })->get();
         return DataTables::of($model)
             ->editColumn('date', function($model){
                 $date = date('d M Y', strtotime($model->date));

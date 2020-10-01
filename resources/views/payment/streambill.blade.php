@@ -228,7 +228,7 @@
     <br/>
     <br/>
     <p class="text">Demikian informasi ini kami sampaikan, atas perhatian dan kerjasamanya, kami ucapkan terima kasih.</p>
-    <img src="right" width="612" height="792"/>
+    <img class="right" src="" width="612" height="792"/>
     <br/>
     <br/>
     <br/>

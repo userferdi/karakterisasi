@@ -236,7 +236,7 @@
     </table>
     <br/>
     <br/>
-    <img src="" width="612" height="792"/>
+    <img class="right" src="" width="612" height="792"/>
     <br/>
     <br/>
     <br/>
