@@ -71,7 +71,7 @@
 </div>
 
 <h4><strong>Status Penggunaan Alat Anda</strong></h4>
-@if($model->first()->exists())
+@if($model->first()!=NULL)
   <table id="table" class="table row-border hover order-column text-sm" width="100%">
     <thead class="thead-light">
       <tr>
