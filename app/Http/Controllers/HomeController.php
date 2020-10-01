@@ -20,6 +20,7 @@ class HomeController extends Controller
                 $model->where('status',1)
                     ->orWhere('status',2);
             })->get();
+            $cek = $model->first();
             return view('home.client', ['user'=>$user, 'model'=>$model]);
         }
         return redirect()->route('welcome');
