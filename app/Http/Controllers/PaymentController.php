@@ -455,7 +455,10 @@ class PaymentController extends Controller
 
         $model = Approve::where(function($model){
             $model->where('status',1)
-                ->orWhere('status',2);
+                ->orWhere('status',2)
+                ->orWhere('status',3)
+                ->orWhere('status',4)
+                ->orWhere('status',5);
         })->get();
         return DataTables::of($model)
             ->editColumn('date', function($model){
@@ -740,9 +743,9 @@ class PaymentController extends Controller
             else{
                 return response()->json(error);
             }
-            // $save = Approve::where('id', $model->approves_id)->update([
-            //     'status' => 3
-            // ]);
+            $save = Approve::where('id', $model->approves_id)->update([
+                'status' => 3
+            ]);
             $save = Payment::findOrFail($id)->update($payment);
             return response()->json($save);
         }

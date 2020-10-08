@@ -14,7 +14,7 @@
  * Table styles
  */
 table.dataTable {
-  width: 100%;
+  width: 200%;
   margin: 0 auto;
   clear: both;
   border-collapse: separate;
@@ -26,6 +26,7 @@ table.dataTable {
    * Body styles
    */
 }
+
 table.dataTable thead th,
 table.dataTable tfoot th {
   font-weight: bold;

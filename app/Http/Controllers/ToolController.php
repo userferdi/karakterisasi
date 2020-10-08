@@ -61,7 +61,7 @@ class ToolController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-          'name' => 'required|max:1',
+          'name' => 'required',
           'code' => 'required',
           'descrip' => 'required',
           'sample' => 'required'
@@ -211,7 +211,7 @@ class ToolController extends Controller
                 if ($model->image == NULL){
                     return 'No Image';
                 }
-                $url= asset($model->image);
+                $url = asset($model->image);
                 $image = '<img src="'.$url.'" width="100"/>';
                 return $image;
             })

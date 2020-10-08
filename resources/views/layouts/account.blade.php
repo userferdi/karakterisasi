@@ -26,6 +26,7 @@
 
   <link rel="stylesheet" href="{{ asset('css/main.css') }}">
   <link rel="stylesheet" type="text/css"  href="{{ asset('css/util.css') }}">
+  @stack('css')
 </head>
 <body>
 <div class="limiter">
@@ -50,5 +51,8 @@
 <script src="{{ asset('js/sweetalert2.all.js') }}"></script>
 
 <script src="{{ asset('js/main.js') }}"></script>
+
+@stack('scripts')
+
 </body>
 </html>

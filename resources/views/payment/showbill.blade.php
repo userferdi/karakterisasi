@@ -35,9 +35,9 @@
             <tr>
                 <td><b>Status Pembayaran</b></td>
                 <td>
-                  @if($model->status == 1 || $model->status == 2 || $model->status == 3)
+                  @if($model->status == 1 || $model->status == 2 || $model->status == 3 || $model->status == 4 || $model->status == 5)
                     Belum dibayar
-                  @elseif($model->status == 4)
+                  @elseif($model->status == 6 || $model->status == 7 || $model->status == 8 || $model->status == 9)
                     Lunas
                   @endif
                 </td>

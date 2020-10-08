@@ -124,7 +124,6 @@ class TimeofUsageController extends Controller
             	->addColumn('time', function($model){
             		$i = 0;
                     if($model->times()->exists()){
-		            // if(count($model->times)){
 	            		foreach($model->times as $a){
 		            		$b[$i] = $a->name;
 		            		$i++;

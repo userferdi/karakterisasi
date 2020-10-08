@@ -1,11 +1,11 @@
 @extends('layouts.index')
 
+@section('title','FINDER · Schedule')
+
 @push('css')
   <link rel="stylesheet" type="text/css" href="{{ asset('calendar/main.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/disable.css') }}">
 @endpush
-
-@section('title','FINDER · Schedule')
 
 @section('content')
 <h3 style="padding-top:10px;"><strong>Jadwal Penggunaan Alat</strong></h3>

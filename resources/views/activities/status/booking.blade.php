@@ -12,7 +12,7 @@
   <div class="col-lg-12">
     <div class="card" >
       <div class="card-body">
-        <table id="table" class="table table-striped table-bordered text-sm" style="width:100%"></table>
+        <table id="table" class="table table-striped table-bordered text-sm"></table>
       </div>
     </div>
   </div>
@@ -37,8 +37,7 @@
         {title: 'Pilihan 3', data: 'date3', name: 'date3', className: 'dt-head-center'},
         {title: 'Status', data: 'status', name: 'status', orderable:false, className: 'dt-center'},
         {title: 'Resend Email', data: 'resend', name: 'resend', orderable:false, className: 'dt-center'},
-        {title: 'Detail', data: 'detail', name: 'detail', orderable:false, className: 'dt-center'},
-        {title: 'Cancel', data: 'cancel', name: 'cancel', orderable:false, className: 'dt-center'}
+        {title: '', data: 'action', name: 'action', orderable:false, className: 'dt-center'}
       ],
     });
 

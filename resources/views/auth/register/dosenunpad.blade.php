@@ -59,13 +59,18 @@
         <div class="form-group row">
             <label for="faculty" class="col-md-4 col-form-label text-md-right">Faculty</label>
             <div class="col-md-8">
-                <input id="faculty" type="text" class="form-control" name="faculty" required>
+                <select id="faculty" type="text" class="form-control" name="faculty" value="" onchange="onSelectFaculty(this.value,'#study_program')">
+                    <option value="0" disabled selected>Pilih Fakultas</option>
+                    @foreach($faculty as $f)
+                    <option value="{{$f->id}}">{{$f->name}}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
         <div class="form-group row">
             <label for="study_program" class="col-md-4 col-form-label text-md-right">Study Program</label>
             <div class="col-md-8">
-                <input id="study_program" type="text" class="form-control" name="study_program" required>
+                <select id="study_program" type="text" class="form-control" name="study_program" value=""><option></option></select>
             </div>
         </div>
         <legend>File Upload</legend>
@@ -76,41 +81,6 @@
             <input type="file" name="image">
             <span class="help-block text-danger"></span>
         </div>
-
-    <!--     <div class="form-group wrap-input100 validate-input" data-validate = "Name required">
-            <input class="input100" type="text" name="name" id="name" value="{{ old('name') }}" autocomplete="name">
-            <span class="focus-input100" data-placeholder="Nama"></span>
-        </div>
-        <div class="form-group wrap-input100 validate-input" data-validate = "No ID required">
-            <input class="input100" type="text" name="no_id" id="no_id" value="{{ old('no_id') }}" autocomplete="no_id">
-            <span class="focus-input100" data-placeholder="No ID"></span>
-        </div>
-        <div class="form-group wrap-input100 validate-input" data-validate = "No HP required">
-            <input class="input100" type="text" name="no_hp" id="no_hp" value="{{ old('no_hp') }}" autocomplete="no_hp">
-            <span class="focus-input100" data-placeholder="No HP"></span>
-        </div>
-        <div class="form-group wrap-input100 validate-input" data-validate = "Email required">
-            <input class="input100" type="text" name="institution" id="institution" value="{{ old('institution') }}" autocomplete="institution">
-            <span class="focus-input100" data-placeholder="Lembaga"></span>
-        </div>
-        <div class="form-group wrap-input100 validate-input" data-validate = "Email required">
-            <input class="input100" type="text" name="email" id="email" value="{{ old('email') }}" autocomplete="email">
-            <span class="focus-input100" data-placeholder="Email"></span>
-        </div>
-        <div class="form-group wrap-input100 validate-input" data-validate="Password required">
-            <span class="btn-show-pass">
-                <i class="fa fa-eye nav-icon validates"></i>
-            </span>
-            <input class="input100" type="password" name="password" id="password" autocomplete="new-password">
-            <span class="focus-input100" data-placeholder="Password"></span>
-        </div>
-        <div class="form-group wrap-input100 validate-input" data-validate="Password required">
-            <span class="btn-show-pass">
-                <i class="fa fa-eye nav-icon validates"></i>
-            </span>
-            <input class="input100" type="password" name="password_confirmation" id="password-confirm" autocomplete="new-password">
-            <span class="focus-input100" data-placeholder="Confirm Password"></span>
-        </div> -->
         <div class="form-group container-login100-form-btn">
             <div class="wrap-login100-form-btn">
                 <div class="login100-form-bgbtn"></div>
@@ -133,3 +103,23 @@
     </form>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    $(document).ready(function() {
+      $("#faculty").val('0');
+    });
+
+    function onSelectFaculty(value,childEl) {
+        $('#study_program').empty();
+        $('#study_program').append('<option value="0" disabled selected>Pilih Program Studi</option>');
+        $.ajax({
+            type: 'GET',
+            url: '/register/datatable/studyprogram/' + value,
+            success: function (response) {
+                $('#study_program').append(response);
+            }
+        });
+    }
+</script>
+@endpush

@@ -23,6 +23,38 @@ class AdminController extends Controller
         return view('settings', ['model' => Auth()->User()]);
     }
 
+    public function showAccount($id)
+    {
+        $model = User::find($id);
+        if($model->profiles->email_lecturer!=NULL){
+            $model['lecturer'] = User::where('email',$model->profiles->email_lecturer)->first()->name;
+        }
+        return view('showProfile', ['model' => $model]);
+    }
+
+    public function editAccount($id)
+    {
+        $model = User::find($id);
+        return view('editaccount', ['model' => $model]);
+    }
+
+    public function updateAccount(Request $request, $id)
+    {
+        $request->validate([
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users']
+        ]);
+        $model = User::find($id)->update([
+            'email' => $request->email,
+            'email_verified_at' => NULL
+        ]);
+        // return response()->json();
+    }
+
+    public function account()
+    {
+        return view('account');
+    }
+
     public function edit()
     {
         $model = Auth()->User();
@@ -96,13 +128,14 @@ class AdminController extends Controller
     public function updateEmail(Request $request)
     {
         $request->validate([
-            'email_lecturer' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required']
         ]);
         $model = Auth()->User();
         if(password_verify($request->password, $model->password)){
-            $model = Profile::where('user_id',$model->id)->update([
-                'email_lecturer' => $request->email_lecturer
+            $model = User::find($model->id)->update([
+                'email' => $request->email,
+                'email_verified_at' => NULL
             ]);
             return redirect()->route('settings');
         }
@@ -126,7 +159,6 @@ class AdminController extends Controller
                 'email_lecturer' => $request->email_lecturer
             ]);
             return response()->json($model);
-            // return redirect()->route('settings');
         }
         else{
             $returnData = array(
@@ -158,11 +190,27 @@ class AdminController extends Controller
         }
     }
 
-    public function datatable()
+    public function dataAccount()
     {
-        $users = User::get();
-        $client = $users->reject(function ($user) {
+        $model = User::get()->reject(function ($user) {
             return $user->hasRole('Admin');
         });
+        return DataTables::of($model)
+            ->addColumn('role', function($model){
+                return $model->roles[0]->name;
+            })
+            ->addColumn('change', function($model){
+                $button = 
+'<a href="'.route('account.edit',$model->id).'" class="btn btn-primary modal-show" name="Ganti Email: '.$model->name.'">change email</a>';
+                return $button;
+            })
+            ->addColumn('show', function($model){
+                $button = 
+'<a href="'.route('account.show',$model->id).'" class="btn btn-primary btn-sm">show</a>';
+                return $button;
+            })
+            ->addIndexColumn()
+            ->rawColumns(['change', 'show'])
+            ->make(true);
     }
 }

@@ -11,7 +11,7 @@
     <a class="nav-link" id="status-tab" data-toggle="tab" href="#status" role="tab" aria-controls="status" aria-selected="false">Status</a>
   </li>
   <li class="nav-item" role="presentation">
-    <a class="nav-link" id="timeuse-tab" data-toggle="tab" href="#timeuse" role="tab" aria-controls="timeuse" aria-selected="false">Time of Use</a>
+    <a class="nav-link" id="timeuse-tab" data-toggle="tab" href="#timeuse" role="tab" aria-controls="timeuse" aria-selected="false">Waktu Penggunaan</a>
   </li>
 </ul>
 
@@ -34,7 +34,7 @@
       <div class="tab-pane" id="timeuse" role="tabpanel" aria-labelledby="timeuse-tab">
         <ul class="nav nav-tabs" id="myTab" role="tablist" style="padding-top:15px;">
           <li class="nav-item" role="presentation">
-            <a class="nav-link" id="timeusage-tab" data-toggle="tab" href="#timeusage" role="tab" aria-controls="timeusage" aria-selected="false">Time of Usage</a>
+            <a class="nav-link" id="timeusage-tab" data-toggle="tab" href="#timeusage" role="tab" aria-controls="timeusage" aria-selected="false">Time_Usage</a>
           </li>
           <li class="nav-item" role="presentation">
             <a class="nav-link" id="usage-tab" data-toggle="tab" href="#usage" role="tab" aria-controls="usage" aria-selected="false">Usage</a>
@@ -199,7 +199,7 @@
       data : {'_method' : method, '_token' : csrf_token, 'count': count},
       success: function(response){
         $('#modal-timeusage').html(response);
-        $('#modal-title').text('Banyak Layanan');
+        $('#modal-title').text(me.hasClass('edit') ? 'Cancel' : 'Close');
         $('#modal-close').text('Cancel');
         $('#modal-save').text('Submit');
       },
@@ -240,7 +240,7 @@
           type: 'success',
           title: 'Data has been saved!'
         })
-        $('#modal-body').html('reset');
+        $('#modal-body').reset();
       },
 
       error: function(xhr){
@@ -395,22 +395,6 @@
             '<td>'+d.image+'</td>'+
         '</tr>'+
     '</table>';
-    // return  '<div class="container" style="width:100%">'+
-    //           '<div class="row mb-2">'+
-    //             '<label>Deskripsi Alat'+'&nbsp;'+':</label>'+
-    //             '&emsp;'+
-    //             '<div class="card">'+
-    //                 '<p class="card-text">'+'&nbsp;'+d.descrip+'&ensp;'+'</p>'+
-    //             '</div>'+
-    //           '</div>'+
-    //           '<div class="row">'+
-    //             '<label>Preparasi Sampel'+'&nbsp;'+':</label>'+
-    //             '&emsp;'+
-    //             '<div class="card">'+
-    //                 '<p class="card-text">'+'&nbsp;'+d.sample+'&ensp;'+'</p>'+
-    //             '</div>'+
-    //           '</div>'+
-    //         '</div>';
   };
 
 

@@ -155,21 +155,59 @@ class VerificationController extends Controller
                     $mail->SetFrom('ferdi.maulana@gmail.com', 'Admin');
                     $mail->AddAddress('ferdi.maulana@gmail.com');
                     $mail->Subject = 'Permintaan Verifikasi Booking Alat';
+                    if($model->orders->users->roles[0]->name=='Dosen Unpad'||$model->orders->users->roles[0]->name=='Dosen Non Unpad'){
                     $mail->Body = '
 <p>Sistem Informasi Pengelolaan Alat (SIPA) Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br/>
-<p>Nama Mahasiswa : <strong>'.$model->orders->users->name.'</strong></p>
-<p>NIM : <strong>'.$model->orders->users->profiles->no_id.'</strong></p>
-<p>Email : <strong>'.$model->orders->users->email.'</strong></p>
-<p>Program Studi : <strong>'.$model->orders->users->profiles->study_program.'</strong></p>
-<p>Fakultas : <strong>'.$model->orders->users->profiles->faculty.'</strong></p>
-<p>Universitas : <strong>'.$model->orders->users->profiles->university.'</strong></p><br/>
-<p>Anda diminta untuk melakukan verifikasi sebagai Dosen Penanggungjawab terhadap permintaan penggunaan alat dari Mahasiswa tersebut. Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$newtoken).'">di sini!</a></p>
-<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
-<p>Silahkan Masuk ke Menu <strong>My Students -> Booking Request</strong> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda. Apabila Anda tidak melakukan verifikasi maka mahasiswa Anda tidak dapat melanjutkan proses permintaan penggunaan alat di PPNN ITB.</p><br/><br/>
+<p>Nama Dosen : <b>'.$model->orders->users->name.'</b></p>
+<p>NIDN : <b>'.$model->orders->users->profiles->no_id.'</b></p>
+<p>Email : <b>'.$model->orders->users->email.'</b></p>
+<p>Program Studi : <b>'.$model->orders->users->profiles->study_program.'</b></p>
+<p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
+<p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br/>
+<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Dosen tersebut.</p>
+<p>Untuk melakukan verifikasi silahkan Log-In ke Website SIPA FINDER melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
+<p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melakukan verifikasi terhadap permintaan penggunaan alat.</p><br/><br/>
 <p>Hormat Kami,</p><br/>
 <p>Sekretariat SIPA FINDER</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>
 ';
+                    }
+                    else if($model->orders->users->roles[0]->name=='Mahasiswa Unpad'||$model->orders->users->roles[0]->name=='Mahasiswa Non Unpad'){
+                    $mail->Body = '
+<p>Sistem Informasi Pengelolaan Alat (SIPA) Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br/>
+<p>Nama Mahasiswa : <b>'.$model->orders->users->name.'</b></p>
+<p>NIM : <b>'.$model->orders->users->profiles->no_id.'</b></p>
+<p>Email : <b>'.$model->orders->users->email.'</b></p>
+<p>Program Studi : <b>'.$model->orders->users->profiles->study_program.'</b></p>
+<p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
+<p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br/>
+<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Mahasiswa tersebut.</p>
+<p>Untuk melakukan verifikasi silahkan Log-In ke Website SIPA FINDER melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
+<p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melakukan verifikasi terhadap permintaan penggunaan alat.</p><br/><br/>
+<p>Hormat Kami,</p><br/>
+<p>Sekretariat SIPA FINDER</p>
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>
+';
+                    }
+                    else if($model->orders->users->roles[0]->name=='User Umum'){
+                    $mail->Body = '
+<p>Sistem Informasi Pengelolaan Alat (SIPA) Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br/>
+<p>Nama Lengkap : <b>'.$model->orders->users->name.'</b></p>
+<p>No ID : <b>'.$model->orders->users->profiles->no_id.'</b></p>
+<p>Email : <b>'.$model->orders->users->email.'</b></p>
+<p>Lembaga : <b>'.$model->orders->users->profiles->institution.'</b></p>
+<p>Alamat : <b>'.$model->orders->users->profiles->address.'</b></p>
+<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat tersebut.</p>
+<p>Untuk melakukan verifikasi silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
+<p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melakukan verifikasi terhadap permintaan penggunaan alat.</p><br/><br/>
+<p>Hormat Kami,</p><br/>
+<p>Sekretariat SIPA FINDER</p>
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>
+';
+                    }
+                    else{
+                        abort(404);
+                    }
                     $mail->isHTML(true);
                     $mail->Send();
                     return redirect()->route('verify.success');
@@ -284,7 +322,6 @@ class VerificationController extends Controller
     public function updateConfirm(Request $request, $id)
     {
         $model = Booking::find($id);
-        // dd($model->orders->users->profiles);
         if($model->status == 2){
             $newtoken = str::random(60);
             $save = Booking::find($id)->update([
@@ -525,7 +562,7 @@ class VerificationController extends Controller
                 }
             }
         }
-        else if($model['status'==2]){
+        else if($model['status']==2){
             $newtoken = str::random(60);
             $save = Booking::find($id)->update([
                 'token' => $newtoken,
@@ -569,7 +606,7 @@ class VerificationController extends Controller
                 }
             }
         }
-        else if($model['status'==3]){
+        else if($model['status']==3){
             $newtoken = str::random(60);
             $save = Booking::find($id)->update([
                 'token' => $newtoken,
@@ -589,21 +626,59 @@ class VerificationController extends Controller
                     $mail->SetFrom('ferdi.maulana@gmail.com');
                     $mail->AddAddress('ferdi.maulana@gmail.com');
                     $mail->Subject = 'Permintaan Verifikasi Booking Alat';
+                    if($model->orders->users->roles[0]->name=='Dosen Unpad'||$model->orders->users->roles[0]->name=='Dosen Non Unpad'){
                     $mail->Body = '
 <p>Sistem Informasi Pengelolaan Alat (SIPA) Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br/>
-<p>Nama Mahasiswa : <strong>'.$model->orders->users->name.'</strong></p>
-<p>NIM : <strong>'.$model->orders->users->profiles->no_id.'</strong></p>
-<p>Email : <strong>'.$model->orders->users->email.'</strong></p>
-<p>Program Studi : <strong>'.$model->orders->users->profiles->study_program.'</strong></p>
-<p>Fakultas : <strong>'.$model->orders->users->profiles->faculty.'</strong></p>
-<p>Universitas : <strong>'.$model->orders->users->profiles->university.'</strong></p><br/>
-<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Mahasiswa tersebut. Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$newtoken).'">di sini!</a></p>
-<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
-<p>Silahkan Masuk ke Menu <strong>My Students -> Booking Request</strong> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda. Apabila Anda tidak melakukan verifikasi maka mahasiswa Anda tidak dapat melanjutkan proses permintaan penggunaan alat di PPNN ITB.</p><br/><br/>
+<p>Nama Dosen : <b>'.$model->orders->users->name.'</b></p>
+<p>NIDN : <b>'.$model->orders->users->profiles->no_id.'</b></p>
+<p>Email : <b>'.$model->orders->users->email.'</b></p>
+<p>Program Studi : <b>'.$model->orders->users->profiles->study_program.'</b></p>
+<p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
+<p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br/>
+<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Dosen tersebut.</p>
+<p>Untuk melakukan verifikasi silahkan Log-In ke Website SIPA FINDER melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
+<p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melakukan verifikasi terhadap permintaan penggunaan alat.</p><br/><br/>
 <p>Hormat Kami,</p><br/>
 <p>Sekretariat SIPA FINDER</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>
 ';
+                    }
+                    else if($model->orders->users->roles[0]->name=='Mahasiswa Unpad'||$model->orders->users->roles[0]->name=='Mahasiswa Non Unpad'){
+                    $mail->Body = '
+<p>Sistem Informasi Pengelolaan Alat (SIPA) Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br/>
+<p>Nama Mahasiswa : <b>'.$model->orders->users->name.'</b></p>
+<p>NIM : <b>'.$model->orders->users->profiles->no_id.'</b></p>
+<p>Email : <b>'.$model->orders->users->email.'</b></p>
+<p>Program Studi : <b>'.$model->orders->users->profiles->study_program.'</b></p>
+<p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
+<p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br/>
+<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Mahasiswa tersebut.</p>
+<p>Untuk melakukan verifikasi silahkan Log-In ke Website SIPA FINDER melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
+<p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melakukan verifikasi terhadap permintaan penggunaan alat.</p><br/><br/>
+<p>Hormat Kami,</p><br/>
+<p>Sekretariat SIPA FINDER</p>
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>
+';
+                    }
+                    else if($model->orders->users->roles[0]->name=='User Umum'){
+                    $mail->Body = '
+<p>Sistem Informasi Pengelolaan Alat (SIPA) Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br/>
+<p>Nama Lengkap : <b>'.$model->orders->users->name.'</b></p>
+<p>No ID : <b>'.$model->orders->users->profiles->no_id.'</b></p>
+<p>Email : <b>'.$model->orders->users->email.'</b></p>
+<p>Lembaga : <b>'.$model->orders->users->profiles->institution.'</b></p>
+<p>Alamat : <b>'.$model->orders->users->profiles->address.'</b></p>
+<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat tersebut.</p>
+<p>Untuk melakukan verifikasi silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
+<p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melakukan verifikasi terhadap permintaan penggunaan alat.</p><br/><br/>
+<p>Hormat Kami,</p><br/>
+<p>Sekretariat SIPA FINDER</p>
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>
+';
+                    }
+                    else{
+                        abort(404);
+                    }
                     $mail->isHTML(true);
                     $mail->Send();
                     return response()->json(true);

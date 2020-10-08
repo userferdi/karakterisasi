@@ -31,9 +31,9 @@
             <tr>
                 <td><b>Status Penggunaan Alat</b></td>
                 <td><b>
-                  @if($model->status==2)
+                  @if($model->status==2 || $model->status==3)
                     Waiting for payment
-                  @elseif($model->status==3)
+                  @elseif($model->status==4)
                     Completed
                   @endif
                 </b></td>
@@ -59,7 +59,9 @@
             </tr>
             <tr>
                 <td><b>No Tagihan</b></td>
-                <td>{{$model->payments->no_invoice}}</td>
+                <td>
+                <a href="{{ route('payment.showBill', $model->payments->id) }}">{{$model->payments->no_invoice}}</a>
+                </td>
             </tr>
             <tr>
                 <td><b>Tanggal Penagihan</b></td>
@@ -67,7 +69,9 @@
             </tr>
             <tr>
                 <td><b>No Receipt</b></td>
-                <td>{{$model->payments->no_receipt}}</td>
+                <td>
+                <a href="{{ route('payment.showReceipt', $model->payments->id) }}">                  {{$model->payments->no_receipt}}</a>
+                </td>
             </tr>
             <tr>
                 <td><b>Nama</b></td>

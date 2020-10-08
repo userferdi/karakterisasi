@@ -10,4 +10,10 @@ class Profile extends Model
     public function user(){
     	return $this->belongsTo('App\User');
     }
+    public function faculties(){
+    	return $this->belongsTo('App\Faculty');
+    }
+    public function study_program(){
+    	return $this->belongsTo('App\study_program');
+    }
 }

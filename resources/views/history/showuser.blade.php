@@ -30,7 +30,7 @@
       {title: 'Tanggal Penggunaan', data: 'date', name: 'date', className: 'dt-center'},
       {title: 'Nominal', data: 'total', name: 'total', orderable:false, className: 'dt-center'},
       {title: 'Status', data: 'status', name: 'status', orderable:false, className: 'dt-center'},
-      {title: '', data: 'action', name: 'action', orderable:false, className: 'dt-center'}
+      {title: '', data: 'show', name: 'show', orderable:false, className: 'dt-center'}
     ],
   });
 </script>

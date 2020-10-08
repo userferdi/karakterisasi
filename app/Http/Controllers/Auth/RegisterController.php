@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Profile;
+use App\University;
+use App\Faculty;
+use App\study_program;
 
 use Auth;
 use App\Http\Controllers\Controller;
@@ -80,13 +83,15 @@ class RegisterController extends Controller
     public function createForm($user)
     {
         if($user=='dosenunpad'){
-            return view('auth.register.dosenunpad');
+            $faculty = Faculty::get();
+            return view('auth.register.dosenunpad',['faculty'=>$faculty]);
         }
         else if($user=='dosennonunpad'){
             return view('auth.register.dosen');
         }
         else if($user=='mahasiswaunpad'){
-            return view('auth.register.mahasiswaunpad');
+            $faculty = Faculty::get();
+            return view('auth.register.mahasiswaunpad',['faculty'=>$faculty]);
         }
         else if($user=='mahasiswanonunpad'){
             return view('auth.register.mahasiswa');
@@ -108,11 +113,6 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'name' => ['required', 'string', 'max:255'],
         ]);
-        // $this->validate($data, [
-        //     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        //     'password' => ['required', 'string', 'min:8', 'confirmed'],
-        //     'name' => ['required', 'string', 'max:255'],
-        // ]);
         if($data['user']=='admin'){
             $user = User::create([
                 'email' => $data['email'],
@@ -120,6 +120,7 @@ class RegisterController extends Controller
                 'name' => $data['name'],
             ]);
             Auth::login($user);
+            $user->sendEmailVerificationNotification();
             auth()->user()->assignRole('Admin');
             return redirect()->route('home');
         }
@@ -131,14 +132,15 @@ class RegisterController extends Controller
             ]);
             $id = DB::getPdo()->lastInsertId();
             Auth::login($user);
+            $user->sendEmailVerificationNotification();
             auth()->user()->assignRole('Dosen Unpad');
             $profile = Profile::create([
                 'user_id' => $id,
                 'no_id' => $data->no_id,
                 'no_hp' => $data->no_hp,
                 'university' => 'Universitas Padjadjaran',
-                'faculty' => $data->faculty,
-                'study_program' => $data->study_program,
+                'faculty' => Faculty::find($data->faculty)->name,
+                'study_program' => study_program::find($data->study_program)->name,
             ]);
             return redirect()->route('home');
         }
@@ -150,6 +152,7 @@ class RegisterController extends Controller
             ]);
             $id = DB::getPdo()->lastInsertId();
             Auth::login($user);
+            $user->sendEmailVerificationNotification();
             auth()->user()->assignRole('Dosen Non Unpad');
             $profile = Profile::create([
                 'user_id' => $id,
@@ -169,14 +172,15 @@ class RegisterController extends Controller
             ]);
             $id = DB::getPdo()->lastInsertId();
             Auth::login($user);
+            $user->sendEmailVerificationNotification();
             auth()->user()->assignRole('Mahasiswa Unpad');
             $profile = Profile::create([
                 'user_id' => $id,
                 'no_id' => $data->no_id,
                 'no_hp' => $data->no_hp,
                 'university' => 'Universitas Padjadjaran',
-                'faculty' => $data->faculty,
-                'study_program' => $data->study_program,
+                'faculty' => Faculty::find($data->faculty)->name,
+                'study_program' => study_program::find($data->study_program)->name,
                 'email_lecturer' => $data->email_lecturer
             ]);
             return redirect()->route('home');
@@ -189,6 +193,7 @@ class RegisterController extends Controller
             ]);
             $id = DB::getPdo()->lastInsertId();
             Auth::login($user);
+            $user->sendEmailVerificationNotification();
             auth()->user()->assignRole('Mahasiswa Non Unpad');
             $profile = Profile::create([
                 'user_id' => $id,
@@ -209,6 +214,7 @@ class RegisterController extends Controller
             ]);
             $id = DB::getPdo()->lastInsertId();
             Auth::login($user);
+            $user->sendEmailVerificationNotification();
             auth()->user()->assignRole('User Umum');
             $profile = Profile::create([
                 'user_id' => $id,
@@ -222,5 +228,22 @@ class RegisterController extends Controller
         else{
             abort(404);
         }
+    }
+
+    public function dataFaculty()
+    {
+        $model = Faculty::get();
+        return json_encode($model);
+    }
+
+    public function dataStudyProgram($id)
+    {
+        $model = study_program::where('faculties_id', $id)->get();
+        $output = '';
+        foreach($model as $row){
+            $output .= '<option value="'.$row->id.'">'.$row->name.'</option>';
+        }
+        return $output;
+        return json_encode($model);
     }
 }

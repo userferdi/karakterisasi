@@ -3,27 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Approve;
-use Auth;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $user=Auth()->User();
-        if($user!=NULL){
-            if($user->hasRole('Admin')){
+        $client = ['Dosen Unpad', 'Dosen Non Unpad', 'Mahasiswa Unpad', 'Mahasiswa Non Unpad', 'User Umum'];
+        if(Auth()->User()!=NULL){
+            if(Auth()->User()->hasRole('Admin')){
+                $user = Auth()->User();
                 return view('home.admin', ['user'=>$user]);
             }
-            $model = Approve::whereHas('orders', function ($query){
-                return $query->where('users_id', '=', Auth()->User()->id);
-            })->where(function($model){
-                $model->where('status',1)
-                    ->orWhere('status',2);
-            })->get();
-            $cek = $model->first();
-            return view('home.client', ['user'=>$user, 'model'=>$model]);
+            else if(Auth()->User()->hasRole($client)){
+                $user = Auth()->User();
+                $model = Approve::whereHas('orders', function ($query){
+                    return $query->where('users_id', '=', Auth()->User()->id);
+                })->where(function($model){
+                    $model->where('status',1)
+                          ->orWhere('status',2);
+                })->get();
+                return view('home.client',['model'=>$model, 'user'=>$user]);
+            }
         }
-        return redirect()->route('welcome');
+        else{
+            return redirect()->route('login');
+        }
     }
 
     public function welcome()
@@ -31,6 +36,8 @@ class HomeController extends Controller
         if(Auth()->User()!=NULL){
             return redirect()->route('home');
         }
-        return view('welcome');
+        else{
+            return view('welcome');
+        }
     }
 }

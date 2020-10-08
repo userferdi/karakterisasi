@@ -146,6 +146,299 @@ class DatabaseSeeder extends Seeder
 			'name' => 'Transfer Dosen'
 		]);
 
+		// Table Baru
+		DB::table('universities')->insert([
+			'name' => 'Universitas Padjadjaran'
+		]);
+		DB::table('faculties')->insert([
+			'name' => 'Fakultas Hukum (FH)'
+		]);
+		DB::table('faculties')->insert([
+			'name' => 'Fakultas Ekonomi dan Bisnis (FEB)'
+		]);
+		DB::table('faculties')->insert([
+			'name' => 'Fakultas Kedokteran (FK)'
+		]);
+		DB::table('faculties')->insert([
+			'name' => 'Fakultas Matematika dan Ilmu Pengetahuan Alam (FMIPA)'
+		]);
+		DB::table('faculties')->insert([
+			'name' => 'Fakultas Pertanian (FAPERTA)'
+		]);
+		DB::table('faculties')->insert([
+			'name' => 'Fakultas Kedokteran Gigi (FKG)'
+		]);
+		DB::table('faculties')->insert([
+			'name' => 'Fakultas Ilmu Budaya (FIB)'
+		]);
+		DB::table('faculties')->insert([
+			'name' => 'Fakultas Ilmu Sosial dan Ilmu Politik (FISIP)'
+		]);
+		DB::table('faculties')->insert([
+			'name' => 'Fakultas Psikologi (FAPSI)'
+		]);
+		DB::table('faculties')->insert([
+			'name' => 'Fakultas Peternakan (FAPET)'
+		]);
+		DB::table('faculties')->insert([
+			'name' => 'Fakultas Ilmu Komunikasi (FIKOM)'
+		]);
+		DB::table('faculties')->insert([
+			'name' => 'Fakultas Keperawatan (FKEP)'
+		]);
+		DB::table('faculties')->insert([
+			'name' => 'Fakultas Perikanan dan Ilmu Kelautan (FPIK)'
+		]);
+		DB::table('faculties')->insert([
+			'name' => 'Fakultas Teknologi Industri Pertanian (FTIP)'
+		]);
+		DB::table('faculties')->insert([
+			'name' => 'Fakultas Farmasi (FF)'
+		]);
+		DB::table('faculties')->insert([
+			'name' => 'Fakultas Teknik Geologi (FTG)'
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Hukum',
+			'faculties_id' => 1
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Akuntansi',
+			'faculties_id' => 2
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Ekonomi Pembangunan',
+			'faculties_id' => 2
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Manajemen',
+			'faculties_id' => 2
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Ekonomi Islam',
+			'faculties_id' => 2
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Bisnis Digital',
+			'faculties_id' => 2
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Akuntansi',
+			'faculties_id' => 2
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Kedokteran',
+			'faculties_id' => 3
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Kedokteran Hewan',
+			'faculties_id' => 3
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Matematika',
+			'faculties_id' => 4
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Kimia',
+			'faculties_id' => 4
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Fisika',
+			'faculties_id' => 4
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Biologi',
+			'faculties_id' => 4
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Statistika',
+			'faculties_id' => 4
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Geofisika',
+			'faculties_id' => 4
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Teknik Informatika',
+			'faculties_id' => 4
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Teknik Elektro',
+			'faculties_id' => 4
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Aktuaria',
+			'faculties_id' => 4
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Agroteknologi',
+			'faculties_id' => 5
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Agribisnis',
+			'faculties_id' => 5
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Kedokteran Gigi',
+			'faculties_id' => 6
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Sastra Indonesia',
+			'faculties_id' => 7
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Sastra Sunda',
+			'faculties_id' => 7
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Ilmu Sejarah',
+			'faculties_id' => 7
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Sastra Inggris',
+			'faculties_id' => 7
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Sastra Perancis',
+			'faculties_id' => 7
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Sastra Jepang',
+			'faculties_id' => 7
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Sastra Rusia',
+			'faculties_id' => 7
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Sastra Jerman',
+			'faculties_id' => 7
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Sastra Arab',
+			'faculties_id' => 7
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Sastra Indonesia',
+			'faculties_id' => 7
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Administrasi Publik',
+			'faculties_id' => 8
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Ilmu Hubungan Internasional',
+			'faculties_id' => 8
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Ilmu Kesejahteraan Sosial',
+			'faculties_id' => 8
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Ilmu Pemerintahan',
+			'faculties_id' => 8
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Antropologi',
+			'faculties_id' => 8
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Ilmu Administrasi Bisnis',
+			'faculties_id' => 8
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Sosiologi',
+			'faculties_id' => 8
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Ilmu Politik',
+			'faculties_id' => 8
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Administrasi Bisnis PSDKU Pangandaran',
+			'faculties_id' => 8
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Psikologi',
+			'faculties_id' => 9
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Peternakan',
+			'faculties_id' => 10
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Peternakan PSDKU Pangandaran',
+			'faculties_id' => 10
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Ilmu Komunikasi',
+			'faculties_id' => 11
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Ilmu Perpustakaan',
+			'faculties_id' => 11
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Hubungan Masyarakat',
+			'faculties_id' => 11
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Jurnalistik',
+			'faculties_id' => 11
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Manajemen Komunikasi',
+			'faculties_id' => 11
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Televisi dan Film',
+			'faculties_id' => 11
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Ilmu Komunikasi PSDKU Pangandaran',
+			'faculties_id' => 11
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Keperawatan',
+			'faculties_id' => 12
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Keperawatan PSDKU Pangandaran',
+			'faculties_id' => 12
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Perikanan',
+			'faculties_id' => 13
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Ilmu Kelautan',
+			'faculties_id' => 13
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Perikanan PSDKU Pangandaran',
+			'faculties_id' => 13
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Teknik Pertanian dan Biosistem',
+			'faculties_id' => 14
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Teknologi Pangan',
+			'faculties_id' => 14
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Teknologi Industri Pertanian',
+			'faculties_id' => 14
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Farmasi',
+			'faculties_id' => 15
+		]);
+		DB::table('study_programs')->insert([
+			'name' => 'Teknik Geologi',
+			'faculties_id' => 16
+		]);
+
 		// LabSeeder
 		DB::table('labs')->insert([
 			'name' => 'Laboratorium Nanomaterial',

@@ -70,8 +70,8 @@
   <!-- ./col -->
 </div>
 
-<h4><strong>Status Penggunaan Alat Anda</strong></h4>
-<h6>Tidak ada proses Penggunaan Alat yang tercatat dalam sistem kami.</h6>
+<!-- <h4><strong>Status Penggunaan Alat Anda</strong></h4>
+<h6>Tidak ada proses Penggunaan Alat yang tercatat dalam sistem kami.</h6> -->
 
 @endsection
 

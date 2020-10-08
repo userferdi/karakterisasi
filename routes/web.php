@@ -4,15 +4,17 @@
 // 	return view('welcome');
 // })->name('welcome');
 
-Auth::routes(['register' => false]);
+Route::get('/', 'HomeController@welcome')->name('welcome');
+
+Auth::routes(['verify' => true, 'register' => false]);
+
 Route::prefix('register')->group(function(){
 	Route::get('/', 'Auth\RegisterController@showRegistrationForm')->name('register');
 	Route::get('form/{user}', 'Auth\RegisterController@createForm')->name('register.create');
 	Route::post('store', 'Auth\RegisterController@storeForm')->name('register.store');
+	Route::get('datatable/faculty', 'Auth\RegisterController@dataFaculty')->name('faculty.datatable');
+	Route::get('datatable/studyprogram/{id}', 'Auth\RegisterController@dataStudyProgram')->name('studyprogram.datatable');
 });
-
-Route::get('/', 'HomeController@welcome')->name('welcome');
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('lab')->group(function(){
 	Route::get('/', 'LabController@index')->name('lab.index');
@@ -33,7 +35,9 @@ Route::prefix('price')->group(function(){
 	Route::get('datatable', 'PriceController@datatable')->name('price.dt');
 });
 
-Route::middleware('auth')->group(function(){
+Route::middleware('auth', 'verified')->group(function(){
+	Route::get('/home', 'HomeController@index')->name('home');
+
 	Route::prefix('lab')->group(function(){
 		Route::get('create', 'LabController@create')->name('lab.create');
 		Route::post('store', 'LabController@store')->name('lab.store');
@@ -242,6 +246,15 @@ Route::middleware('auth')->group(function(){
 		Route::put('updatelecturer', 'AdminController@updateLecturer')->name('settings.update.lecturer');
 		Route::put('password', 'AdminController@password')->name('settings.password');
 	});
+
+	Route::prefix('account')->group(function(){
+		Route::get('/', 'AdminController@account')->name('account');
+		Route::get('editaccount/{id}', 'AdminController@editAccount')->name('account.edit');
+		Route::put('updateaccount/{id}', 'AdminController@updateAccount')->name('account.update');
+		Route::get('show/{id}', 'AdminController@showAccount')->name('account.show');
+		Route::get('datatable', 'AdminController@dataAccount')->name('account.dt');
+	});
+
 	Route::get('contact', function () {
 		return view('contact');
 	})->name('contact');
@@ -253,6 +266,6 @@ Route::prefix('verification')->group(function(){
 		Route::get('{token}/confirm', 'VerificationController@confirm')->name('verify.confirm');
 		Route::get('{token}/reject', 'VerificationController@reject')->name('verify.reject');
 		Route::get('{token}/cancel', 'VerificationController@cancel')->name('verify.cancel');
-		Route::get('success', 'VerificationController@success')->name('verify.success');
 	});
+	Route::get('success', 'VerificationController@success')->name('verify.success');
 });

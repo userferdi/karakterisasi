@@ -20,7 +20,9 @@ class CreateProfilesTable extends Migration
             $table->string('no_hp');
             $table->string('university')->nullable();
             $table->string('faculty')->nullable();
+            // $table->integer('faculties_id')->unsigned()->nullable();
             $table->string('study_program')->nullable();
+            // $table->integer('study_programs_id')->unsigned()->nullable();
             $table->string('image')->nullable();
             $table->string('institution')->nullable();
             $table->string('address')->nullable();
@@ -28,6 +30,10 @@ class CreateProfilesTable extends Migration
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
+            // $table->foreign('faculties_id')->references('id')->on('faculties')
+            //     ->onUpdate('cascade')->onDelete('cascade');
+            // $table->foreign('study_programs_id')->references('id')->on('study_programs')
+            //     ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

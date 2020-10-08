@@ -9,7 +9,6 @@
     <div class="card">
       <div class="card-body">
         <h6>Verifikasi Berhasil</h6>
-        <!-- <p>Verifikasi Berhasil</p> -->
       </div>
     </div>
   </div>

@@ -151,12 +151,6 @@
                     <p>Receipt</p>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a href="{{ route('payment.history') }}" class="nav-link {{ (request()->is('payment/history*')) ? 'active' : '' }}">
-                    <i class="fas fa-calculator nav-icon"></i>
-                    <p>Transaction History</p>
-                  </a>
-                </li>
               </ul>
             </li>
             <li class="nav-item">
@@ -167,11 +161,34 @@
                 </p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="{{ route('activities.history') }}" class="nav-link {{ (request()->is('history*')) ? 'active' : '' }}">
+            <li class="nav-item has-treeview">
+              <a href="/#" class="nav-link {{ (request()->is('history*')) ? 'active' : '' }}">
                 <i class="nav-icon fas fa-history"></i>
                 <p>
                   History
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route('history.tool') }}" class="nav-link {{ (request()->is('history/tool*')) ? 'active' : '' }}">
+                    <i class="fas fa-caret-right nav-icon"></i>
+                    <p>Filter by Tools</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('history.user') }}" class="nav-link {{ (request()->is('history/user*')) ? 'active' : '' }}">
+                    <i class="fas fa-caret-right nav-icon"></i>
+                    <p>Filter by Users</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item has-treeview">
+              <a href="{{ route('account') }}" class="nav-link {{ request()->is('account*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                  Administration Account
                 </p>
               </a>
             </li>
@@ -249,7 +266,7 @@
                 <li class="nav-item">
                   <a href="{{ route('status.approved') }}" class="nav-link {{ (request()->is('activities/status/approved*')) ? 'active' : '' }}">
                     <i class="fas fa-caret-right nav-icon"></i>
-                    <p>Approved Schedule</p>
+                    <p>All Approved Schedule</p>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -288,18 +305,6 @@
                     <p>Booking Request</p>
                   </a>
                 </li>
-<!--                 <li class="nav-item">
-                  <a href="{{ route('price.index') }}" class="nav-link {{ (request()->is('price*')) ? 'active' : '' }}">
-                    <i class="fas fa-dollar-sign nav-icon"></i>
-                    <p>Price List</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('schedule.index') }}" class="nav-link {{ (request()->is('schedule*')) ? 'active' : '' }}">
-                    <i class="fas fa-clock nav-icon"></i>
-                    <p>Schedules</p>
-                  </a>
-                </li> -->
               </ul>
             </li>
             @endrole
@@ -406,10 +411,10 @@
 
     <!-- /.content-wrapper -->
     <footer class="main-footer text-sm">
-      <strong>Copyright &copy; 2020 <a href="http://padjadjaranlab.com">Padjadjaran Lab</a>.</strong>
+      <strong>Copyright &copy; 2020 <a href="#">Functional Nano Powder</a>.</strong>
       All rights reserved.
       <div class="float-right d-none d-sm-inline-block">
-        <!-- <b>Version</b> 3.0.3-pre -->
+        <!-- <b>Version</b> 0.0.1 -->
       </div>
     </footer>
   </div>

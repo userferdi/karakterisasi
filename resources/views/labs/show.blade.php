@@ -9,8 +9,7 @@
     <div class="card">
       <div class="card-body">
         <h4 class="mb-3"><strong>Informasi Laboratorium</strong></h4>
-        <table id="table" class="table row-border hover order-column text-sm" style="width:50%">
-          <thead class="thead-light"></thead>
+        <table id="table" class="table table-hover" style="width:50%">
           <tbody>
             <tr>
                 <td width="20%">Nama:</td>
@@ -32,7 +31,7 @@
         </table>
         <br><br>
         <h4 class="mb-3"><strong>List Kategori Alat</strong></h4>
-        <table id="table_tool" class="table table-striped table-bordered text-sm" style="width:50%"></table>
+        <table id="table_tool" class="table table-bordered table-hover table-striped text-sm" style="width:50%"></table>
       </div>
     </div>
   </div>

@@ -65,7 +65,7 @@ class ActivitiesController extends Controller
             })->pluck('name', 'id');
         }
         $model['time'] = Time::leftJoin('time_usage', 'time_usage.time_id', '=', 'times.id')
-            ->where('usage_id',$tool[0]->usages_id)->pluck('name','times.id');
+            ->where('usage_id',$tool[0]->usages_id)->get()->sortBy('time_id')->pluck('name','time_id');
         return view('activities.create', ['model' => $model]);
 	}
 
@@ -124,7 +124,7 @@ class ActivitiesController extends Controller
                         'allow_self_signed' => true
                     )
                 );
-                $mail->SMTPDebug = true;
+                // $mail->SMTPDebug = true;
                 $mail->Encoding = 'base64';
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
@@ -297,14 +297,15 @@ class ActivitiesController extends Controller
 '<a href="'.route('verify.resend', $model->id).'" class="btn btn-primary btn-sm resend">Resend</a>';
                 return $button;
             })
-            ->addColumn('detail', function($model){
+            ->addColumn('action', function($model){
+                if ($model->status == 1){
+                    $button = 
+'<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>
+<a href="'.route('verify.updateCancel', $model->id).'" class="btn btn-danger btn-sm cancel" name="'.$model->no_form.'">Cancel</a>';
+                    return $button;
+                }
                 $button = 
 '<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>';
-                return $button;
-            })
-            ->addColumn('cancel', function($model){
-                $button = 
-'<a href="'.route('verify.updateCancel', $model->id).'" class="btn btn-danger btn-sm cancel" name="'.$model->no_form.'">Cancel</a>';
                 return $button;
             })
             ->removeColumn('id')
@@ -315,7 +316,7 @@ class ActivitiesController extends Controller
             ->removeColumn('token')
             ->removeColumn('note')
             ->addIndexColumn()
-            ->rawColumns(['attend', 'resend', 'detail', 'cancel'])
+            ->rawColumns(['attend', 'resend', 'action'])
             ->make(true);
     }
 
@@ -754,7 +755,10 @@ class ActivitiesController extends Controller
 
     public function adminApproved()
     {
-        $model = Approve::where('status',1)->get();
+        $model = Approve::where(function($model){
+            $model->where('status',1)
+                  ->orWhere('status',2);
+        })->get();
         return DataTables::of($model)
             ->editColumn('date', function($model){
                 $date = date('d M Y', strtotime($model->date));
@@ -892,7 +896,7 @@ class ActivitiesController extends Controller
 
     public function datatableCompleted()
     {
-        $model = Approve::where('status',2)->get();
+        $model = Approve::where('status',3)->get();
         return DataTables::of($model)
             ->editColumn('date', function($model){
                 $date = date('d M Y', strtotime($model->date));
@@ -929,9 +933,9 @@ class ActivitiesController extends Controller
     public function updateCompleted(Request $request, $id)
     {
         $model = Approve::findOrFail($id);
-        if($model->status==2){
+        if($model->status==3){
             $save = $model->update([
-                'status' => 3
+                'status' => 4
             ]);
             if($model->payments->status==6){
                 $save = Payment::where('id',$model->payments->id)->update([

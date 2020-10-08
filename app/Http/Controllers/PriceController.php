@@ -59,6 +59,7 @@ class PriceController extends Controller
     {
         if(Auth()->User()->hasRole('Admin')){
             $model = Price::findOrFail($id);
+            $model['tool'] = Tool::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
             return view('prices.form', ['model' => $model]);
         }
         else{

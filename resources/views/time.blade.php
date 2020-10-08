@@ -14,16 +14,16 @@
 <div class="modal-body">
     <div class="form-group">
         <label for="" class="control-label">Nama</label>
-        {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name', 'required', 'placeholder'=>'isi']) !!}
+        {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name', 'required']) !!}
         <div class="invalid-feedback" id="invalid">Please fill out this field</div>
     </div>
     <div class="form-group">
-        <label for="" class="control-label">Waktu Start</label>
+        <label for="" class="control-label">Waktu Mulai</label>
         <input id="timepicker1" class="form-control" name="time_start" value="{{$model->time_start}}"/>
         <div class="invalid-feedback" id="invalid">Please fill out this field</div>
     </div>
     <div class="form-group">
-        <label for="" class="control-label">Waktu Start</label>
+        <label for="" class="control-label">Waktu Berakhir</label>
         <input id="timepicker2" class="form-control" name="time_end" value="{{$model->time_end}}"/>
         <div class="invalid-feedback" id="invalid">Please fill out this field</div>
     </div>

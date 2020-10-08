@@ -19,9 +19,6 @@ class HistoryController extends Controller
         if($model->hasRole('Dosen Unpad|Dosen Non Unpad|Mahasiswa Unpad|Mahasiswa Non Unpad')){
 	        return view('activities.history');
 	    }
-        else if($model->hasRole('Admin')){
-	        return view('history.activities');
-	    }
 	    else{
 	    	abort(404);
 	    }
@@ -34,14 +31,14 @@ class HistoryController extends Controller
             $model = Approve::where(function($model){
                 $model->whereHas('orders', function ($order){
                         return $order->where('users_id', '=', Auth()->User()->id);
-                    })->where('status',3)
+                    })->where('status',4)
                     ->orWhereHas('orders', function ($order){
                         return $order->whereHas('users', function ($user){
                             return $user->whereHas('profiles', function ($profile){
                                 return $profile->where('email_lecturer', '=', Auth()->User()->email);
                             });
                         });
-                    })->where('status',3);
+                    })->where('status',4);
             })->get();
         }
         else if($model->hasRole('Mahasiswa Unpad|Mahasiswa Non Unpad|User Umum')){
@@ -49,7 +46,7 @@ class HistoryController extends Controller
                 $model->whereHas('orders', function ($order){
                     return $order->where('users_id', '=', Auth()->User()->id);
                 });
-            })->where('status',3)->get();
+            })->where('status',4)->get();
         }
         else{
             abort(404);
@@ -139,7 +136,7 @@ class HistoryController extends Controller
     {
     	$model = Approve::whereHas('orders', function ($order) use ($id){
             return $order->where('tools_id', $id);
-        })->get();
+        })->where('status',4)->get();
         return DataTables::of($model)
             ->editColumn('date', function($model){
                 $date = date('d M Y', strtotime($model->date));
@@ -165,13 +162,13 @@ class HistoryController extends Controller
 	                return 'Completed';
             	}
             })
-            ->addColumn('action', function($model){
+            ->addColumn('show', function($model){
                 $button = 
-'<a href="'.route('history.show', $model->id).'" class="btn btn-primary btn-sm" name="'.$model->no_regis.'">show</a>';
+'<a href="'.route('history.show', $model->id).'" class="btn btn-primary btn-sm">show</a>';
                 return $button;
             })
             ->addIndexColumn()
-            ->rawColumns(['action','booking','schedule','image','show'])
+            ->rawColumns(['show'])
             ->make(true);
     }
 
@@ -182,7 +179,9 @@ class HistoryController extends Controller
 
     public function dataUser()
     {
-    	$model = User::get();
+        $model = User::get()->reject(function ($user) {
+            return $user->hasRole('Admin');
+        });
         return DataTables::of($model)
             ->addColumn('role', function($model){
                 return $model->roles[0]->name;
@@ -207,7 +206,7 @@ class HistoryController extends Controller
     {
     	$model = Approve::whereHas('orders', function ($order) use ($id){
             return $order->where('users_id', $id);
-        })->get();
+        })->where('status',4)->get();
         return DataTables::of($model)
             ->editColumn('date', function($model){
                 $date = date('d M Y', strtotime($model->date));
@@ -233,13 +232,13 @@ class HistoryController extends Controller
 	                return 'Completed';
             	}
             })
-            ->addColumn('action', function($model){
+            ->addColumn('show', function($model){
                 $button = 
 '<a href="'.route('history.show', $model->id).'" class="btn btn-primary btn-sm" name="'.$model->no_regis.'">show</a>';
                 return $button;
             })
             ->addIndexColumn()
-            ->rawColumns(['action','booking','schedule','image','show'])
+            ->rawColumns(['show'])
             ->make(true);
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePeriodTimeTable extends Migration
+class CreateStudyProgramsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreatePeriodTimeTable extends Migration
      */
     public function up()
     {
-        Schema::create('time_usage', function (Blueprint $table) {
+        Schema::create('study_programs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('usage_id')->unsigned();
-            $table->integer('time_id')->unsigned();
+            $table->string('name');
+            $table->integer('faculties_id')->unsigned()->nullable();
             $table->timestamps();
-            $table->foreign('usage_id')->references('id')->on('usages')
-                ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('time_id')->references('id')->on('times')
+            $table->foreign('faculties_id')->references('id')->on('faculties')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
     }
@@ -32,6 +30,6 @@ class CreatePeriodTimeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('period_time');
+        Schema::dropIfExists('study_programs');
     }
 }

@@ -15,7 +15,7 @@
 <div class="modal-body">
     <div class="form-group">
         <label class="control-label">Alat</label>
-        {!! Form::select('tools_id', $model->tool, $model->tool_id, ['class' => 'form-control', 'id' => 'tool', 'required']) !!}
+        {!! Form::select('tools_id', $model->tool, $model->tools_id, ['class' => 'form-control', 'id' => 'tool', 'required']) !!}
     </div>
     <div class="form-group">
         <label class="control-label">Service</label>
@@ -35,6 +35,11 @@
     <div class="form-group">
         <label class="control-label">Harga untuk User Umum</label>
         {!! Form::text('price3', null, ['class' => 'form-control', 'id' => 'price3', 'required']) !!}
+        <div class="invalid-feedback" id="invalid">Please fill out this field</div>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Diskon</label>
+        {!! Form::text('discount', null, ['class' => 'form-control', 'id' => 'discount', 'required']) !!}
         <div class="invalid-feedback" id="invalid">Please fill out this field</div>
     </div>
 </div>

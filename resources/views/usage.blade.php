@@ -14,7 +14,7 @@
 <div class="modal-body">
     <div class="form-group">
         <label for="" class="control-label">Waktu Penggunaan Alat</label>
-        {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name', 'required', 'placeholder'=>'isi']) !!}
+        {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name', 'required']) !!}
         <div class="invalid-feedback" id="invalid">Please fill out this field</div>
     </div>
 </div>
