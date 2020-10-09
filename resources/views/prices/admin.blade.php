@@ -82,7 +82,7 @@
 
       success: function(response){
         $('#modal').modal('hide');
-        $('#table_tool').DataTable().ajax.reload();
+        $('#table').DataTable().ajax.reload();
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',

@@ -134,7 +134,7 @@ class ActivitiesController extends Controller
                 // SSL: 465, TLS: 587
                 $mail->SMTPSecure = 'ssl';
                 $mail->Port = 465;
-                $mail->SetFrom('ferdi.maulana@gmail.com', 'Ferdian Maulana');
+                $mail->SetFrom('ferdi.maulana@gmail.com', 'FINDER');
                 $mail->AddAddress(Auth()->User()->email);
                 $mail->Subject = 'Permintaan Verifikasi Booking Alat';
                 $mail->Body = '

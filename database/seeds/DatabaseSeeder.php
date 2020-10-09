@@ -147,9 +147,9 @@ class DatabaseSeeder extends Seeder
 		]);
 
 		// Table Baru
-		DB::table('universities')->insert([
-			'name' => 'Universitas Padjadjaran'
-		]);
+		// DB::table('universities')->insert([
+		// 	'name' => 'Universitas Padjadjaran'
+		// ]);
 		DB::table('faculties')->insert([
 			'name' => 'Fakultas Hukum (FH)'
 		]);

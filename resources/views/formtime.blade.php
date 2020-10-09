@@ -19,7 +19,7 @@
     <input id="count" type="hidden" class="form-control" name="count" value="{{$i}}">
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal" id="modal-close"></button>
-    <button type="submit" class="btn btn-primary" id="modal-save"></button>
+    <button type="button" class="btn btn-default" data-dismiss="modal" id="modal-close2">Cancel</button>
+    <button type="submit" class="btn btn-primary" id="modal-save2">Submit</button>
 </div>
 {!! Form::close() !!}

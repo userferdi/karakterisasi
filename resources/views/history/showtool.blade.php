@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="row">
-&ensp;<a href=".." type="button" class="btn btn-secondary btn-sm" style="margin-bottom:15px; margin-top:15px;">Back</a>
+&ensp;<a href="." type="button" class="btn btn-secondary btn-sm" style="margin-bottom:15px; margin-top:15px;">Back</a>
   <div class="col-lg-12">
     <div class="card" >
       <div class="card-body">

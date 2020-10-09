@@ -189,9 +189,6 @@
     var validation = Array.prototype.filter.call(form, function(form) {
       form.classList.remove('was-validated');
     });
-    // $('#modal-body').find("input,textarea,select")
-    //   .val('')
-    //   .end();
 
     $.ajax({
       url : url,
@@ -199,9 +196,6 @@
       data : {'_method' : method, '_token' : csrf_token, 'count': count},
       success: function(response){
         $('#modal-timeusage').html(response);
-        $('#modal-title').text(me.hasClass('edit') ? 'Cancel' : 'Close');
-        $('#modal-close').text('Cancel');
-        $('#modal-save').text('Submit');
       },
     });
   });

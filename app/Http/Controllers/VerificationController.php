@@ -59,7 +59,7 @@ class VerificationController extends Controller
                             // SSL: 465, TLS: 587
                             $mail->SMTPSecure = 'ssl';
                             $mail->Port = 465;
-                            $mail->SetFrom('ferdi.maulana@gmail.com', 'Admin');
+                            $mail->SetFrom('ferdi.maulana@gmail.com', 'FINDER');
                             $mail->AddAddress($model->orders->users->profiles->email_lecturer);
                             $mail->Subject = 'Permintaan Verifikasi Booking Alat';
                             $mail->Body = '
@@ -107,7 +107,7 @@ class VerificationController extends Controller
                         // SSL: 465, TLS: 587
                         $mail->SMTPSecure = 'ssl';
                         $mail->Port = 465;
-                        $mail->SetFrom('ferdi.maulana@gmail.com', 'Admin');
+                        $mail->SetFrom('ferdi.maulana@gmail.com', 'FINDER');
                         $mail->AddAddress('ferdi.maulana@gmail.com');
                         $mail->Subject = 'Permintaan Verifikasi Booking Alat';
                         $mail->Body = '
@@ -152,7 +152,7 @@ class VerificationController extends Controller
                     // SSL: 465, TLS: 587
                     $mail->SMTPSecure = 'ssl';
                     $mail->Port = 465;
-                    $mail->SetFrom('ferdi.maulana@gmail.com', 'Admin');
+                    $mail->SetFrom('ferdi.maulana@gmail.com', 'FINDER');
                     $mail->AddAddress('ferdi.maulana@gmail.com');
                     $mail->Subject = 'Permintaan Verifikasi Booking Alat';
                     if($model->orders->users->roles[0]->name=='Dosen Unpad'||$model->orders->users->roles[0]->name=='Dosen Non Unpad'){
@@ -341,7 +341,7 @@ class VerificationController extends Controller
                     // SSL: 465, TLS: 587
                     $mail->SMTPSecure = 'ssl';
                     $mail->Port = 465;
-                    $mail->SetFrom('ferdi.maulana@gmail.com', 'Admin');
+                    $mail->SetFrom('ferdi.maulana@gmail.com', 'FINDER');
                     $mail->AddAddress('ferdi.maulana@gmail.com');
                     $mail->Subject = 'Permintaan Verifikasi Booking Alat';
                     $mail->Body = '
@@ -457,7 +457,7 @@ class VerificationController extends Controller
                     // SSL: 465, TLS: 587
                     $mail->SMTPSecure = 'ssl';
                     $mail->Port = 465;
-                    $mail->SetFrom('ferdi.maulana@gmail.com', 'Ferdian Maulana');
+                    $mail->SetFrom('ferdi.maulana@gmail.com', 'FINDER');
                     $mail->AddAddress(Auth()->User()->email);
                     $mail->Subject = 'Permintaan Verifikasi Booking Alat';
                     $mail->Body = '
@@ -541,7 +541,7 @@ class VerificationController extends Controller
                     // SSL: 465, TLS: 587
                     $mail->SMTPSecure = 'ssl';
                     $mail->Port = 465;
-                    $mail->SetFrom('ferdi.maulana@gmail.com', 'Ferdian Maulana');
+                    $mail->SetFrom('ferdi.maulana@gmail.com', 'FINDER');
                     $mail->AddAddress($model->orders->users->email);
                     $mail->Subject = 'Permintaan Verifikasi Booking Alat';
                     $mail->Body = '
@@ -579,7 +579,7 @@ class VerificationController extends Controller
                     // SSL: 465, TLS: 587
                     $mail->SMTPSecure = 'ssl';
                     $mail->Port = 465;
-                    $mail->SetFrom('ferdi.maulana@gmail.com', 'Admin');
+                    $mail->SetFrom('ferdi.maulana@gmail.com', 'FINDER');
                     $mail->AddAddress($model->orders->users->profiles->email_lecturer);
                     $mail->Subject = 'Permintaan Verifikasi Booking Alat';
                     $mail->Body = '

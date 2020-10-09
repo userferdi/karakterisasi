@@ -12,7 +12,7 @@
   <div class="col-lg-12">
     <div class="card" >
       <div class="card-body">
-        <table id="table" class="table table-striped table-bordered text-sm"></table>
+        <table id="table" class="table table-striped table-bordered text-sm" style="width:100%"></table>
       </div>
     </div>
   </div>

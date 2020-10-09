@@ -1,9 +1,5 @@
 <?php
 
-// Route::get('/php', function () {
-// 	return view('welcome');
-// })->name('welcome');
-
 Route::get('/', 'HomeController@welcome')->name('welcome');
 
 Auth::routes(['verify' => true, 'register' => false]);

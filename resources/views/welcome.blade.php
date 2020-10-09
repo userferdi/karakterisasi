@@ -3,21 +3,16 @@
 @section('title', 'FINDER')
 
 @section('content')
-<!-- Masthead-->
 <header class="masthead bg-light text-white text-center">
 <div class="container d-flex align-items-center flex-column">
-  <!-- Masthead Avatar Image-->
-  <img class="masthead-avatar" src="finder.png" alt="" />
-  <!-- Masthead Heading-->
-  <h1 class="masthead-heading text-uppercase text-dark">SISTEM INFORMASI<br>PENGELOLAAN ALAT</h1>
-  <!-- Masthead Subheading-->
-  <h2 class="masthead-subheading text-dark">FINDER<br>Functional Nano Powder</h2>
+  <img class="masthead-avatar" src="finder.png"/>
+  <h4 class="masthead-heading text-uppercase text-dark">SISTEM INFORMASI<br>PENGELOLAAN ALAT</h4>
+  <h4 class="masthead-subheading text-dark">FINDER<br>Functional Nano Powder</h4>
 </div>
 </header>
-<!-- Portfolio Section-->
 <section class="page-section portfolio" id="portfolio">
   <div class="container">
-    <h2 class="page-section-heading text-center text-uppercase text-dark m-b-60">Informasi Layanan</h2>
+    <h4 class="page-section-heading text-center text-uppercase text-dark">Informasi Layanan</h4>
     <div class="row">
       <ol>
         <li>
@@ -28,7 +23,6 @@
         </li><br>
         <li>
           <h4>Daftar Akun</h4>
-<!--           <h5>Silakan klik <a href="https://drive.google.com/open?id=1pw_FMr_0nes5t2KCVN_KWfg-PGtqKzeI">di sini</a> untuk mengunduh aturan registrasi akun FINDER. Kemudian silakan pilih role dibawah ini untuk melakukan registrasi. </h5> -->
           <h5>Anda harus memiliki akun terlebih dahulu, sebelum Log-in. Silakan klik menu
             <a href="{{ route('register') }}">Register</a> untuk membuat akun. Akun SIPA tersedia untuk :
           </h5>
@@ -67,7 +61,3 @@
 </section>
 
 @endsection
-
-@push('script')
-<script src="{{ asset('js/scripts.js') }}"></script>
-@endpush
