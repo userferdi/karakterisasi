@@ -132,26 +132,6 @@
       }
     });
   });
-
-  // Harus direset
-  function format (d) {
-    return  '<div class="text-center">'+'<img src="'+d.image+'" width="150"/>'+'</div>';
-  };
-
-  $('#table tbody').on('click', '.details-control', function () {
-    event.preventDefault();
-    var tr = $(this).closest('tr');
-    var row = detail.row( tr );
-
-    if ( row.child.isShown() ) {
-        row.child.hide();
-        tr.removeClass('shown');
-    }
-    else {
-        row.child( format(row.data()) ).show();
-        tr.addClass('shown');
-    }
-  });
   @endrole;
 
   @role('Admin')
@@ -192,8 +172,7 @@
       success: function (response) {
         $('#modal-body').html(response);
         $('#modal-title').text(title);
-        // $('#modal-close').text('Cancel');
-        $('#many-save').text('Save');
+        $('#many-save').text('Input Banyak Layanan');
       }
     });
 
@@ -212,9 +191,6 @@
     var validation = Array.prototype.filter.call(form, function(form) {
       form.classList.remove('was-validated');
     });
-    // $('#modal-body').find("input,textarea,select")
-    //   .val('')
-    //   .end();
 
     $.ajax({
       url : url,

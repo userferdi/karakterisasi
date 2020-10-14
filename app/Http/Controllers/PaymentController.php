@@ -210,8 +210,9 @@ class PaymentController extends Controller
                     $service = 'service'.($i+1);
                     $service = $request->$service;
                     $price = Price::where('id',$service)->first();
+                    $discount = $price->discount;
                     $price = $price->price1;
-                    $total = $total+($price*$quantity);
+                    $total = $total+($price*$quantity*(100-$discount)/100);
                 }
             }
             else if($model->orders->users->hasRole('Dosen Non Unpad|Mahasiswa Non Unpad')){
@@ -225,8 +226,9 @@ class PaymentController extends Controller
                     $service = 'service'.($i+1);
                     $service = $request->$service;
                     $price = Price::where('id',$service)->first();
+                    $discount = $price->discount;
                     $price = $price->price2;
-                    $total = $total+($price*$quantity);
+                    $total = $total+($price*$quantity*(100-$discount)/100);
                 }
             }
             else if($model->orders->users->hasRole('User Umum')){
@@ -240,8 +242,9 @@ class PaymentController extends Controller
                     $service = 'service'.($i+1);
                     $service = $request->$service;
                     $price = Price::where('id',$service)->first();
+                    $discount = $price->discount;
                     $price = $price->price3;
-                    $total = $total+($price*$quantity);
+                    $total = $total+($price*$quantity*(100-$discount)/100);
                 }
             }
 
@@ -286,8 +289,9 @@ class PaymentController extends Controller
                     $service = 'service'.($i+1);
                     $service = $request->$service;
                     $price = Price::where('id',$service)->first();
+                    $discount = $price->discount;
                     $price = $price->price1;
-                    $total = $total+($price*$quantity);
+                    $total = $total+($price*$quantity*(100-$discount)/100);
                 }
             }
             else if($model->orders->users->hasRole('Dosen Non Unpad|Mahasiswa Non Unpad')){
@@ -301,8 +305,9 @@ class PaymentController extends Controller
                     $service = 'service'.($i+1);
                     $service = $request->$service;
                     $price = Price::where('id',$service)->first();
+                    $discount = $price->discount;
                     $price = $price->price2;
-                    $total = $total+($price*$quantity);
+                    $total = $total+($price*$quantity*(100-$discount)/100);
                 }
             }
             else if($model->orders->users->hasRole('User Umum')){
@@ -316,8 +321,9 @@ class PaymentController extends Controller
                     $service = 'service'.($i+1);
                     $service = $request->$service;
                     $price = Price::where('id',$service)->first();
+                    $discount = $price->discount;
                     $price = $price->price3;
-                    $total = $total+($price*$quantity);
+                    $total = $total+($price*$quantity*(100-$discount)/100);
                 }
             }
 
@@ -364,7 +370,8 @@ class PaymentController extends Controller
                     })->where(function($model){
                             $model->where('status',1)
                                 ->orWhere('status',2)
-                                ->orWhere('status',4);
+                                ->orWhere('status',4)
+                                ->orWhere('status',6);
                         })
                     ->orWhereHas('approves', function ($query){
                         return $query->whereHas('orders', function ($order){
@@ -376,7 +383,8 @@ class PaymentController extends Controller
                         });
                     })->where(function($model){
                             $model->where('status',3)
-                                ->orWhere('status',5);
+                                ->orWhere('status',5)
+                                ->orWhere('status',7);
                         });
             })->get();
         }
@@ -390,7 +398,8 @@ class PaymentController extends Controller
             })->where(function($model){
                 $model->where('status',1)
                     ->orWhere('status',2)
-                    ->orWhere('status',4);
+                    ->orWhere('status',4)
+                    ->orWhere('status',6);
             })->get();
         }
         else{
@@ -418,9 +427,13 @@ class PaymentController extends Controller
                 if($plan=='Tunai'){
                     return $plan;
                 }
+                else if($model->status==6||$model->status==7){
+                    $button = '<p>'.$plan.'</p><a href="'.$model->image.'" target="_blank" class="btn btn-primary btn-sm details-control">Show Image</a>';
+                    return $button;
+                }
                 else if($model->image!=NULL){
                     $button = 
-'<p>'.$plan.'</p><a href="#" class="btn btn-primary btn-sm details-control">Show Image</a>&nbsp;
+'<p>'.$plan.'</p><a href="'.$model->image.'" target="_blank" class="btn btn-primary btn-sm details-control">Show Image</a>&nbsp;
 <a href="'.route('payment.formUpload', $model->id).'" class="btn btn-primary btn-sm modal-show" name="Upload Bukti Transfer">Reupload</a>';
                     return $button;
                 }
@@ -440,7 +453,7 @@ class PaymentController extends Controller
             ->removeColumn('no_receipt')
             ->removeColumn('date_invoice')
             ->removeColumn('date_receipt')
-            ->removeColumn('status')
+            // ->removeColumn('status')
             ->removeColumn('quantity')
             ->removeColumn('service')
             ->removeColumn('created_at')
@@ -454,17 +467,17 @@ class PaymentController extends Controller
     {
 
         $model = Approve::where(function($model){
-            $model->where('status',1)
-                ->orWhere('status',2)
-                ->orWhere('status',3)
-                ->orWhere('status',4)
-                ->orWhere('status',5);
+            $model->where('status',2)
+                  ->orWhere('status',3);
         })->get();
         return DataTables::of($model)
             ->editColumn('date', function($model){
                 $date = date('d M Y', strtotime($model->date));
                 $time = $model->times->name;
                 return $date.' '.$time;
+            })
+            ->editColumn('status', function($model){
+                return $model->payments->status;
             })
             ->addColumn('user', function($model){
                 return $model->orders->users->name;
@@ -515,7 +528,7 @@ class PaymentController extends Controller
                 }
                 else{
                     $button = 
-'<a href="'.route('payment.form', $model->id).'" class="btn btn-primary btn-sm modal-show" name="'.$model->no_regis.'">Make</a>';
+'<a href="'.route('payment.form', $model->id).'" class="btn btn-primary btn-sm modal-show" name="'.$model->no_regis.'">Buat Tagihan</a>';
                     return $button;
                 }
             })
@@ -524,7 +537,7 @@ class PaymentController extends Controller
             ->removeColumn('users_id')
             ->removeColumn('note')
             ->addIndexColumn()
-            ->rawColumns(['attend', 'detail', 'action'])
+            ->rawColumns(['attend', 'detail', 'action', 'plan'])
             ->make(true);
     }
 
@@ -658,6 +671,12 @@ class PaymentController extends Controller
                 $total .= number_format($model->total, 0, ',', '.');
                 return $total;
             })
+            ->editColumn('image', function($model){
+                if($model->approves->orders->plans->id==1){
+                    return ' ';
+                }
+                return '<a href="'.$model->image.'" target="_blank"><img src="'.$model->image.'" width="300"/></a>';
+            })
             ->addColumn('no_regis', function($model){
                 return $model->approves->no_regis;
             })
@@ -715,7 +734,7 @@ class PaymentController extends Controller
             ->removeColumn('users_id')
             ->removeColumn('note')
             ->addIndexColumn()
-            ->rawColumns(['attend', 'detail', 'action'])
+            ->rawColumns(['image', 'attend', 'detail', 'action'])
             ->make(true);
     }
 
@@ -824,7 +843,7 @@ class PaymentController extends Controller
                 }
                 else{
                     $button = 
-'<p>'.$plan.'</p><a href="#" class="btn btn-primary btn-sm details-control">Show Image</a>';
+'<p>'.$plan.'</p><a href="'.$model->image.'" class="btn btn-primary btn-sm details-control" target="_blank">Show Image</a>';
                     return $button;
                 }
             })

@@ -478,7 +478,8 @@ class ActivitiesController extends Controller
             return $query->where('users_id', '=', Auth()->User()->id);
         })->where(function($model){
             $model->where('status',1)
-                  ->orWhere('status',2);
+                  ->orWhere('status',2)
+                  ->orWhere('status',3);
         })->get();
         return DataTables::of($model)
             ->editColumn('date', function($model){

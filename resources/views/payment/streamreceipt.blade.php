@@ -206,21 +206,24 @@
         <?php 
           if($model->approves->orders->users->hasRole('Dosen Unpad|Mahasiswa Unpad')){ 
             $harga = $price[$s-1]->price1;
+            $diskon = $price[$s-1]->discount;
           }
           if($model->approves->orders->users->hasRole('Dosen Non Unpad|Mahasiswa Non Unpad')){ 
             $harga = $price[$s-1]->price2;
+            $diskon = $price[$s-1]->discount;
           }
           if($model->approves->orders->users->hasRole('User Umum')){ 
             $harga = $price[$s-1]->price3;
+            $diskon = $price[$s-1]->discount;
           }
           $banyak = $quantity[$i];
-          $total = $banyak*$harga;
+          $total = $banyak*$harga*(100-$diskon)/100;
         ?>
         <tr>
             <td>{{$price[$s-1]->service}}</td>
             <td class="center">{{$quantity[$i]}}</td>
             <td class="center">Rp {{ number_format($harga, 0, ',', '.') }}</td>
-            <td class="center">-</td>
+            <td class="center">{{$diskon}}%</td>
             <td class="center">Rp {{ number_format($total, 0, ',', '.') }}</td>
         </tr>
         <?php $i=$i+1; ?>

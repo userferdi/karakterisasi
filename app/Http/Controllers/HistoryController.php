@@ -155,12 +155,15 @@ class HistoryController extends Controller
             	if($model->status==1){
 	                return 'Menunggu Jadwal Penggunaan Alat';
             	}
-            	if($model->status==2){
+            	else if($model->status==2){
 	                return 'Menunggu Pembayaran';
             	}
-            	if($model->status==3){
-	                return 'Completed';
+            	else if($model->status==3){
+	                return 'Menunggu Verifikasi Pembayaran';
             	}
+                else if($model->status==4){
+                    return 'Completed';
+                }
             })
             ->addColumn('show', function($model){
                 $button = 
@@ -222,15 +225,18 @@ class HistoryController extends Controller
                 return $total;
             })
             ->addColumn('status', function($model){
-            	if($model->status==1){
-	                return 'Menunggu Jadwal Penggunaan Alat';
-            	}
-            	if($model->status==2){
-	                return 'Menunggu Pembayaran';
-            	}
-            	if($model->status==3){
-	                return 'Completed';
-            	}
+                if($model->status==1){
+                    return 'Menunggu Jadwal Penggunaan Alat';
+                }
+                else if($model->status==2){
+                    return 'Menunggu Pembayaran';
+                }
+                else if($model->status==3){
+                    return 'Menunggu Verifikasi Pembayaran';
+                }
+                else if($model->status==4){
+                    return 'Completed';
+                }
             })
             ->addColumn('show', function($model){
                 $button = 

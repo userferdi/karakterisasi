@@ -160,7 +160,7 @@
         '</table>'+
       '</div>'+
       '<div class="col-lg-4">'+
-        '<div class="text-center">'+'<img src="'+d.image+'" width="150"/>'+'</div>'+
+        '<div class="text-center">'+d.image+'</div>'+
       '</div>'+
     '</div>';
   };

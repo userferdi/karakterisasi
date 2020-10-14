@@ -4,7 +4,6 @@ body{
 h4{
 	font-size: 1.5rem;
 	font-weight:700;
-	font-family:Montserrat
 }
 h5{
 	font-size: 1.25rem;
@@ -14,7 +13,9 @@ h6,p{
 }
 h5,h6,p{
 	font-weight:400;
-	font-family:Montserrat
+}
+th,td{
+	font-size: 1rem;
 }
 hr.star-dark,hr.star-light{
 	max-width:15rem;
