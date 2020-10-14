@@ -22,6 +22,7 @@
   $('#table').DataTable({
     responsive: true,
     serverSide: true,
+    scrollX: true,
     ajax: "{{ route('lab.dt') }}",
     order: [[ 1, "asc" ]],
     columns: [

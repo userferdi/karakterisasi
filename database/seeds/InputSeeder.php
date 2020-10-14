@@ -50,7 +50,7 @@ class InputSeeder extends Seeder
     	}
 
 		// UserSeeder
-		for($i = 1; $i <= 500; $i++){
+		for($i = 2; $i <= 500; $i++){
 			$role = $faker->numberBetween(1,6);
 			if($role == 1){
 	    		DB::table('users')->insert([

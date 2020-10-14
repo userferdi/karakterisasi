@@ -25,8 +25,8 @@
   <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.css') }}">
   <!-- DatePicker -->
   <link rel="stylesheet" href="{{ asset('css/gijgo.min.css') }}">
-  @stack('css')
 
+  @stack('css')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
@@ -66,7 +66,7 @@
 
             @role('Admin')
             <li class="nav-item has-treeview">
-              <a href="/#" class="nav-link {{ request()->is('lab*') ? 'active' : request()->is('tool*') ? 'active' : request()->is('price*') ? 'active' : request()->is('schedule*') ? 'active' : '' }}">
+              <a href="/#" class="nav-link {{ request()->is('lab*', 'tool*', 'price*', 'schedule*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-file-alt"></i>
                 <p>
                   Input Data
@@ -196,7 +196,7 @@
 
             @role('Dosen Unpad|Dosen Non Unpad|Mahasiswa Unpad|Mahasiswa Non Unpad|User Umum')
             <li class="nav-item has-treeview">
-              <a href="/#" class="nav-link {{ request()->is('schedule*') ? 'active' : request()->is('lab*') ? 'active' : request()->is('tool*') ? 'active' : request()->is('price*') ? 'active' : '' }}">
+              <a href="/#" class="nav-link {{ request()->is('schedule*', 'lab*', 'tool*', 'price*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-file-alt"></i>
                 <p>
                   General Information

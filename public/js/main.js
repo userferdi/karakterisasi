@@ -23,14 +23,12 @@
 
     $('.validate-form').on('submit',function(){
         var check = true;
-
         for(var i=0; i<input.length; i++) {
             if(validate(input[i]) == false){
                 showValidate(input[i]);
                 check=false;
             }
         }
-
         return check;
     });
 
@@ -58,12 +56,24 @@
         var thisAlert = $(input).parent();
 
         $(thisAlert).addClass('alert-validate');
+        if($(thisAlert).hasClass('email')){
+            $(thisAlert).attr('data-validate', 'Email required');
+        }
+        if($(thisAlert).hasClass('password')){
+            $(thisAlert).attr('data-validate', 'Password required');
+        }
     }
 
     function hideValidate(input) {
         var thisAlert = $(input).parent();
 
         $(thisAlert).removeClass('alert-validate');
+        if($(thisAlert).hasClass('email')){
+            $(thisAlert).attr('data-validate', '');
+        }
+        if($(thisAlert).hasClass('password')){
+            $(thisAlert).attr('data-validate', '');
+        }
     }
     
     /*==================================================================
@@ -71,15 +81,15 @@
     var showPass = 0;
     $('.btn-show-pass').on('click', function(){
         if(showPass == 0) {
+            $(this).find('i').removeClass('fa-eye');
+            $(this).find('i').addClass('fa-eye-slash');
             $(this).next('input').attr('type','text');
-            $(this).find('i').removeClass('zmdi-eye');
-            $(this).find('i').addClass('zmdi-eye-off');
             showPass = 1;
         }
         else {
+            $(this).find('i').addClass('fa-eye');
+            $(this).find('i').removeClass('fa-eye-slash');
             $(this).next('input').attr('type','password');
-            $(this).find('i').addClass('zmdi-eye');
-            $(this).find('i').removeClass('zmdi-eye-off');
             showPass = 0;
         }
         

@@ -37,6 +37,7 @@
     searching: false,
     paging: false,
     info: false,
+    scrollX: true,
     ajax: "{{ route('tool.dt.schedule') }}",
     columns: [
       {title: 'Nama', data: 'name', name: 'name', orderable:false, className: 'dt-head-center'},

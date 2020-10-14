@@ -81,6 +81,7 @@
   var detail = $('#table_tool').DataTable({
     responsive: true,
     serverSide: true,
+    scrollX: true,
     ajax: "{{ route('tool.dt.admin') }}",
     order: [[ 1, "asc" ]],
     columns: [
@@ -97,6 +98,7 @@
   $('#table_status').DataTable({
     responsive: true,
     serverSide: true,
+    scrollX: true,
     ajax: "{{ route('active.dt') }}",
     order: [[ 1, "asc" ]],
     columns: [
@@ -109,6 +111,7 @@
   $('#table_timeusage').DataTable({
     responsive: true,
     serverSide: true,
+    scrollX: true,
     ajax: "{{ route('timeusage.dt') }}",
     order: [[ 1, "asc" ]],
     columns: [
@@ -122,6 +125,7 @@
   $('#table_usage').DataTable({
     responsive: true,
     serverSide: true,
+    scrollX: true,
     ajax: "{{ route('usage.dt') }}",
     order: [[ 1, "asc" ]],
     columns: [
@@ -134,6 +138,7 @@
   $('#table_time').DataTable({
     responsive: true,
     serverSide: true,
+    scrollX: true,
     ajax: "{{ route('time.dt') }}",
     order: [[ 1, "asc" ]],
     columns: [

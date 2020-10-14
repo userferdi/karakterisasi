@@ -62,7 +62,6 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'no_id' => ['required', 'string', 'max:255'],
             'no_hp' => ['required', 'string', 'max:255'],
-            // 'institution' => ['required', 'string', 'max:255'],
         ]);
     }
 
@@ -108,16 +107,16 @@ class RegisterController extends Controller
     }
     public function storeForm(Request $data)
     {
-        $data->validate([
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'name' => ['required', 'string', 'max:255'],
-        ]);
         if($data['user']=='admin'){
+            $data->validate([
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'name' => ['required', 'string', 'max:255']
+            ]);
             $user = User::create([
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
-                'name' => $data['name'],
+                'name' => $data['name']
             ]);
             Auth::login($user);
             $user->sendEmailVerificationNotification();
@@ -125,10 +124,20 @@ class RegisterController extends Controller
             return redirect()->route('home');
         }
         else if($data['user']=='dosenunpad'){
+            $data->validate([
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'name' => ['required', 'string', 'max:255'],
+                'no_id' => ['required', 'string', 'max:255'],
+                'no_hp' => ['required', 'string', 'max:255'],
+                'university' => ['required', 'string', 'max:255'],
+                'faculty' => ['required', 'string', 'max:255'],
+                'study_program' => ['required', 'string', 'max:255']
+            ]);
             $user = User::create([
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
-                'name' => $data['name'],
+                'name' => $data['name']
             ]);
             $id = DB::getPdo()->lastInsertId();
             Auth::login($user);
@@ -140,15 +149,25 @@ class RegisterController extends Controller
                 'no_hp' => $data->no_hp,
                 'university' => 'Universitas Padjadjaran',
                 'faculty' => Faculty::find($data->faculty)->name,
-                'study_program' => study_program::find($data->study_program)->name,
+                'study_program' => study_program::find($data->study_program)->name
             ]);
             return redirect()->route('home');
         }
         else if($data['user']=='dosennonunpad'){
+            $data->validate([
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'name' => ['required', 'string', 'max:255'],
+                'no_id' => ['required', 'string', 'max:255'],
+                'no_hp' => ['required', 'string', 'max:255'],
+                'university' => ['required', 'string', 'max:255'],
+                'faculty' => ['required', 'string', 'max:255'],
+                'study_program' => ['required', 'string', 'max:255']
+            ]);
             $user = User::create([
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
-                'name' => $data['name'],
+                'name' => $data['name']
             ]);
             $id = DB::getPdo()->lastInsertId();
             Auth::login($user);
@@ -160,15 +179,25 @@ class RegisterController extends Controller
                 'no_hp' => $data->no_hp,
                 'university' => $data->university,
                 'faculty' => $data->faculty,
-                'study_program' => $data->study_program,
+                'study_program' => $data->study_program
             ]);
             return redirect()->route('home');
         }
         else if($data['user']=='mahasiswaunpad'){
+            $data->validate([
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'name' => ['required', 'string', 'max:255'],
+                'no_id' => ['required', 'string', 'max:255'],
+                'no_hp' => ['required', 'string', 'max:255'],
+                'university' => ['required', 'string', 'max:255'],
+                'faculty' => ['required', 'string', 'max:255'],
+                'study_program' => ['required', 'string', 'max:255']
+            ]);
             $user = User::create([
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
-                'name' => $data['name'],
+                'name' => $data['name']
             ]);
             $id = DB::getPdo()->lastInsertId();
             Auth::login($user);
@@ -186,10 +215,20 @@ class RegisterController extends Controller
             return redirect()->route('home');
         }
         else if($data['user']=='mahasiswanonunpad'){
+            $data->validate([
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'name' => ['required', 'string', 'max:255'],
+                'no_id' => ['required', 'string', 'max:255'],
+                'no_hp' => ['required', 'string', 'max:255'],
+                'university' => ['required', 'string', 'max:255'],
+                'faculty' => ['required', 'string', 'max:255'],
+                'study_program' => ['required', 'string', 'max:255']
+            ]);
             $user = User::create([
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
-                'name' => $data['name'],
+                'name' => $data['name']
             ]);
             $id = DB::getPdo()->lastInsertId();
             Auth::login($user);
@@ -207,10 +246,19 @@ class RegisterController extends Controller
             return redirect()->route('home');
         }
         else if($data['user']=='userumum'){
+            $data->validate([
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'name' => ['required', 'string', 'max:255'],
+                'no_id' => ['required', 'string', 'max:255'],
+                'no_hp' => ['required', 'string', 'max:255'],
+                'institution' => ['required', 'string', 'max:255'],
+                'address' => ['required', 'string', 'max:255']
+            ]);
             $user = User::create([
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
-                'name' => $data['name'],
+                'name' => $data['name']
             ]);
             $id = DB::getPdo()->lastInsertId();
             Auth::login($user);

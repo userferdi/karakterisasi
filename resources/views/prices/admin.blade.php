@@ -22,6 +22,7 @@
   $('#table').DataTable({
     responsive: true,
     serverSide: true,
+    scrollX: true,
     ajax: "{{ route('price.dt') }}",
     order: [[ 2, "asc" ]],
     columns: [

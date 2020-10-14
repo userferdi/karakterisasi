@@ -20,46 +20,18 @@ class DatabaseSeeder extends Seeder
 	        ]);
         }
 
-        // PermissionSeeder
-		// $name = ['Client', 'Dosen', 'Mahasiswa', 'Unpad', 'Non Unpad'];
-		// for($i=0;$i<5;$i++){
-		// 	DB::table('permissions')->insert([
-		// 		'name' => $name[$i],
-		// 		'guard_name' => 'web',
-		// 	]);
-		// }
-
-        // RoleHasPermissionSeeder
-		// for($i=2;$i<7;$i++){
-		// 	DB::table('role_has_permissions')->insert([
-		// 		'permission_id' => 1,
-		// 		'role_id' => $i,
-		// 	]);
-		// }
-		// for($i=2;$i<4;$i++){
-		// 	DB::table('role_has_permissions')->insert([
-		// 		'permission_id' => 2,
-		// 		'role_id' => $i,
-		// 	]);
-		// }
-		// for($i=4;$i<6;$i++){
-		// 	DB::table('role_has_permissions')->insert([
-		// 		'permission_id' => 3,
-		// 		'role_id' => $i,
-		// 	]);
-		// }
-		// for($i=2;$i<5;$i+=2){
-		// 	DB::table('role_has_permissions')->insert([
-		// 		'permission_id' => 4,
-		// 		'role_id' => $i,
-		// 	]);
-		// }
-		// for($i=3;$i<6;$i+=2){
-		// 	DB::table('role_has_permissions')->insert([
-		// 		'permission_id' => 5,
-		// 		'role_id' => $i,
-		// 	]);
-		// }
+        // Users
+		DB::table('users')->insert([
+			'name' => 'FINDER',
+	        'email' => 'functionalnanopowder@gmail.com',
+	        'password' => Hash::make('1w3r!W#R'),
+	        'email_verified_at' => date('Y-m-d H:i:s')
+		]);
+		DB::table('model_has_roles')->insert([
+			'role_id' => '1',
+			'model_type' => 'App\User',
+			'model_id' => '1',
+		]);
 
 		// ActiveSeeder
 		DB::table('actives')->insert([
@@ -146,10 +118,7 @@ class DatabaseSeeder extends Seeder
 			'name' => 'Transfer Dosen'
 		]);
 
-		// Table Baru
-		// DB::table('universities')->insert([
-		// 	'name' => 'Universitas Padjadjaran'
-		// ]);
+		// FacultySeeder
 		DB::table('faculties')->insert([
 			'name' => 'Fakultas Hukum (FH)'
 		]);
@@ -198,6 +167,8 @@ class DatabaseSeeder extends Seeder
 		DB::table('faculties')->insert([
 			'name' => 'Fakultas Teknik Geologi (FTG)'
 		]);
+
+		// StudyProgramSeeder
 		DB::table('study_programs')->insert([
 			'name' => 'Hukum',
 			'faculties_id' => 1
