@@ -20,18 +20,33 @@
             <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
             <div class="col-md-8">
                 <input id="email" type="email" class="form-control" name="email" value="" required>
+                @error('email')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <div class="form-group row">
             <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
             <div class="col-md-8">
                 <input id="password" type="password" class="form-control" name="password" required>
+                @error('password')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <div class="form-group row">
             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
             <div class="col-md-8">
                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                @error('password-confirm')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <legend>Personal Data</legend>
@@ -40,18 +55,33 @@
             <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
             <div class="col-md-8">
                 <input id="name" type="text" class="form-control" name="name" required>
+                @error('name')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <div class="form-group row">
             <label for="no_id" class="col-md-4 col-form-label text-md-right">NIDN</label>
             <div class="col-md-8">
                 <input id="no_id" type="text" class="form-control" name="no_id" required>
+                @error('no_id')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <div class="form-group row">
             <label for="no_hp" class="col-md-4 col-form-label text-md-right">Phone Number</label>
             <div class="col-md-8">
                 <input id="no_hp" type="text" class="form-control" name="no_hp" required>
+                @error('no_hp')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <legend>Faculty and Study Program</legend>
@@ -65,12 +95,22 @@
                     <option value="{{$f->id}}">{{$f->name}}</option>
                     @endforeach
                 </select>
+                @error('faculty')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <div class="form-group row">
             <label for="study_program" class="col-md-4 col-form-label text-md-right">Study Program</label>
             <div class="col-md-8">
                 <select id="study_program" type="text" class="form-control" name="study_program" value=""><option></option></select>
+                @error('study_program')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <legend>File Upload</legend>

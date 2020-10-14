@@ -192,7 +192,8 @@ class RegisterController extends Controller
                 'no_hp' => ['required', 'string', 'max:255'],
                 'university' => ['required', 'string', 'max:255'],
                 'faculty' => ['required', 'string', 'max:255'],
-                'study_program' => ['required', 'string', 'max:255']
+                'study_program' => ['required', 'string', 'max:255'],
+                'email_lecturer' => ['required', 'string', 'email', 'max:255']
             ]);
             $user = User::create([
                 'email' => $data['email'],
@@ -223,7 +224,8 @@ class RegisterController extends Controller
                 'no_hp' => ['required', 'string', 'max:255'],
                 'university' => ['required', 'string', 'max:255'],
                 'faculty' => ['required', 'string', 'max:255'],
-                'study_program' => ['required', 'string', 'max:255']
+                'study_program' => ['required', 'string', 'max:255'],
+                'email_lecturer' => ['required', 'string', 'email', 'max:255']
             ]);
             $user = User::create([
                 'email' => $data['email'],

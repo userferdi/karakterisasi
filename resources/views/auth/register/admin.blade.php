@@ -20,18 +20,33 @@
             <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
             <div class="col-md-8">
                 <input id="email" type="email" class="form-control" name="email" value="" required>
+                @error('email')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <div class="form-group row">
             <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
             <div class="col-md-8">
                 <input id="password" type="password" class="form-control" name="password" required>
+                @error('password')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <div class="form-group row">
             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
             <div class="col-md-8">
                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                @error('password-confirm')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <legend>Personal Data</legend>
@@ -40,6 +55,11 @@
             <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
             <div class="col-md-8">
                 <input id="name" type="text" class="form-control" name="name" required>
+                @error('name')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
 

@@ -13,14 +13,14 @@
     <form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
         @csrf
         <div class="form-group wrap-input100 validate-input email @error('email') alert-validate @enderror" data-validate="@error('email') {{ $message }} @enderror">
-            <input class="input100 @error('email', 'password') has-val @enderror" type="text" name="email" id="email" value="{{ old('email') }}" autocomplete="email">
+            <input class="input100 @error('email') has-val @enderror @error('password') has-val @enderror" type="text" name="email" id="email" value="{{ old('email') }}" autocomplete="email">
             <span class="focus-input100" data-placeholder="Email"></span>
         </div>
         <div class="form-group wrap-input100 validate-input password @error('password') alert-validate @enderror" data-validate="@error('password') {{ $message }} @enderror">
             <span class="btn-show-pass">
                 <i class="fa fa-eye nav-icon"></i>
             </span>
-            <input class="input100 @error('email', 'password') has-val @enderror" type="password" name="password" id="password" value="{{ old('password') }}" autocomplete="current-password">
+            <input class="input100 @error('email') has-val @enderror @error('password') has-val @enderror" type="password" name="password" id="password" value="{{ old('password') }}" autocomplete="current-password">
             <span class="focus-input100" data-placeholder="Password"></span>
         </div>
         <div class="checkbox">
