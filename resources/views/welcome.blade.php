@@ -24,7 +24,7 @@
         <li>
           <h4>Daftar Akun</h4>
           <h5>Anda harus memiliki akun terlebih dahulu, sebelum Log-in. Silakan klik menu
-            <a href="{{ route('register') }}">Register</a> untuk membuat akun. Akun SIPA tersedia untuk :
+            <a href="{{ route('register') }}">Register</a> untuk membuat akun. Akun tersedia untuk :
           </h5>
           <ul>
             <li>
