@@ -91,11 +91,10 @@ Route::middleware('auth', 'verified')->group(function(){
 	});
 	Route::prefix('timeofusage')->group(function(){
 		Route::get('/', 'TimeofUsageController@index')->name('timeusage.index');
-		Route::get('createprepare', 'TimeofUsageController@createPrepare')->name('timeusage.createprepare');
-		Route::get('createproses', 'TimeofUsageController@createProses')->name('timeusage.createproses');
+		Route::get('create', 'TimeofUsageController@create')->name('timeusage.create');
 		Route::post('store', 'TimeofUsageController@store')->name('timeusage.store');
 		Route::get('edit/{id}', 'TimeofUsageController@edit')->name('timeusage.edit');
-		Route::put('update', 'TimeofUsageController@update')->name('timeusage.update');
+		Route::put('update/{id}', 'TimeofUsageController@update')->name('timeusage.update');
 		Route::delete('delete/{id}', 'TimeofUsageController@delete')->name('timeusage.delete');
 		Route::get('datatable', 'TimeofUsageController@datatable')->name('timeusage.dt');
 	});

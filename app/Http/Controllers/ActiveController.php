@@ -24,6 +24,9 @@ class ActiveController extends Controller
     public function store(Request $request)
     {
         if(Auth()->User()->hasRole('Admin')){
+            $this->validate($request, [
+                'name' => ['required', 'string', 'max:255', 'unique:actives'],
+            ]);
             $model = Active::create($request->all());
             return response()->json($model);
         }
@@ -46,6 +49,9 @@ class ActiveController extends Controller
     public function update(Request $request, $id)
     {
         if(Auth()->User()->hasRole('Admin')){
+            $this->validate($request, [
+                'name' => ['required', 'string', 'max:255', 'unique:actives'],
+            ]);
             $model = Active::findOrFail($id)->update($request->all());
             return response()->json($model);
         }

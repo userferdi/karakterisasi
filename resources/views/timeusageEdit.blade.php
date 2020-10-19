@@ -30,7 +30,8 @@
         <script>
             $("#select").select2({
                 placeholder: "Pilih Waktu",
-                width: 'resolve'
+                theme: "classic",
+                width: "resolve"
             })
         </script>
     </div>

@@ -16,21 +16,18 @@
         {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name', 'required']) !!}
         <div class="invalid-feedback" id="invalid">Please fill out this field</div>
     </div>
-<!--     <div class="form-group">
-        <label class="control-label">Nama Waktu</label>
-        {!! Form::select('usage_id', $model->usage, null, ['class' => 'form-control', 'required']) !!}
-    </div> -->
     <div class="form-group">
         <label class="control-label">Waktu</label><br>
         <select multiple id="select" type="text" class="js-states form-control" name="time[]" style="width: 100%">
             @foreach($time as $option)
-            <option value="{{$option->id}}" {{ in_array($option->id, $model->selected) ? 'selected="selected"' : null }}>{{$option->name}}</option>
+            <option value="{{$option->id}}">{{$option->name}}</option>
             @endforeach
         </select>
         <script>
             $("#select").select2({
                 placeholder: "Pilih Waktu",
-                width: 'resolve'
+                theme: "classic",
+                width: "resolve"
             })
         </script>
     </div>

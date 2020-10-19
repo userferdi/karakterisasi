@@ -61,10 +61,10 @@ class ToolController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-          'name' => 'required',
-          'code' => 'required',
-          'descrip' => 'required',
-          'sample' => 'required'
+            'name' => ['required', 'string', 'max:255', 'unique:tools'],
+            'code' => ['required', 'string', 'min:3', 'max:7', 'unique:tools'],
+            'descrip' => ['required', 'string'],
+            'sample' => ['required', 'string']
         ]);
         $model = new Tool;
         $model = $request->all();
@@ -91,8 +91,8 @@ class ToolController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => ['required', 'string'],
-            'code' => ['required', 'string'],
+            'name' => ['required', 'string', 'max:255', 'unique:tools'],
+            'code' => ['required', 'string', 'min:3', 'max:7', 'unique:tools'],
             'descrip' => ['required', 'string'],
             'sample' => ['required', 'string'],
         ]);
@@ -221,10 +221,12 @@ class ToolController extends Controller
                 return $button;
             })
             ->addColumn('action', function($model){
-                $button = 
-'<a href="'.route('tool.show', $model->id).'" class="details-control" name="Details Product: '.$model->name.'"><i class="nav-icon fas fa-eye text-primary"></i></a> | 
-<a href="'.route('tool.edit', $model->id).'" class="modal-show edit" name="Edit '.$model->name.'"><i class="nav-icon fas fa-pencil-alt text-primary"></i></a> | 
-<a href="'.route('tool.delete', $model->id).'" class="delete" name="'.$model->name.'"><i class="nav-icon fas fa-trash-alt text-danger"></i></a>';
+                $button =
+'<div class="btn-group" role="group">
+    <button type="button" href="'.route('tool.show', $model->id).'" class="btn btn-primary btn-sm details-control">Detail</button>
+    <button type="button" href="'.route('tool.edit', $model->id).'" class="btn btn-primary btn-sm modal-show edit" name="Edit '.$model->name.'">Edit</button>
+    <button type="button" href="'.route('tool.delete', $model->id).'" class="btn btn-danger btn-sm delete" name="'.$model->name.'">Delete</button>
+</div>';
                 return $button;
             })
             ->addIndexColumn()

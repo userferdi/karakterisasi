@@ -12,27 +12,13 @@ use Illuminate\Support\Facades\DB;
 
 class TimeofUsageController extends Controller
 {
-    public function createPrepare()
+    public function create()
     {
         if(Auth()->User()->hasRole('Admin')){
             $model = new Usage();
             $model['usage'] = Usage::pluck('name','id');
-            return view('formusage', ['model' => $model]);
-        }
-        else{
-            abort(404);
-        }
-    }
-
-    public function createProses(Request $request)
-    {
-        if(Auth()->User()->hasRole('Admin')){
-            $model = new Usage();
-            $model['usage_id'] = $request->usage_id;
-            $model['count'] = $request->count;
-            $model['usage'] = Usage::pluck('name','id');
-            $model['time'] = Time::pluck('name','id');
-            return view('formtime', ['model' => $model]);
+            $time = Time::get();
+            return view('timeusageCreate', ['model' => $model, 'time' => $time]);
         }
         else{
             abort(404);
@@ -42,15 +28,13 @@ class TimeofUsageController extends Controller
     public function store(Request $request)
     {
         if(Auth()->User()->hasRole('Admin')){
-            $model = Usage::findOrFail($request->usage_id);
-			for($i=0;$i<$request->count;$i++){
-				$time = 'time'.($i+1);
-				$time = $request->$time;
-				$model = DB::table('time_usage')->insert([
-					'usage_id' => $request->usage_id,
-					'time_id' => $time
-				]);
-			}
+            $this->validate($request, [
+                'name' => ['required', 'string', 'max:255', 'unique:usages'],
+            ]);
+            $model = Usage::create([
+                'name' => $request->name
+            ]);
+            $model->times()->attach($request->time);
             return response()->json($model);
         }
         else{
@@ -62,39 +46,24 @@ class TimeofUsageController extends Controller
     {
         if(Auth()->User()->hasRole('Admin')){
             $model = Usage::findOrFail($id);
-            $i=0;
-            foreach($model->times as $a){
-				$b[$i] = $a->id;
-        		$i++;
-            }
-            $model['time_id'] = $b;
-            $model['count'] = $i;
             $model['usage'] = Usage::pluck('name','id');
-            $model['time'] = Time::pluck('name','id');
-            // dd($model);
-            return view('formusagetime', ['model' => $model]);
+            $time = Time::get();
+            $model['selected'] = $model->times()->allRelatedIds()->toArray();
+            return view('timeusageEdit', ['model' => $model, 'time' => $time]);
         }
         else{
             abort(404);
         }
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         if(Auth()->User()->hasRole('Admin')){
-            $model = Usage::findOrFail($request->usage_id);
-            if($model->times()->exists()){
-            // if(count($model->times)){
-				$model = DB::table('time_usage')->where('usage_id',$request->usage_id)->delete();
-            }
-			for($i=0;$i<$request->count;$i++){
-				$time = 'time'.($i+1);
-				$time = $request->$time;
-				$model = DB::table('time_usage')->insert([
-					'usage_id' => $request->usage_id,
-					'time_id' => $time
-				]);
-			}
+            $model = Usage::find($id);
+            $model->times()->sync($request->time);
+            $model->update([
+                'name' => $request->name
+            ]);
             return response()->json($model);
         }
         else{
@@ -105,11 +74,7 @@ class TimeofUsageController extends Controller
     public function delete($id)
     {
         if(Auth()->User()->hasRole('Admin')){
-            $model = Usage::findOrFail($request->usage_id);
-            if($model->times()->exists()){
-                $model = DB::table('time_usage')->where('usage_id',$request->usage_id)->delete();
-                return response()->json($model);
-            }
+            $model = Usage::findOrFail($id)->delete();
         }
         else{
             abort(404);

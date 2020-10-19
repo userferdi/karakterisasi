@@ -46,6 +46,12 @@ class LabController extends Controller
     public function store(Request $request)
     {
         if(Auth()->User()->hasRole('Admin')){
+            $this->validate($request, [
+                'name' => ['required', 'string', 'max:255', 'unique:labs'],
+                'code' => ['required', 'string', 'min:3', 'max:7', 'unique:labs'],
+                'head' => ['required', 'string', 'max:255'],
+                'descrip' => ['required', 'string']
+            ]);
             $model = Lab::create($request->all());
             return response()->json($model);
         }
@@ -68,6 +74,12 @@ class LabController extends Controller
     public function update(Request $request, $id)
     {
         if(Auth()->User()->hasRole('Admin')){
+            $this->validate($request, [
+                'name' => ['required', 'string', 'max:255', 'unique:labs'],
+                'code' => ['required', 'string', 'min:3', 'max:7', 'unique:labs'],
+                'head' => ['required', 'string', 'max:255'],
+                'descrip' => ['required', 'string']
+            ]);
             $model = Lab::findOrFail($id)->update($request->all());
             return response()->json($model);
         }

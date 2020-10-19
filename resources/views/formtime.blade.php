@@ -13,7 +13,7 @@
     <?php $times = 'time'.($i+1);?>
     <div class="form-group">
         <label class="control-label">Time {{$i+1}}</label>
-        {!! Form::select($times, $model->time, $model->time_id[$i], ['class' => 'form-control', 'required']) !!}
+        {!! Form::select($times, $model->time, null, ['class' => 'form-control', 'id' => 'time', 'required']) !!}
     </div>
     @endfor
     <input id="count" type="hidden" class="form-control" name="count" value="{{$i}}">

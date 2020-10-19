@@ -1,2 +1,4 @@
-<a href="{{ $edit }}" class="modal-show edit" name="Edit {{ $model->name }}"><i class="nav-icon fas fa-pencil-alt text-primary"></i></a> | 
-<a href="{{ $delete }}" class="delete" name="{{ $model->name }}"><i class="nav-icon fas fa-trash-alt text-danger"></i></a>
+<div class="btn-group" role="group">
+	<button type="button" href="{{ $edit }}" class="btn btn-primary btn-sm modal-show edit" name="Edit {{ $model->name }}">Edit</button>
+	<button type="button" href="{{ $delete }}" class="btn btn-danger btn-sm delete" name="{{ $model->name }}">Delete</button>
+</div>

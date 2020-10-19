@@ -26,12 +26,12 @@
     ajax: "{{ route('lab.dt') }}",
     order: [[ 1, "asc" ]],
     columns: [
-      {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, width: '5%', className: 'dt-center'},
+      {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, width: '7.5%', className: 'dt-center'},
       {title: 'Nama', data: 'name', name: 'name', width: '20%', className: 'dt-head-center'},
-      {title: 'Kode Lab', data: 'code', name: 'code', width: '12.5%', className: 'dt-head-center'},
-      {title: 'Kepala Lab', data: 'head', name: 'head', width: '22.5%', className: 'dt-head-center'},
+      {title: 'Kode Lab', data: 'code', name: 'code', width: '10%', className: 'dt-head-center'},
+      {title: 'Kepala Lab', data: 'head', name: 'head', width: '20%', className: 'dt-head-center'},
       {title: 'Deskripsi', data: 'descrip', name: 'descrip', width: '32.5%', className: 'dt-head-center'},
-      {title: 'Opsi', data: 'action', name: 'action', orderable:false, width: '7.5%', className: 'dt-center'}
+      {title: '', data: 'action', name: 'action', orderable:false, width: '10%', className: 'dt-center'}
     ],
   });
 
@@ -42,17 +42,6 @@
         url = me.attr('href'),
         title = me.attr('name');
 
-    var form = $('.form')
-    var validation = Array.prototype.filter.call(form, function(form) {
-      form.classList.remove('was-validated');
-    });
-    $('#modal-body').find("input,textarea,select")
-      .val('')
-      .end();
-    $('#modal-title').text(title);
-    $('#modal-close').text(me.hasClass('edit') ? 'Cancel' : 'Close');
-    $('#modal-save').text(me.hasClass('edit') ? 'Update' : 'Create');
-
     $.ajax({
       url: url,
       dataType: 'html',
@@ -61,10 +50,9 @@
         $('#modal-title').text(title);
         $('#modal-close').text(me.hasClass('edit') ? 'Cancel' : 'Close');
         $('#modal-save').text(me.hasClass('edit') ? 'Update' : 'Create');
+        $('#modal').modal('show');
       }
     });
-
-    $('#modal').modal('show');
   });
 
   $('body').on('submit','.form', function(event){
@@ -79,8 +67,8 @@
       method : method,
       data : form.serialize(),
       success: function(response){
-        $('#modal').modal('hide');
         $('#table').DataTable().ajax.reload();
+        $('#modal').modal('hide');
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',
@@ -97,12 +85,19 @@
           type: 'success',
           title: 'Data has been saved!'
         })
-        $('#modal-body').reset();
+        $('#modal-body').trigger('reset');
       },
-      error: function(){
-        var validation = Array.prototype.filter.call(form, function(form) {
-          form.classList.add('was-validated');
-        });
+      error: function(xhr){
+        var res = xhr.responseJSON;
+        if ($.isEmptyObject(res) == false) {
+          form.find('.invalid-feedback').remove();
+          form.find('.is-invalid').removeClass('is-invalid');
+          $.each(res.errors, function (key, value) {
+            $('#' + key)
+              .addClass('is-invalid')
+              .after('<div class="invalid-feedback d-block">'+value+'</div>');
+          });
+        }
       }
     });
   });
@@ -116,7 +111,7 @@
         csrf_token = $('meta[name="csrf-token"]').attr('content');
 
     swal({
-      title: "Are you sure want to delete '" + name + "'?",
+      title: "Are you sure want to delete\n'" + name + "'?",
       text: "You won't be able to revert this!",
       type: 'warning',
       showCancelButton: true,
