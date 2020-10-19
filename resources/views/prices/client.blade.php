@@ -18,7 +18,7 @@
                   <th class="text-center" width="5%">No</th>
                   <th class="text-center" width="32.5%">Service</th>
                   <th class="text-center" width="17.5%">Harga Unpad</th>
-                  <th class="text-center" width="17.5%">Harga Non Unpad</th>
+                  <!-- <th class="text-center" width="17.5%">Harga Non Unpad</th> -->
                   <th class="text-center" width="17.5%">Harga Umum</th>
                   <th class="text-center" width="10%">Diskon</th>
                 </tr>
@@ -30,7 +30,7 @@
                       <td class="text-center">{{ $i }}</td>
                       <td>{{ $s->service }}</td>
                       <td class="text-center">Rp {{ number_format($s->price1, 0, ',', '.') }}</td>
-                      <td class="text-center">Rp {{ number_format($s->price2, 0, ',', '.') }}</td>
+                      <!-- <td class="text-center">Rp {{ number_format($s->price2, 0, ',', '.') }}</td> -->
                       <td class="text-center">Rp {{ number_format($s->price3, 0, ',', '.') }}</td>
                       <td class="text-center">{{ $s->discount }}%</td>
                     </tr>

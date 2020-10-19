@@ -30,7 +30,7 @@
       {title: 'Service', data: 'service', name: 'service', width: '17.5%', className: 'dt-head-center'},
       {title: 'Alat', data: 'tool', name: 'tool', width: '17.5%', className: 'dt-head-center'},
       {title: 'Harga Unpad', data: 'price1', name: 'price1', orderable:false, width: '15%', className: 'dt-center'},
-      {title: 'Harga Non Unpad', data: 'price2', name: 'price2', orderable:false, width: '15%', className: 'dt-center'},
+      // {title: 'Harga Non Unpad', data: 'price2', name: 'price2', orderable:false, width: '15%', className: 'dt-center'},
       {title: 'Harga Umum', data: 'price3', name: 'price3', orderable:false, width: '15%', className: 'dt-center'},
       {title: 'Diskon', data: 'discount', name: 'discount', orderable:false, width: '7.5%', className: 'dt-center'},
       {title: 'Opsi', data: 'action', name: 'action', width: '7.5%', orderable:false, className: 'dt-center'}
