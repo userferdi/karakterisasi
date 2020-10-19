@@ -17,7 +17,7 @@ class CreatePricesTable extends Migration
             $table->increments('id');
             $table->string('service');
             $table->integer('price1');
-            $table->integer('price2');
+            $table->integer('price2')->nullable();
             $table->integer('price3');
             $table->integer('discount')->nullable();
             $table->integer('tools_id')->unsigned();

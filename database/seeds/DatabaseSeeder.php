@@ -54,23 +54,43 @@ class DatabaseSeeder extends Seeder
 
 		// TimeSeeder
 		DB::table('times')->insert([
-			'name' => '08:00-10:00',
+			'name' => '08:00-09:00',
 			'time_start' => '08:00',
+			'time_end' => '09:00',
+		]); 
+		DB::table('times')->insert([
+			'name' => '09:00-10:00',
+			'time_start' => '09:00',
 			'time_end' => '10:00',
 		]); 
 		DB::table('times')->insert([
-			'name' => '10:00-12:00',
+			'name' => '10:00-11:00',
 			'time_start' => '10:00',
+			'time_end' => '11:00',
+		]);
+		DB::table('times')->insert([
+			'name' => '11:00-12:00',
+			'time_start' => '11:00',
 			'time_end' => '12:00',
 		]);
 		DB::table('times')->insert([
-			'name' => '13:00-15:00',
+			'name' => '13:00-14:00',
 			'time_start' => '13:00',
+			'time_end' => '14:00',
+		]);
+		DB::table('times')->insert([
+			'name' => '14:00-15:00',
+			'time_start' => '14:00',
 			'time_end' => '15:00',
 		]);
 		DB::table('times')->insert([
-			'name' => '15:00-17:00',
+			'name' => '15:00-16:00',
 			'time_start' => '15:00',
+			'time_end' => '16:00',
+		]);
+		DB::table('times')->insert([
+			'name' => '16:00-17:00',
+			'time_start' => '16:00',
 			'time_end' => '17:00',
 		]);
 		DB::table('times')->insert([
@@ -90,13 +110,13 @@ class DatabaseSeeder extends Seeder
 		]);
 
 		// UsageTimeSeeder
-		for($i=1;$i<5;$i++){
+		for($i=1;$i<9;$i++){
 			DB::table('time_usage')->insert([
 				'usage_id' => 1,
 				'time_id' => $i,
 			]);
 		}
-		for($i=5;$i<7;$i++){
+		for($i=9;$i<11;$i++){
 			DB::table('time_usage')->insert([
 				'usage_id' => 2,
 				'time_id' => $i,
@@ -104,7 +124,7 @@ class DatabaseSeeder extends Seeder
 		}
 		DB::table('time_usage')->insert([
 			'usage_id' => 3,
-			'time_id' => 7,
+			'time_id' => 11,
 		]);
 
 		// PlanSeeder
@@ -412,6 +432,12 @@ class DatabaseSeeder extends Seeder
 
 		// LabSeeder
 		DB::table('labs')->insert([
+			'name' => 'Laboratorium Karakterisasi',
+			'code' => 'LAB-KTS',
+			'head' => ' Prof. Dr. Eng. I Made Joni, M.Sc.',
+			'descrip' => 'Laboratorium Karakterisasi menyediakan berbagai macam alat karakterisasi seperti Particle Size Analyzer, Zeta Potensial, X-Ray Fluorescence, Photoluminescence, Fourier-Transform Infrared Spectroscopy, dan alat-alat karakterisasi lainnya.',
+		]);
+		DB::table('labs')->insert([
 			'name' => 'Laboratorium Nanomaterial',
 			'code' => 'LAB-NM',
 			'head' => 'Dr. Veinardi Suendo S.Si.,M.Eng.',
@@ -442,75 +468,77 @@ class DatabaseSeeder extends Seeder
 			'descrip' => 'Laboratorium ini menyediakan fasilitas Ball Mill untuk keperluan nano grinding, size reduction, homogenizing, mechanical alloying, colloidal milling dan high energy comminution.',
 		]);
 
+		$this->call(ServiceSeeder::class);
+
 		// ToolSeeder
-		DB::table('tools')->insert([
-			'name' => 'Scanning Electron Microscope SU3500',
-			'code' => 'SEM',
-			'descrip' => 'Scanning Electron Microscope (SEM) adalah alat untuk mencitrakan detail permukaan sampel dalam resolusi tinggi. Perbesaran maksimum SEM SU3500 adalah 300.000 kali, namun nilai perbesaran ini akan dibatasi oleh jenis dan kualitas sampel yang diamati. Untuk pengamatan SEM, sampel tidak dapat mengandung cairan atau berada dalam fasa cair. Pada SEM dapat dilakukan analisis Energy Dispersive X-Ray Spectroscopy (EDS).',
-			'sample' => '1. Sampel harus diamati dalam keadaan kering dan tidak mengandung cairan. 2. Harap jelaskan detail sampel yang akan diamati, target perbesaran gambar, dan permohonan khusus (contoh: jika membutuhkan pengeringan dengan HMDS atau akan melakukan pengamatan cross-section). 3. Untuk EDS harap cantumkan prediksi unsur-unsur yang terdapat pada sampel. 4. PPNN tidak membuka layanan preparasi sampel biologi yang membutuhkan fiksasi dan dehidrasi. Keterangan Tambahan : Apabila sampel dititipkan, user harus mendeskripsikan dengan detail tujuan pengamatan dan melampirkan contoh hasil pengamatan (dari referensi atau pengamatan terdahulu) jika ada.',
-			'labs_id' => 2,
-			'actives_id' => 1,
-			'usages_id' => 2,
-		]);
-		DB::table('tools')->insert([
-			'name' => 'X-Ray Fluorescence',
-			'code' => 'XRF',
-			'descrip' => 'Alat untuk karakterisasi komposisi unsur pada sampel dengan memanfaatkan X-ray characteristic.',
-			'sample' => 'Sampel untuk karakterisasi XRF dapat berupa padatan atau serbuk yang telah dipadatkan (pellet) dengan berat sampel mimimum yang disarankan adalah 20 mg.',
-			'labs_id' => 2,
-			'actives_id' => 1,
-			'usages_id' => 2,
-		]);
-		DB::table('tools')->insert([
-			'name' => 'X-Ray Diffractometer',
-			'code' => 'XRD',
-			'descrip' => 'Alat ini digunakan untuk menganalisis jenis , komposisi, dan fasa senyawa pada sampel. Hasil pengujian berupa raw data berekstensi *.raw dan *.brml',
-			'sample' => 'Sampel untuk karakterisasi XRD harus memenuhi kriteria sbb: 1.Sampel dapat berupa serbuk/padatan/lapisan tipis dengan volume minimal 2 ml. Berat sampel tidak ditentukan karena tergantung massa jenis material. 2. Untuk serbuk harus homogen dan halus yaitu dengan ukuran dibawah 40 mikron (lebih baik pada rentang 5-20 mikron) 3. Untuk padatan permukaannya harus benar-benar rata dengan dimensi 15±1 mm x 15±1 mm x 1,1 mm. 4. Untuk lapisan tipis harus cukup tebal agar bukan substrat yang terdeteksi. Ketebalan minimum yang disarankan adalah sekitar 50 mikron.',
-			'labs_id' => 2,
-			'actives_id' => 1,
-			'usages_id' => 1,
-		]);
+		// DB::table('tools')->insert([
+		// 	'name' => 'Scanning Electron Microscope SU3500',
+		// 	'code' => 'SEM',
+		// 	'descrip' => 'Scanning Electron Microscope (SEM) adalah alat untuk mencitrakan detail permukaan sampel dalam resolusi tinggi. Perbesaran maksimum SEM SU3500 adalah 300.000 kali, namun nilai perbesaran ini akan dibatasi oleh jenis dan kualitas sampel yang diamati. Untuk pengamatan SEM, sampel tidak dapat mengandung cairan atau berada dalam fasa cair. Pada SEM dapat dilakukan analisis Energy Dispersive X-Ray Spectroscopy (EDS).',
+		// 	'sample' => '1. Sampel harus diamati dalam keadaan kering dan tidak mengandung cairan. 2. Harap jelaskan detail sampel yang akan diamati, target perbesaran gambar, dan permohonan khusus (contoh: jika membutuhkan pengeringan dengan HMDS atau akan melakukan pengamatan cross-section). 3. Untuk EDS harap cantumkan prediksi unsur-unsur yang terdapat pada sampel. 4. PPNN tidak membuka layanan preparasi sampel biologi yang membutuhkan fiksasi dan dehidrasi. Keterangan Tambahan : Apabila sampel dititipkan, user harus mendeskripsikan dengan detail tujuan pengamatan dan melampirkan contoh hasil pengamatan (dari referensi atau pengamatan terdahulu) jika ada.',
+		// 	'labs_id' => 2,
+		// 	'actives_id' => 1,
+		// 	'usages_id' => 2,
+		// ]);
+		// DB::table('tools')->insert([
+		// 	'name' => 'X-Ray Fluorescence',
+		// 	'code' => 'XRF',
+		// 	'descrip' => 'Alat untuk karakterisasi komposisi unsur pada sampel dengan memanfaatkan X-ray characteristic.',
+		// 	'sample' => 'Sampel untuk karakterisasi XRF dapat berupa padatan atau serbuk yang telah dipadatkan (pellet) dengan berat sampel mimimum yang disarankan adalah 20 mg.',
+		// 	'labs_id' => 2,
+		// 	'actives_id' => 1,
+		// 	'usages_id' => 2,
+		// ]);
+		// DB::table('tools')->insert([
+		// 	'name' => 'X-Ray Diffractometer',
+		// 	'code' => 'XRD',
+		// 	'descrip' => 'Alat ini digunakan untuk menganalisis jenis , komposisi, dan fasa senyawa pada sampel. Hasil pengujian berupa raw data berekstensi *.raw dan *.brml',
+		// 	'sample' => 'Sampel untuk karakterisasi XRD harus memenuhi kriteria sbb: 1.Sampel dapat berupa serbuk/padatan/lapisan tipis dengan volume minimal 2 ml. Berat sampel tidak ditentukan karena tergantung massa jenis material. 2. Untuk serbuk harus homogen dan halus yaitu dengan ukuran dibawah 40 mikron (lebih baik pada rentang 5-20 mikron) 3. Untuk padatan permukaannya harus benar-benar rata dengan dimensi 15±1 mm x 15±1 mm x 1,1 mm. 4. Untuk lapisan tipis harus cukup tebal agar bukan substrat yang terdeteksi. Ketebalan minimum yang disarankan adalah sekitar 50 mikron.',
+		// 	'labs_id' => 2,
+		// 	'actives_id' => 1,
+		// 	'usages_id' => 1,
+		// ]);
 
 		// PriceSeeder
-		DB::table('prices')->insert([
-			'service' => 'X-Ray Fluorescence Characterization (per spektrum)',
-			'price1' => 200000,
-			'price2' => 300000,
-			'price3' => 450000,
-			'discount' => 10,
-			'tools_id' => 2,
-		]);
-		DB::table('prices')->insert([
-			'service' => 'X-Ray Fluorescence Characterization (per map)',
-			'price1' => 250000,
-			'price2' => 375000,
-			'price3' => 550000,
-			'discount' => 0,
-			'tools_id' => 2,
-		]);
-		DB::table('prices')->insert([
-			'service' => 'X-Ray Diffractometer Characterization (per sample)',
-			'price1' => 275000,
-			'price2' => 400000,
-			'price3' => 550000,
-			'discount' => 10,
-			'tools_id' => 3,
-		]);
-		DB::table('prices')->insert([
-			'service' => 'SEM SU3500 Imaging',
-			'price1' => 275000,
-			'price2' => 400000,
-			'price3' => 550000,
-			'discount' => 0,
-			'tools_id' => 1,
-		]);
-		DB::table('prices')->insert([
-			'service' => 'Ion Sputtering : Gold Coating',
-			'price1' => 275000,
-			'price2' => 400000,
-			'price3' => 550000,
-			'discount' => 10,
-			'tools_id' => 1,
-		]);
+		// DB::table('prices')->insert([
+		// 	'service' => 'X-Ray Fluorescence Characterization (per spektrum)',
+		// 	'price1' => 200000,
+		// 	'price2' => 300000,
+		// 	'price3' => 450000,
+		// 	'discount' => 10,
+		// 	'tools_id' => 2,
+		// ]);
+		// DB::table('prices')->insert([
+		// 	'service' => 'X-Ray Fluorescence Characterization (per map)',
+		// 	'price1' => 250000,
+		// 	'price2' => 375000,
+		// 	'price3' => 550000,
+		// 	'discount' => 0,
+		// 	'tools_id' => 2,
+		// ]);
+		// DB::table('prices')->insert([
+		// 	'service' => 'X-Ray Diffractometer Characterization (per sample)',
+		// 	'price1' => 275000,
+		// 	'price2' => 400000,
+		// 	'price3' => 550000,
+		// 	'discount' => 10,
+		// 	'tools_id' => 3,
+		// ]);
+		// DB::table('prices')->insert([
+		// 	'service' => 'SEM SU3500 Imaging',
+		// 	'price1' => 275000,
+		// 	'price2' => 400000,
+		// 	'price3' => 550000,
+		// 	'discount' => 0,
+		// 	'tools_id' => 1,
+		// ]);
+		// DB::table('prices')->insert([
+		// 	'service' => 'Ion Sputtering : Gold Coating',
+		// 	'price1' => 275000,
+		// 	'price2' => 400000,
+		// 	'price3' => 550000,
+		// 	'discount' => 10,
+		// 	'tools_id' => 1,
+		// ]);
 	}
 }
