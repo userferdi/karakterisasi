@@ -1,6 +1,6 @@
 @extends('layouts.index')
 
-@section('title','PRINTG')
+@section('title', 'FINDER')
 
 @section('content')
 <h2 style="padding-top:10px;">Registrasi Penggunaan Alat</h2>

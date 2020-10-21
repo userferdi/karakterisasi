@@ -1,6 +1,6 @@
 @extends('layouts.index')
 
-@section('title','FINDER · History')
+@section('title', 'FINDER · History')
 
 @section('content')
 <h3 style="padding-top:15px;"><b>Histori Penggunaan Alat</b></h3>

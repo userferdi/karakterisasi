@@ -83,15 +83,9 @@ class ActivitiesController extends Controller
         $booking = new Booking;
 
         $tool = Tool::where('id',$request->tools_id)->first();
-        $no = Order::orderBy('id', 'desc')->value('id');
-        if($no == NULL){
-            $no = 1;
-            $booking['no_form'] = $no.'/'.$tool->labs->code.'/'.$tool->code;
-        }
-        else{
-            $no+=1;
-            $booking['no_form'] = $no.'/'.$tool->labs->code.'/'.$tool->code;
-        }
+        $no = Order::where('tools_id', $request->tools_id)->get('id')->count();
+        $no+=1;
+        $booking['no_form'] = $no.'/'.$tool->labs->code.'/'.$tool->code;
 
         $id = Order::create([
             'users_id' => Auth()->User()->id,
@@ -117,13 +111,13 @@ class ActivitiesController extends Controller
             $mail = new PHPMailer(true);
             $mail->CharSet = 'UTF-8';
             try{
-                $mail->SMTPOptions = array(
-                    'ssl' => array(
-                        'verify_peer' => false,
-                        'verify_peer_name' => false,
-                        'allow_self_signed' => true
-                    )
-                );
+                // $mail->SMTPOptions = array(
+                //     'ssl' => array(
+                //         'verify_peer' => false,
+                //         'verify_peer_name' => false,
+                //         'allow_self_signed' => true
+                //     )
+                // );
                 // $mail->SMTPDebug = true;
                 $mail->Encoding = 'base64';
                 $mail->isSMTP();
@@ -132,22 +126,21 @@ class ActivitiesController extends Controller
                 $mail->Username = 'functionalnanopowder@gmail.com';
                 $mail->Password = '1w3r!W#R';
                 // SSL: 465, TLS: 587
-                $mail->SMTPSecure = 'ssl';
-                $mail->Port = 465;
+                $mail->SMTPSecure = 'tls';
+                $mail->Port = 587;
                 $mail->SetFrom('functionalnanopowder@gmail.com', 'FINDER');
                 $mail->AddAddress(Auth()->User()->email);
                 $mail->Subject = 'Permintaan Verifikasi Booking Alat';
                 $mail->Body = '
 <p>Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari Anda.</p>
 <p>Sebelum melanjutkan proses pemesanan, kami perlu memastikan bahwa ini memang Anda.</p>
-<p>Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$token).'">di sini!</a></p><br/>
+<p>Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$token).'">di sini!</a></p><br>
 <p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('status.booking').'">login!</a></p>
 <p>Silahkan Masuk ke Menu <strong>My Activities -> Registration of Tool Usage</strong> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda.</p>
-<p>Jika bukan Anda yang melakukan transaksi tersebut, harap mengabaikan pesan ini.</p><br/><br/>
+<p>Jika bukan Anda yang melakukan transaksi tersebut, harap mengabaikan pesan ini.</p><br>
 <p>Hormat Kami,</p>
 <p>Sekretariat SIPA FINDER</p>
-<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>
-';
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
                 $mail->isHTML(true);
                 $mail->Send();
                 return redirect()->route('status.booking');

@@ -188,17 +188,17 @@ class PaymentController extends Controller
             $save = Order::where('id', $model->orders_id)->update([
                 'plans_id' => $request->plans_id
             ]);
+
             $payment = new Payment;
-            $no = Payment::orderBy('id', 'desc')->value('id');
+            $no = Payment::whereHas('approves', function ($query) use ($model){
+                return $query->whereHas('orders', function ($query) use ($model){
+                    return $query->where('tools_id', '=', $model->orders->tools->id);
+                });
+            })->get('id')->count();
             $payment['date_invoice'] = date('Y-m-d');
-            if($no == NULL){
-                $no = 1;
-                $payment['no_invoice'] = $no.'/'.$model->orders->tools->labs->code.'/'.$model->orders->tools->code.$payment->date_invoice;
-            }
-            else{
-                $no+=1;
-                $payment['no_invoice'] = $no.'/'.$model->orders->tools->labs->code.'/'.$model->orders->tools->code.$payment->date_invoice;
-            }
+            $no+=1;
+            $payment['no_invoice'] = $no.'/INV/'.$model->orders->tools->labs->code.'/'.$model->orders->tools->code.date('/m/Y');
+
             if($model->orders->users->hasRole('Dosen Unpad|Mahasiswa Unpad')){
                 $price = Price::where('id',$request->service1)->first();
                 $price = $price->price1;
@@ -467,7 +467,8 @@ class PaymentController extends Controller
     {
 
         $model = Approve::where(function($model){
-            $model->where('status',2)
+            $model->where('status',1)
+                  ->orWhere('status',2)
                   ->orWhere('status',3);
         })->get();
         return DataTables::of($model)
@@ -475,9 +476,6 @@ class PaymentController extends Controller
                 $date = date('d M Y', strtotime($model->date));
                 $time = $model->times->name;
                 return $date.' '.$time;
-            })
-            ->editColumn('status', function($model){
-                return $model->payments->status;
             })
             ->addColumn('user', function($model){
                 return $model->orders->users->name;
@@ -742,17 +740,14 @@ class PaymentController extends Controller
     {
         $model = Payment::find($id);
         if($model->status==1||$model->status==4||$model->status==5){
-            $no = Payment::orderBy('id', 'desc')->value('id');
+            $no = Payment::whereHas('approves', function ($query) use ($model){
+                return $query->whereHas('orders', function ($query) use ($model){
+                    return $query->where('tools_id', '=', $model->approves->orders->tools->id);
+                });
+            })->where('no_receipt', '!=', NULL)->get('id')->count();
             $payment['date_receipt'] = date('Y-m-d');
-            // $payment['date_receipt'] = date("/m/Y");
-            if($no == NULL){
-                $no = 1;
-                $payment['no_receipt'] = $no.'/'.$model->approves->orders->tools->labs->code.'/'.$model->approves->orders->tools->code.'/'.$payment['date_receipt'];
-            }
-            else{
-                $no+=1;
-                $payment['no_receipt'] = $no.'/'.$model->approves->orders->tools->labs->code.'/'.$model->approves->orders->tools->code.'/'.$payment['date_receipt'];
-            }
+            $no+=1;
+            $payment['no_receipt'] = $no.'/RCP/'.$model->approves->orders->tools->labs->code.'/'.$model->approves->orders->tools->code.date('/m/Y');
             if($model->status==1||$model->status==4){
                 $payment['status'] = 6;
             }
