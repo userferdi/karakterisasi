@@ -139,24 +139,34 @@ class RegisterController extends Controller
                 'name' => $data['name']
             ]);
             $id = DB::getPdo()->lastInsertId();
+            Auth::login($user);
+            $user->sendEmailVerificationNotification();
+            auth()->user()->assignRole('Dosen Unpad');
             if($data->file('image')!=null){
                 $directory = '/upload/users/'.$id.'/';
                 $filename = $data->name.'.'.$data->image->getClientOriginalExtension();
                 $image = $directory.$filename;
                 $data->image->move(public_path($directory), $filename);
+                $profile = Profile::create([
+                    'user_id' => $id,
+                    'no_id' => $data->no_id,
+                    'no_hp' => $data->no_hp,
+                    'image' => $image,
+                    'university' => 'Universitas Padjadjaran',
+                    'faculty' => Faculty::find($data->faculty)->name,
+                    'study_program' => study_program::find($data->study_program)->name
+                ]);
             }
-            Auth::login($user);
-            $user->sendEmailVerificationNotification();
-            auth()->user()->assignRole('Dosen Unpad');
-            $profile = Profile::create([
-                'user_id' => $id,
-                'no_id' => $data->no_id,
-                'no_hp' => $data->no_hp,
-                'image' => $image,
-                'university' => 'Universitas Padjadjaran',
-                'faculty' => Faculty::find($data->faculty)->name,
-                'study_program' => study_program::find($data->study_program)->name
-            ]);
+            else{
+                $profile = Profile::create([
+                    'user_id' => $id,
+                    'no_id' => $data->no_id,
+                    'no_hp' => $data->no_hp,
+                    'university' => 'Universitas Padjadjaran',
+                    'faculty' => Faculty::find($data->faculty)->name,
+                    'study_program' => study_program::find($data->study_program)->name
+                ]);
+            }
             return redirect()->route('home');
         }
         else if($data['user']=='dosennonunpad'){
@@ -179,14 +189,31 @@ class RegisterController extends Controller
             Auth::login($user);
             $user->sendEmailVerificationNotification();
             auth()->user()->assignRole('Dosen Non Unpad');
-            $profile = Profile::create([
-                'user_id' => $id,
-                'no_id' => $data->no_id,
-                'no_hp' => $data->no_hp,
-                'university' => $data->university,
-                'faculty' => $data->faculty,
-                'study_program' => $data->study_program
-            ]);
+            if($data->file('image')!=null){
+                $directory = '/upload/users/'.$id.'/';
+                $filename = $data->name.'.'.$data->image->getClientOriginalExtension();
+                $image = $directory.$filename;
+                $data->image->move(public_path($directory), $filename);
+                $profile = Profile::create([
+                    'user_id' => $id,
+                    'no_id' => $data->no_id,
+                    'no_hp' => $data->no_hp,
+                    'image' => $image,
+                    'university' => $data->university,
+                    'faculty' => $data->faculty,
+                    'study_program' => $data->study_program
+                ]);
+            }
+            else{
+                $profile = Profile::create([
+                    'user_id' => $id,
+                    'no_id' => $data->no_id,
+                    'no_hp' => $data->no_hp,
+                    'university' => $data->university,
+                    'faculty' => $data->faculty,
+                    'study_program' => $data->study_program
+                ]);
+            }
             return redirect()->route('home');
         }
         else if($data['user']=='mahasiswaunpad'){
@@ -209,15 +236,33 @@ class RegisterController extends Controller
             Auth::login($user);
             $user->sendEmailVerificationNotification();
             auth()->user()->assignRole('Mahasiswa Unpad');
-            $profile = Profile::create([
-                'user_id' => $id,
-                'no_id' => $data->no_id,
-                'no_hp' => $data->no_hp,
-                'university' => 'Universitas Padjadjaran',
-                'faculty' => Faculty::find($data->faculty)->name,
-                'study_program' => study_program::find($data->study_program)->name,
-                'email_lecturer' => $data->email_lecturer
-            ]);
+            if($data->file('image')!=null){
+                $directory = '/upload/users/'.$id.'/';
+                $filename = $data->name.'.'.$data->image->getClientOriginalExtension();
+                $image = $directory.$filename;
+                $data->image->move(public_path($directory), $filename);
+                $profile = Profile::create([
+                    'user_id' => $id,
+                    'no_id' => $data->no_id,
+                    'no_hp' => $data->no_hp,
+                    'image' => $image,
+                    'university' => 'Universitas Padjadjaran',
+                    'faculty' => Faculty::find($data->faculty)->name,
+                    'study_program' => study_program::find($data->study_program)->name,
+                    'email_lecturer' => $data->email_lecturer
+                ]);
+            }
+            else{
+                $profile = Profile::create([
+                    'user_id' => $id,
+                    'no_id' => $data->no_id,
+                    'no_hp' => $data->no_hp,
+                    'university' => 'Universitas Padjadjaran',
+                    'faculty' => Faculty::find($data->faculty)->name,
+                    'study_program' => study_program::find($data->study_program)->name,
+                    'email_lecturer' => $data->email_lecturer
+                ]);
+            }
             return redirect()->route('home');
         }
         else if($data['user']=='mahasiswanonunpad'){
@@ -241,15 +286,33 @@ class RegisterController extends Controller
             Auth::login($user);
             $user->sendEmailVerificationNotification();
             auth()->user()->assignRole('Mahasiswa Non Unpad');
-            $profile = Profile::create([
-                'user_id' => $id,
-                'no_id' => $data->no_id,
-                'no_hp' => $data->no_hp,
-                'university' => $data->university,
-                'faculty' => $data->faculty,
-                'study_program' => $data->study_program,
-                'email_lecturer' => $data->email_lecturer
-            ]);
+            if($data->file('image')!=null){
+                $directory = '/upload/users/'.$id.'/';
+                $filename = $data->name.'.'.$data->image->getClientOriginalExtension();
+                $image = $directory.$filename;
+                $data->image->move(public_path($directory), $filename);
+                $profile = Profile::create([
+                    'user_id' => $id,
+                    'no_id' => $data->no_id,
+                    'no_hp' => $data->no_hp,
+                    'image' => $image,
+                    'university' => $data->university,
+                    'faculty' => $data->faculty,
+                    'study_program' => $data->study_program,
+                    'email_lecturer' => $data->email_lecturer
+                ]);
+            }
+            else{
+                $profile = Profile::create([
+                    'user_id' => $id,
+                    'no_id' => $data->no_id,
+                    'no_hp' => $data->no_hp,
+                    'university' => $data->university,
+                    'faculty' => $data->faculty,
+                    'study_program' => $data->study_program,
+                    'email_lecturer' => $data->email_lecturer
+                ]);
+            }
             return redirect()->route('home');
         }
         else if($data['user']=='userumum'){
