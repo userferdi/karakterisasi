@@ -129,12 +129,12 @@ class ActivitiesController extends Controller
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
-                $mail->Username = 'ferdi.maulana@gmail.com';
-                $mail->Password = 'oiuuiookmmko';
+                $mail->Username = 'functionalnanopowder@gmail.com';
+                $mail->Password = '1w3r!W#R';
                 // SSL: 465, TLS: 587
                 $mail->SMTPSecure = 'ssl';
                 $mail->Port = 465;
-                $mail->SetFrom('ferdi.maulana@gmail.com', 'FINDER');
+                $mail->SetFrom('functionalnanopowder@gmail.com', 'FINDER');
                 $mail->AddAddress(Auth()->User()->email);
                 $mail->Subject = 'Permintaan Verifikasi Booking Alat';
                 $mail->Body = '

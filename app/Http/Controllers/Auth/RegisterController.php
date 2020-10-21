@@ -128,9 +128,8 @@ class RegisterController extends Controller
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
                 'name' => ['required', 'string', 'max:255'],
-                'no_id' => ['required', 'string', 'max:255'],
-                'no_hp' => ['required', 'string', 'max:255'],
-                'university' => ['required', 'string', 'max:255'],
+                'no_id' => ['required', 'digits_between:8,24'],
+                'no_hp' => ['required', 'digits_between:8,16'],
                 'faculty' => ['required', 'string', 'max:255'],
                 'study_program' => ['required', 'string', 'max:255']
             ]);
@@ -140,6 +139,12 @@ class RegisterController extends Controller
                 'name' => $data['name']
             ]);
             $id = DB::getPdo()->lastInsertId();
+            if($data->file('image')!=null){
+                $directory = '/upload/users/'.$id.'/';
+                $filename = $data->name.'.'.$data->image->getClientOriginalExtension();
+                $image = $directory.$filename;
+                $data->image->move(public_path($directory), $filename);
+            }
             Auth::login($user);
             $user->sendEmailVerificationNotification();
             auth()->user()->assignRole('Dosen Unpad');
@@ -147,6 +152,7 @@ class RegisterController extends Controller
                 'user_id' => $id,
                 'no_id' => $data->no_id,
                 'no_hp' => $data->no_hp,
+                'image' => $image,
                 'university' => 'Universitas Padjadjaran',
                 'faculty' => Faculty::find($data->faculty)->name,
                 'study_program' => study_program::find($data->study_program)->name
@@ -158,8 +164,8 @@ class RegisterController extends Controller
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
                 'name' => ['required', 'string', 'max:255'],
-                'no_id' => ['required', 'string', 'max:255'],
-                'no_hp' => ['required', 'string', 'max:255'],
+                'no_id' => ['required', 'digits_between:8,24'],
+                'no_hp' => ['required', 'digits_between:8,16'],
                 'university' => ['required', 'string', 'max:255'],
                 'faculty' => ['required', 'string', 'max:255'],
                 'study_program' => ['required', 'string', 'max:255']
@@ -188,9 +194,8 @@ class RegisterController extends Controller
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
                 'name' => ['required', 'string', 'max:255'],
-                'no_id' => ['required', 'string', 'max:255'],
-                'no_hp' => ['required', 'string', 'max:255'],
-                'university' => ['required', 'string', 'max:255'],
+                'no_id' => ['required', 'digits_between:8,24'],
+                'no_hp' => ['required', 'digits_between:8,16'],
                 'faculty' => ['required', 'string', 'max:255'],
                 'study_program' => ['required', 'string', 'max:255'],
                 'email_lecturer' => ['required', 'string', 'email', 'max:255']
@@ -220,8 +225,8 @@ class RegisterController extends Controller
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
                 'name' => ['required', 'string', 'max:255'],
-                'no_id' => ['required', 'string', 'max:255'],
-                'no_hp' => ['required', 'string', 'max:255'],
+                'no_id' => ['required', 'digits_between:8,24'],
+                'no_hp' => ['required', 'digits_between:8,16'],
                 'university' => ['required', 'string', 'max:255'],
                 'faculty' => ['required', 'string', 'max:255'],
                 'study_program' => ['required', 'string', 'max:255'],
@@ -252,8 +257,8 @@ class RegisterController extends Controller
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
                 'name' => ['required', 'string', 'max:255'],
-                'no_id' => ['required', 'string', 'max:255'],
-                'no_hp' => ['required', 'string', 'max:255'],
+                'no_id' => ['required', 'digits_between:8,24'],
+                'no_hp' => ['required', 'digits_between:8,16'],
                 'institution' => ['required', 'string', 'max:255'],
                 'address' => ['required', 'string', 'max:255']
             ]);

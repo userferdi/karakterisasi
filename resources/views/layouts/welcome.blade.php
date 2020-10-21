@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <title>FINDER</title>
-  <link rel="icon" href="{{ asset('finder2.png') }}">
+  <link rel="icon" href="{{ asset('finder3.png') }}">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 

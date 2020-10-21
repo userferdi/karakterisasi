@@ -10,7 +10,7 @@
         </a>
         Register Dosen Unpad
     </span>
-    <form class="login100-form validate-form" method="POST" action="{{ route('register.store') }}">
+    <form class="login100-form validate-form" method="POST" action="{{ route('register.store') }}" enctype="multipart/form-data">
         @csrf
         <input id="user" type="hidden" class="form-control" name="user" value="dosenunpad">
 
@@ -42,7 +42,7 @@
             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
             <div class="col-md-8">
                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                @error('password-confirm')
+                @error('password_confirmation')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -90,7 +90,7 @@
             <label for="faculty" class="col-md-4 col-form-label text-md-right">Faculty</label>
             <div class="col-md-8">
                 <select id="faculty" type="text" class="form-control" name="faculty" value="" onchange="onSelectFaculty(this.value,'#study_program')">
-                    <option value="0" disabled selected>Pilih Fakultas</option>
+                    <option value="0" disabled selected>Choose Faculty</option>
                     @foreach($faculty as $f)
                     <option value="{{$f->id}}">{{$f->name}}</option>
                     @endforeach
@@ -152,7 +152,7 @@
 
     function onSelectFaculty(value,childEl) {
         $('#study_program').empty();
-        $('#study_program').append('<option value="0" disabled selected>Pilih Program Studi</option>');
+        $('#study_program').append('<option value="0" disabled selected>Choose Study Program</option>');
         $.ajax({
             type: 'GET',
             url: '/register/datatable/studyprogram/' + value,

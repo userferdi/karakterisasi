@@ -10,7 +10,7 @@
         </a>
         Register Dosen Non Unpad
     </span>
-    <form class="login100-form validate-form" method="POST" action="{{ route('register.store') }}">
+    <form class="login100-form validate-form" method="POST" action="{{ route('register.store') }}" enctype="multipart/form-data">
         @csrf
         <input id="user" type="hidden" class="form-control" name="user" value="dosennonunpad">
 
