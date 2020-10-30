@@ -437,36 +437,36 @@ class DatabaseSeeder extends Seeder
 			'head' => ' Prof. Dr. Eng. I Made Joni, M.Sc.',
 			'descrip' => 'Laboratorium Karakterisasi menyediakan berbagai macam alat karakterisasi seperti Particle Size Analyzer, Zeta Potensial, X-Ray Fluorescence, Photoluminescence, Fourier-Transform Infrared Spectroscopy, dan alat-alat karakterisasi lainnya.',
 		]);
-		DB::table('labs')->insert([
-			'name' => 'Laboratorium Nanomaterial',
-			'code' => 'LAB-NM',
-			'head' => 'Dr. Veinardi Suendo S.Si.,M.Eng.',
-			'descrip' => 'Laboratorium ini memiliki fasilitas untuk sintesis material seperti thin film, baterai, dll. Terdapat Wet Process Lab, dry process lab, dan clean room untuk preparasi. Laboratorium ini juga menyediakan alat untuk proses deposisi thin film seperti dip coating, spin coating, dan vacuum evaporator. Selain itu, laboratorium ini juga dilengkapi dengan alat karakterisasi seperti TG/DTA, FTIR, dan alata karakterisasi elektronik lainnya.',
-		]);
-		DB::table('labs')->insert([
-			'name' => 'Laboratorium Mikroskop Elektron',
-			'code' => 'LAB-ME',
-			'head' => 'Dr. Damar Rastri Adhika ST, M.Sc.',
-			'descrip' => 'Laboratorium Mikroskop elektron berisi beberapa alat karakterisasi material, diantaranya adalah XRD, XRF, SEM, TEM, AFM, UV/Vis Spectroscopy, NIR Spectroscopy, dan Ellipsometer. Selain itu juga ada beberapa alat khusus untuk preparasi sampel TEM seperti FIB, Ultramicrotome, TEM Mill, Mechanical Polishing, Electropolishing, Dimpler, serta Pecision Saw.',
-		]);
-		DB::table('labs')->insert([
-			'name' => 'Laboratorium Nano Bio',
-			'code' => 'LAB-NB',
-			'head' => 'Azzania Fibriani S.Si.,M.Si.,Ph.D.',
-			'descrip' => 'Laboratorium ini terdiri dari beberapa ruangan meliputi ruang molekuler biologi, kultur mikrobia, bioproses , ruang dingin, sterilisasi, fermenter, dll.',
-		]);
-		DB::table('labs')->insert([
-			'name' => 'Laboratorium Computational Material Design',
-			'code' => 'LAB-CMD',
-			'head' => 'Mohammad Kemal Agusta ST,M.Eng.,Ph.D.',
-			'descrip' => 'Laboratorium ini menggunakan dan mengelola fasilitas High Perfomance Computer (>500 core) serta berbagai perangkat lunak untuk keperluan kalkulasi/simulasi/perancangan nanomaterial.',
-		]);
-		DB::table('labs')->insert([
-			'name' => 'Laboratorium Nano Farmasi',
-			'code' => 'LAB-NB',
-			'head' => 'Prof. Dr. Heni Rachmawati Apt.,M.Si.',
-			'descrip' => 'Laboratorium ini menyediakan fasilitas Ball Mill untuk keperluan nano grinding, size reduction, homogenizing, mechanical alloying, colloidal milling dan high energy comminution.',
-		]);
+		// DB::table('labs')->insert([
+		// 	'name' => 'Laboratorium Nanomaterial',
+		// 	'code' => 'LAB-NM',
+		// 	'head' => 'Dr. Veinardi Suendo S.Si.,M.Eng.',
+		// 	'descrip' => 'Laboratorium ini memiliki fasilitas untuk sintesis material seperti thin film, baterai, dll. Terdapat Wet Process Lab, dry process lab, dan clean room untuk preparasi. Laboratorium ini juga menyediakan alat untuk proses deposisi thin film seperti dip coating, spin coating, dan vacuum evaporator. Selain itu, laboratorium ini juga dilengkapi dengan alat karakterisasi seperti TG/DTA, FTIR, dan alata karakterisasi elektronik lainnya.',
+		// ]);
+		// DB::table('labs')->insert([
+		// 	'name' => 'Laboratorium Mikroskop Elektron',
+		// 	'code' => 'LAB-ME',
+		// 	'head' => 'Dr. Damar Rastri Adhika ST, M.Sc.',
+		// 	'descrip' => 'Laboratorium Mikroskop elektron berisi beberapa alat karakterisasi material, diantaranya adalah XRD, XRF, SEM, TEM, AFM, UV/Vis Spectroscopy, NIR Spectroscopy, dan Ellipsometer. Selain itu juga ada beberapa alat khusus untuk preparasi sampel TEM seperti FIB, Ultramicrotome, TEM Mill, Mechanical Polishing, Electropolishing, Dimpler, serta Pecision Saw.',
+		// ]);
+		// DB::table('labs')->insert([
+		// 	'name' => 'Laboratorium Nano Bio',
+		// 	'code' => 'LAB-NB',
+		// 	'head' => 'Azzania Fibriani S.Si.,M.Si.,Ph.D.',
+		// 	'descrip' => 'Laboratorium ini terdiri dari beberapa ruangan meliputi ruang molekuler biologi, kultur mikrobia, bioproses , ruang dingin, sterilisasi, fermenter, dll.',
+		// ]);
+		// DB::table('labs')->insert([
+		// 	'name' => 'Laboratorium Computational Material Design',
+		// 	'code' => 'LAB-CMD',
+		// 	'head' => 'Mohammad Kemal Agusta ST,M.Eng.,Ph.D.',
+		// 	'descrip' => 'Laboratorium ini menggunakan dan mengelola fasilitas High Perfomance Computer (>500 core) serta berbagai perangkat lunak untuk keperluan kalkulasi/simulasi/perancangan nanomaterial.',
+		// ]);
+		// DB::table('labs')->insert([
+		// 	'name' => 'Laboratorium Nano Farmasi',
+		// 	'code' => 'LAB-NB',
+		// 	'head' => 'Prof. Dr. Heni Rachmawati Apt.,M.Si.',
+		// 	'descrip' => 'Laboratorium ini menyediakan fasilitas Ball Mill untuk keperluan nano grinding, size reduction, homogenizing, mechanical alloying, colloidal milling dan high energy comminution.',
+		// ]);
 
 		$this->call(ServiceSeeder::class);
 

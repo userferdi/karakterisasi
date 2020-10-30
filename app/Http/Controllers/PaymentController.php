@@ -16,36 +16,6 @@ use Illuminate\Support\Facades\Input;
 
 class PaymentController extends Controller
 {
-    public function coba()
-    {
-         $your_string = '2 3 12 34 ';
-        $array = str_split($your_string);
-        $i=0; $j=0; $k=0; $l=0;
-        foreach ($array as $char){
-            if($char == ' '){
-                $no[$k] = 0;
-                for($j=$l;$j<$i;$j++){
-                    if(empty($no[$k])){
-                        $no[$k] = $array[$j];
-                    }
-                    else{
-                        $no[$k] .= $array[$j];
-                    }
-                }
-                $l=$i+1;
-                $k++;
-            }
-            $i++;
-        }
-
-        dd($no,$array);
-        $pdf = PDF::loadview('payment.streambill');
-        return $pdf->stream();
-
-        return view('payment.streambill');
-        $pegawai = Pegawai::all();
-    }
-
     public function index()
     {
         $client = ['Dosen Unpad', 'Dosen Non Unpad', 'Mahasiswa Unpad', 'Mahasiswa Non Unpad', 'User Umum'];
