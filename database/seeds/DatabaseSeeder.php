@@ -21,16 +21,82 @@ class DatabaseSeeder extends Seeder
         }
 
         // Users
+		// DB::table('users')->insert([
+		// 	'name' => 'FINDER',
+	 //        'email' => 'functionalnanopowder@gmail.com',
+	 //        'password' => Hash::make('1w3r!W#R'),
+	 //        'email_verified_at' => date('Y-m-d H:i:s')
+		// ]);
+		// DB::table('model_has_roles')->insert([
+		// 	'role_id' => '1',
+		// 	'model_type' => 'App\User',
+		// 	'model_id' => '1',
+		// ]);
 		DB::table('users')->insert([
-			'name' => 'FINDER',
-	        'email' => 'functionalnanopowder@gmail.com',
-	        'password' => Hash::make('1w3r!W#R'),
+			'name' => 'Admin',
+	        'email' => 'admin@finder.ac.id',
+	        'password' => Hash::make('printgadmin'),
 	        'email_verified_at' => date('Y-m-d H:i:s')
 		]);
 		DB::table('model_has_roles')->insert([
 			'role_id' => '1',
 			'model_type' => 'App\User',
 			'model_id' => '1',
+		]);
+		DB::table('users')->insert([
+			'name' => 'Dosen Unpad',
+	        'email' => 'dosenunpad@finder.ac.id',
+	        'password' => Hash::make('printgadmin'),
+	        'email_verified_at' => date('Y-m-d H:i:s')
+		]);
+		DB::table('model_has_roles')->insert([
+			'role_id' => '2',
+			'model_type' => 'App\User',
+			'model_id' => '2',
+		]);
+		DB::table('users')->insert([
+			'name' => 'Dosen Non Unpad',
+	        'email' => 'dosennonunpad@finder.ac.id',
+	        'password' => Hash::make('printgadmin'),
+	        'email_verified_at' => date('Y-m-d H:i:s')
+		]);
+		DB::table('model_has_roles')->insert([
+			'role_id' => '3',
+			'model_type' => 'App\User',
+			'model_id' => '3',
+		]);
+		DB::table('users')->insert([
+			'name' => 'Mahasiswa Unpad',
+	        'email' => 'mahasiswaunpad@finder.ac.id',
+	        'password' => Hash::make('printgadmin'),
+	        'email_verified_at' => date('Y-m-d H:i:s')
+		]);
+		DB::table('model_has_roles')->insert([
+			'role_id' => '4',
+			'model_type' => 'App\User',
+			'model_id' => '4',
+		]);
+		DB::table('users')->insert([
+			'name' => 'Mahasiswa Non Unpad',
+	        'email' => 'mahasiswanonunpad@finder.ac.id',
+	        'password' => Hash::make('printgadmin'),
+	        'email_verified_at' => date('Y-m-d H:i:s')
+		]);
+		DB::table('model_has_roles')->insert([
+			'role_id' => '5',
+			'model_type' => 'App\User',
+			'model_id' => '5',
+		]);
+		DB::table('users')->insert([
+			'name' => 'User Umum',
+	        'email' => 'userumum@finder.ac.id',
+	        'password' => Hash::make('printgadmin'),
+	        'email_verified_at' => date('Y-m-d H:i:s')
+		]);
+		DB::table('model_has_roles')->insert([
+			'role_id' => '6',
+			'model_type' => 'App\User',
+			'model_id' => '6',
 		]);
 
 		// ActiveSeeder
