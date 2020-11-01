@@ -62,7 +62,7 @@ class VerificationController extends Controller
                             $mail->AddAddress($model->orders->users->profiles->email_lecturer);
                             $mail->Subject = 'Permintaan Verifikasi Booking Alat';
                             $mail->Body = '
-<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br>
+<p> Informasi Pengelolaan Layanan Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br>
 <p>Nama Mahasiswa : <b>'.$model->orders->users->name.'</b></p>
 <p>NIM : <b>'.$model->orders->users->profiles->no_id.'</b></p>
 <p>Email : <b>'.$model->orders->users->email.'</b></p>
