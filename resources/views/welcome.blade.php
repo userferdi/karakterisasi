@@ -6,7 +6,7 @@
 <header class="masthead bg-light text-white text-center">
 <div class="container d-flex align-items-center flex-column">
   <img class="masthead-avatar" src="finder.png"/>
-  <h4 class="masthead-heading text-uppercase text-dark">SISTEM INFORMASI<br>PENGELOLAAN ALAT</h4>
+  <h4 class="masthead-heading text-uppercase text-dark">SISTEM INFORMASI<br>PENGELOLAAN LAYANAN</h4>
   <h4 class="masthead-subheading text-dark">FINDER<br>Functional Nano Powder</h4>
 </div>
 </header>

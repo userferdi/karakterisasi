@@ -46,7 +46,7 @@
   <div class="container">
     <br>
     <img class="masthead img-fluid mb-5 d-block mx-auto logo_img" src="{{ asset('printg.png') }}" height="200" width="200">
-    <h1 class="text-uppercase mb-0 text-center">SISTEM INFORMASI<br>PENGELOLAAN ALAT</h1>
+    <h1 class="text-uppercase mb-0 text-center">SISTEM INFORMASI<br>PENGELOLAAN LAYANAN</h1>
     <br>
     <h2 class="font-weight-light mb-0 text-center">Pusat Penelitian Nanosains dan Nanoteknologi</h2>
   </div>
