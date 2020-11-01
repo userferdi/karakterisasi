@@ -54,6 +54,14 @@ class DatabaseSeeder extends Seeder
 			'model_type' => 'App\User',
 			'model_id' => '2',
 		]);
+		DB::table('profiles')->insert([
+			'user_id' => '2',
+			'no_id' => '1403100000',
+			'no_hp' => '081200000000',
+			'university' => 'Universitas Padjadjaran',
+			'faculty' => 'FMIPA',
+			'study_program' => 'Fisika',
+		]);
 		DB::table('users')->insert([
 			'name' => 'Dosen Non Unpad',
 	        'email' => 'dosennonunpad@finder.ac.id',
@@ -64,6 +72,14 @@ class DatabaseSeeder extends Seeder
 			'role_id' => '3',
 			'model_type' => 'App\User',
 			'model_id' => '3',
+		]);
+		DB::table('profiles')->insert([
+			'user_id' => '3',
+			'no_id' => '1403100000',
+			'no_hp' => '081200000000',
+			'university' => 'Universitas Non Padjadjaran',
+			'faculty' => 'FMIPA',
+			'study_program' => 'Fisika',
 		]);
 		DB::table('users')->insert([
 			'name' => 'Mahasiswa Unpad',
@@ -76,6 +92,15 @@ class DatabaseSeeder extends Seeder
 			'model_type' => 'App\User',
 			'model_id' => '4',
 		]);
+		DB::table('profiles')->insert([
+			'user_id' => '4',
+			'no_id' => '1403100000',
+			'no_hp' => '081200000000',
+			'university' => 'Universitas Padjadjaran',
+			'faculty' => 'FMIPA',
+			'study_program' => 'Fisika',
+			'email_lecturer' => 'dosenunpad@finder.ac.id',
+		]);
 		DB::table('users')->insert([
 			'name' => 'Mahasiswa Non Unpad',
 	        'email' => 'mahasiswanonunpad@finder.ac.id',
@@ -86,6 +111,15 @@ class DatabaseSeeder extends Seeder
 			'role_id' => '5',
 			'model_type' => 'App\User',
 			'model_id' => '5',
+		]);
+		DB::table('profiles')->insert([
+			'user_id' => '5',
+			'no_id' => '1403100000',
+			'no_hp' => '081200000000',
+			'university' => 'Universitas Non Padjadjaran',
+			'faculty' => 'FMIPA',
+			'study_program' => 'Fisika',
+			'email_lecturer' => 'dosennonunpad@finder.ac.id',
 		]);
 		DB::table('users')->insert([
 			'name' => 'User Umum',
