@@ -62,7 +62,7 @@ class VerificationController extends Controller
                             $mail->AddAddress($model->orders->users->profiles->email_lecturer);
                             $mail->Subject = 'Permintaan Verifikasi Booking Alat';
                             $mail->Body = '
-<p>Sistem Informasi Pengelolaan Alat (SIPA) Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br>
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br>
 <p>Nama Mahasiswa : <b>'.$model->orders->users->name.'</b></p>
 <p>NIM : <b>'.$model->orders->users->profiles->no_id.'</b></p>
 <p>Email : <b>'.$model->orders->users->email.'</b></p>
@@ -110,7 +110,7 @@ class VerificationController extends Controller
                         $mail->Subject = 'Permintaan Verifikasi Booking Alat';
                         if($model->orders->users->hasRole('User Umum')){
                             $mail->Body = '
-<p>Sistem Informasi Pengelolaan Alat (SIPA) Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br>
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br>
 <p>Nama : <b>'.$model->orders->users->name.'</b></p>
 <p>No ID : <b>'.$model->orders->users->profiles->no_id.'</b></p>
 <p>Email : <b>'.$model->orders->users->email.'</b></p>
@@ -124,7 +124,7 @@ class VerificationController extends Controller
                         }
                         else{
                             $mail->Body = '
-<p>Sistem Informasi Pengelolaan Alat (SIPA) Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br>
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br>
 <p>Nama Dosen : <b>'.$model->orders->users->name.'</b></p>
 <p>NIDN : <b>'.$model->orders->users->profiles->no_id.'</b></p>
 <p>Email : <b>'.$model->orders->users->email.'</b></p>
@@ -167,7 +167,7 @@ class VerificationController extends Controller
                     $mail->AddAddress('functionalnanopowder@gmail.com');
                     $mail->Subject = 'Permintaan Verifikasi Booking Alat';
                     $mail->Body = '
-<p>Sistem Informasi Pengelolaan Alat (SIPA) Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br>
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br>
 <p>Nama Mahasiswa : <b>'.$model->orders->users->name.'</b></p>
 <p>NIM : <b>'.$model->orders->users->profiles->no_id.'</b></p>
 <p>Email : <b>'.$model->orders->users->email.'</b></p>
@@ -315,7 +315,7 @@ class VerificationController extends Controller
                     $mail->AddAddress('functionalnanopowder@gmail.com');
                     $mail->Subject = 'Permintaan Verifikasi Booking Alat';
                     $mail->Body = '
-<p>Sistem Informasi Pengelolaan Alat (SIPA) Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br>
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br>
 <p>Nama Mahasiswa : <b>'.$model->orders->users->name.'</b></p>
 <p>NIM : <b>'.$model->orders->users->profiles->no_id.'</b></p>
 <p>Email : <b>'.$model->orders->users->email.'</b></p>
@@ -506,7 +506,7 @@ class VerificationController extends Controller
                     $mail->AddAddress($model->orders->users->email);
                     $mail->Subject = 'Permintaan Verifikasi Booking Alat';
                     $mail->Body = '
-<p>Sistem Informasi Pengelolaan Alat (SIPA) Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari Anda.</p>
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari Anda.</p>
 <p>Sebelum melanjutkan proses pemesanan, kami perlu memastikan bahwa ini memang Anda. Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$newtoken).'">di sini!</a></p><br/>
 <p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('status.booking').'">login!</a></p>
 <p>Silahkan Masuk ke Menu <strong>My Activities -> Registration of Tool Usage</strong> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda.</p>
@@ -544,7 +544,7 @@ class VerificationController extends Controller
                     $mail->AddAddress($model->orders->users->profiles->email_lecturer);
                     $mail->Subject = 'Permintaan Verifikasi Booking Alat';
                     $mail->Body = '
-<p>Sistem Informasi Pengelolaan Alat (SIPA) Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br/>
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br/>
 <p>Nama Mahasiswa : <strong>'.$model->orders->users->name.'</strong></p>
 <p>NIM : <strong>'.$model->orders->users->profiles->no_id.'</strong></p>
 <p>Email : <strong>'.$model->orders->users->email.'</strong></p>
@@ -589,7 +589,7 @@ class VerificationController extends Controller
                     $mail->Subject = 'Permintaan Verifikasi Booking Alat';
                     if($model->orders->users->roles[0]->name=='Dosen Unpad'||$model->orders->users->roles[0]->name=='Dosen Non Unpad'){
                     $mail->Body = '
-<p>Sistem Informasi Pengelolaan Alat (SIPA) Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br/>
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br/>
 <p>Nama Dosen : <b>'.$model->orders->users->name.'</b></p>
 <p>NIDN : <b>'.$model->orders->users->profiles->no_id.'</b></p>
 <p>Email : <b>'.$model->orders->users->email.'</b></p>
@@ -606,7 +606,7 @@ class VerificationController extends Controller
                     }
                     else if($model->orders->users->roles[0]->name=='Mahasiswa Unpad'||$model->orders->users->roles[0]->name=='Mahasiswa Non Unpad'){
                     $mail->Body = '
-<p>Sistem Informasi Pengelolaan Alat (SIPA) Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br/>
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br/>
 <p>Nama Mahasiswa : <b>'.$model->orders->users->name.'</b></p>
 <p>NIM : <b>'.$model->orders->users->profiles->no_id.'</b></p>
 <p>Email : <b>'.$model->orders->users->email.'</b></p>
@@ -623,7 +623,7 @@ class VerificationController extends Controller
                     }
                     else if($model->orders->users->roles[0]->name=='User Umum'){
                     $mail->Body = '
-<p>Sistem Informasi Pengelolaan Alat (SIPA) Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br/>
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br/>
 <p>Nama Lengkap : <b>'.$model->orders->users->name.'</b></p>
 <p>No ID : <b>'.$model->orders->users->profiles->no_id.'</b></p>
 <p>Email : <b>'.$model->orders->users->email.'</b></p>

@@ -9,7 +9,7 @@
     <div class="card">
       <div class="card-body">
         <h3 class="text-center" style="padding-bottom:15px;"><strong>Verifikasi Penggunaan Alat</strong></h3>
-        <p>Sistem Informasi Pengelolaan Alat (SIPA) Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p>
+        <p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p>
         <table id="table" class="table row-border hover order-column text-sm">
           <thead class="thead-light"></thead>
           <tbody>
