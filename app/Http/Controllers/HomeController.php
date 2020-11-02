@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Payment;
+use App\Approve;
 use Auth;
 use Illuminate\Http\Request;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -37,11 +37,10 @@ class HomeController extends Controller
             return view('home.admin', ['user' => Auth()->User()]);
         }
         else if(Auth()->User()->hasRole($client)){
-            $model = Payment::whereHas('approves', function ($query){
-                        return $query->whereHas('orders', function ($order){
+            $model = Approve::whereHas('orders', function ($order){
                             return $order->where('users_id', '=', Auth()->User()->id);
-                        });
                     })->get();
+            // dd($model);
             return view('home.client', ['user' => Auth()->User(), 'model' => $model]);
         }
         else{
