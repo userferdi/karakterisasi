@@ -74,9 +74,18 @@ class LabController extends Controller
     public function update(Request $request, $id)
     {
         if(Auth()->User()->hasRole('Admin')){
+            $model = Lab::findOrFail($id);
+            if($request->name!=$model->name){
+                $this->validate($request, [
+                    'name' => ['required', 'string', 'max:255', 'unique:labs'],
+                ]);
+            }
+            if($request->code!=$model->code){
+                $this->validate($request, [
+                    'code' => ['required', 'string', 'min:3', 'max:7', 'unique:labs'],
+                ]);
+            }
             $this->validate($request, [
-                'name' => ['required', 'string', 'max:255', 'unique:labs'],
-                'code' => ['required', 'string', 'min:3', 'max:7', 'unique:labs'],
                 'head' => ['required', 'string', 'max:255'],
                 'descrip' => ['required', 'string']
             ]);

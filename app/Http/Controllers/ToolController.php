@@ -90,14 +90,22 @@ class ToolController extends Controller
 
     public function update(Request $request, $id)
     {
+        $model = Tool::findOrFail($id);
+        if($request->name!=$model->name){
+            $this->validate($request, [
+                'name' => ['required', 'string', 'max:255', 'unique:tools'],
+            ]);
+        }
+        if($request->code!=$model->code){
+            $this->validate($request, [
+                'code' => ['required', 'string', 'min:3', 'max:7', 'unique:tools'],
+            ]);
+        }
         $this->validate($request, [
-            'name' => ['required', 'string', 'max:255', 'unique:tools'],
-            'code' => ['required', 'string', 'min:3', 'max:7', 'unique:tools'],
             'descrip' => ['required', 'string'],
             'sample' => ['required', 'string'],
         ]);
 
-        $model = Tool::findOrFail($id);
         if ($request->file('image')!=null){
             if ($model->image !== NULL){
                 unlink(public_path($model->image));
