@@ -45,43 +45,28 @@
           <div class="col-sm-6">
             <p class="footer-title">FINDER</p>
             <p class="footer-title mb-5">Functional Nano Powder</p>
-            <!-- <p class="footer-subject">Admin FINDER</p> -->
-            <!-- <p class="footer-subject mb-5">admin@finder.ac.id</p> -->
             <p class="footer-subject">Admin FINDER</p>
             <p class="footer-subject">Hp : 0812xxxxxxxxx</p>
             <p class="footer-subject mb-5">Email : admin@finder.ac.id</p>
             <p class="footer-subject">Jam Operasional</p>
             <p class="footer-subject mb-5">Hari Senin - Minggu, Pukul 08:00 - 20:00 WIB</p>
             <a class="btn btn-outline-dark btn-social mx-1" href="#!">
-              <i class="fab fa-fw fa-facebook-f"></i>
+              <i class="fab fa-facebook-f"></i>
             </a>
             <a class="btn btn-outline-dark btn-social mx-1" href="#!">
-              <i class="fab fa-fw fa-twitter"></i>
+              <i class="fab fa-twitter"></i>
             </a>
             <a class="btn btn-outline-dark btn-social mx-1" href="#!">
-              <i class="fab fa-fw fa-linkedin-in"></i>
-            </a>
+              <i class="fab fa-linkedin-in"></i>
+            </a><br/><br/>
+            <p class="footer-subject">Contact Us</p>
           </div>
-<!--             <div class="col-lg-4 mb-5 mb-lg-0">
-                <h4 class="text-uppercase mb-4">Location</h4>
-                <p class="lead mb-0">
-                    Jl. Raya Bandung-Sumedang KM. 21 Universitas Padjadjaran<br/>
-                    Jawa Barat, Indonesia 45363
-                </p>
-            </div>
-            <div class="col-lg-4 mb-5 mb-lg-0">
-                <h4 class="text-uppercase mb-4">Around the Web</h4>
-                <a class="btn btn-outline-dark btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
-                <a class="btn btn-outline-dark btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
-                <a class="btn btn-outline-dark btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
-                <a class="btn btn-outline-dark btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
-            </div>
-            <div class="col-lg-4">
-                <h4 class="text-uppercase mb-4">About FINDER</h4>
-                <p class="lead mb-0">
-                    Research Center for Functional Nano Powder is .
-                </p>
-            </div> -->
+          <div class="col-sm-4">
+            <p><a class="text-dark" href="{{ route('tool.index') }}">Tools List</a></p>
+            <p><a class="text-dark" href="{{ route('price.index') }}">Price List</a></p>
+            <p><a class="text-dark" href="{{ route('login') }}">Login</a></p>
+            <p><a class="text-dark" href="{{ route('register') }}">Register</a></p>
+          </div>
         </div>
     </div>
 </footer>

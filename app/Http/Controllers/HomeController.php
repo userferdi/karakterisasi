@@ -40,7 +40,6 @@ class HomeController extends Controller
             $model = Approve::whereHas('orders', function ($order){
                             return $order->where('users_id', '=', Auth()->User()->id);
                     })->get();
-            // dd($model);
             return view('home.client', ['user' => Auth()->User(), 'model' => $model]);
         }
         else{
