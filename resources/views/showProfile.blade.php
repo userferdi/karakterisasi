@@ -40,7 +40,7 @@
               @if($model->profiles->email_lecturer!=NULL)
                 <td><b>Dosen Penanggung Jawab</b></td>
                 <td>
-                  {{$model->lecturer}}
+                  {{$model->profiles->email_lecturer}}
                 </td>
               @else
                 <td><b>Dosen Penanggung Jawab</b></td>

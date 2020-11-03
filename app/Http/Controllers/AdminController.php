@@ -17,8 +17,9 @@ class AdminController extends Controller
     public function settings()
     {
         $model = Auth()->User();
-        if($model->profiles->email_lecturer!=NULL){
-            $model['lecturer'] = User::where('email',$model->profiles->email_lecturer)->first()->name;
+        if(Auth()->User()->hasRole('Mahasiswa Unpad|Mahasiswa Non Unpad')){
+        // if($model->profiles->email_lecturer!=NULL){
+            // $model['lecturer'] = User::where('email',$model->profiles->email_lecturer)->first()->name;
         }
         return view('settings', ['model' => Auth()->User()]);
     }
@@ -26,8 +27,9 @@ class AdminController extends Controller
     public function showAccount($id)
     {
         $model = User::find($id);
-        if($model->profiles->email_lecturer!=NULL){
-            $model['lecturer'] = User::where('email',$model->profiles->email_lecturer)->first()->name;
+        if(Auth()->User()->hasRole('Mahasiswa Unpad|Mahasiswa Non Unpad')){
+        // if($model->profiles->email_lecturer!=NULL){
+            // $model['lecturer'] = User::where('email',$model->profiles->email_lecturer)->first()->name;
         }
         return view('showProfile', ['model' => $model]);
     }
