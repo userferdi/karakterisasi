@@ -10,7 +10,7 @@
     </a>
 		Register
 	</span>
-	<p>Silakan klik <a href="https://drive.google.com/open?id=1pw_FMr_0nes5t2KCVN_KWfg-PGtqKzeI"
+	<p>Silakan klik <a href="https://drive.google.com/file/d/1YjkgtgdIBtKgAFdMIlGLOc4bsaA0x2jE/view?usp=sharing"
 	>di sini</a> untuk mengunduh aturan registrasi akun FINDER. </br>Kemudian silakan pilih role dibawah ini untuk melakukan registrasi.</p>
 	<hr class="formik"/>
 	<p><a href="{{ route('register') }}/form/dosenunpad">Registrasi Dosen Unpad</a></p>

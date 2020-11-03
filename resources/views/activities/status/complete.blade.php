@@ -29,7 +29,6 @@
       {title: 'Nama Alat', data: 'tool', name: 'tool', className: 'dt-head-center'},
       {title: 'Tanggal Penggunaan', data: 'date', name: 'date', className: 'dt-head-center'},
       {title: 'Total Tagihan', data: 'total', name: 'total', orderable:false, className: 'dt-center'},
-      // {title: 'Status', data: 'status', name: 'status', orderable:false, className: 'dt-center'},
       {title: '', data: 'confirm', name: 'confirm', orderable:false, className: 'dt-center'}
     ],
   });
@@ -43,13 +42,14 @@
         csrf_token = $('meta[name="csrf-token"]').attr('content');
 
     swal({
-      title: "Are you sure want to confirm\n'" + name + "'?",
-      text: "You won't be able to revert this!",
+      title: "Apa kamu yakin ingin menyelesaikan status\n'" + name + "'?",
+      text: "Jika dilakukan data ini tidak akan dapat dikembalikan!",
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, confirm it!'
+      confirmButtonText: 'Ok, saya yakin!',
+      cancelButtonText: 'Gak jadi',
     }).then((result)=>{
       if(result.value){
         $.ajax({
@@ -75,9 +75,8 @@
             })
             Toast.fire({
               type: 'success',
-              title: 'Email has been sent!'
+              title: 'Data has been saved!'
             })
-            $('#modal-body').html('reset');
           },
           error: function(xhr){
             swal({

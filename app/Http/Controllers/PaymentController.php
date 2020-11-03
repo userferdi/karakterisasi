@@ -247,7 +247,6 @@ class PaymentController extends Controller
             $save = Order::where('id', $model->orders_id)->update([
                 'plans_id' => $request->plans_id
             ]);
-            // $payment = Payment::where('approves_id',$id);
             if($model->orders->users->hasRole('Dosen Unpad|Mahasiswa Unpad')){
                 $price = Price::where('id',$request->service1)->first();
                 $price = $price->price1;
@@ -320,7 +319,6 @@ class PaymentController extends Controller
                 $payment['status'] = 3;
             }
             $save = Payment::where('approves_id',$id)->update($payment);
-            // $save = $payment->update();
             return response()->json($save);
         }
         else{
@@ -423,7 +421,6 @@ class PaymentController extends Controller
             ->removeColumn('no_receipt')
             ->removeColumn('date_invoice')
             ->removeColumn('date_receipt')
-            // ->removeColumn('status')
             ->removeColumn('quantity')
             ->removeColumn('service')
             ->removeColumn('created_at')
@@ -481,16 +478,15 @@ class PaymentController extends Controller
             })
             ->addColumn('action', function($model){
                 if($model->payments()->exists()){
-                // if (count($model->payments)){
                     if($model->payments->status==1|$model->payments->status==2|$model->payments->status==3){
                         $button = 
 '<a href="'.route('payment.form', $model->id).'" class="btn btn-primary btn-sm modal-show" name="'.$model->no_regis.'">Edit</a>
-<a href="'.route('payment.showBill', $model->id).'" class="btn btn-primary btn-sm">show</a>';
+<a href="'.route('payment.showBill', $model->id).'" class="btn btn-primary btn-sm">Lihat</a>';
                         return $button;
                     }
                     else{
                         $button = 
-'<a href="'.route('payment.showBill', $model->id).'" class="btn btn-primary btn-sm">show</a>';
+'<a href="'.route('payment.showBill', $model->id).'" class="btn btn-primary btn-sm">Lihat</a>';
                         return $button;
                     }
                 }
@@ -526,13 +522,7 @@ class PaymentController extends Controller
             $model['name'] = $model->approves->orders->users->name;
         }
         $date = date('d F Y',strtotime($model->approves->date));
-        // dd());
-            // $time_start = Time::where('id',$time)->value('time_start');
         $model['datetime'] = $date.' '.$model->approves->times->name;
-        // dd($model->created_at->format('Y-m-d'));
-        // $model['date'] =  date('Y-m-d',$model->created_at);
-        // $model['many'] = $request->many;
-        // $model['service'] = Price::where('tool_id',$model->orders->tools_id)->pluck('service','id');
         return view('payment.showreceipt', ['model' => $model, 'price'=>$price]);
     }
 
@@ -688,7 +678,7 @@ class PaymentController extends Controller
             ->addColumn('action', function($model){
                 if($model->status==6|$model->status==7){
                     $button = 
-'<a href="'.route('payment.showReceipt', $model->id).'" class="btn btn-primary btn-sm">show</a>';
+'<a href="'.route('payment.showReceipt', $model->id).'" class="btn btn-primary btn-sm">Lihat</a>';
                     return $button;
                 }
                 else{

@@ -911,12 +911,9 @@ class ActivitiesController extends Controller
                 $total .= number_format($model->payments->total, 0, ',', '.');
                 return $total;
             })
-            // ->editColumn('status', function($model){
-            //     return 'Menunggu konfirmasi pada email Anda';
-            // })
             ->addColumn('confirm', function($model){
                 $button = 
-'<a href="'.route('status.updateCompleted', $model->id).'" class="btn btn-primary btn-sm confirm" name="'.$model->no_regis.'">Confirm</a>';
+'<a href="'.route('status.updateCompleted', $model->id).'" class="btn btn-primary btn-sm confirm" name="'.$model->no_regis.'">Konfirm</a>';
                 return $button;
             })
             ->addIndexColumn()

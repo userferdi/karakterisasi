@@ -80,13 +80,14 @@
         csrf_token = $('meta[name="csrf-token"]').attr('content');
 
     swal({
-      title: "Are you sure want to\nmake the receipt?",
+      title: "Apa kamu yakin ingin\nmembuat resi?",
+      text: "Jika dilakukan data ini tidak akan dapat dikembalikan!",
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Ok, saya yakin!',
-      cancelButtonText: 'Gak jadi!'
+      cancelButtonText: 'Gak jadi',
     }).then((result)=>{
       if(result.value){
         $.ajax({
@@ -112,9 +113,8 @@
             })
             Toast.fire({
               type: 'success',
-              title: 'Email has been sent!'
+              title: 'Data has been saved!'
             })
-            $('#modal-body').html('reset');
           },
           error: function(xhr){
             swal({

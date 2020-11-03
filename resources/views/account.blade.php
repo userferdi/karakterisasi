@@ -93,7 +93,7 @@
           type: 'success',
           title: 'Data has been saved!'
         })
-        $('#modal-body').reset();
+        $('#modal-body').trigger('reset');
       },
       error: function(){
         var validation = Array.prototype.filter.call(form, function(form) {

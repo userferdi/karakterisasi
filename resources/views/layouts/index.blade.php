@@ -386,18 +386,11 @@
       <!-- Main content -->
       <section class="content" >
         <div class="container-fluid" id="content">
-          <!-- Small boxes (Stat box) -->
 
-    @yield('content')
+          @yield('content')
 
-          <!-- /.row -->
-          <!-- Main row -->
-
-
-          <!-- /.row (main row) -->
-        </div><!-- /.container-fluid -->
+        </div>
       </section>
-      <!-- /.content -->
     </div>
 
     <!-- /.content-wrapper -->

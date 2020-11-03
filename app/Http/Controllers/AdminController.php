@@ -201,12 +201,12 @@ class AdminController extends Controller
             })
             ->addColumn('change', function($model){
                 $button = 
-'<a href="'.route('account.edit',$model->id).'" class="btn btn-primary modal-show" name="Ganti Email: '.$model->name.'">change email</a>';
+'<a href="'.route('account.edit',$model->id).'" class="btn btn-primary modal-show" name="Ganti Email: '.$model->name.'">Ganti Email</a>';
                 return $button;
             })
             ->addColumn('show', function($model){
                 $button = 
-'<a href="'.route('account.show',$model->id).'" class="btn btn-primary btn-sm">show</a>';
+'<a href="'.route('account.show',$model->id).'" class="btn btn-primary btn-sm">Lihat</a>';
                 return $button;
             })
             ->addIndexColumn()
