@@ -33,7 +33,7 @@
         <p> 6. Silakan lihat update status pembayaran Anda pada history penggunaan alat.</p>
         <p> 7. Apabila Status Pembayaran belum berubah dalam waktu 2x24 jam setelah Anda melakukan upload bukti transfer. Silakan hubungi kontak admin kami.</p><br/>
         <h6>Silakan Upload Bukti Transfer sesuai dengan tagihan Anda pada menu <strong>Penagihan</strong> atau dengan klik tombol di bawah ini.</h6>
-        <p><a href="{{ route('payment.bill') }}" class="btn-sm btn-primary">Upload Bukti Transfer</a></p>
+        <p><a href="{{ route('payment.bill') }}" class="btn-sm btn-danger">Upload Bukti Transfer</a></p>
       </div>
     </div>
   </div>

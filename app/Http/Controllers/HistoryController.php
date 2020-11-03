@@ -76,7 +76,7 @@ class HistoryController extends Controller
             })
             ->addColumn('action', function($model){
                 $button = 
-'<a href="'.route('history.show', $model->id).'" class="btn btn-primary btn-sm" name="'.$model->no_regis.'">show</a>';
+'<a href="'.route('history.show', $model->id).'" class="btn btn-primary btn-sm" name="'.$model->no_regis.'">Lihat</a>';
                 return $button;
             })
             ->removeColumn('id')
@@ -118,7 +118,7 @@ class HistoryController extends Controller
         	})
             ->addColumn('show', function($model){
                 $button = 
-'<a href="'.route('history.showTool',$model->id).'" class="btn btn-primary btn-sm">show</a>';
+'<a href="'.route('history.showTool',$model->id).'" class="btn btn-primary btn-sm">Lihat</a>';
                 return $button;
             })
             ->addIndexColumn()
@@ -167,7 +167,7 @@ class HistoryController extends Controller
             })
             ->addColumn('show', function($model){
                 $button = 
-'<a href="'.route('history.show', $model->id).'" class="btn btn-primary btn-sm">show</a>';
+'<a href="'.route('history.show', $model->id).'" class="btn btn-primary btn-sm">Lihat</a>';
                 return $button;
             })
             ->addIndexColumn()
@@ -191,7 +191,7 @@ class HistoryController extends Controller
             })
             ->addColumn('show', function($model){
                 $button = 
-'<a href="'.route('history.showUser',$model->id).'" class="btn btn-primary btn-sm">show</a>';
+'<a href="'.route('history.showUser',$model->id).'" class="btn btn-primary btn-sm">Lihat</a>';
                 return $button;
             })
             ->addIndexColumn()
