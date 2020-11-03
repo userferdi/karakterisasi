@@ -55,7 +55,7 @@
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Ok, saya yakin!'
+      confirmButtonText: 'Ok, saya yakin!',
       cancelButtonText: 'Gak jadi',
     }).then((result)=>{
       if(result.value){

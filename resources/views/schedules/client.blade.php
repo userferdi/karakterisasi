@@ -12,7 +12,7 @@
 <p> Silakan klik tombol <strong>Lihat Jadwal</strong> pada masing-masing kategori berikut.</p>
 <div class="row">
   <div class="col-lg-4">
-    <div class="card" >
+    <div class="card">
       <div class="card-body">
         <table id="table" class="table table-striped table-hover table-bordered text-sm" style="width:100%"></table>
       </div>
@@ -41,7 +41,7 @@
     ajax: "{{ route('tool.dt.schedule') }}",
     columns: [
       {title: 'Nama', data: 'name', name: 'name', orderable:false, className: 'dt-head-center'},
-      {title: 'Lihat Jadwal', data: 'show', name: 'show', orderable:false, className: 'dt-center'}
+      {title: 'Jadwal', data: 'show', name: 'show', orderable:false, className: 'dt-center'}
     ],
   });
 

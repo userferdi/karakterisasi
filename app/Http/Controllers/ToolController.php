@@ -143,7 +143,7 @@ class ToolController extends Controller
         	})
             ->addColumn('show', function($model){
                 $button = 
-'<a href="'.route('tool.show',$model->id).'" class="btn btn-danger btn-sm">show</a>';
+'<a href="'.route('tool.show',$model->id).'" class="btn btn-danger btn-sm">Lihat</a>';
                 return $button;
             })
             ->addIndexColumn()
@@ -177,7 +177,7 @@ class ToolController extends Controller
             })
             ->addColumn('show', function($model){
                 $button = 
-'<a href="'.route('tool.show',$model->id).'" class="btn btn-primary btn-sm">show</a>';
+'<a href="'.route('tool.show',$model->id).'" class="btn btn-primary btn-sm">Lihat</a>';
                 return $button;
             })
             ->addIndexColumn()
@@ -191,7 +191,7 @@ class ToolController extends Controller
         return DataTables::of($model)
             ->addColumn('show', function($model){
                 $button = 
-'<a href="'.route('schedule.show',$model->id).'" class="btn btn-primary btn-sm">show</a>';
+'<a href="'.route('schedule.show',$model->id).'" class="btn btn-danger btn-sm">Lihat</a>';
                 return $button;
             })
             ->addIndexColumn()

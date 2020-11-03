@@ -42,7 +42,7 @@ class ActivitiesController extends Controller
         return DataTables::of($model)
             ->addColumn('register', function($model){
                 $button = 
-'<a href="'.route('activities.create',$model->id).'" class="btn btn-primary btn-sm">Registrasi</a>';
+'<a href="'.route('activities.create',$model->id).'" class="btn btn-danger btn-sm">Registrasi</a>';
                 return $button;
             })
             ->addIndexColumn()

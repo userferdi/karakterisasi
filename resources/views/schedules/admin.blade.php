@@ -41,7 +41,7 @@
     ajax: "{{ route('tool.dt.schedule') }}",
     columns: [
       {title: 'Nama', data: 'name', name: 'name', orderable:false, className: 'dt-head-center'},
-      {title: 'Lihat Jadwal', data: 'show', name: 'show', orderable:false, className: 'dt-center'}
+      {title: 'Jadwal', data: 'show', name: 'show', orderable:false, className: 'dt-center'}
     ],
   });
 

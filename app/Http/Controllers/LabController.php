@@ -114,7 +114,7 @@ class LabController extends Controller
         return DataTables::of($model)
             ->addColumn('show', function($model){
                 $button = 
-'<a href="'.route('lab.show', $model->id).'" class="btn btn-danger btn-sm">show</a>';
+'<a href="'.route('lab.show', $model->id).'" class="btn btn-danger btn-sm">Lihat</a>';
                 return $button;
             })
             ->addColumn('action', function($model){

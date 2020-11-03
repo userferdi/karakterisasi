@@ -3,16 +3,6 @@
 @section('title', 'FINDER · Settings')
 
 @section('content')
-<!-- <ul class="nav nav-tabs" id="myTab" role="tablist" style="padding-top:15px;">
-  <li class="nav-item" role="presentation">
-    <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Profile</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" id="pass-tab" data-toggle="tab" href="#pass" role="tab" aria-controls="pass" aria-selected="false">Change Password</a>
-  </li>
-</ul>
- -->
-<!-- Tab panes -->
 <div class="row">
 &ensp;<a href=".." type="button" class="btn btn-secondary btn-sm" style="margin-bottom:15px; margin-top:15px;">Back</a>
   <div class="col-lg-12">

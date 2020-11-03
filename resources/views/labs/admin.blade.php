@@ -31,7 +31,7 @@
       {title: 'Kode Lab', data: 'code', name: 'code', width: '10%', className: 'dt-head-center'},
       {title: 'Kepala Lab', data: 'head', name: 'head', width: '20%', className: 'dt-head-center'},
       {title: 'Deskripsi', data: 'descrip', name: 'descrip', width: '32.5%', className: 'dt-head-center'},
-      {title: '', data: 'action', name: 'action', orderable:false, width: '10%', className: 'dt-center'}
+      {title: 'Opsi', data: 'action', name: 'action', orderable:false, width: '10%', className: 'dt-center'}
     ],
   });
 

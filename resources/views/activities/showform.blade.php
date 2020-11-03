@@ -34,7 +34,7 @@
     ajax: "{{ route('activities.dataform') }}",
     columns: [
       {title: 'Nama', data: 'name', name: 'name', orderable:false, width: '75%', className: 'dt-head-center'},
-      {title: 'Action', data: 'register', name: 'register', orderable:false, width: '25%', className: 'dt-center'}
+      {title: '', data: 'register', name: 'register', orderable:false, width: '25%', className: 'dt-center'}
     ],
   });
 </script>

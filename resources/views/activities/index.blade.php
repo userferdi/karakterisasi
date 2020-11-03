@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="row">
-  &ensp;<a href="{{ route('activities.showform') }}" class="btn btn-primary float-right btn-sm modal-show" name="Tambah Daftar Lab Baru" style="margin-bottom:15px; margin-top:15px;"><i class="nav-icon fas fa-plus"></i> Registrasi Penggunaan Alat</a>
+  &ensp;<a href="{{ route('activities.showform') }}" class="btn btn-danger float-right btn-sm modal-show" name="Tambah Daftar Lab Baru" style="margin-bottom:15px; margin-top:15px;"><i class="nav-icon fas fa-plus"></i> Registrasi Penggunaan Alat</a>
   <div class="col-lg-12">
     <div class="card">
       <div class="card-body">
