@@ -207,7 +207,6 @@
       },
 
       error: function(xhr){
-        'use strict';
         var res = xhr.responseJSON;
         if ($.isEmptyObject(res) == false) {
           form.find('.invalid-feedback').remove();
@@ -260,20 +259,18 @@
           type: 'success',
           title: 'Data has been saved!'
         })
-        $('#modal-body').html('reset');
+        $('#modal-body').trigger('reset');
       },
 
       error: function(xhr){
-        // 'use strict';
-        // var validation = Array.prototype.filter.call(form, function(form) {
-        //   form.classList.add('was-validated');
-        // });
         var res = xhr.responseJSON;
         if ($.isEmptyObject(res) == false) {
           form.find('.invalid-feedback').remove();
+          form.find('.is-invalid').removeClass('is-invalid');
           $.each(res.errors, function (key, value) {
-            $('#' + key).addClass('is-invalid');
-            $('<div class="invalid-feedback d-block">'+value+'</div>').insertAfter($('#' + key));
+            $('#' + key)
+              .addClass('is-invalid')
+              .after('<div class="invalid-feedback d-block">'+value+'</div>');
           });
         }
       }
@@ -289,13 +286,13 @@
         csrf_token = $('meta[name="csrf-token"]').attr('content');
 
     swal({
-      title: "Are you sure want to delete\n'" + name + "'?",
-      text: "You won't be able to revert this!",
+      title: "Apa kamu yakin ingin menghapus\n'" + name + "'?",
+      text: "Jika dilakukan data ini tidak akan dapat dikembalikan!",
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Ok, saya yakin!'
     }).then((result)=>{
       if(result.value){
         $.ajax({

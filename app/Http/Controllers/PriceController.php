@@ -109,6 +109,7 @@ class PriceController extends Controller
                 return $model->discount.'%';
             })
             ->addColumn('action', function($model){
+                $model->name = $model->service;
                 return view('layouts.action',[
                     'model' => $model,
                     'title' => 'Price',

@@ -3,7 +3,7 @@
 @section('title', 'FINDER · Price List')
 
 @section('content')
-<section class="page-section" id="price" style="padding:40px; margin-top:135px">
+<div style="padding:40px; margin-top:135px">
   <div class="table-responsive">
     @foreach($tool as $t)
       <?php $i = 1;?>
@@ -38,5 +38,5 @@
       <br>
     @endforeach
   </div>
-</section>
+</div>
 @endsection

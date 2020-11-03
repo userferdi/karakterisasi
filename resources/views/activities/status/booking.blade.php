@@ -50,12 +50,12 @@
         csrf_token = $('meta[name="csrf-token"]').attr('content');
 
     swal({
-      title: "Are you sure want to\nresend the email?",
+      title: "Apa kamu yakin ingin\nmengirim ulang email?",
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, resend it!'
+      confirmButtonText: 'Ok, saya yakin!'
     }).then((result)=>{
       if(result.value){
         $.ajax({
@@ -106,13 +106,13 @@
         csrf_token = $('meta[name="csrf-token"]').attr('content');
 
     swal({
-      title: "Are you sure want to cancel '" + name + "'?",
-      text: "You won't be able to revert this!",
+      title: "Apa kamu yakin ingin membatalkan '" + name + "'?",
+      text: "Jika dilakukan data ini tidak akan dapat dikembalikan!",
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, cancel it!'
+      confirmButtonText: 'Ok, saya yakin!'
     }).then((result)=>{
       if(result.value){
         $.ajax({
@@ -188,9 +188,6 @@
     $('#modal-body').find("input,textarea,select")
       .val('')
       .end();
-    // $('#modal-title').text(title);
-    // $('#modal-close').text(me.hasClass('edit') ? 'Cancel' : 'Close');
-    // $('#modal-save').text(me.hasClass('edit') ? 'Update' : 'Create');
 
     $.ajax({
       url: url,
@@ -240,14 +237,20 @@
           type: 'success',
           title: 'Data has been saved!'
         })
-        $('#modal-body').html('reset');
+        $('#modal-body').trigger('reset');
       },
 
-      error: function(){
-        'use strict';
-        var validation = Array.prototype.filter.call(form, function(form) {
-          form.classList.add('was-validated');
-        });
+      error: function(xhr){
+        var res = xhr.responseJSON;
+        if ($.isEmptyObject(res) == false) {
+          form.find('.invalid-feedback').remove();
+          form.find('.is-invalid').removeClass('is-invalid');
+          $.each(res.errors, function (key, value) {
+            $('#' + key)
+              .addClass('is-invalid')
+              .after('<div class="invalid-feedback d-block">'+value+'</div>');
+          });
+        }
       }
     });
   });

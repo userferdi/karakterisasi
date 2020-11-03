@@ -274,24 +274,6 @@ Energy-Dispersive X-ray spectroscopy (TEM + EDX)',
 
 		$i++;
 		DB::table('tools')->insert([
-			'name' => 'Analisis Zona Hambat Bakteri',
-			'code' => 'AZHB',
-			'descrip' => '',
-			'sample' => '',
-			'labs_id' => 1,
-			'actives_id' => 1,
-			'usages_id' => 2,
-		]);
-		DB::table('prices')->insert([
-			'service' => 'Analisis Zona Hambat Bakteri',
-			'price1' => 160000,
-			'price3' => 200000,
-			'discount' => 0,
-			'tools_id' => $i,
-		]);
-
-		$i++;
-		DB::table('tools')->insert([
 			'name' => 'BK 300 Internal Resistance of Battery Meter',
 			'code' => 'BK-300',
 			'descrip' => '',

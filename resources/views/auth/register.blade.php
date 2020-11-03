@@ -14,9 +14,9 @@
 	>di sini</a> untuk mengunduh aturan registrasi akun FINDER. </br>Kemudian silakan pilih role dibawah ini untuk melakukan registrasi.</p>
 	<hr class="formik"/>
 	<p><a href="{{ route('register') }}/form/dosenunpad">Registrasi Dosen Unpad</a></p>
-	<p><a href="{{ route('register') }}/form/dosennonunpad">Registrasi Dosen non Unpad</a></p>
+	<!-- <p><a href="{{ route('register') }}/form/dosennonunpad">Registrasi Dosen non Unpad</a></p> -->
 	<p><a href="{{ route('register') }}/form/mahasiswaunpad">Registrasi Mahasiswa Unpad</a></p>
-	<p><a href="{{ route('register') }}/form/mahasiswanonunpad">Registrasi Mahasiswa non Unpad</a></p>
+	<!-- <p><a href="{{ route('register') }}/form/mahasiswanonunpad">Registrasi Mahasiswa non Unpad</a></p> -->
 	<p><a href="{{ route('register') }}/form/userumum">Registrasi Umum</a></p> 
 	<hr class="formik"/>
 	<div class="text-center">

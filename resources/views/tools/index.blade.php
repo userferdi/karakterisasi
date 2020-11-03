@@ -3,10 +3,10 @@
 @section('title', 'FINDER · Tools List')
 
 @section('content')
-<section class="page-section" id="tool" style="padding:40px; margin-top:135px">
+<div style="padding:40px; margin-top:135px">
   <h3><strong>Daftar Alat</strong></h3>
   <table id="table" class="table table-striped table-bordered table-hover" ></table>
-</section>
+</div>
 @endsection
 
 @push('scripts')

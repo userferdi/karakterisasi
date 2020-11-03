@@ -38,8 +38,8 @@
           <li class="navbar-brand mx-0 mx-lg-1 "><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-dark" href="{{ route('welcome') }}"><img src="{{ asset('finder2.png') }}" width="45"/> FINDER</a></li>
         </ul>
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ request()->is('tool*') ? '#tool' : route('tool.index') }}">Tools List</a></li>
-          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ request()->is('price*') ? '#price' : route('price.index') }}">Price List</a></li>
+          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger {{ request()->is('tool*') ? 'active' : '' }}" href="{{ request()->is('tool*') ? '#' : route('tool.index') }}">Tools List</a></li>
+          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger {{ request()->is('price*') ? 'active' : '' }}" href="{{ request()->is('price*') ? '#' : route('price.index') }}">Price List</a></li>
           <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ route('login') }}">Login</a></li>
           <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ route('register') }}">Register</a></li>
         </ul>
@@ -47,35 +47,37 @@
     </div>
   </nav>
 
+  <div class="container">
   @yield('content')
+  </div>
 
-<!-- Footer-->
-<footer class="footer text-center">
+<footer class="footer">
     <div class="container">
         <div class="row">
-            <!-- Footer Location-->
-            <div class="col-lg-4 mb-5 mb-lg-0">
-                <h4 class="text-uppercase mb-4">Location</h4>
-                <p class="lead mb-0">
-                    Jl. Raya Bandung-Sumedang KM. 21 Universitas Padjadjaran<br/>
-                    Jawa Barat, Indonesia 45363
-                </p>
-            </div>
-            <!-- Footer Social Icons-->
-            <div class="col-lg-4 mb-5 mb-lg-0">
-<!--                 <h4 class="text-uppercase mb-4">Around the Web</h4>
-                <a class="btn btn-outline-dark btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
-                <a class="btn btn-outline-dark btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
-                <a class="btn btn-outline-dark btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
-                <a class="btn btn-outline-dark btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a> -->
-            </div>
-            <!-- Footer About Text-->
-            <div class="col-lg-4">
-                <h4 class="text-uppercase mb-4">About FINDER</h4>
-                <p class="lead mb-0">
-                    <!-- Research Center for Functional Nano Powder is . -->
-                </p>
-            </div>
+          <div class="col-sm-2 text-right">
+            <img src="finder.png" height="45"/>
+          </div>
+          <div class="col-sm-6">
+            <p><b>FINDER<br/>Functional Nano Powder</b></p>
+            <p>Jl. Raya Bandung-Sumedang KM. 21<br/>Universitas Padjadjaran<br/>Jawa Barat, Indonesia 45363.</p>
+            <p>Jam Operasional<br/>Hari Senin - Jumat, Pukul 08:00 - 17:00 WIB</p>
+            <p>Contact Center FINDER<br/>Hp : 0812xxxxxxxxx<br/>Email : <a class="text-dark" href="mailto:admin@finder.ac.id" target="_blank">admin@finder.ac.id</a></p>
+            <a class="btn btn-outline-dark btn-social mx-1" href="#!">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a class="btn btn-outline-dark btn-social mx-1" href="#!">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a class="btn btn-outline-dark btn-social mx-1" href="#!">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+          <div class="col-sm-4">
+            <p><a class="text-dark" href="{{ route('tool.index') }}">Tools List</a></p>
+            <p><a class="text-dark" href="{{ route('price.index') }}">Price List</a></p>
+            <p><a class="text-dark" href="{{ route('login') }}">Login</a></p>
+            <p><a class="text-dark" href="{{ route('register') }}">Register</a></p>
+          </div>
         </div>
     </div>
 </footer>

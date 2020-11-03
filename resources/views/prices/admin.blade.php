@@ -8,7 +8,7 @@
     <div class="card">
       <div class="card-body">
         <h3 class="panel-title mb-3"><strong>Price List</strong>
-          <a href="{{ route('price.create') }}" class="btn btn-primary float-right btn-sm modal-show" name="Create Brand"><i class="nav-icon fas fa-plus"></i> Create</a>
+          <a href="{{ route('price.create') }}" class="btn btn-primary float-right btn-sm modal-show" name="Tambah Daftar Harga"><i class="nav-icon fas fa-plus"></i> Create</a>
         </h3>
         <table id="table" class="table table-striped table-bordered text-sm" style="width:100%"></table>
       </div>
@@ -30,7 +30,6 @@
       {title: 'Service', data: 'service', name: 'service', width: '17.5%', className: 'dt-head-center'},
       {title: 'Alat', data: 'tool', name: 'tool', width: '17.5%', className: 'dt-head-center'},
       {title: 'Harga Unpad', data: 'price1', name: 'price1', orderable:false, width: '15%', className: 'dt-center'},
-      // {title: 'Harga Non Unpad', data: 'price2', name: 'price2', orderable:false, width: '15%', className: 'dt-center'},
       {title: 'Harga Umum', data: 'price3', name: 'price3', orderable:false, width: '15%', className: 'dt-center'},
       {title: 'Diskon', data: 'discount', name: 'discount', orderable:false, width: '7.5%', className: 'dt-center'},
       {title: 'Opsi', data: 'action', name: 'action', width: '7.5%', orderable:false, className: 'dt-center'}
@@ -100,14 +99,20 @@
           type: 'success',
           title: 'Data has been saved!'
         })
-        $('#modal-body').html('reset');
+        $('#modal-body').trigger('reset');
       },
 
-      error: function(){
-        'use strict';
-        var validation = Array.prototype.filter.call(form, function(form) {
-          form.classList.add('was-validated');
-        });
+      error: function(xhr){
+        var res = xhr.responseJSON;
+        if ($.isEmptyObject(res) == false) {
+          form.find('.invalid-feedback').remove();
+          form.find('.is-invalid').removeClass('is-invalid');
+          $.each(res.errors, function (key, value) {
+            $('#' + key)
+              .addClass('is-invalid')
+              .after('<div class="invalid-feedback d-block">'+value+'</div>');
+          });
+        }
       }
     });
   });
@@ -121,13 +126,13 @@
         csrf_token = $('meta[name="csrf-token"]').attr('content');
 
     swal({
-      title: "Are you sure want to delete '" + name + "'?",
-      text: "You won't be able to revert this!",
+      title: "Apa kamu yakin ingin menghapus\n'" + name + "'?",
+      text: "Jika dilakukan data ini tidak akan dapat dikembalikan!",
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Ok, saya yakin!'
     }).then((result)=>{
       if(result.value){
         $.ajax({

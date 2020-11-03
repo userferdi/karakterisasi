@@ -40,26 +40,22 @@
     <div class="container">
         <div class="row">
           <div class="col-sm-2 text-right">
-            <img src="finder.png" height="40"/>
+            <img src="finder.png" height="45"/>
           </div>
           <div class="col-sm-6">
-            <p class="footer-title">FINDER</p>
-            <p class="footer-title mb-5">Functional Nano Powder</p>
-            <p class="footer-subject">Admin FINDER</p>
-            <p class="footer-subject">Hp : 0812xxxxxxxxx</p>
-            <p class="footer-subject mb-5">Email : admin@finder.ac.id</p>
-            <p class="footer-subject">Jam Operasional</p>
-            <p class="footer-subject mb-5">Hari Senin - Minggu, Pukul 08:00 - 20:00 WIB</p>
-            <a class="btn btn-outline-dark btn-social mx-1" href="#!">
+            <p><b>FINDER<br/>Functional Nano Powder</b></p>
+            <p>Headquarters<br/>Kampus Universitas Padjadjaran<br/>Jalan Raya Bandung-Sumedang KM. 21<br/>Jatinangor, Jawa Barat, Indonesia 45363.</p>
+            <p>Jam Operasional<br/>Hari Senin - Jumat, Pukul 08:00 - 17:00 WIB</p>
+            <p>Contact Center FINDER<br/>Hp : 0812xxxxxxxxx<br/>Email : <a class="text-dark" href="mailto:admin@finder.ac.id" target="_blank">admin@finder.ac.id</a></p>
+            <a class="btn btn-outline-dark btn-social mx-1" href="https://www.facebook.com/Functional-Nanopowder-104842281412847/" target="_blank">
               <i class="fab fa-facebook-f"></i>
             </a>
-            <a class="btn btn-outline-dark btn-social mx-1" href="#!">
-              <i class="fab fa-twitter"></i>
+            <a class="btn btn-outline-dark btn-social mx-1" href="https://www.instagram.com/finder_id/" target="_blank">
+              <i class="fab fa-instagram"></i>
             </a>
-            <a class="btn btn-outline-dark btn-social mx-1" href="#!">
+            <a class="btn btn-outline-dark btn-social mx-1" href="https://www.linkedin.com/company/finder-unpad" target="_blank">
               <i class="fab fa-linkedin-in"></i>
-            </a><br/><br/>
-            <p class="footer-subject">Contact Us</p>
+            </a>
           </div>
           <div class="col-sm-4">
             <p><a class="text-dark" href="{{ route('tool.index') }}">Tools List</a></p>

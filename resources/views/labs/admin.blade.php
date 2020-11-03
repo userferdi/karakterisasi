@@ -111,13 +111,13 @@
         csrf_token = $('meta[name="csrf-token"]').attr('content');
 
     swal({
-      title: "Are you sure want to delete\n'" + name + "'?",
-      text: "You won't be able to revert this!",
+      title: "Apa kamu yakin ingin menghapus\n'" + name + "'?",
+      text: "Jika dilakukan data ini tidak akan dapat dikembalikan!",
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Ok, saya yakin!'
     }).then((result)=>{
       if(result.value){
         $.ajax({
