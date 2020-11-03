@@ -18,8 +18,13 @@ class AdminController extends Controller
     {
         $model = Auth()->User();
         if(Auth()->User()->hasRole('Mahasiswa Unpad|Mahasiswa Non Unpad')){
-        // if($model->profiles->email_lecturer!=NULL){
-            // $model['lecturer'] = User::where('email',$model->profiles->email_lecturer)->first()->name;
+            $lecturer = User::where('email',$model->profiles->email_lecturer)->first();
+            if($lecturer!=NULL){
+                $model['lecturer'] = User::where('email',$model->profiles->email_lecturer)->first()->name;
+            }
+            else{
+                $model['lecturer'] = $model->profiles->email_lecturer;
+            }
         }
         return view('settings', ['model' => Auth()->User()]);
     }
@@ -28,8 +33,13 @@ class AdminController extends Controller
     {
         $model = User::find($id);
         if(Auth()->User()->hasRole('Mahasiswa Unpad|Mahasiswa Non Unpad')){
-        // if($model->profiles->email_lecturer!=NULL){
-            // $model['lecturer'] = User::where('email',$model->profiles->email_lecturer)->first()->name;
+            $lecturer = User::where('email',$model->profiles->email_lecturer)->first();
+            if($lecturer!=NULL){
+                $model['lecturer'] = User::where('email',$model->profiles->email_lecturer)->first()->name;
+            }
+            else{
+                $model['lecturer'] = $model->profiles->email_lecturer;
+            }
         }
         return view('showProfile', ['model' => $model]);
     }
