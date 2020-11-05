@@ -19,7 +19,7 @@
     <div class="tab-content">
       <div class="tab-pane active" id="tool" role="tabpanel" aria-labelledby="tool-tab">
         <h4>Anda dapat melakukan pembayaran tunai dengan cara sebagai berikut:</h4>
-        <p> 1. Lakukan pembayaran sesuai dengan jumlah tagihan ke sekretariat SIPA FINDER</p>  
+        <p> 1. Lakukan pembayaran sesuai dengan jumlah tagihan ke sekretariat SILA FINDER</p>  
         <p> 2. Staff Administrasi kami akan mengubah status pembayaran Anda setelah pembayaran dilakukan.</p>
         <p> 3. Silakan lihat update status pembayaran Anda pada history penggunaan alat setelah pembayaran selesai dilakukan.</p>
       </div>
