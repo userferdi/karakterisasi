@@ -2803,6 +2803,7 @@ fieldset:disabled a.btn {
 .btn-outline-danger {
   color: #dc3545;
   border-color: #777;
+  /*border-color: #777;*/
 }
 .btn-outline-danger:hover {
   color: #fff;
