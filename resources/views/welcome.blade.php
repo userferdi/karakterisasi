@@ -11,14 +11,12 @@
     <div class="col-sm-6">
       <h4 class="masthead-heading">SISTEM INFORMASI<br>PENGELOLAAN LAYANAN</h4>
       <p>Ingin melakukan sintesis? Tapi ga bisa ke Lab?<br/>Booking aja di sini. Tinggal kirim sampelnya,<br/>hasilnya akan dikirim ke email kamu.</p>
-      <a href="{{ route('login') }}"><button>Login</button></a>
-      <a href="{{ route('register') }}"><button>Register</button></a>
+      <a type="button" href="{{ route('login') }}" class="btn btn-outline-danger btn-sm">Login</a>&nbsp;
+      <a type="button" href="{{ route('register') }}" class="btn btn-outline-danger btn-sm">Register</a>
     </div>
     <div class="col-sm-4 text-center">
       <br/>
-      <!-- <img height="200" src="finder_banner.png"/> -->
       <img class="masthead-avatar" src="finder.png"/>
-      <!-- <h4>FINDER<br>Functional NanoPowder</h4> -->
     </div>
   </div>
 </div>

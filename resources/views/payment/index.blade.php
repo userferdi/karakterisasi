@@ -26,12 +26,12 @@
       <div class="tab-pane" id="status" role="tabpanel" aria-labelledby="status-tab">
         <h4>Anda dapat melakukan pembayaran transfer dengan cara sebagai berikut:</h4>
         <p> 1. Lakukan transfer sesuai dengan jumlah tagihan penggunaan alat Anda.</p>
-        <p> 2. Silakan Transfer ke No Rekening <b>Virtual Account</b> : <b>988-00411-07000000 LPPM Kegiatan PP Nanosains dan Nanoteknologi - BNI</b></p>
-        <p> 3. Upload Bukti Transfer berupa gambar dalam format jpg/png.</p>
-        <p> 4. Anda juga dapat menyerahkan bukti transfer ke sekretariat SIPA FINDER.</p>
-        <p> 5. Tunggu hingga Staff Administrasi kami akan melakukan verifikasi dan mengubah status pembayaran.</p>
-        <p> 6. Silakan lihat update status pembayaran Anda pada history penggunaan alat.</p>
-        <p> 7. Apabila Status Pembayaran belum berubah dalam waktu 2x24 jam setelah Anda melakukan upload bukti transfer. Silakan hubungi kontak admin kami.</p><br/>
+        <!-- <p> 2. Silakan Transfer ke No Rekening <b>Virtual Account</b> : <b>988-00411-07000000 LPPM Kegiatan PP Nanosains dan Nanoteknologi - BNI</b></p> -->
+        <p> 2. Upload Bukti Transfer berupa gambar dalam format jpg/png.</p>
+        <p> 3. Anda juga dapat menyerahkan bukti transfer ke sekretariat SILA FINDER.</p>
+        <p> 4. Tunggu hingga Staff Administrasi kami akan melakukan verifikasi dan mengubah status pembayaran.</p>
+        <p> 5. Silakan lihat update status pembayaran Anda pada history penggunaan alat.</p>
+        <p> 6. Apabila Status Pembayaran belum berubah dalam waktu 2x24 jam setelah Anda melakukan upload bukti transfer. Silakan hubungi kontak admin kami.</p><br/>
         <h6>Silakan Upload Bukti Transfer sesuai dengan tagihan Anda pada menu <strong>Penagihan</strong> atau dengan klik tombol di bawah ini.</h6>
         <p><a href="{{ route('payment.bill') }}" class="btn-sm btn-danger">Upload Bukti Transfer</a></p>
       </div>

@@ -58,10 +58,10 @@
             </a>
           </div>
           <div class="col-sm-4">
-            <p><a class="text-dark" href="{{ route('tool.index') }}">Tools List</a></p>
-            <p><a class="text-dark" href="{{ route('price.index') }}">Price List</a></p>
-            <p><a class="text-dark" href="{{ route('login') }}">Login</a></p>
-            <p><a class="text-dark" href="{{ route('register') }}">Register</a></p>
+            <p><a class="text-dark" href="https://cloud.finder.ac.id/tool">Tools List</a></p>
+            <p><a class="text-dark" href="https://cloud.finder.ac.id/price">Price List</a></p>
+            <p><a class="text-dark" href="https://cloud.finder.ac.id/login">Login</a></p>
+            <p><a class="text-dark" href="https://cloud.finder.ac.id/register">Register</a></p>
           </div>
         </div>
     </div>

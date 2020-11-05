@@ -128,11 +128,11 @@ class ActivitiesController extends Controller
 <p>Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari Anda.</p>
 <p>Sebelum melanjutkan proses pemesanan, kami perlu memastikan bahwa ini memang Anda.</p>
 <p>Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$token).'">di sini!</a></p><br>
-<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('status.booking').'">login!</a></p>
+<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SILA Finder melalui akun Anda dengan link berikut: <a href="'.route('status.booking').'">login!</a></p>
 <p>Silahkan Masuk ke Menu <strong>My Activities -> Registration of Tool Usage</strong> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda.</p>
 <p>Jika bukan Anda yang melakukan transaksi tersebut, harap mengabaikan pesan ini.</p><br>
 <p>Hormat Kami,</p>
-<p>Sekretariat SIPA FINDER</p>
+<p>Sekretariat SILA FINDER</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
                 $mail->isHTML(true);
                 $mail->Send();

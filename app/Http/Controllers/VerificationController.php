@@ -70,10 +70,10 @@ class VerificationController extends Controller
 <p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
 <p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br>
 <p>Anda diminta untuk melakukan verifikasi sebagai Dosen Penanggungjawab terhadap permintaan penggunaan alat dari Mahasiswa tersebut. Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$newtoken).'">di sini!</a></p>
-<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
+<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SILA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
 <p>Silahkan Masuk ke Menu <b>My Students -> Booking Request</b> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda. Apabila Anda tidak melakukan verifikasi maka mahasiswa Anda tidak dapat melanjutkan proses permintaan penggunaan alat.</p><br>
 <p>Hormat Kami,</p>
-<p>Sekretariat SIPA FINDER</p>
+<p>Sekretariat SILA FINDER</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
                             $mail->isHTML(true);
                             $mail->Send();
@@ -116,10 +116,10 @@ class VerificationController extends Controller
 <p>Email : <b>'.$model->orders->users->email.'</b></p>
 <p>Institusi : <b>'.$model->orders->users->profiles->institution.'</b></p>
 <p>Alamat : <b>'.$model->orders->users->profiles->address.'</b></p>
-<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari User Umum tersebut. Untuk melihat detail pemesanan dan melakukan verifikasi silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
+<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari User Umum tersebut. Untuk melihat detail pemesanan dan melakukan verifikasi silahkan Log-In ke Website SILA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
 <p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melihat detail pemesanan dan melakukan verifikasi terhadap permintaan penggunaan alat.</p><br>
 <p>Hormat Kami,</p>
-<p>Sekretariat SIPA FINDER</p>
+<p>Sekretariat SILA FINDER</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
                         }
                         else{
@@ -131,10 +131,10 @@ class VerificationController extends Controller
 <p>Program Studi : <b>'.$model->orders->users->profiles->study_program.'</b></p>
 <p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
 <p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br>
-<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Dosen tersebut. Untuk melihat detail pemesanan dan melakukan verifikasi silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
+<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Dosen tersebut. Untuk melihat detail pemesanan dan melakukan verifikasi silahkan Log-In ke Website SILA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
 <p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melihat detail pemesanan dan melakukan verifikasi terhadap permintaan penggunaan alat.</p><br>
 <p>Hormat Kami,</p>
-<p>Sekretariat SIPA FINDER</p>
+<p>Sekretariat SILA FINDER</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
                         }
                         $mail->isHTML(true);
@@ -174,10 +174,10 @@ class VerificationController extends Controller
 <p>Program Studi : <b>'.$model->orders->users->profiles->study_program.'</b></p>
 <p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
 <p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br>
-<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Mahasiswa tersebut. Untuk melihat detail pemesanan dan melakukan verifikasi silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
+<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Mahasiswa tersebut. Untuk melihat detail pemesanan dan melakukan verifikasi silahkan Log-In ke Website SILA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
 <p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melihat detail pemesanan dan melakukan verifikasi terhadap permintaan penggunaan alat.</p><br>
 <p>Hormat Kami,</p>
-<p>Sekretariat SIPA FINDER</p>
+<p>Sekretariat SILA FINDER</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
                     $mail->isHTML(true);
                     $mail->Send();
@@ -322,10 +322,10 @@ class VerificationController extends Controller
 <p>Program Studi : <b>'.$model->orders->users->profiles->study_program.'</b></p>
 <p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
 <p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br>
-<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Mahasiswa tersebut. Untuk melihat detail pemesanan dan melakukan verifikasi silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
+<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Mahasiswa tersebut. Untuk melihat detail pemesanan dan melakukan verifikasi silahkan Log-In ke Website SILA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
 <p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melihat detail pemesanan dan melakukan verifikasi terhadap permintaan penggunaan alat.</p><br>
 <p>Hormat Kami,</p>
-<p>Sekretariat SIPA FINDER</p>
+<p>Sekretariat SILA FINDER</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
                     $mail->isHTML(true);
                     $mail->Send();
@@ -425,11 +425,11 @@ class VerificationController extends Controller
 <p>Functional Nano Powder (FINDER) Unpad menerima permintaan reschedule penggunaan alat dari Anda.</p>
 <p>Sebelum melanjutkan proses pemesanan, kami perlu memastikan bahwa ini memang Anda.</p>
 <p>Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$token).'">di sini!</a></p><br/>
-<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
+<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SILA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
 <p>Silahkan Masuk ke Menu <strong>My Activities -> Registration of Tool Usage</strong> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda.</p>
 <p>Jika bukan Anda yang melakukan transaksi tersebut, harap mengabaikan pesan ini.</p><br/><br/>
 <p>Hormat Kami,</p>
-<p>Sekretariat SIPA FINDER</p>
+<p>Sekretariat SILA FINDER</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>
 ';
                     $mail->isHTML(true);
@@ -508,11 +508,11 @@ class VerificationController extends Controller
                     $mail->Body = '
 <p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari Anda.</p>
 <p>Sebelum melanjutkan proses pemesanan, kami perlu memastikan bahwa ini memang Anda. Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$newtoken).'">di sini!</a></p><br/>
-<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('status.booking').'">login!</a></p>
+<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SILA Finder melalui akun Anda dengan link berikut: <a href="'.route('status.booking').'">login!</a></p>
 <p>Silahkan Masuk ke Menu <strong>My Activities -> Registration of Tool Usage</strong> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda.</p>
 <p>Jika bukan Anda yang melakukan transaksi tersebut, harap mengabaikan pesan ini.</p><br/><br/>
 <p>Hormat Kami,</p><br/>
-<p>Sekretariat SIPA FINDER</p>
+<p>Sekretariat SILA FINDER</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>
 ';
                     $mail->isHTML(true);
@@ -551,13 +551,11 @@ class VerificationController extends Controller
 <p>Program Studi : <strong>'.$model->orders->users->profiles->study_program.'</strong></p>
 <p>Fakultas : <strong>'.$model->orders->users->profiles->faculty.'</strong></p>
 <p>Universitas : <strong>'.$model->orders->users->profiles->university.'</strong></p><br/>
-<p>Anda diminta untuk melakukan verifikasi sebagai Dosen Penanggungjawab terhadap permintaan penggunaan alat dari Mahasiswa tersebut. Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$newtoken).'">di sini!</a></p>
-<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
-<p>Silahkan Masuk ke Menu <strong>My Students -> Booking Request</strong> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda. Apabila Anda tidak melakukan verifikasi maka mahasiswa Anda tidak dapat melanjutkan proses permintaan penggunaan alat di PPNN ITB.</p><br/><br/>
-<p>Hormat Kami,</p><br/>
-<p>Sekretariat SIPA FINDER</p>
-<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>
-';
+<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Dosen tersebut. Untuk melihat detail pemesanan dan melakukan verifikasi silahkan Log-In ke Website SILA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
+<p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melihat detail pemesanan dan melakukan verifikasi terhadap permintaan penggunaan alat.</p><br>
+<p>Hormat Kami,</p>
+<p>Sekretariat SILA FINDER</p>
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
                     $mail->isHTML(true);
                     $mail->Send();
                     return response()->json(true);
@@ -597,10 +595,10 @@ class VerificationController extends Controller
 <p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
 <p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br/>
 <p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Dosen tersebut.</p>
-<p>Untuk melakukan verifikasi silahkan Log-In ke Website SIPA FINDER melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
+<p>Untuk melakukan verifikasi silahkan Log-In ke Website SILA FINDER melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
 <p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melakukan verifikasi terhadap permintaan penggunaan alat.</p><br/><br/>
 <p>Hormat Kami,</p><br/>
-<p>Sekretariat SIPA FINDER</p>
+<p>Sekretariat SILA FINDER</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>
 ';
                     }
@@ -614,10 +612,10 @@ class VerificationController extends Controller
 <p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
 <p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br/>
 <p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Mahasiswa tersebut.</p>
-<p>Untuk melakukan verifikasi silahkan Log-In ke Website SIPA FINDER melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
+<p>Untuk melakukan verifikasi silahkan Log-In ke Website SILA FINDER melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
 <p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melakukan verifikasi terhadap permintaan penggunaan alat.</p><br/><br/>
 <p>Hormat Kami,</p><br/>
-<p>Sekretariat SIPA FINDER</p>
+<p>Sekretariat SILA FINDER</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>
 ';
                     }
@@ -630,10 +628,10 @@ class VerificationController extends Controller
 <p>Lembaga : <b>'.$model->orders->users->profiles->institution.'</b></p>
 <p>Alamat : <b>'.$model->orders->users->profiles->address.'</b></p>
 <p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat tersebut.</p>
-<p>Untuk melakukan verifikasi silahkan Log-In ke Website SIPA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
+<p>Untuk melakukan verifikasi silahkan Log-In ke Website SILA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
 <p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melakukan verifikasi terhadap permintaan penggunaan alat.</p><br/><br/>
 <p>Hormat Kami,</p><br/>
-<p>Sekretariat SIPA FINDER</p>
+<p>Sekretariat SILA FINDER</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>
 ';
                     }
