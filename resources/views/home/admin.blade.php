@@ -31,7 +31,7 @@
       <div class="inner">
         <h4><strong>Laboratorium</strong></h4>
 
-        <p>Total: 3</p>
+        <p>List Laboratorium</p>
       </div>
       <div class="icon">
         <i class="fas fa-flask"></i>
