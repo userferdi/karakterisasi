@@ -27,11 +27,11 @@
         {!! Form::text('price1', null, ['class' => 'form-control', 'id' => 'price1', 'required']) !!}
         <div class="invalid-feedback" id="invalid">Please fill out this field</div>
     </div>
-    <div class="form-group">
+<!--     <div class="form-group">
         <label class="control-label">Harga untuk User Non Unpad</label>
         {!! Form::text('price2', null, ['class' => 'form-control', 'id' => 'price2', 'required']) !!}
         <div class="invalid-feedback" id="invalid">Please fill out this field</div>
-    </div>
+    </div> -->
     <div class="form-group">
         <label class="control-label">Harga untuk User Umum</label>
         {!! Form::text('price3', null, ['class' => 'form-control', 'id' => 'price3', 'required']) !!}
