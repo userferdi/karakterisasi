@@ -228,11 +228,11 @@ class PaymentController extends Controller
             }
             $payment['approves_id'] = $id;
             $payment['total'] = $total;
+            $save = Approve::findOrFail($id)->update([
+                'status' => 2
+            ]);
             if($model->orders->plans_id == 1){
                 $payment['status'] = 1;
-                $save = Approve::findOrFail($id)->update([
-                    'status' => 2
-                ]);
             }
             else if($model->orders->plans_id == 2){
                 $payment['status'] = 2;
@@ -308,9 +308,6 @@ class PaymentController extends Controller
             $payment['total'] = $total;
             if($model->orders->plans_id == 1){
                 $payment['status'] = 1;
-                $save = Approve::findOrFail($id)->update([
-                    'status' => 2
-                ]);
             }
             else if($model->orders->plans_id == 2){
                 $payment['status'] = 2;

@@ -39,6 +39,10 @@ class HomeController extends Controller
         else if(Auth()->User()->hasRole($client)){
             $model = Approve::whereHas('orders', function ($order){
                             return $order->where('users_id', '=', Auth()->User()->id);
+                    })->where(function($model){
+                        $model->where('status',1)
+                              ->orWhere('status',2)
+                              ->orWhere('status',3);
                     })->get();
             return view('home.client', ['user' => Auth()->User(), 'model' => $model]);
         }
