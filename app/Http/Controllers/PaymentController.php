@@ -7,6 +7,7 @@ use App\Payment;
 use App\Price;
 use App\Plan;
 use App\Order;
+use App\User;
 
 use PDF;
 use Auth;
