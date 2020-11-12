@@ -77,7 +77,7 @@
                       </a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-2 col-sm-12 mx-auto">
+                <div class="col-lg-2 col-md-2 col-sm-12 mx-auto">
                     <p><a class="text-dark" href="{{ route('tool.index') }}">Tools List</a></p>
                     <p><a class="text-dark" href="{{ route('price.index') }}">Price List</a></p>
                     <p><a class="text-dark" href="{{ route('login') }}">Login</a></p>
