@@ -332,14 +332,14 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Beadsmill Kecil',
+			'service' => 'Beadsmill Kecil (Per Sampel/Hari)',
 			'price1' => 350000,
 			'price3' => 500000,
 			'discount' => 0,
 			'tools_id' => $i,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Beadsmill Besar',
+			'service' => 'Beadsmill Besar (Per Sampel/Hari)',
 			'price1' => 800000,
 			'price3' => 1000000,
 			'discount' => 0,
@@ -357,14 +357,14 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Jaw Crusher Kecil',
+			'service' => 'Jaw Crusher Kecil (Per Sampel/Hari)',
 			'price1' => 350000,
 			'price3' => 500000,
 			'discount' => 0,
 			'tools_id' => $i,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Jaw Crusher Besar',
+			'service' => 'Jaw Crusher Besar (Per Sampel/Hari)',
 			'price1' => 350000,
 			'price3' => 500000,
 			'discount' => 0,
@@ -382,7 +382,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Lab. Pulverizer',
+			'service' => 'Lab. Pulverizer (Per Sampel/Hari)',
 			'price1' => 350000,
 			'price3' => 500000,
 			'discount' => 0,
@@ -400,7 +400,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Disc Mill',
+			'service' => 'Disc Mill (Per Sampel/Hari)',
 			'price1' => 350000,
 			'price3' => 500000,
 			'discount' => 0,
@@ -418,7 +418,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Table Pressing',
+			'service' => 'Table Pressing (Per Sampel/Jam)',
 			'price1' => 125000,
 			'price3' => 150000,
 			'discount' => 0,
@@ -436,14 +436,14 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Drying Oven Besar',
+			'service' => 'Drying Oven Besar (Per Sampel/Hari)',
 			'price1' => 150000,
 			'price3' => 200000,
 			'discount' => 0,
 			'tools_id' => $i,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Drying Oven Kecil Biru',
+			'service' => 'Drying Oven Kecil Biru (Per Sampel/Hari)',
 			'price1' => 80000,
 			'price3' => 100000,
 			'discount' => 0,
@@ -461,7 +461,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Hammer Mill',
+			'service' => 'Hammer Mill (Per Sampel/Hari)',
 			'price1' => 350000,
 			'price3' => 500000,
 			'discount' => 0,
@@ -479,7 +479,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Shaking Table',
+			'service' => 'Shaking Table (Per Sampel/Hari)',
 			'price1' => 350000,
 			'price3' => 500000,
 			'discount' => 0,
@@ -497,14 +497,14 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Ball Mill',
+			'service' => 'Ball Mill (Per Sampel/Hari)',
 			'price1' => 350000,
 			'price3' => 500000,
 			'discount' => 0,
 			'tools_id' => $i,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Wet Ball Mill',
+			'service' => 'Wet Ball Mill (Per Sampel/Hari)',
 			'price1' => 350000,
 			'price3' => 500000,
 			'discount' => 0,
@@ -522,14 +522,14 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Ultrasonik Bath',
+			'service' => 'Ultrasonik Bath (Per Sampel/Jam)',
 			'price1' => 30000,
 			'price3' => 35000,
 			'discount' => 0,
 			'tools_id' => $i,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Ultrasonik Batang',
+			'service' => 'Ultrasonik Batang (Per Sampel/Jam)',
 			'price1' => 35000,
 			'price3' => 40000,
 			'discount' => 0,
@@ -547,7 +547,28 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Furnace MTI X1200',
+			'service' => 'Furnace MTI X1200 (Per Sampel/Hari)',
+			'price1' => 300000,
+			'price3' => 400000,
+			'discount' => 0,
+			'tools_id' => $i,
+		]);
+		DB::table('prices')->insert([
+			'service' => 'Tambahan Penggunaan Gas Nitrogen (Per Sampel/Hari)',
+			'price1' => 300000,
+			'price3' => 400000,
+			'discount' => 0,
+			'tools_id' => $i,
+		]);
+		DB::table('prices')->insert([
+			'service' => 'Tambahan Penggunaan Gas Nitrogen (Per Sampel/Hari)',
+			'price1' => 300000,
+			'price3' => 400000,
+			'discount' => 0,
+			'tools_id' => $i,
+		]);
+		DB::table('prices')->insert([
+			'service' => 'Tambahan Penggunaan Gas Nitrogen (Per Sampel/Hari)',
 			'price1' => 300000,
 			'price3' => 400000,
 			'discount' => 0,
@@ -565,7 +586,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Hot Plate Digital Magnetic Stirrer',
+			'service' => 'Hot Plate Digital Magnetic Stirrer (Per Sampel/Jam)',
 			'price1' => 30000,
 			'price3' => 40000,
 			'discount' => 0,
@@ -583,14 +604,14 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Spray Pyrolysis High',
+			'service' => 'Spray Pyrolysis High (Per Sampel/Hari)',
 			'price1' => 500000,
 			'price3' => 750000,
 			'discount' => 0,
 			'tools_id' => $i,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Spray Pyrolysis Low',
+			'service' => 'Spray Pyrolysis Low (Per Sampel/Hari)',
 			'price1' => 350000,
 			'price3' => 500000,
 			'discount' => 0,
@@ -608,7 +629,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Pulse Combustion Spray Pyrolysis (PCSP)',
+			'service' => 'Pulse Combustion Spray Pyrolysis (PCSP) (Per Sampel/Hari)',
 			'price1' => 800000,
 			'price3' => 1000000,
 			'discount' => 0,
@@ -626,7 +647,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Sentrifuge',
+			'service' => 'Sentrifuge (Per Sampel/Jam)',
 			'price1' => 30000,
 			'price3' => 35000,
 			'discount' => 0,
@@ -644,14 +665,14 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Timbangan Digital',
+			'service' => 'Timbangan Digital (Per Sampel/Jam)',
 			'price1' => 30000,
 			'price3' => 35000,
 			'discount' => 0,
 			'tools_id' => $i,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Timbangan Analitik',
+			'service' => 'Timbangan Analitik (Per Sampel/Jam)',
 			'price1' => 30000,
 			'price3' => 35000,
 			'discount' => 0,
@@ -669,7 +690,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Mesh',
+			'service' => 'Mesh (Per Sampel/Hari)',
 			'price1' => 250000,
 			'price3' => 300000,
 			'discount' => 0,
@@ -687,7 +708,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Wheatering Test',
+			'service' => 'Wheatering Test (Per Sampel/40 Hari)',
 			'price1' => 4500000,
 			'price3' => 5000000,
 			'discount' => 0,
@@ -705,7 +726,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Contact Angle',
+			'service' => 'Contact Angle (Per Sampel/Kontak/Foto)',
 			'price1' => 75000,
 			'price3' => 100000,
 			'discount' => 0,
@@ -723,7 +744,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Desicator',
+			'service' => 'Desicator (Per Sampel/Jam)',
 			'price1' => 10000,
 			'price3' => 15000,
 			'discount' => 0,
@@ -741,7 +762,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Autoclave Sterillzer',
+			'service' => 'Autoclave Sterillzer (Per Sampel/3 Jam)',
 			'price1' => 75000,
 			'price3' => 100000,
 			'discount' => 0,
@@ -750,7 +771,7 @@ class ServiceSeeder extends Seeder
 
 		$i++;
 		DB::table('tools')->insert([
-			'name' => 'Laminar Air Flow',
+			'name' => 'Meja Laminar Air Flow',
 			'code' => 'LAF',
 			'descrip' => '',
 			'sample' => '',
@@ -759,7 +780,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Laminar Air Flow',
+			'service' => 'Meja Laminar Air Flow (Per Sampel/Hari)',
 			'price1' => 110000,
 			'price3' => 125000,
 			'discount' => 0,
@@ -777,7 +798,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Inkubator',
+			'service' => 'Inkubator (Per Sampel/Hari)',
 			'price1' => 80000,
 			'price3' => 100000,
 			'discount' => 0,
@@ -795,7 +816,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'pH Meter',
+			'service' => 'pH Meter (Per Sampel/Jam)',
 			'price1' => 20000,
 			'price3' => 30000,
 			'discount' => 0,
@@ -813,7 +834,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Micro Pump',
+			'service' => 'Micro Pump (Per Sampel/Jam)',
 			'price1' => 35000,
 			'price3' => 40000,
 			'discount' => 0,
@@ -831,7 +852,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Evaporator',
+			'service' => 'Evaporator (Per Sampel/Jam)',
 			'price1' => 200000,
 			'price3' => 250000,
 			'discount' => 0,
@@ -849,7 +870,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Vacuum Oven',
+			'service' => 'Vacuum Oven (Per Sampel/Hari)',
 			'price1' => 100000,
 			'price3' => 150000,
 			'discount' => 0,
@@ -867,7 +888,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Viscometer',
+			'service' => 'Viscometer (Per Sampel/Jam)',
 			'price1' => 50000,
 			'price3' => 75000,
 			'discount' => 0,
@@ -885,7 +906,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Vacuum Mixer',
+			'service' => 'Vacuum Mixer (Per Sampel/Jam)',
 			'price1' => 35000,
 			'price3' => 50000,
 			'discount' => 0,
@@ -903,7 +924,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Oven',
+			'service' => 'Oven (Per Sampel/Hari)',
 			'price1' => 80000,
 			'price3' => 100000,
 			'discount' => 0,
@@ -921,7 +942,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Crimping Machine',
+			'service' => 'Crimping Machine (Per Sampel/Jam)',
 			'price1' => 35000,
 			'price3' => 50000,
 			'discount' => 0,
@@ -939,7 +960,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Punching Machine',
+			'service' => 'Punching Machine (Per Sampel/Jam)',
 			'price1' => 35000,
 			'price3' => 50000,
 			'discount' => 0,
@@ -957,7 +978,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Rolling Press',
+			'service' => 'Rolling Press (Per Sampel/Jam)',
 			'price1' => 45000,
 			'price3' => 60000,
 			'discount' => 0,
@@ -975,7 +996,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Coating Machine',
+			'service' => 'Coating Machine (Per Sampel/Jam)',
 			'price1' => 65000,
 			'price3' => 100000,
 			'discount' => 0,
@@ -993,7 +1014,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Glove Box',
+			'service' => 'Glove Box (Per Sampel/Jam)',
 			'price1' => 200000,
 			'price3' => 350000,
 			'discount' => 0,
@@ -1011,7 +1032,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Microwave',
+			'service' => 'Microwave (Per Sampel/Jam)',
 			'price1' => 10000,
 			'price3' => 15000,
 			'discount' => 0,
@@ -1029,7 +1050,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'DO Meter Digital',
+			'service' => 'DO Meter Digital (Per Sampel/Jam)',
 			'price1' => 20000,
 			'price3' => 25000,
 			'discount' => 0,
@@ -1047,7 +1068,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Tachometer',
+			'service' => 'Tachometer (Per Sampel/Jam)',
 			'price1' => 50000,
 			'price3' => 55000,
 			'discount' => 0,
@@ -1065,7 +1086,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Bor Listrik Tangan',
+			'service' => 'Bor Listrik Tangan (Per Sampel/Jam)',
 			'price1' => 20000,
 			'price3' => 25000,
 			'discount' => 0,
@@ -1083,7 +1104,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Gerinda Tangan',
+			'service' => 'Gerinda Tangan (Per Sampel/Jam)',
 			'price1' => 20000,
 			'price3' => 25000,
 			'discount' => 0,
@@ -1101,7 +1122,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Bor Duduk',
+			'service' => 'Bor Duduk (Per Sampel/Jam)',
 			'price1' => 20000,
 			'price3' => 25000,
 			'discount' => 0,
@@ -1119,7 +1140,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Tang Amper',
+			'service' => 'Tang Amper (Per Sampel/Jam)',
 			'price1' => 20000,
 			'price3' => 25000,
 			'discount' => 0,
@@ -1137,7 +1158,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'AVO Meter',
+			'service' => 'AVO Meter (Per Sampel/Jam)',
 			'price1' => 20000,
 			'price3' => 25000,
 			'discount' => 0,
@@ -1155,7 +1176,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Osiloscope',
+			'service' => 'Osiloscope (Per Sampel/Jam)',
 			'price1' => 70000,
 			'price3' => 85000,
 			'discount' => 0,
@@ -1173,7 +1194,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Mesin Potong Besi',
+			'service' => 'Mesin Potong Besi (Per Sampel/Jam)',
 			'price1' => 30000,
 			'price3' => 35000,
 			'discount' => 0,
@@ -1191,7 +1212,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Tap',
+			'service' => 'Tap (Per Sampel/Jam)',
 			'price1' => 15000,
 			'price3' => 20000,
 			'discount' => 0,
