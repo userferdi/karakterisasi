@@ -22,7 +22,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Particle Size Analyzer (PSA)',
+			'service' => 'Particle Size Analyzer (PSA) (Per Sampel)',
 			'price1' => 270000,
 			'price3' => 300000,
 			'discount' => 0,
@@ -31,7 +31,7 @@ class ServiceSeeder extends Seeder
 
 		$i++;
 		DB::table('tools')->insert([
-			'name' => 'Zeta Potensial',
+			'name' => 'Zeta Potential',
 			'code' => 'ZP',
 			'descrip' => '',
 			'sample' => '',
@@ -40,7 +40,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Zeta Potensial',
+			'service' => 'Zeta Potential (Per Sampel)',
 			'price1' => 285000,
 			'price3' => 325000,
 			'discount' => 0,
@@ -58,7 +58,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'X-Ray Fluorescence (XRF)',
+			'service' => 'X-Ray Fluorescence (XRF) (Per Sampel)',
 			'price1' => 280000,
 			'price3' => 500000,
 			'discount' => 0,
@@ -67,25 +67,7 @@ class ServiceSeeder extends Seeder
 
 		$i++;
 		DB::table('tools')->insert([
-			'name' => 'X-Ray Diffraction (XRD)',
-			'code' => 'XRF',
-			'descrip' => '',
-			'sample' => '',
-			'labs_id' => 1,
-			'actives_id' => 1,
-			'usages_id' => 2,
-		]);
-		DB::table('prices')->insert([
-			'service' => 'X-Ray Diffraction (XRD)',
-			'price1' => 550000,
-			'price3' => 600000,
-			'discount' => 0,
-			'tools_id' => $i,
-		]);
-
-		$i++;
-		DB::table('tools')->insert([
-			'name' => 'Photoluminescence (PL)',
+			'name' => 'Spektrofluorometer',
 			'code' => 'PL',
 			'descrip' => '',
 			'sample' => '',
@@ -94,7 +76,7 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Photoluminescence (PL)',
+			'service' => 'Spektrofluorometer (Per Sampel)',
 			'price1' => 380000,
 			'price3' => 500000,
 			'discount' => 0,
@@ -103,7 +85,7 @@ class ServiceSeeder extends Seeder
 
 		$i++;
 		DB::table('tools')->insert([
-			'name' => 'Fourier-Transform Infrared Spectroscopy (mR)',
+			'name' => 'Fourier-Transform Infrared Spectroscopy (FTIR)',
 			'code' => 'mR',
 			'descrip' => '',
 			'sample' => '',
@@ -112,104 +94,104 @@ class ServiceSeeder extends Seeder
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Fourier-Transform Infrared Spectroscopy (mR)',
+			'service' => 'Fourier-Transform Infrared Spectroscopy (FTIR) (Per Sampel)',
 			'price1' => 160000,
 			'price3' => 200000,
 			'discount' => 0,
 			'tools_id' => $i,
 		]);
 
-		$i++;
-		DB::table('tools')->insert([
-			'name' => 'Scanning Electron Microscope (SEM)',
-			'code' => 'SEM',
-			'descrip' => '',
-			'sample' => '',
-			'labs_id' => 1,
-			'actives_id' => 1,
-			'usages_id' => 2,
-		]);
-		DB::table('prices')->insert([
-			'service' => 'Scanning Electron Microscope (SEM)',
-			'price1' => 550000,
-			'price3' => 750000,
-			'discount' => 0,
-			'tools_id' => $i,
-		]);
+		// $i++;
+		// DB::table('tools')->insert([
+		// 	'name' => 'Scanning Electron Microscope (SEM)',
+		// 	'code' => 'SEM',
+		// 	'descrip' => '',
+		// 	'sample' => '',
+		// 	'labs_id' => 1,
+		// 	'actives_id' => 1,
+		// 	'usages_id' => 2,
+		// ]);
+		// DB::table('prices')->insert([
+		// 	'service' => 'Scanning Electron Microscope (SEM)',
+		// 	'price1' => 550000,
+		// 	'price3' => 750000,
+		// 	'discount' => 0,
+		// 	'tools_id' => $i,
+		// ]);
 
-		$i++;
-		DB::table('tools')->insert([
-			'name' => 'Energy-Dispersive X-ray spectroscopy (EDX)',
-			'code' => 'EDX',
-			'descrip' => '',
-			'sample' => '',
-			'labs_id' => 1,
-			'actives_id' => 1,
-			'usages_id' => 2,
-		]);
-		DB::table('prices')->insert([
-			'service' => 'Energy-Dispersive X-ray spectroscopy (EDX)',
-			'price1' => 160000,
-			'price3' => 200000,
-			'discount' => 0,
-			'tools_id' => $i,
-		]);
+		// $i++;
+		// DB::table('tools')->insert([
+		// 	'name' => 'Energy-Dispersive X-ray spectroscopy (EDX)',
+		// 	'code' => 'EDX',
+		// 	'descrip' => '',
+		// 	'sample' => '',
+		// 	'labs_id' => 1,
+		// 	'actives_id' => 1,
+		// 	'usages_id' => 2,
+		// ]);
+		// DB::table('prices')->insert([
+		// 	'service' => 'Energy-Dispersive X-ray spectroscopy (EDX)',
+		// 	'price1' => 160000,
+		// 	'price3' => 200000,
+		// 	'discount' => 0,
+		// 	'tools_id' => $i,
+		// ]);
 
-		$i++;
-		DB::table('tools')->insert([
-			'name' => 'Transmission Electron Microscopy (TEM)',
-			'code' => 'TEM',
-			'descrip' => '',
-			'sample' => '',
-			'labs_id' => 1,
-			'actives_id' => 1,
-			'usages_id' => 2,
-		]);
-		DB::table('prices')->insert([
-			'service' => 'Transmission Electron Microscopy (TEM)',
-			'price1' => 1350000,
-			'price3' => 1800000,
-			'discount' => 0,
-			'tools_id' => $i,
-		]);
+		// $i++;
+		// DB::table('tools')->insert([
+		// 	'name' => 'Transmission Electron Microscopy (TEM)',
+		// 	'code' => 'TEM',
+		// 	'descrip' => '',
+		// 	'sample' => '',
+		// 	'labs_id' => 1,
+		// 	'actives_id' => 1,
+		// 	'usages_id' => 2,
+		// ]);
+		// DB::table('prices')->insert([
+		// 	'service' => 'Transmission Electron Microscopy (TEM)',
+		// 	'price1' => 1350000,
+		// 	'price3' => 1800000,
+		// 	'discount' => 0,
+		// 	'tools_id' => $i,
+		// ]);
 
-		$i++;
-		DB::table('tools')->insert([
-			'name' => 'Transmission Electron Microscopy +
-Energy-Dispersive X-ray spectroscopy (TEM + EDX)',
-			'code' => 'TEM-EDX',
-			'descrip' => '',
-			'sample' => '',
-			'labs_id' => 1,
-			'actives_id' => 1,
-			'usages_id' => 2,
-		]);
-		DB::table('prices')->insert([
-			'service' => 'Transmission Electron Microscopy +
-Energy-Dispersive X-ray spectroscopy (TEM + EDX)',
-			'price1' => 1450000,
-			'price3' => 1950000,
-			'discount' => 0,
-			'tools_id' => $i,
-		]);
+// 		$i++;
+// 		DB::table('tools')->insert([
+// 			'name' => 'Transmission Electron Microscopy +
+// Energy-Dispersive X-ray spectroscopy (TEM + EDX)',
+// 			'code' => 'TEM-EDX',
+// 			'descrip' => '',
+// 			'sample' => '',
+// 			'labs_id' => 1,
+// 			'actives_id' => 1,
+// 			'usages_id' => 2,
+// 		]);
+// 		DB::table('prices')->insert([
+// 			'service' => 'Transmission Electron Microscopy +
+// Energy-Dispersive X-ray spectroscopy (TEM + EDX)',
+// 			'price1' => 1450000,
+// 			'price3' => 1950000,
+// 			'discount' => 0,
+// 			'tools_id' => $i,
+// 		]);
 
-		$i++;
-		DB::table('tools')->insert([
-			'name' => 'Ultraviolet-Visible Spectrophotometry (UV-VIS)',
-			'code' => 'UV-VIS',
-			'descrip' => '',
-			'sample' => '',
-			'labs_id' => 1,
-			'actives_id' => 1,
-			'usages_id' => 2,
-		]);
-		DB::table('prices')->insert([
-			'service' => 'Ultraviolet-Visible Spectrophotometry (UV-VIS)',
-			'price1' => 160000,
-			'price3' => 200000,
-			'discount' => 0,
-			'tools_id' => $i,
-		]);
+// 		$i++;
+// 		DB::table('tools')->insert([
+// 			'name' => 'Ultraviolet-Visible Spectrophotometry (UV-VIS)',
+// 			'code' => 'UV-VIS',
+// 			'descrip' => '',
+// 			'sample' => '',
+// 			'labs_id' => 1,
+// 			'actives_id' => 1,
+// 			'usages_id' => 2,
+// 		]);
+// 		DB::table('prices')->insert([
+// 			'service' => 'Ultraviolet-Visible Spectrophotometry (UV-VIS)',
+// 			'price1' => 160000,
+// 			'price3' => 200000,
+// 			'discount' => 0,
+// 			'tools_id' => $i,
+// 		]);
 
 		$i++;
 		DB::table('tools')->insert([
@@ -222,7 +204,7 @@ Energy-Dispersive X-ray spectroscopy (TEM + EDX)',
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Loss on Ignition (LoI)',
+			'service' => 'Loss on Ignition (LoI) (Per Sampel)',
 			'price1' => 320000,
 			'price3' => 350000,
 			'discount' => 0,
@@ -240,14 +222,7 @@ Energy-Dispersive X-ray spectroscopy (TEM + EDX)',
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Preparasi Sampel untuk PSA, ZETA POTENTIAL , PL, TEM, UV-VIS',
-			'price1' => 53000,
-			'price3' => 55000,
-			'discount' => 0,
-			'tools_id' => $i,
-		]);
-		DB::table('prices')->insert([
-			'service' => 'Preparasi Sampel untuk SEM',
+			'service' => 'Preparasi Sampel untuk PSA, ZETA POTENTIAL (Per Sampel/Jam)',
 			'price1' => 53000,
 			'price3' => 55000,
 			'discount' => 0,
@@ -265,7 +240,7 @@ Energy-Dispersive X-ray spectroscopy (TEM + EDX)',
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Analisis Zona Hambat Bakteri',
+			'service' => 'Analisis Zona Hambat Bakteri (Per Sampel)',
 			'price1' => 160000,
 			'price3' => 200000,
 			'discount' => 0,
@@ -283,7 +258,7 @@ Energy-Dispersive X-ray spectroscopy (TEM + EDX)',
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'BK 300 Internal Resistance of Battery Meter',
+			'service' => 'BK 300 Internal Resistance of Battery Meter (Per Sampel)',
 			'price1' => 550000,
 			'price3' => 650000,
 			'discount' => 0,
@@ -301,7 +276,7 @@ Energy-Dispersive X-ray spectroscopy (TEM + EDX)',
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Programmable DC Electronic Load M9712',
+			'service' => 'Programmable DC Electronic Load M9712 (Per Sampel/Hari)',
 			'price1' => 1300000,
 			'price3' => 1500000,
 			'discount' => 0,
@@ -319,7 +294,7 @@ Energy-Dispersive X-ray spectroscopy (TEM + EDX)',
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'BST8-Stat',
+			'service' => 'BST8-Stat (Per Sampel/Hari)',
 			'price1' => 1300000,
 			'price3' => 1500000,
 			'discount' => 0,
@@ -337,12 +312,14 @@ Energy-Dispersive X-ray spectroscopy (TEM + EDX)',
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'BTS9 Battery Testing Neware',
+			'service' => 'BTS9 Battery Testing Neware (Per Sampel/Hari)',
 			'price1' => 1300000,
 			'price3' => 1500000,
 			'discount' => 0,
 			'tools_id' => $i,
 		]);
+
+		// Bahan Habis Pakai
 
 		$i++;
 		DB::table('tools')->insert([
@@ -1097,7 +1074,7 @@ Energy-Dispersive X-ray spectroscopy (TEM + EDX)',
 
 		$i++;
 		DB::table('tools')->insert([
-			'name' => 'Mesin Gerinda Tangan',
+			'name' => 'Gerinda Tangan',
 			'code' => 'MGT',
 			'descrip' => '',
 			'sample' => '',
@@ -1106,7 +1083,7 @@ Energy-Dispersive X-ray spectroscopy (TEM + EDX)',
 			'usages_id' => 2,
 		]);
 		DB::table('prices')->insert([
-			'service' => 'Mesin Gerinda Tangan',
+			'service' => 'Gerinda Tangan',
 			'price1' => 20000,
 			'price3' => 25000,
 			'discount' => 0,

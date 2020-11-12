@@ -10,25 +10,8 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 use Illuminate\Support\Facades\DB;
 
-// require 'D:\Documents\xampp\htdocs\karakterisasi\vendor\autoload.php';
-
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    // public function __construct()
-    // {
-        // $this->middleware('auth');
-    // }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
         $client = ['Dosen Unpad', 'Dosen Non Unpad', 'Mahasiswa Unpad', 'Mahasiswa Non Unpad', 'User Umum'];
@@ -58,7 +41,4 @@ class HomeController extends Controller
         }
         return view('welcome');
     }
-    
-
-
 }

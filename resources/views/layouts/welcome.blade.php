@@ -36,36 +36,41 @@
 
   @yield('content')
 
-<footer class="footer">
-    <div class="container">
-        <div class="row">
-          <div class="col-sm-2 text-right">
-            <img src="finder.png" height="45"/>
-          </div>
-          <div class="col-sm-6">
-            <p><b>FINDER<br/>Functional Nano Powder</b></p>
-            <p>Headquarters<br/>Kampus Universitas Padjadjaran<br/>Jalan Raya Bandung-Sumedang KM. 21<br/>Jatinangor, Jawa Barat, Indonesia 45363.</p>
-            <p>Jam Operasional<br/>Hari Senin - Jumat, Pukul 08:00 - 17:00 WIB</p>
-            <p>Contact Center FINDER<br/>Hp : 0812xxxxxxxxx<br/>Email : <a class="text-dark" href="mailto:admin@finder.ac.id" target="_blank">admin@finder.ac.id</a></p>
-            <a class="btn btn-outline-dark btn-social mx-1" href="https://www.facebook.com/Functional-Nanopowder-104842281412847/" target="_blank">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a class="btn btn-outline-dark btn-social mx-1" href="https://www.instagram.com/finder_id/" target="_blank">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a class="btn btn-outline-dark btn-social mx-1" href="https://www.linkedin.com/company/finder-unpad" target="_blank">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-          </div>
-          <div class="col-sm-4">
-            <p><a class="text-dark" href="https://cloud.finder.ac.id/tool">Tools List</a></p>
-            <p><a class="text-dark" href="https://cloud.finder.ac.id/price">Price List</a></p>
-            <p><a class="text-dark" href="https://cloud.finder.ac.id/login">Login</a></p>
-            <p><a class="text-dark" href="https://cloud.finder.ac.id/register">Register</a></p>
-          </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 col-sm-12 mx-auto">
+                    <div class="row">
+                        <img src="finder.png" height="55"/>
+                        <p class="ml-3"><b>FiNder U-CoE<br/>Functional Nano Powder University Centre of Excellence</b></p>
+                    </div>
+                    <div class="ml-5">
+                      <p>Universitas Padjadjaran<br/>Jalan Raya Bandung-Sumedang KM. 21<br/>Jatinangor, Jawa Barat, Indonesia 45363</p>
+                      <p>Jam Operasional<br/>Senin - Jumat (08:00 - 17:00 WIB)</p>
+                      <p>Contact<br/>Email : <a class="text-dark" href="mailto:admin@finder.ac.id" target="_blank">admin@finder.ac.id</a></p>
+                      <a class="btn btn-outline-dark btn-social mx-1" href="#!">
+                        <i class="fab fa-facebook-f"></i>
+                      </a>
+                      <a class="btn btn-outline-dark btn-social mx-1" href="#!">
+                        <i class="fab fa-twitter"></i>
+                      </a>
+                      <a class="btn btn-outline-dark btn-social mx-1" href="#!">
+                        <i class="fab fa-linkedin-in"></i>
+                      </a>
+                      <a class="btn btn-outline-dark btn-social mx-1" href="#!">
+                        <i class="fab fa-whatsapp"></i>
+                      </a>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-4 col-sm-12 mx-auto">
+                    <p><a class="text-dark" href="{{ route('tool.index') }}">Tools List</a></p>
+                    <p><a class="text-dark" href="{{ route('price.index') }}">Price List</a></p>
+                    <p><a class="text-dark" href="{{ route('login') }}">Login</a></p>
+                    <p><a class="text-dark" href="{{ route('register') }}">Register</a></p>
+                </div>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
 
 <!-- Copyright Section -->

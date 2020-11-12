@@ -7,7 +7,6 @@ use App\Payment;
 use App\Price;
 use App\Plan;
 use App\Order;
-use App\User;
 
 use PDF;
 use Auth;
@@ -398,19 +397,19 @@ class PaymentController extends Controller
                     return $button;
                 }
                 else if($model->image!=NULL){
-                    $button = 
+                    $button =
 '<p>'.$plan.'</p><a href="'.$model->image.'" target="_blank" class="btn btn-primary btn-sm details-control">Lihat</a>&nbsp;
 <a href="'.route('payment.formUpload', $model->id).'" class="btn btn-primary btn-sm modal-show" name="Upload Bukti Transfer">Reupload</a>';
                     return $button;
                 }
                 else{
-                    $button = 
+                    $button =
 '<p>'.$plan.'</p><a href="'.route('payment.formUpload', $model->id).'" class="btn btn-primary btn-sm modal-show" name="Upload Bukti Transfer">Upload</a>';
                     return $button;
                 }
             })
             ->addColumn('show', function($model){
-                $button = 
+                $button =
 '<a href="'.route('payment.showBill', $model->id).'" class="btn btn-primary btn-sm">Lihat</a>';
                 return $button;
             })
@@ -470,26 +469,26 @@ class PaymentController extends Controller
                 return $model->orders->unique;
             })
             ->addColumn('detail', function($model){
-                $button = 
+                $button =
 '<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>';
                 return $button;
             })
             ->addColumn('action', function($model){
                 if($model->payments()->exists()){
                     if($model->payments->status==1|$model->payments->status==2|$model->payments->status==3){
-                        $button = 
+                        $button =
 '<a href="'.route('payment.form', $model->id).'" class="btn btn-primary btn-sm modal-show" name="'.$model->no_regis.'">Edit</a>
 <a href="'.route('payment.showBill', $model->id).'" class="btn btn-primary btn-sm">Lihat</a>';
                         return $button;
                     }
                     else{
-                        $button = 
+                        $button =
 '<a href="'.route('payment.showBill', $model->id).'" class="btn btn-primary btn-sm">Lihat</a>';
                         return $button;
                     }
                 }
                 else{
-                    $button = 
+                    $button =
 '<a href="'.route('payment.form', $model->id).'" class="btn btn-primary btn-sm modal-show" name="'.$model->no_regis.'">Buat Tagihan</a>';
                     return $button;
                 }
@@ -592,7 +591,7 @@ class PaymentController extends Controller
                 return $date.' '.$time;
             })
             ->addColumn('show', function($model){
-                $button = 
+                $button =
 '<a href="'.route('payment.showReceipt', $model->id).'" class="btn btn-primary btn-sm">Lihat</a>';
                 return $button;
             })
@@ -669,18 +668,18 @@ class PaymentController extends Controller
                 return $model->approves->orders->unique;
             })
             ->addColumn('detail', function($model){
-                $button = 
+                $button =
 '<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>';
                 return $button;
             })
             ->addColumn('action', function($model){
                 if($model->status==6|$model->status==7){
-                    $button = 
+                    $button =
 '<a href="'.route('payment.showReceipt', $model->id).'" class="btn btn-primary btn-sm">Lihat</a>';
                     return $button;
                 }
                 else{
-                    $button = 
+                    $button =
 '<a href="'.route('payment.updateReceipt', $model->id).'" class="btn btn-primary btn-sm receipt" name="'.$model->no_regis.'">Buat</a>';
                     return $button;
                 }
@@ -795,7 +794,7 @@ class PaymentController extends Controller
                     return $plan;
                 }
                 else{
-                    $button = 
+                    $button =
 '<p>'.$plan.'</p><a href="'.$model->image.'" class="btn btn-primary btn-sm details-control" target="_blank">Show Image</a>';
                     return $button;
                 }
@@ -820,7 +819,7 @@ class PaymentController extends Controller
                 }
             })
             ->addColumn('show', function($model){
-                $button = 
+                $button =
 '<a href="'.route('payment.showBill', $model->id).'" class="btn btn-primary btn-sm">Bill</a>
 <a href="'.route('payment.showReceipt', $model->id).'" class="btn btn-primary btn-sm">Receipt</a>';
                 return $button;

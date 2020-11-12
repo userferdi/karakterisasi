@@ -3,7 +3,7 @@
 @section('title', 'FINDER · Approved Schedule')
 
 @section('content')
-<h2 style="padding-top:10px;"><strong>Approved Schedule</strong></h2>
+<h2 style="padding-top:10px;"><strong>Daftar Penerimaan</strong></h2>
 <div class="row">
   <div class="col-lg-12">
     <div class="card" >

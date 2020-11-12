@@ -3,7 +3,7 @@
 @section('title', 'FINDER · Canceled List')
 
 @section('content')
-<h2 style="padding-top:10px;"><strong>Canceled List</strong></h2>
+<h2 style="padding-top:10px;"><strong>Daftar Pembatalan</strong></h2>
 <div class="row">
   <div class="col-lg-12">
     <div class="card" >

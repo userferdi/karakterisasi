@@ -10,7 +10,7 @@
     </div>
     <div class="col-sm-6">
       <h4 class="masthead-heading">SISTEM INFORMASI<br>PENGELOLAAN LAYANAN</h4>
-      <p>Ingin melakukan sintesis? Tapi ga bisa ke Lab?<br/>Booking aja di sini. Tinggal kirim sampelnya,<br/>hasilnya akan dikirim ke email kamu.</p>
+      <p>Ingin melakukan karakterisasi? Tapi tidak bisa ke Lab?<br/>Booking aja di sini. Kirim sampelnya.<br/>Hasilnya kami kirim ke alamat email Anda.</p>
       <a type="button" href="{{ route('login') }}" class="btn btn-outline-danger btn-sm">Login</a>&nbsp;
       <a type="button" href="{{ route('register') }}" class="btn btn-outline-danger btn-sm">Register</a>
     </div>
@@ -27,42 +27,26 @@
     <div class="row">
       <ol>
         <li>
-          <h4>Layanan Registrasi</h4>
-          <h5>Sebelum melakukan Log-in, pastikan Anda memiliki akun. Silakan klik menu  
-            <a href="{{ route('register') }}">Register</a> 
-          untuk membuat akun.<br/>Pastikan Anda sudah membaca aturan registrasi Akun SILA yang dapat diunduh 
-            <a href="{{ route('register') }}">di sini</a>. 
-          Akun SILA tersedia untuk :
+          <h4>Registrasi</h4>
+          <h5>
+            Pastikan Anda sudah membaca aturan registrasi akun
+            <a href="{{ route('register') }}">di sini</a>.
+            Silahkan 
+            <a href="{{ route('register') }}">Register</a>
+            untuk membuat akun.
           </h5>
-          <ul>
-            <li>
-              <h5>Dosen Unpad</h5>
-            </li>
-            <li>
-              <h5>Mahasiswa Unpad</h5>
-            </li>
-            <li>
-              <h5>Umum</h5>
-            </li>
-          </ul>
         </li><br>
         <li>
-          <h4>Layanan Login</h4>
-          <h5>Bagi Anda yang sudah memiliki Akun, silakan klik menu 
+          <h4>Login</h4>
+          <h5>
+            Silahkan
             <a href="{{ route('login') }}">Login</a>
-          dengan memasukkan email dan password yang Anda buat. Untuk melakukan booking alat, pilih menu Registrasi Penggunaan Alat setelah Anda Log-in.
+            untuk mengakses layanan kami.
           </h5>
         </li><br>
         <li>
-          <h4>Informasi Daftar Alat & Harga</h4>
-          <ul>
-            <li>
-              <h5><a href ="{{ route('tool.index') }}">Daftar Alat</a></h5>
-            </li>
-            <li>
-              <h5><a href ="{{ route('price.index') }}">Daftar Harga</a></h5>
-            </li>
-          </ul>
+          <h4>Informasi Alat dan Harga</h4>
+          {{-- <h4>Informasi <a href ="{{ route('tool.index') }}">Alat</a> dan <a href ="{{ route('price.index') }}">Harga</a></h4> --}}
         </li>
       </ol>
     </div>
