@@ -10,7 +10,7 @@
     </div>
     <div class="col-sm-6">
       <h4 class="masthead-heading">SISTEM INFORMASI<br>PENGELOLAAN LAYANAN</h4>
-      <p>Ingin melakukan karakterisasi? Tapi tidak bisa ke Lab?<br/>Booking aja di sini. Kirim sampelnya.<br/>Hasilnya kami kirim ke alamat email Anda.</p>
+      <p>Ingin melakukan karakterisasi? Tapi tidak bisa ke Lab?<br/>Booking di sini. Kirim sampelnya.<br/>Hasil kami kirim ke alamat email Anda.</p>
       <a type="button" href="{{ route('login') }}" class="btn btn-outline-danger btn-sm">Login</a>&nbsp;
       <a type="button" href="{{ route('register') }}" class="btn btn-outline-danger btn-sm">Register</a>
     </div>

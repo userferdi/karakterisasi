@@ -3,7 +3,7 @@
 @section('title','FINDER · Transaction History')
 
 @section('content')
-<h3 style="padding-top:15px;"><b>Histori Transaksi</b></h3>
+<h3 style="padding-top:15px;"><b>Riwayat Transaksi</b></h3>
 <div class="row">
   <div class="col-lg-12">
     <div class="card" >
