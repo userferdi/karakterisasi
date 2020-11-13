@@ -18,7 +18,7 @@ class VerifyEmail extends VerifyEmailBase
         return (new MailMessage)
         	->greeting('E-mail Verification')
             ->subject(Lang::getFromJson('Verify Email Address'))
-            ->line(Lang::getFromJson('Berikut link untuk verifikasi e-mail yang terdaftar pada Website  (SIPA) Functional Nano Powder (FINDER) Universitas Padjadjaran'))
+            ->line(Lang::getFromJson('Berikut link untuk verifikasi e-mail yang terdaftar pada Website FiNder (Functional Nano Powder) Universitas Padjadjaran'))
             ->line(Lang::getFromJson('Klik tautan berikut untuk memverifikasi email Anda: '))
             ->action(Lang::getFromJson($verificationUrl), $verificationUrl);
     }

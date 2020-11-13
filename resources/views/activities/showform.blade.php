@@ -20,6 +20,7 @@
     searching: false,
     paging: false,
     info: false,
+    scrollX: true,
     ajax: "{{ route('activities.dataform') }}",
     columns: [
       {title: 'Nama', data: 'name', name: 'name', orderable:false, width: '75%', className: 'dt-head-center'},

@@ -21,6 +21,7 @@
   $('#table').DataTable({
     responsive: true,
     serverSide: true,
+    scrollX: true,
     ajax: "{{ route('history.dataShowTool',$model->id) }}",
     order: [[ 1, "asc" ]],
     columns: [

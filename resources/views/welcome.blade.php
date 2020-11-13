@@ -6,22 +6,22 @@
 <header class="masthead bg-light">
 <div class="container">
   <div class="row">
-    <div class="col-sm-1">
+    <div class="col-md-6 ml-3">
+      <div class="ml-3">
+        <h4 class="masthead-heading">SISTEM INFORMASI<br>PENGELOLAAN LAYANAN</h4>
+        <p>Ingin melakukan karakterisasi? Tapi tidak bisa ke Lab?<br/>Booking di sini. Kirim sampelnya.<br/>Hasil kami kirim ke alamat email Anda.</p>
+        <a type="button" href="{{ route('login') }}" class="btn btn-outline-danger btn-sm">Login</a>&nbsp;
+        <a type="button" href="{{ route('register') }}" class="btn btn-outline-danger btn-sm">Register</a>
+      </div>
     </div>
-    <div class="col-sm-6">
-      <h4 class="masthead-heading">SISTEM INFORMASI<br>PENGELOLAAN LAYANAN</h4>
-      <p>Ingin melakukan karakterisasi? Tapi tidak bisa ke Lab?<br/>Booking di sini. Kirim sampelnya.<br/>Hasil kami kirim ke alamat email Anda.</p>
-      <a type="button" href="{{ route('login') }}" class="btn btn-outline-danger btn-sm">Login</a>&nbsp;
-      <a type="button" href="{{ route('register') }}" class="btn btn-outline-danger btn-sm">Register</a>
-    </div>
-    <div class="col-sm-4 text-center">
+    <div class="col-md-5 text-center">
       <br/>
       <img class="masthead-avatar" src="finder.png"/>
     </div>
   </div>
 </div>
 </header>
-<section class="page-section portfolio" id="portfolio">
+<section class="page-section">
   <div class="container">
     <h4 class="page-section-heading text-center text-uppercase text-dark">Informasi Layanan</h4>
     <div class="row">

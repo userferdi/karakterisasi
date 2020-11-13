@@ -21,6 +21,7 @@
     var detail = $('#table').DataTable({
       responsive: true,
       serverSide: true,
+      scrollX: true,
       ajax: "{{ route('payment.dataReceipt') }}",
       order: [[ 1, "asc" ]],
       columns: [

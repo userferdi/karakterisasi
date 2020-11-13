@@ -20,6 +20,7 @@
   var detail = $('#table').DataTable({
     responsive: true,
     serverSide: true,
+    scrollX: true,
     ajax: "{{ route('status.confirmation.dt') }}",
     order: [[ 1, "asc" ]],
     columns: [

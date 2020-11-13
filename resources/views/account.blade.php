@@ -20,6 +20,7 @@
   $('#table').DataTable({
     responsive: true,
     serverSide: true,
+    scrollX: true,
     ajax: "{{ route('account.dt') }}",
     order: [[ 1, "asc" ]],
     columns: [

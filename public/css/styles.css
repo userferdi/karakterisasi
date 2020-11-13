@@ -561,11 +561,13 @@ pre code {
     max-width: 1140px;
   }
 }
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-right: -1.5rem;
-  margin-left: -1.5rem;
+@media (min-width: 576px) {
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -1.5rem;
+    margin-left: -1.5rem;
+  }
 }
 
 .no-gutters {
@@ -7553,9 +7555,11 @@ button.bg-dark:focus {
   margin-bottom: 1rem !important;
 }
 
+@media (min-width: 576px) {
 .ml-3,
 .mx-3 {
   margin-left: 1rem !important;
+}
 }
 
 .m-4 {
@@ -7601,9 +7605,11 @@ button.bg-dark:focus {
   margin-bottom: 3rem !important;
 }
 
+@media (min-width: 576px) {
 .ml-5,
 .mx-5 {
   margin-left: 3rem !important;
+}
 }
 
 .p-0 {
@@ -7870,6 +7876,7 @@ button.bg-dark:focus {
   margin-left: -3rem !important;
 }
 
+@media (min-width: 576px) {
 .m-auto {
   margin: auto !important;
 }
@@ -7892,6 +7899,7 @@ button.bg-dark:focus {
 .ml-auto,
 .mx-auto {
   margin-left: auto !important;
+}
 }
 
 @media (min-width: 576px) {
@@ -10244,3 +10252,23 @@ form .row:first-child .floating-label-form-group {
   background-color: #fff;
   color: #000;
 }
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 992px) {
+  .inline-block {
+    display: inline-block;
+  }
+}
+
+@media (min-width: 768px) {
+}
+@media (min-width: 992px) {
+}
+@media (min-width: 1200px) {
+}
+

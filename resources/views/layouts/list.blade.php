@@ -54,7 +54,7 @@
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-8 col-sm-12 mx-auto">
+                <div class="col-lg-7 mx-auto mb-3">
                     <div class="row">
                         <img src="finder.png" height="55"/>
                         <p class="ml-3"><b>FiNder U-CoE<br/>Functional Nano Powder University Centre of Excellence</b></p>
@@ -77,15 +77,27 @@
                       </a>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-12 mx-auto">
-                    <p><a class="text-dark" href="{{ route('tool.index') }}">Tools List</a></p>
-                    <p><a class="text-dark" href="{{ route('price.index') }}">Price List</a></p>
-                    <p><a class="text-dark" href="{{ route('login') }}">Login</a></p>
-                    <p><a class="text-dark" href="{{ route('register') }}">Register</a></p>
+                <div class="col-lg-2 mx-auto mb-4">
+                  <ul class="list-reset ml-5">
+                    <li class="inline-block">
+                      <a class="text-dark" href="{{ route('tool.index') }}">Tools List</a>
+                    </li>
+                    <li class="mt-3 inline-block">
+                      <a class="text-dark" href="{{ route('price.index') }}">Price List</a>
+                    </li>
+                    <li class="mt-3 inline-block">
+                      <a class="text-dark" href="{{ route('login') }}">Login</a>
+                    </li>
+                    <li class="mt-3 inline-block">
+                      <a class="text-dark" href="{{ route('register') }}">Register</a>
+                    </li>
+                  </ul>
                 </div>
-                <div class="col-lg-3 col-md-2 col-sm-12 mx-auto">
-                  <img src="puipt.png" height="55"/>
-                  <img src="unpad.png" height="55"/>
+                <div class="col-lg-3 mx-auto">
+                  <div class="ml-5">
+                    <img src="puipt.png" height="55"/>
+                    <img src="unpad.png" height="55"/>
+                  </div>
                 </div>
             </div>
         </div>

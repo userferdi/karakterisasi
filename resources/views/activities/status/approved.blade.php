@@ -21,6 +21,7 @@
     var detail = $('#table').DataTable({
       responsive: true,
       serverSide: true,
+      scrollX: true,
       ajax: "{{ route('status.approved.dt') }}",
       order: [[ 1, "asc" ]],
       columns: [
