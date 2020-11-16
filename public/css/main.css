@@ -1,37 +1,4 @@
-
-
-
-
-/*//////////////////////////////////////////////////////////////////
-[ FONT ]*/
-
-@font-face {
-  font-family: Poppins-Regular;
-  src: url('../fonts/poppins/Poppins-Regular.ttf'); 
-}
-
-@font-face {
-  font-family: Poppins-Medium;
-  src: url('../fonts/poppins/Poppins-Medium.ttf'); 
-}
-
-@font-face {
-  font-family: Poppins-Bold;
-  src: url('../fonts/poppins/Poppins-Bold.ttf'); 
-}
-
-@font-face {
-  font-family: Poppins-SemiBold;
-  src: url('../fonts/poppins/Poppins-SemiBold.ttf'); 
-}
-
-
-
-
-/*//////////////////////////////////////////////////////////////////
-[ RESTYLE TAG ]*/
-
-* {
+*{
 	margin: 0px; 
 	padding: 0px; 
 	box-sizing: border-box;
@@ -39,15 +6,13 @@
 
 body, html {
 	height: 100%;
-	font-family: Poppins-Regular, sans-serif;
+	font-family: Nunito, sans-serif;
 }
 
-/*---------------------------------------------*/
 a {
-	font-family: Poppins-Regular;
+	font-family: Nunito;
 	font-size: 14px;
 	line-height: 1.7;
-	/*color: #666666;*/
 	margin: 0px;
 	transition: all 0.4s;
 	-webkit-transition: all 0.4s;
@@ -68,13 +33,12 @@ a:hover {
   color: linear-gradient(left, #21d4fd, #b721ff);
 }
 
-/*---------------------------------------------*/
 h1,h2,h3,h4,h5,h6 {
 	margin: 0px;
 }
 
 p {
-	font-family: Poppins-Regular;
+	font-family: Nunito;
 	font-size: 14px;
 	line-height: 1.7;
 	color: #666666;
@@ -86,8 +50,6 @@ ul, li {
 	list-style-type: none;
 }
 
-
-/*---------------------------------------------*/
 input {
 	outline: none;
 	border: none;
@@ -122,7 +84,6 @@ textarea:-moz-placeholder { color: #adadad;}
 textarea::-moz-placeholder { color: #adadad;}
 textarea:-ms-input-placeholder { color: #adadad;}
 
-/*---------------------------------------------*/
 button {
 	outline: none !important;
 	border: none;
@@ -137,25 +98,19 @@ iframe {
 	border: none !important;
 }
 
-
-/*//////////////////////////////////////////////////////////////////
-[ Utility ]*/
 .txt1 {
-  font-family: Poppins-Regular;
+  font-family: Nunito;
   font-size: 13px;
   color: #666666;
   line-height: 1.5;
 }
 
 .txt2 {
-  font-family: Poppins-Regular;
+  font-family: Nunito;
   font-size: 13px;
   /*color: #333333;*/
   line-height: 1.5;
 }
-
-/*//////////////////////////////////////////////////////////////////
-[ login ]*/
 
 .limiter {
   width: 100%;
@@ -191,17 +146,13 @@ iframe {
   -ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
-
-/*------------------------------------------------------------------
-[ Form ]*/
-
 .login100-form {
   width: 100%;
 }
 
 .login100-form-title {
   display: block;
-  font-family: Poppins-Bold;
+  font-family: Montserrat;
   font-size: 30px;
   color: #333333;
   line-height: 1.2;
@@ -211,9 +162,6 @@ iframe {
   font-size: 60px;
 }
 
-/*------------------------------------------------------------------
-[ Input ]*/
-
 .wrap-input100 {
   width: 100%;
   position: relative;
@@ -222,7 +170,7 @@ iframe {
 }
 
 .input100 {
-  font-family: Poppins-Regular;
+  font-family: Nunito;
   font-size: 15px;
   color: #555555;
   line-height: 1.2;
@@ -234,7 +182,6 @@ iframe {
   padding: 0 5px;
 }
 
-/*---------------------------------------------*/ 
 .focus-input100 {
   position: absolute;
   display: block;
@@ -260,14 +207,10 @@ iframe {
   transition: all 0.4s;
 
   background: #6a7dfe;
-  /*background: -webkit-linear-gradient(left, #21d4fd, #b721ff);*/
-  /*background: -o-linear-gradient(left, #21d4fd, #b721ff);*/
-  /*background: -moz-linear-gradient(left, #21d4fd, #b721ff);*/
-  /*background: linear-gradient(left, #21d4fd, #b721ff);*/
 }
 
 .focus-input100::after {
-  font-family: Poppins-Regular;
+  font-family: Nunito;
   font-size: 15px;
   color: #999999;
   line-height: 1.2;
@@ -302,11 +245,9 @@ iframe {
   width: 100%;
 }
 
-/*---------------------------------------------*/
 .btn-show-pass {
   font-size: 15px;
   color: #999999;
-
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -341,10 +282,6 @@ iframe {
   color: linear-gradient(left, #21d4fd, #b721ff);
 }
 
-
-
-/*------------------------------------------------------------------
-[ Button ]*/
 .container-login100-form-btn {
   display: -webkit-box;
   display: -webkit-flex;
@@ -372,10 +309,6 @@ iframe {
   width: 300%;
   height: 100%;
   background: #07f;
-/*  background: -webkit-linear-gradient(right, #21d4fd, #b721ff, #21d4fd, #b721ff);
-  background: -o-linear-gradient(right, #21d4fd, #b721ff, #21d4fd, #b721ff);
-  background: -moz-linear-gradient(right, #21d4fd, #b721ff, #21d4fd, #b721ff);
-  background: linear-gradient(right, #21d4fd, #b721ff, #21d4fd, #b721ff);*/
   top: 0;
   left: -100%;
 
@@ -386,7 +319,7 @@ iframe {
 }
 
 .login100-form-btn {
-  font-family: Poppins-Medium;
+  font-family: Montserrat;
   font-size: 15px;
   color: #fff;
   line-height: 1.2;
@@ -409,20 +342,11 @@ iframe {
   background: #05a;
 }
 
-
-/*------------------------------------------------------------------
-[ Responsive ]*/
-
 @media (max-width: 576px) {
   .wrap-login100 {
     padding: 77px 15px 33px 15px;
   }
 }
-
-
-
-/*------------------------------------------------------------------
-[ Alert validate ]*/
 
 .validate-input {
   position: relative;
@@ -445,7 +369,7 @@ iframe {
   right: 0px;
   pointer-events: none;
 
-  font-family: Poppins-Regular;
+  font-family: Nunito;
   color: #c80000;
   font-size: 13px;
   line-height: 1.4;
@@ -489,6 +413,3 @@ iframe {
     opacity: 1;
   }
 }
-
-
-
