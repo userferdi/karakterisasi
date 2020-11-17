@@ -3,7 +3,7 @@
 @section('title', 'FINDER · Register')
 
 @section('content')
-<div class="wrap-login100 p-l-45 p-r-45 p-t-45 p-b-30">
+<div class="wrap-login100 p-l-45 p-r-45 p-t-45 p-b-30" style="width: 608px;">
     <span class="login100-form-title p-b-30" style="font-size: 30px;">
         <a href="#">
             <img src="{{ asset('finder.png') }}" height="90" width="90" class="logo_img">
@@ -19,7 +19,7 @@
         <div class="form-group row">
             <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
             <div class="col-md-8">
-                <input id="email" type="email" class="form-control" name="email" value="" required>
+                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
                 @error('email')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>
@@ -54,7 +54,7 @@
         <div class="form-group row">
             <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
             <div class="col-md-8">
-                <input id="name" type="text" class="form-control" name="name" required>
+                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required>
                 @error('name')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>
@@ -65,7 +65,7 @@
         <div class="form-group row">
             <label for="no_id" class="col-md-4 col-form-label text-md-right">NPM</label>
             <div class="col-md-8">
-                <input id="no_id" type="text" class="form-control" name="no_id" required>
+                <input id="no_id" type="text" class="form-control" name="no_id" value="{{ old('no_id') }}" required>
                 @error('no_id')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>
@@ -76,7 +76,7 @@
         <div class="form-group row">
             <label for="no_hp" class="col-md-4 col-form-label text-md-right">Phone Number</label>
             <div class="col-md-8">
-                <input id="no_hp" type="text" class="form-control" name="no_hp" required>
+                <input id="no_hp" type="text" class="form-control" name="no_hp" value="{{ old('no_hp') }}" required>
                 @error('no_hp')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>
@@ -89,7 +89,7 @@
         <div class="form-group row">
             <label for="faculty" class="col-md-4 col-form-label text-md-right">Faculty</label>
             <div class="col-md-8">
-                <select id="faculty" type="text" class="form-control" name="faculty" value="" onchange="onSelectFaculty(this.value,'#study_program')">
+                <select id="faculty" type="text" class="form-control" name="faculty" value="{{ old('faculty') }}" onchange="onSelectFaculty(this.value,'#study_program')">
                     <option value="0" disabled selected>Choose Faculty</option>
                     @foreach($faculty as $f)
                     <option value="{{$f->id}}">{{$f->name}}</option>
@@ -105,7 +105,7 @@
         <div class="form-group row">
             <label for="study_program" class="col-md-4 col-form-label text-md-right">Study Program</label>
             <div class="col-md-8">
-                <select id="study_program" type="text" class="form-control" name="study_program" value=""><option></option></select>
+                <select id="study_program" type="text" class="form-control" name="study_program" value="{{ old('study_program') }}"><option></option></select>
                 @error('study_program')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>
@@ -119,7 +119,7 @@
         <div class="form-group row">
             <label for="email_lecturer" class="col-md-4 text-md-right">E-Mail Address Your Lecturer</label>
             <div class="col-md-8">
-                <input id="email_lecturer" type="email" class="form-control" name="email_lecturer" value="" required>
+                <input id="email_lecturer" type="email" class="form-control" name="email_lecturer" value="{{ old('email_lecturer') }}" required>
                 @error('email_lecturer')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>
@@ -127,13 +127,13 @@
                 @enderror
             </div>
         </div>
-        <legend>File Upload</legend>
+<!--         <legend>File Upload</legend>
         <hr class="formik"/>
         <div class="form-group">
             <label>File</label>
             <input type="file" name="image">
             <span class="help-block text-danger"></span>
-        </div>
+        </div> -->
         <div class="form-group container-login100-form-btn">
             <div class="wrap-login100-form-btn">
                 <div class="login100-form-bgbtn"></div>

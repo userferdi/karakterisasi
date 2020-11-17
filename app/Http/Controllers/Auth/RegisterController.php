@@ -18,42 +18,15 @@ use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
     use RegistersUsers;
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
     protected $redirectTo = '/home';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -65,12 +38,6 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
     protected function create(array $data)
     {
         return User::create([
@@ -105,6 +72,7 @@ class RegisterController extends Controller
             abort(404);
         }
     }
+
     public function storeForm(Request $data)
     {
         if($data['user']=='admin'){
@@ -227,6 +195,10 @@ class RegisterController extends Controller
                 'study_program' => ['required', 'string', 'max:255'],
                 'email_lecturer' => ['required', 'string', 'email', 'max:255']
             ]);
+            $lecturer = User::where('email',$data->email_lecturer)->first();
+            if($lecturer==NULL){
+                return redirect()->back()->withInput($data->input())->withErrors(['email_lecturer', 'Lecturer has not registered yet']);
+            }
             $user = User::create([
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
