@@ -24,7 +24,7 @@
     serverSide: true,
     scrollX: true,
     ajax: "{{ route('price.dt') }}",
-    order: [[ 2, "asc" ]],
+    order: [[ 3, "asc" ]],
     columns: [
       {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, width: '5%', className: 'dt-center'},
       {title: 'Service', data: 'service', name: 'service', width: '21%', className: 'dt-head-center'},

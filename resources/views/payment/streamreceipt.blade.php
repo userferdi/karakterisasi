@@ -189,14 +189,12 @@
           <th><b> </b></th>
           <th class="center"><b>Quantity</b></th>
           <th class="center"><b>Harga</b></th>
-          <th class="center"><b>Diskon</b></th>
           <th class="center"><b>Total</b></th>
         </tr>
       </thead>
       <tbody class="border-bottom">
         <tr>
             <td><b>Layanan</b></td>
-            <td> </td>
             <td> </td>
             <td> </td>
             <td> </td>
@@ -223,14 +221,12 @@
             <td>{{$price[$s-1]->service}}</td>
             <td class="center">{{$quantity[$i]}}</td>
             <td class="center">Rp {{ number_format($harga, 0, ',', '.') }}</td>
-            <td class="center">{{$diskon}}%</td>
             <td class="center">Rp {{ number_format($total, 0, ',', '.') }}</td>
         </tr>
         <?php $i=$i+1; ?>
         @endforeach
         <tr>
             <td><b>Total</b></td>
-            <td> </td>
             <td> </td>
             <td> </td>
             <td class="center">Rp {{ number_format($model->total, 0, ',', '.') }}</td>

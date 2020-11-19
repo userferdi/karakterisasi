@@ -92,17 +92,13 @@ $i=0; $j=0; $k=0; $l=0;
             <tr>
               <th> </th>
               <th>Quantity</th>
-              <!-- <th>Waktu Penggunaan Layanan</th> -->
               <th>Harga</th>
-              <th>Diskon</th>
               <th>Total</th>
             </tr>
           </thead>
           <tbody>
             <tr>
                 <td><b>Layanan</b></td>
-                <td> </td>
-                <!-- <td> </td> -->
                 <td> </td>
                 <td> </td>
                 <td> </td>
@@ -128,17 +124,13 @@ $i=0; $j=0; $k=0; $l=0;
             <tr>
                 <td>{{$price[$s-1]->service}}</td>
                 <td>{{$quantity[$i]}}</td>
-                <!-- <td></td> -->
                 <td>Rp {{ number_format($harga, 0, ',', '.') }}</td>
-                <td>{{$diskon}}%</td>
                 <td>Rp {{ number_format($total, 0, ',', '.') }}</td>
             </tr>
             <?php $i=$i+1; ?>
             @endforeach
             <tr>
                 <td><b>Total</b></td>
-                <td> </td>
-                <!-- <td> </td> -->
                 <td> </td>
                 <td> </td>
                 <td>Rp {{ number_format($model->total, 0, ',', '.') }}</td>
