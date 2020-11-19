@@ -23,6 +23,7 @@ class CreateToolsTable extends Migration
             $table->integer('labs_id')->unsigned();
             $table->integer('actives_id')->unsigned();
             $table->integer('usages_id')->unsigned();
+            $table->integer('status')->default('1')->nullable();
             $table->timestamps();
             $table->foreign('labs_id')->references('id')->on('labs')
                 ->onUpdate('cascade')->onDelete('cascade');

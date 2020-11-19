@@ -56,7 +56,7 @@
             <div class="row">
                 <div class="col-lg-7 mx-auto mb-3">
                     <div class="row">
-                        <img src="finder.png" height="55"/>
+                        <img src="/finder.png" height="55"/>
                         <p class="ml-3"><b>FiNder U-CoE<br/>Functional Nano Powder University Centre of Excellence</b></p>
                     </div>
                     <div class="ml-5">
@@ -95,8 +95,8 @@
                 </div>
                 <div class="col-lg-3 mx-auto">
                   <div class="ml-5">
-                    <img src="puipt.png" height="55"/>
-                    <img src="unpad.png" height="55"/>
+                    <img src="/puipt.png" height="55"/>
+                    <img src="/unpad.png" height="55"/>
                   </div>
                 </div>
             </div>
