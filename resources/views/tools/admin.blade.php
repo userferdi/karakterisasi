@@ -73,7 +73,7 @@
 <script>
   $('a[data-toggle="tab"]').on( 'shown.bs.tab', function (e) {
         $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
-    } );
+  });
   var detail = $('#table_tool').DataTable({
     responsive: true,
     serverSide: true,

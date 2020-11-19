@@ -11,24 +11,20 @@
       <table class="table table-bordered table-hover table-striped">
         <thead>
           <tr>
-            {{-- <th class="text-center" width="5%">No</th> --}}
-            <th class="text-center" width="32.5%">Service</th>
-            <th class="text-center" width="17.5%">Harga Unpad</th>
-            <!-- <th class="text-center" width="17.5%">Harga Non Unpad</th> -->
-            <th class="text-center" width="17.5%">Harga Umum</th>
-            {{-- <th class="text-center" width="10%">Diskon</th> --}}
+            <th class="text-center" width="40%">Service</th>
+            <th class="text-center" width="20%">Satuan</th>
+            <th class="text-center" width="20%">Harga Unpad</th>
+            <th class="text-center" width="20%">Harga Umum</th>
           </tr>
         </thead>
         <tbody>
           @foreach($price as $s)
             @if($t->id == $s->tools_id)
               <tr>
-                {{-- <td class="text-center">{{ $i }}</td> --}}
                 <td>{{ $s->service }}</td>
+                <td class="text-center">{{ $s->unit }}</td>
                 <td class="text-center">Rp {{ number_format($s->price1, 0, ',', '.') }}</td>
-                <!-- <td class="text-center">Rp {{ number_format($s->price2, 0, ',', '.') }}</td> -->
                 <td class="text-center">Rp {{ number_format($s->price3, 0, ',', '.') }}</td>
-                {{-- <td class="text-center">{{ $s->discount }}%</td> --}}
               </tr>
               <?php $i++;?>
             @endif

@@ -31238,3 +31238,6 @@ a.text-muted:hover {
 [class*="accent-"] a.btn-dark {
   color: #ffffff;
 }
+.dataTables_scrollHeadInner, .table{
+  width:100%!important
+};
