@@ -16,7 +16,6 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <link href="https://fonts.googleapis.com/css?family=Montserrat:600" rel="stylesheet" type="text/css" />
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400" rel="stylesheet" type="text/css"/>
   <link href="https://fonts.googleapis.com/css?family=Nunito:400" rel="stylesheet" type="text/css"/>
 
   <!-- Font Awesome -->

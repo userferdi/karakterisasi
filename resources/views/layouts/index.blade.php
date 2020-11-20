@@ -15,6 +15,7 @@
   {{-- CSRF TOKEN --}}
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600" rel="stylesheet" type="text/css" />
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
   <!-- Admin LTE -->

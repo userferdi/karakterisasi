@@ -5,10 +5,10 @@
 @section('content')
 <div class="wrap-login100 p-l-45 p-r-45 p-t-45 p-b-30" style="width: 520px;">
   <span class="login100-form-title p-b-30" style="font-size: 30px;">
-    <a href="#">
+    <a href="{{ route('welcome') }}">
       <img src="{{ asset('finder.png') }}" height="90" width="90" class="logo_img">
     </a>
-		Register
+	Register
 	</span>
 	<p>Silakan klik <a href="https://drive.google.com/file/d/1E_BrpwhQE12ToEpAF-VQr0Qokimc8owo/view?usp=sharing"
 	>di sini</a> untuk mengunduh aturan registrasi akun FINDER. </br>Kemudian silakan pilih role dibawah ini untuk melakukan registrasi.</p>

@@ -13,13 +13,11 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome icons (free version)-->
-  <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
   <!-- Google fonts-->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600" rel="stylesheet" type="text/css" />
   <!-- Core theme CSS (includes Bootstrap)-->
   <link rel="stylesheet" href="{{ asset('css/styles.css') }}"/>
-  <link rel="stylesheet" href="{{ asset('css/util.css') }}">
+  <!-- <link rel="stylesheet" href="{{ asset('css/util.css') }}"> -->
   <link rel="stylesheet" href="{{ asset('css/freelancer.css') }}">
   <!-- Data Tables -->
   <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.css') }}">
@@ -109,15 +107,16 @@
       <div class="container"><small>Copyright © 2020 Functional Nano Powder - Universitas Padjadjaran</small></div>
   </div>
 
-  <!-- Bootstrap core JS-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-  <!-- Third party plugin JS-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-  <!-- Contact form JS-->
-  <!-- <script src="assets/mail/jqBootstrapValidation.js"></script> -->
-  <!-- <script src="assets/mail/contact_me.js"></script> -->
-  <!-- Core theme JS-->
+<!-- Font Awesome icons -->
+<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+
+<!-- Bootstrap core JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+<!-- Third party plugin JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+<!-- Core theme JS-->
 <script src="{{ asset('js/scripts.js') }}"></script>
 <!-- jQuery -->
 <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>

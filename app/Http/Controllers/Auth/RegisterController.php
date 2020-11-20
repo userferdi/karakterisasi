@@ -52,21 +52,12 @@ class RegisterController extends Controller
             $faculty = Faculty::get();
             return view('auth.register.dosenunpad',['faculty'=>$faculty]);
         }
-        else if($user=='dosennonunpad'){
-            return view('auth.register.dosen');
-        }
         else if($user=='mahasiswaunpad'){
             $faculty = Faculty::get();
             return view('auth.register.mahasiswaunpad',['faculty'=>$faculty]);
         }
-        else if($user=='mahasiswanonunpad'){
-            return view('auth.register.mahasiswa');
-        }
         else if($user=='userumum'){
             return view('auth.register.userumum');
-        }
-        else if($user=='admin'){
-            return view('auth.register.admin');
         }
         else{
             abort(404);

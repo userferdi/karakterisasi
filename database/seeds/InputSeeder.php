@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Hash;
 
 class InputSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
 		$faker = Faker::create('id_ID');
