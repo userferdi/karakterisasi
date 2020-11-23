@@ -48,7 +48,7 @@ class LabController extends Controller
         if(Auth()->User()->hasRole('Admin')){
             $this->validate($request, [
                 'name' => ['required', 'string', 'max:255', 'unique:labs'],
-                'code' => ['required', 'string', 'min:3', 'max:7', 'unique:labs'],
+                'code' => ['required', 'string', 'unique:labs'],
                 'head' => ['required', 'string', 'max:255'],
                 'descrip' => ['required', 'string']
             ]);
@@ -82,7 +82,7 @@ class LabController extends Controller
             }
             if($request->code!=$model->code){
                 $this->validate($request, [
-                    'code' => ['required', 'string', 'min:3', 'max:7', 'unique:labs'],
+                    'code' => ['required', 'string', 'unique:labs'],
                 ]);
             }
             $this->validate($request, [

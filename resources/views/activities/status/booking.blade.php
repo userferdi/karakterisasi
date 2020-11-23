@@ -56,7 +56,7 @@
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Ok, saya yakin!',
-      cancelButtonText: 'Gak jadi',
+      cancelButtonText: 'Tidak jadi',
     }).then((result)=>{
       if(result.value){
         $.ajax({
@@ -114,7 +114,7 @@
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Ok, saya yakin!',
-      cancelButtonText: 'Gak jadi',
+      cancelButtonText: 'Tidak jadi',
     }).then((result)=>{
       if(result.value){
         $.ajax({

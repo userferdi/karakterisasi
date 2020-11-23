@@ -62,7 +62,7 @@ class ToolController extends Controller
     {
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255', 'unique:tools'],
-            'code' => ['required', 'string', 'min:3', 'max:7', 'unique:tools'],
+            'code' => ['required', 'string', 'unique:tools'],
             'descrip' => ['required', 'string'],
             'sample' => ['required', 'string']
         ]);
@@ -98,7 +98,7 @@ class ToolController extends Controller
         }
         if($request->code!=$model->code){
             $this->validate($request, [
-                'code' => ['required', 'string', 'min:3', 'max:7', 'unique:tools'],
+                'code' => ['required', 'string', 'unique:tools'],
             ]);
         }
         $this->validate($request, [

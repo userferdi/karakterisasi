@@ -102,17 +102,10 @@
         $('#modal-body').trigger('reset');
       },
 
-      error: function(xhr){
-        var res = xhr.responseJSON;
-        if ($.isEmptyObject(res) == false) {
-          form.find('.invalid-feedback').remove();
-          form.find('.is-invalid').removeClass('is-invalid');
-          $.each(res.errors, function (key, value) {
-            $('#' + key)
-              .addClass('is-invalid')
-              .after('<div class="invalid-feedback d-block">'+value+'</div>');
-          });
-        }
+      error: function(){
+        var validation = Array.prototype.filter.call(form, function(form) {
+          form.classList.add('was-validated');
+        });
       }
     });
   });
@@ -133,7 +126,7 @@
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Ok, saya yakin!',
-      cancelButtonText: 'Gak jadi',
+      cancelButtonText: 'Tidak jadi',
     }).then((result)=>{
       if(result.value){
         $.ajax({

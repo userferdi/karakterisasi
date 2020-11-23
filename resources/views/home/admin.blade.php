@@ -18,7 +18,7 @@
       <div class="icon">
         <i class="far fa-clock"></i>
       </div>
-      <a href="schedules" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="schedule" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
