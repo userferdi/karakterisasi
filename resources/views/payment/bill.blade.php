@@ -29,7 +29,7 @@
         {title: 'No Tagihan', data: 'no_invoice', name: 'no_invoice', width: '12.5%', className: 'dt-head-center'},
         {title: 'Nama Pengguna', data: 'user', name: 'user', width: '12.5%', className: 'dt-head-center'},
         {title: 'Nama Alat', data: 'tool', name: 'tool', width: '15%', className: 'dt-head-center'},
-        {title: 'Tanggal Penggunaan', data: 'date', name: 'date', width: '12.5%', className: 'dt-center'},
+        {title: 'Tanggal Layanan', data: 'date', name: 'date', width: '12.5%', className: 'dt-center'},
         {title: 'Total Tagihan', data: 'total', name: 'total', width: '12.5%', className: 'dt-center'},
         {title: 'Metode Pembayaran', data: 'plan', name: 'plan', width: '20%', className: 'dt-center'},
         {title: 'Tagihan', data: 'show', name: 'show', width: '10%', orderable:false, className: 'dt-center'}
@@ -47,7 +47,7 @@
         {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, width: '5%', className: 'dt-center'},
         {title: 'No Tagihan', data: 'no_invoice', name: 'no_invoice', width: '15%', className: 'dt-head-center'},
         {title: 'Nama Alat', data: 'tool', name: 'tool', width: '20%', className: 'dt-head-center'},
-        {title: 'Tanggal Penggunaan', data: 'date', name: 'date', width: '12.5%', className: 'dt-center'},
+        {title: 'Tanggal Layanan', data: 'date', name: 'date', width: '12.5%', className: 'dt-center'},
         {title: 'Total Tagihan', data: 'total', name: 'total', width: '15%', className: 'dt-center'},
         {title: 'Metode Pembayaran', data: 'plan', name: 'plan', width: '22.5%', className: 'dt-center'},
         {title: 'Tagihan', data: 'show', name: 'show', width: '10%', orderable:false, className: 'dt-center'}
@@ -146,7 +146,7 @@
       {title: 'No Registration', data: 'no_regis', name: 'no_regis', className: 'dt-head-center'},
       {title: 'Nama Pengguna', data: 'user', name: 'user', className: 'dt-head-center'},
       {title: 'Nama Alat', data: 'tool', name: 'tool', className: 'dt-head-center'},
-      {title: 'Tanggal Penggunaan', data: 'date', name: 'date', className: 'dt-center'},
+      {title: 'Tanggal Layanan', data: 'date', name: 'date', className: 'dt-center'},
       {title: 'Detail', data: 'detail', name: 'detail', orderable:false, className: 'dt-center'},
       {title: 'Tagihan', data: 'action', name: 'action', orderable:false, className: 'dt-center'}
     ],

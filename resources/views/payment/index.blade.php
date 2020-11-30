@@ -18,21 +18,42 @@
   <div class="card-body">
     <div class="tab-content">
       <div class="tab-pane active" id="tool" role="tabpanel" aria-labelledby="tool-tab">
-        <h4>Pembayaran tuni dapat dilakukan dengan cara:</h4>
-        <p> 1. Lakukan pembayaran sesuai dengan jumlah tagihan ke sekretariat FiNder U-CoE</p>  
-        <p> 2. Staff Administrasi kami akan mengubah status pembayaran Anda setelah pembayaran dilakukan.</p>
-        <p> 3. Silakan lihat update status pembayaran Anda pada history penggunaan alat setelah pembayaran selesai dilakukan.</p>
+        <h4 class="mb-3">Pembayaran tunai dapat dilakukan dengan cara:</h4>
+        <ol>
+          <li class="numbering">
+            Lakukan pembayaran sesuai dengan jumlah tagihan ke sekretariat FiNder U-CoE
+          </li>
+          <li class="numbering">
+            Staff Administrasi kami akan mengubah status pembayaran Anda setelah pembayaran dilakukan.
+          </li>
+          <li class="numbering">
+            Silakan lihat update status pembayaran Anda pada history penggunaan alat setelah pembayaran selesai dilakukan.
+          </li>
+        </ol>
       </div>
       <div class="tab-pane" id="status" role="tabpanel" aria-labelledby="status-tab">
-        <h4>Pembayaran transfer dapat dilakukan dengan cara:</h4>
-        <p> 1. Lakukan transfer sesuai dengan jumlah tagihan.</p>
-        <p> 2. Silakan Transfer ke No Rekening <b>KST</b></p>
-        <p> 3. Upload Bukti Transfer berupa gambar dalam format jpg/png.</p>
-        <p> 4. Tunggu hingga Staff Administrasi kami akan melakukan verifikasi dan mengubah status pembayaran.</p>
-        <p> 5. Silakan lihat update status pembayaran Anda pada riwayat penggunaan alat.</p>
-        <p> 6. Apabila Status Pembayaran belum berubah dalam waktu 2x24 jam setelah Anda melakukan upload bukti transfer. Silakan hubungi admin kami.</p><br/>
-        <h6>Silakan Upload Bukti Transfer sesuai dengan tagihan Anda pada menu <strong>Penagihan</strong> atau dengan klik tombol di bawah ini.</h6>
-        {{-- <p><a href="{{ route('payment.bill') }}" class="btn-sm btn-danger">Upload Bukti Transfer</a></p> --}}
+        <h4 class="mb-3">Pembayaran transfer dapat dilakukan dengan cara:</h4>
+        <ol>
+          <li class="numbering">
+            Lakukan transfer sesuai dengan jumlah tagihan.
+          </li>
+          <li class="numbering">
+            Silakan Transfer ke No Rekening <b>KST</b>
+          </li>
+          <li class="numbering">
+            Upload Bukti Transfer berupa gambar dalam format jpg/png.
+          </li>
+          <li class="numbering">
+            Tunggu hingga Staff Administrasi kami akan melakukan verifikasi dan mengubah status pembayaran.
+          </li>
+          <li class="numbering">
+            Silakan lihat update status pembayaran Anda pada riwayat penggunaan alat.
+          </li>
+          <li class="numbering">
+            Apabila Status Pembayaran belum berubah dalam waktu 2x24 jam setelah Anda melakukan upload bukti transfer. Silakan hubungi admin kami.
+          </li>
+        </ol>
+        <h6>Silakan Upload Bukti Transfer <a href="{{ route('payment.bill') }}">di sini</a>.</h6>
       </div>
     </div>
   </div>

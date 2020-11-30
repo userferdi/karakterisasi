@@ -78,7 +78,7 @@ hr {
 }
 
 p {
-  font-size: 0.8rem;
+  font-size: 0.825rem;
   line-height: 1rem;
 }
 
@@ -97,6 +97,19 @@ address {
   margin-bottom: 1rem;
   font-style: normal;
   line-height: inherit;
+}
+
+dl {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.numbering{
+  margin-left: -1.5rem;
+  padding-left: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-size: .85rem;
+  line-height: 1.1rem;
 }
 
 ol,
@@ -152,8 +165,6 @@ sup {
 }
 
 a {
-  font-size: 0.8rem;
-  line-height: 1rem;
   color: #007bff;
   text-decoration: none;
   background-color: transparent;
@@ -11455,6 +11466,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 }
 
 .sidebar-collapse .main-sidebar .nav-sidebar.nav-child-indent .nav-treeview {
+  margin: 0;
   padding: 0;
 }
 
@@ -11895,15 +11907,15 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   font-size: 1rem;
   margin-right: .5rem;
   text-align: center;
-  width: 1.5rem;
+  width: 1.25rem;
 }
 
 .nav-sidebar > .nav-item .nav-icon.fa, .nav-sidebar > .nav-item .nav-icon.fas, .nav-sidebar > .nav-item .nav-icon.far, .nav-sidebar > .nav-item .nav-icon.fab, .nav-sidebar > .nav-item .nav-icon.glyphicon, .nav-sidebar > .nav-item .nav-icon.ion {
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .nav-sidebar > .nav-item .float-right {
-  margin-top: 3px;
+  margin-top: 0rem;
 }
 
 .nav-sidebar .nav-treeview {
@@ -11913,7 +11925,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 }
 
 .nav-sidebar .nav-treeview > .nav-item > .nav-link > .nav-icon {
-  width: 1.6rem;
+  width: 1.25rem;
 }
 
 .nav-sidebar.nav-child-indent .nav-treeview {

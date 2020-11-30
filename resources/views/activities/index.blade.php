@@ -9,11 +9,21 @@
     <div class="card">
       <div class="card-body">
         <h4 class="mb-3"><strong>Cara Registrasi Penggunaan Alat</strong></h4>
-        <p>1. Klik tombol Registrasi Penggunaan Alat untuk melakukan reservasi.</p>
-        <p>2. Pilih Alat yang akan Anda gunakan.</p>
-        <!-- <p>3. Booking Penggunaan Alat yang baru diterima akan masuk pada menu <b>Booking Request</b></p> -->
-        <p>4. Kami akan melihat ketersediaan jadwal dan menentukan jadwal penggunaan untuk Anda. Anda dapat melihat jadwal yang telah disetujui pada menu <a href="{{ route('status.approved') }}"><b>All Approved Schedule</b></a>. Anda harus melakukan konfirmasi terhadap jadwal telah kami setujui pada laman tersebut.</p>
-        <p>5. Apabila jadwal penuh, silahkan reservasi ulang.</p>
+        <ol>
+          <li class="numbering">
+            Klik tombol Registrasi Penggunaan Alat untuk melakukan reservasi.
+          </li>
+          <li class="numbering">
+            Pilih Alat yang akan Anda gunakan.
+          </li>
+          <li class="numbering">
+            Pada menu <a href="{{ route('status.approved') }}"><b>Confirmation Schedule</b></a>, silahkan konfirmasi jadwal yang telah kami setujui.
+            <!-- Kami akan melihat ketersediaan jadwal dan menentukan jadwal penggunaan untuk Anda. Anda dapat melihat jadwal yang telah disetujui pada menu <a href="{{ route('status.approved') }}"><b>All Approved Schedule</b></a>. Anda harus melakukan konfirmasi terhadap jadwal telah kami setujui pada laman tersebut. -->
+          </li>
+          <li class="numbering">
+            Apabila jadwal penuh, silahkan reservasi ulang.
+          </li>
+        </ol>
       </div>
     </div>
   </div>

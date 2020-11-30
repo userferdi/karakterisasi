@@ -37,7 +37,7 @@
 
     <footer class="footer">
         <div class="container">
-            <div class="row">
+            <div class="row ml-auto">
                 <div class="col-lg-7 mx-auto mb-3">
                     <div class="row">
                         <img src="finder.png" height="55"/>
@@ -90,7 +90,10 @@
 
 <!-- Copyright Section -->
 <div class="copyright py-4 text-center">
-    <div class="container"><small>Copyright © 2020 Functional Nano Powder - Universitas Padjadjaran</small></div>
+    <div class="container">
+      <!-- <small><strong>Copyright &copy; 2020 <a href="#">FiNder U-CoE</a>.</strong> All rights reserved.</small> -->
+      <small>Copyright &copy; 2020 Functional Nano Powder - Universitas Padjadjaran</small>
+    </div>
 </div>
 
 <!-- Font Awesome icons -->
