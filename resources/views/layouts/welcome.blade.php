@@ -5,11 +5,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <title>FINDER</title>
+  <meta name=description content="Functional Nano Powder University Center of Excellence (FiNder U CoE) is a Research Centre at Universitas Padjadajaran. FiNder U CoE is actively engaged in Nano Science and Technology Research & Business Development (RBD) aims to promote innovative technology for Indonesian industries enabling globally competitive scope and to contribute novel alternatives to address the present and future key social challenges. Enabling Nanotechnology to solve real world problems is expected to provide new opportunities with broad perspective of applications. The significant contributions for FiNder U CoE are in the field of biomaterial, pharmacy, sustainable energy, sustainable agro & food, added values of natural resources and clean water for a growing population.">
   <link rel="icon" href="{{ asset('finder3.png') }}">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600" rel="stylesheet" type="text/css" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
 
   <link rel="stylesheet" href="{{ asset('css/styles.css') }}"/>
   <link rel="stylesheet" href="{{ asset('css/freelancer.css') }}">
@@ -99,20 +102,14 @@
 <!-- Font Awesome icons -->
 <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
 
-<!-- Bootstrap core JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-<!-- Third party plugin JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-
-<!-- Core theme JS -->
-<script src="{{ asset('js/scripts.js') }}"></script>
 <!-- jQuery -->
 <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
 <!-- jQuery Data Tables -->
 <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 <!-- Data Tables -->
 <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
+<!-- Core theme JS -->
+<script src="{{ asset('js/scripts.js') }}"></script>
 <!-- Tidio Live Chat -->
 <script src="//code.tidio.co/vxc1ocely84hemzj08gjvedthwszjyap.js" async></script>
 @stack('scripts')
