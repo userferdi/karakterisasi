@@ -43,13 +43,14 @@
         csrf_token = $('meta[name="csrf-token"]').attr('content');
 
     swal({
-      title: "Are you sure want to confirm\n'" + name + "'?",
-      text: "You won't be able to revert this!",
+      title: "Apa Anda yakin ingin\nmengkonfirmasi'" + name + "'?",
+      text: "Jika dilakukan data ini tidak akan dapat dikembalikan!",
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, confirm it!'
+      confirmButtonText: 'Ok, saya yakin!',
+      cancelButtonText: 'Tidak jadi',
     }).then((result)=>{
       if(result.value){
         $.ajax({

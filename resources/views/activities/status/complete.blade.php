@@ -43,7 +43,7 @@
         csrf_token = $('meta[name="csrf-token"]').attr('content');
 
     swal({
-      title: "Apa kamu yakin ingin menyelesaikan status\n'" + name + "'?",
+      title: "Apa Anda yakin ingin menyelesaikan status\n'" + name + "'?",
       text: "Jika dilakukan data ini tidak akan dapat dikembalikan!",
       type: 'warning',
       showCancelButton: true,

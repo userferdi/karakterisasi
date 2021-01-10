@@ -50,7 +50,7 @@
         csrf_token = $('meta[name="csrf-token"]').attr('content');
 
     swal({
-      title: "Apa kamu yakin ingin\nmengirim ulang email?",
+      title: "Apa Anda yakin ingin\nmengirim ulang email?",
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -107,7 +107,7 @@
         csrf_token = $('meta[name="csrf-token"]').attr('content');
 
     swal({
-      title: "Apa kamu yakin ingin membatalkan '" + name + "'?",
+      title: "Apa Anda yakin ingin membatalkan '" + name + "'?",
       text: "Jika dilakukan data ini tidak akan dapat dikembalikan!",
       type: 'warning',
       showCancelButton: true,
