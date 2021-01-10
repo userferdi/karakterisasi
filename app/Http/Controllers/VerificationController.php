@@ -282,8 +282,17 @@ class VerificationController extends Controller
     public function showReject($id)
     {
         $model = Booking::find($id);
+        if($model->status == 2){
+            if(Auth()->user()->email == $model->orders->users->profiles->email_lecturer){
+                
+                return view('verify.formreject', ['model' => $model]);
+            }
+        }
         if($model->status == 3){
-            return view('verify.formreject', ['model' => $model]);
+            if(Auth()->user()->id == $model->orders->users_id){
+                
+                return view('verify.formreject', ['model' => $model]);
+            }
         }
         else{
             abort(404);
@@ -449,10 +458,10 @@ class VerificationController extends Controller
     {
         $model = Booking::find($id);
         if($model->status == 2){
-            $model = Booking::findOrFail($id)->update([
-                'token' => NULL,
-                'status' => 7
-            ]);
+            $model = $request->all();
+            $model['token'] = NULL;
+            $model['status'] = 8;
+            $model = Booking::findOrFail($id)->update($model);
             return response()->json($model);
         }
         if($model->status == 3){

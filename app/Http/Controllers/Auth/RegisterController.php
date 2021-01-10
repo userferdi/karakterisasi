@@ -78,8 +78,8 @@ class RegisterController extends Controller
                 'name' => $data['name']
             ]);
             Auth::login($user);
-            $user->sendEmailVerificationNotification();
             auth()->user()->assignRole('Admin');
+            $user->sendEmailVerificationNotification();
             return redirect()->route('home');
         }
         else if($data['user']=='dosenunpad'){
@@ -99,7 +99,6 @@ class RegisterController extends Controller
             ]);
             $id = DB::getPdo()->lastInsertId();
             Auth::login($user);
-            $user->sendEmailVerificationNotification();
             auth()->user()->assignRole('Dosen Unpad');
             if($data->file('image')!=null){
                 $directory = '/upload/users/'.$id.'/';
@@ -126,6 +125,7 @@ class RegisterController extends Controller
                     'study_program' => study_program::find($data->study_program)->name
                 ]);
             }
+            $user->sendEmailVerificationNotification();
             return redirect()->route('home');
         }
         else if($data['user']=='dosennonunpad'){
@@ -146,7 +146,6 @@ class RegisterController extends Controller
             ]);
             $id = DB::getPdo()->lastInsertId();
             Auth::login($user);
-            $user->sendEmailVerificationNotification();
             auth()->user()->assignRole('Dosen Non Unpad');
             if($data->file('image')!=null){
                 $directory = '/upload/users/'.$id.'/';
@@ -173,6 +172,7 @@ class RegisterController extends Controller
                     'study_program' => $data->study_program
                 ]);
             }
+            $user->sendEmailVerificationNotification();
             return redirect()->route('home');
         }
         else if($data['user']=='mahasiswaunpad'){
@@ -197,7 +197,6 @@ class RegisterController extends Controller
             ]);
             $id = DB::getPdo()->lastInsertId();
             Auth::login($user);
-            $user->sendEmailVerificationNotification();
             auth()->user()->assignRole('Mahasiswa Unpad');
             if($data->file('image')!=null){
                 $directory = '/upload/users/'.$id.'/';
@@ -226,6 +225,7 @@ class RegisterController extends Controller
                     'email_lecturer' => $data->email_lecturer
                 ]);
             }
+            $user->sendEmailVerificationNotification();
             return redirect()->route('home');
         }
         else if($data['user']=='mahasiswanonunpad'){
@@ -247,7 +247,6 @@ class RegisterController extends Controller
             ]);
             $id = DB::getPdo()->lastInsertId();
             Auth::login($user);
-            $user->sendEmailVerificationNotification();
             auth()->user()->assignRole('Mahasiswa Non Unpad');
             if($data->file('image')!=null){
                 $directory = '/upload/users/'.$id.'/';
@@ -276,6 +275,7 @@ class RegisterController extends Controller
                     'email_lecturer' => $data->email_lecturer
                 ]);
             }
+            $user->sendEmailVerificationNotification();
             return redirect()->route('home');
         }
         else if($data['user']=='userumum'){
@@ -295,7 +295,6 @@ class RegisterController extends Controller
             ]);
             $id = DB::getPdo()->lastInsertId();
             Auth::login($user);
-            $user->sendEmailVerificationNotification();
             auth()->user()->assignRole('User Umum');
             $profile = Profile::create([
                 'user_id' => $id,
@@ -304,6 +303,7 @@ class RegisterController extends Controller
                 'institution' => $data->institution,
                 'address' => $data->address
             ]);
+            $user->sendEmailVerificationNotification();
             return redirect()->route('home');
         }
         else{

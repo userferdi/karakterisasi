@@ -98,58 +98,83 @@
     });
   });
 
-  $('body').on('click', '.reject', function (event) {
+  $('body').on('click', '.modal-show', function(event){
     event.preventDefault();
 
     var me = $(this),
         url = me.attr('href'),
-        name = me.attr('name'),
-        csrf_token = $('meta[name="csrf-token"]').attr('content');
+        title = me.attr('name');
 
-    swal({
-      title: "Are you sure want to reject\n'" + name + "'?",
-      text: "You won't be able to revert this!",
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, cancel it!'
-    }).then((result)=>{
-      if(result.value){
-        $.ajax({
-          url: url,
-          type: "POST",
-          data: {
-            '_method': 'PUT',
-            '_token': csrf_token
-          },
-          success: function(response){
-            $('#table').DataTable().ajax.reload();
-            const Toast = Swal.mixin({
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              background: '#BD362F',
-              onOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-              }
-            })
-            Toast.fire({
-              type: 'success',
-              text: 'Data has been deleted'
-            })
-          },
-          error: function(xhr){
-            swal({
-              type: 'error',
-              title: 'Oops...',
-              text: 'Something went wrong!'
-            });
+    var form = $('.form')
+    var validation = Array.prototype.filter.call(form, function(form) {
+      form.classList.remove('was-validated');
+    });
+    $('#modal-body').find("input,textarea,select")
+      .val('')
+      .end();
+
+    $.ajax({
+      url: url,
+      dataType: 'html',
+      success: function (response) {
+        $('#modal-body').html(response);
+        $('#modal-title').text(title);
+        $('#modal-close').text('Cancel');
+        $('#modal-save').text('Submit');
+      }
+    });
+
+    $('#modal').modal('show');
+  });
+
+  $('body').on('submit','.form', function(event){
+    event.preventDefault();
+
+    var form = $('.form'),
+        url = form.attr('action'),
+        method = $('input[name=_method]').val() == undefined ? 'POST' : 'PUT';
+
+    $.ajax({
+      url : url,
+      method : method,
+      data : form.serialize(),
+
+      success: function(response){
+        $('#modal-body').find("input,textarea,select")
+          .val('')
+          .end();
+        $('#modal').modal('hide');
+        $('#table').DataTable().ajax.reload();
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          background: '#28a745',
+          onOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
           }
-        });
+        })
+        Toast.fire({
+          type: 'success',
+          title: 'Data has been saved!'
+        })
+        $('#modal-body').trigger('reset');
+      },
+
+      error: function(xhr){
+        var res = xhr.responseJSON;
+        if ($.isEmptyObject(res) == false) {
+          form.find('.invalid-feedback').remove();
+          form.find('.is-invalid').removeClass('is-invalid');
+          $.each(res.errors, function (key, value) {
+            $('#' + key)
+              .addClass('is-invalid')
+              .after('<div class="invalid-feedback d-block">'+value+'</div>');
+          });
+        }
       }
     });
   });

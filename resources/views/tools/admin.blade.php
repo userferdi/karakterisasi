@@ -99,7 +99,7 @@
     order: [[ 1, "asc" ]],
     columns: [
       {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, width: '5%', className: 'dt-center'},
-      {title: 'Nama', data: 'name', name: 'name', width: '85%', className: 'dt-head-center'},
+      {title: 'Status', data: 'name', name: 'name', width: '85%', className: 'dt-head-center'},
       {title: 'Opsi', data: 'action', name: 'action', orderable:false, width: '10%', className: 'dt-center'}
     ],
   });
