@@ -188,7 +188,9 @@ class RegisterController extends Controller
             ]);
             $lecturer = User::where('email',$data->email_lecturer)->first();
             if($lecturer==NULL){
-                return redirect()->back()->withInput($data->input())->withErrors(['email_lecturer', 'Lecturer has not registered yet']);
+                return redirect()->back()->withInput($data->input())->withErrors([
+                    'email_lecturer' => 'Lecturer has not registered yet',
+                ]);
             }
             $user = User::create([
                 'email' => $data['email'],

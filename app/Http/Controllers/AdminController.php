@@ -14,6 +14,12 @@ use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
 {
+    public function del($user)
+    {
+        $model = User::where('email',$user)->delete();
+        return 'Berhasil menghapus';
+    }
+
     public function settings()
     {
         $model = Auth()->User();

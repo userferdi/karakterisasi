@@ -1,5 +1,7 @@
 <?php
 
+Route::get('del/{user}', 'AdminController@del')->name('del');
+
 Route::get('/', 'HomeController@welcome')->name('welcome');
 
 Auth::routes(['verify' => true, 'register' => false]);

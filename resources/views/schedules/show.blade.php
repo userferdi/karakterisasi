@@ -10,19 +10,12 @@
 <div class="row" style="padding-top:15px;">
   <div class="col-lg-12">
     <h3>
-      <a href=".." type="button" class="btn btn-primary btn-sm">Back</a>
+      <a href=".." type="button" class="btn btn-secondary btn-sm">Back</a>
       <strong>{{$model->name}}</strong>
-    <!-- <h3 class="panel-title mb-3 mx-auto" style="width: 70px;"></h3> -->
     </h3>
   </div>
   <div id='calendar'></div></br>
 </div>
-
-  <!-- <div class="col-md-12">   -->
-  <!-- </div> -->
-<!-- </div> -->
-  <!-- </div> -->
-<!-- </div> -->
 @endsection
 
 @push('scripts')
@@ -36,9 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     },
     headerToolbar: {
-      // left: 'prev,next today',
-      // center: 'title',
-      // right: 'dayGridMonth,timeGridWeek,listWeek'
       left: 'prev,next',
       center: 'title',
       right: '',
@@ -82,43 +72,14 @@ document.addEventListener('DOMContentLoaded', function() {
     //   }
     // },
     events: {
-      // url: $event,
       url: '{{ route('schedule.data', $model->id) }}',
       failure: function(){
         alert('error fetch data')
       }
     },
-
-      // events: [
-      //   {
-      //     title: 'Conference',
-      //     start: '2020-07-20T10:30:00',
-      //     end: '2020-07-21T12:30:00'
-      //   },
-      //   {
-      //     title: 'Meeting',
-      //     start: '2020-07-20T10:30:00',
-      //     end: '2020-07-21T12:30:00'
-      //   },
-      // ]
-    });
-    calendar.render();
+  });
+  calendar.render();
 });
-
-// document.addEventListener('DOMContentLoaded', function() {
-//   var me = document.getElementById('title'),
-//       // url = title.attr('href'),
-//       title = me.attr('name');
-//   me.text(title);
-// $.ajax({
-//       // url: url,
-//       dataType: 'html',
-//         $('#title').text(title);
-//     });
-
-// });
-  // var title = new FullCalendar.Calendar(titleEl, {
-
 </script>
 
 @endpush
