@@ -368,8 +368,8 @@ class VerificationController extends Controller
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
-                $mail->Username = 'support.finder@unpad.ac.id';
-                $mail->Password = 'n4noPRINT';
+                $mail->Username = 'functionalnanopowder@gmail.com';
+                $mail->Password = '1w3r!W#R';
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 587;
                 $mail->SetFrom('functionalnanopowder@gmail.com', 'FINDER');
@@ -570,8 +570,8 @@ class VerificationController extends Controller
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'support.finder@unpad.ac.id';
-            $mail->Password = 'n4noPRINT';
+            $mail->Username = 'functionalnanopowder@gmail.com';
+            $mail->Password = '1w3r!W#R';
             $mail->SMTPSecure = 'tls';
             $mail->Port = 587;
             $mail->SetFrom('functionalnanopowder@gmail.com', 'FINDER');
