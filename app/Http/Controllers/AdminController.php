@@ -38,14 +38,12 @@ class AdminController extends Controller
     public function showAccount($id)
     {
         $model = User::find($id);
-        if(Auth()->User()->hasRole('Mahasiswa Unpad|Mahasiswa Non Unpad')){
-            $lecturer = User::where('email',$model->profiles->email_lecturer)->first();
-            if($lecturer!=NULL){
-                $model['lecturer'] = User::where('email',$model->profiles->email_lecturer)->first()->name;
-            }
-            else{
-                $model['lecturer'] = $model->profiles->email_lecturer;
-            }
+        $lecturer = User::where('email',$model->profiles->email_lecturer)->first();
+        if($lecturer!=NULL){
+            $model['lecturer'] = User::where('email',$model->profiles->email_lecturer)->first()->name;
+        }
+        else{
+            $model['lecturer'] = $model->profiles->email_lecturer;
         }
         return view('showProfile', ['model' => $model]);
     }

@@ -18,13 +18,10 @@
         {!! Form::text('many', null, ['class' => 'form-control', 'id' => 'many', 'required']) !!}
     </div>
     <div class="float-right" style="margin-right:5px;">
-        <!-- <button type="button" class="btn btn-default" data-dismiss="modal" id="modal-close"></button> -->
         <button type="submit" class="btn btn-primary" id="many-save"></button>
     </div>
 </div>
 {!! Form::close() !!}
 
 <div class="modal-body" id="modal-bill">
-    <!-- </div> -->
-<!-- </div> -->
 

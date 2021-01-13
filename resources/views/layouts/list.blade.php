@@ -61,14 +61,14 @@
                       <p>Universitas Padjadjaran<br/>Jalan Raya Bandung-Sumedang KM. 21<br/>Jatinangor, Jawa Barat, Indonesia 45363</p>
                       <p>Jam Operasional<br/>Senin - Jumat (08:00 - 17:00 WIB)</p>
                       <p>Contact<br/>Email : <a class="text-dark" href="mailto:admin@finder.ac.id" target="_blank">admin@finder.ac.id</a></p>
-                      <a class="btn btn-outline-dark btn-social mx-1" href="#!">
+                      <a class="btn btn-outline-dark btn-social mx-1" href="https://www.linkedin.com/company/finder-unpad">
+                        <i class="fab fa-linkedin-in"></i>
+                      </a>
+                      <a class="btn btn-outline-dark btn-social mx-1" href="https://www.facebook.com/Functional-Nanopowder-104842281412847">
                         <i class="fab fa-facebook-f"></i>
                       </a>
-                      <a class="btn btn-outline-dark btn-social mx-1" href="#!">
-                        <i class="fab fa-twitter"></i>
-                      </a>
-                      <a class="btn btn-outline-dark btn-social mx-1" href="#!">
-                        <i class="fab fa-linkedin-in"></i>
+                      <a class="btn btn-outline-dark btn-social mx-1" href="https://www.instagram.com/finder_id">
+                        <i class="fab fa-instagram"></i>
                       </a>
                       <a class="btn btn-outline-dark btn-social mx-1" href="#!">
                         <i class="fab fa-whatsapp"></i>

@@ -47,7 +47,7 @@
 @lang('Hormat Kami,'),<br><br>
 @lang('Sekretariat SILA FINDER'),<br>
 @lang('Jl. Raya Bandung-Sumedang KM. 21, Indonesia 45363'),<br>
-@lang('Email : code@padjadjaranlab.com'),<br>
+@lang('Email : support.finder@unpad.ac.id'),<br>
 @endif
 
 {{-- Subcopy --}}

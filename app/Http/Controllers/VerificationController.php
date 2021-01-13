@@ -115,7 +115,7 @@ class VerificationController extends Controller
 <p>No ID : <b>'.$model->orders->users->profiles->no_id.'</b></p>
 <p>Email : <b>'.$model->orders->users->email.'</b></p>
 <p>Institusi : <b>'.$model->orders->users->profiles->institution.'</b></p>
-<p>Alamat : <b>'.$model->orders->users->profiles->address.'</b></p>
+<p>Alamat : <b>'.$model->orders->users->profiles->address.'</b></p><br>
 <p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari User Umum tersebut. Untuk melihat detail pemesanan dan melakukan verifikasi silahkan Log-In ke Website SILA Finder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
 <p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melihat detail pemesanan dan melakukan verifikasi terhadap permintaan penggunaan alat.</p><br>
 <p>Hormat Kami,</p>
@@ -308,22 +308,21 @@ class VerificationController extends Controller
                 'token' => $newtoken,
                 'status' => 3,
             ]);
-            // if($save == true){
-                $model = Booking::find($id);
-                $mail = new PHPMailer(true);
-                try{
-                    $mail->Encoding = 'base64';
-                    $mail->isSMTP();
-                    $mail->Host = 'smtp.gmail.com';
-                    $mail->SMTPAuth = true;
-                    $mail->Username = 'functionalnanopowder@gmail.com';
-                    $mail->Password = '1w3r!W#R';
-                    $mail->SMTPSecure = 'tls';
-                    $mail->Port = 587;
-                    $mail->SetFrom('functionalnanopowder@gmail.com', 'FINDER');
-                    $mail->AddAddress('functionalnanopowder@gmail.com');
-                    $mail->Subject = 'Permintaan Verifikasi Booking Alat';
-                    $mail->Body = '
+            $model = Booking::find($id);
+            $mail = new PHPMailer(true);
+            try{
+                $mail->Encoding = 'base64';
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'functionalnanopowder@gmail.com';
+                $mail->Password = '1w3r!W#R';
+                $mail->SMTPSecure = 'tls';
+                $mail->Port = 587;
+                $mail->SetFrom('functionalnanopowder@gmail.com', 'FINDER');
+                $mail->AddAddress('functionalnanopowder@gmail.com');
+                $mail->Subject = 'Permintaan Verifikasi Booking Alat';
+                $mail->Body = '
 <p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br>
 <p>Nama Mahasiswa : <b>'.$model->orders->users->name.'</b></p>
 <p>NIM : <b>'.$model->orders->users->profiles->no_id.'</b></p>
@@ -336,13 +335,12 @@ class VerificationController extends Controller
 <p>Hormat Kami,</p>
 <p>Sekretariat SILA FINDER</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
-                    $mail->isHTML(true);
-                    $mail->Send();
-                    return response()->json(true);
-                }catch (Exception $e) {
-                    return response()->json(error);
-                }
-            // }
+                $mail->isHTML(true);
+                $mail->Send();
+                return response()->json(true);
+            }catch (Exception $e) {
+                return response()->json(error);
+            }
         }
         if($model->status == 3){
             $model = $request->all();
@@ -355,6 +353,81 @@ class VerificationController extends Controller
             $save = Booking::find($id)->update([
                 'status' => 6,
             ]);
+            if($model->datetime == 1){
+                $date = date('d M Y', strtotime($model->date1)).' '.$model->times1->name;
+            }
+            else if($model->datetime == 2){
+                $date = date('d M Y', strtotime($model->date2)).' '.$model->times2->name;
+            }
+            else if($model->datetime == 3){
+                $date = date('d M Y', strtotime($model->date3)).' '.$model->times3->name;
+            }
+            $mail = new PHPMailer(true);
+            try{
+                $mail->Encoding = 'base64';
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'support.finder@unpad.ac.id';
+                $mail->Password = 'n4noPRINT';
+                $mail->SMTPSecure = 'tls';
+                $mail->Port = 587;
+                $mail->SetFrom('functionalnanopowder@gmail.com', 'FINDER');
+                $mail->AddAddress('support.finder@unpad.ac.id');
+                $mail->Subject = 'Konfirmasi Booking Alat';
+                if($model->orders->users->hasRole('User Umum')){
+                    $mail->Body = '
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FINDER) Unpad menerima <b>konfirmasi</b> penggunaan alat dari:</p><br>
+<p>Nama : <b>'.$model->orders->users->name.'</b></p>
+<p>No ID : <b>'.$model->orders->users->profiles->no_id.'</b></p>
+<p>Email : <b>'.$model->orders->users->email.'</b></p>
+<p>Institusi : <b>'.$model->orders->users->profiles->institution.'</b></p>
+<p>Alamat : <b>'.$model->orders->users->profiles->address.'</b></p><br>
+<p>Penggunaan Alat : <b>'.$model->orders->tools->name.'</b></p>
+<p>Jadwal Penggunaan Alat : <b>'.$date.'</b></p><br>
+<p>Anda sebagai Admin diminta untuk mempersiapkan penggunaan alat sesuai dengan jadwal.</p><br>
+<p>Hormat Kami,</p>
+<p>Sekretariat SILA FINDER</p>
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
+                }
+                else if($model->orders->users->hasRole('Dosen Unpad')){
+                    $mail->Body = '
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FINDER) Unpad menerima <b>konfirmasi</b> penggunaan alat dari:</p><br>
+<p>Nama Dosen : <b>'.$model->orders->users->name.'</b></p>
+<p>NIDN : <b>'.$model->orders->users->profiles->no_id.'</b></p>
+<p>Email : <b>'.$model->orders->users->email.'</b></p>
+<p>Program Studi : <b>'.$model->orders->users->profiles->study_program.'</b></p>
+<p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
+<p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br>
+<p>Penggunaan Alat : <b>'.$model->orders->tools->name.'</b></p>
+<p>Jadwal Penggunaan Alat : <b>'.$date.'</b></p><br>
+<p>Anda sebagai Admin diminta untuk mempersiapkan penggunaan alat sesuai dengan jadwal.</p><br>
+<p>Hormat Kami,</p>
+<p>Sekretariat SILA FINDER</p>
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
+                }
+                else{
+                    $mail->Body = '
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FINDER) Unpad menerima <b>konfirmasi</b> penggunaan alat dari:</p><br>
+<p>Nama Mahasiswa : <b>'.$model->orders->users->name.'</b></p>
+<p>NIM : <b>'.$model->orders->users->profiles->no_id.'</b></p>
+<p>Email : <b>'.$model->orders->users->email.'</b></p>
+<p>Program Studi : <b>'.$model->orders->users->profiles->study_program.'</b></p>
+<p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
+<p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br>
+<p>Penggunaan Alat : <b>'.$model->orders->tools->name.'</b></p>
+<p>Jadwal Penggunaan Alat : <b>'.$date.'</b></p><br>
+<p>Anda sebagai Admin diminta untuk mempersiapkan penggunaan alat sesuai dengan jadwal.</p><br>
+<p>Hormat Kami,</p>
+<p>Sekretariat SILA FINDER</p>
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
+                }
+
+                $mail->isHTML(true);
+                $mail->Send();
+            }catch (Exception $e) {
+                return response()->json(error);
+            }
             if($model->datetime == 1){
                 $date = $model->date1;
                 $time = $model->times1_id;
@@ -482,6 +555,80 @@ class VerificationController extends Controller
             'token' => NULL,
             'status' => 9,
         ]);
+        if($model->datetime == 1){
+            $date = date('d M Y', strtotime($model->date1)).' '.$model->times1->name;
+        }
+        else if($model->datetime == 2){
+            $date = date('d M Y', strtotime($model->date2)).' '.$model->times2->name;
+        }
+        else if($model->datetime == 3){
+            $date = date('d M Y', strtotime($model->date3)).' '.$model->times3->name;
+        }
+        $mail = new PHPMailer(true);
+        try{
+            $mail->Encoding = 'base64';
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'support.finder@unpad.ac.id';
+            $mail->Password = 'n4noPRINT';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
+            $mail->SetFrom('functionalnanopowder@gmail.com', 'FINDER');
+            $mail->AddAddress('support.finder@unpad.ac.id');
+            $mail->Subject = 'Cancel Booking Alat';
+            if($model->orders->users->hasRole('User Umum')){
+                $mail->Body = '
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FINDER) Unpad menerima <b>pembatalan</b> penggunaan alat dari:</p><br>
+<p>Nama : <b>'.$model->orders->users->name.'</b></p>
+<p>No ID : <b>'.$model->orders->users->profiles->no_id.'</b></p>
+<p>Email : <b>'.$model->orders->users->email.'</b></p>
+<p>Institusi : <b>'.$model->orders->users->profiles->institution.'</b></p>
+<p>Alamat : <b>'.$model->orders->users->profiles->address.'</b></p><br>
+<p>Penggunaan Alat : <b>'.$model->orders->tools->name.'</b></p>
+<p>Jadwal Penggunaan Alat : <b>'.$date.'</b></p><br>
+<p>Anda sebagai Admin tidak perlu mempersiapkan penggunaan alat.</p><br>
+<p>Hormat Kami,</p>
+<p>Sekretariat SILA FINDER</p>
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
+            }
+            else if($model->orders->users->hasRole('Dosen Unpad')){
+                $mail->Body = '
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FINDER) Unpad menerima <b>pembatalan</b> penggunaan alat dari:</p><br>
+<p>Nama Dosen : <b>'.$model->orders->users->name.'</b></p>
+<p>NIDN : <b>'.$model->orders->users->profiles->no_id.'</b></p>
+<p>Email : <b>'.$model->orders->users->email.'</b></p>
+<p>Program Studi : <b>'.$model->orders->users->profiles->study_program.'</b></p>
+<p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
+<p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br>
+<p>Penggunaan Alat : <b>'.$model->orders->tools->name.'</b></p>
+<p>Jadwal Penggunaan Alat : <b>'.$date.'</b></p><br>
+<p>Anda sebagai Admin tidak perlu mempersiapkan penggunaan alat.</p><br>
+<p>Hormat Kami,</p>
+<p>Sekretariat SILA FINDER</p>
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
+            }
+            else{
+                $mail->Body = '
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FINDER) Unpad menerima <b>pembatalan</b> penggunaan alat dari:</p><br>
+<p>Nama Mahasiswa : <b>'.$model->orders->users->name.'</b></p>
+<p>NIM : <b>'.$model->orders->users->profiles->no_id.'</b></p>
+<p>Email : <b>'.$model->orders->users->email.'</b></p>
+<p>Program Studi : <b>'.$model->orders->users->profiles->study_program.'</b></p>
+<p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
+<p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br>
+<p>Penggunaan Alat : <b>'.$model->orders->tools->name.'</b></p>
+<p>Jadwal Penggunaan Alat : <b>'.$date.'</b></p><br>
+<p>Anda sebagai Admin tidak perlu mempersiapkan penggunaan alat.</p><br>
+<p>Hormat Kami,</p>
+<p>Sekretariat SILA FINDER</p>
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
+            }
+            $mail->isHTML(true);
+            $mail->Send();
+        }catch (Exception $e) {
+            return response()->json(error);
+        }
         return response()->json($model);
     }
 

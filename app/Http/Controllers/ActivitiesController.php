@@ -584,7 +584,6 @@ class ActivitiesController extends Controller
             ->removeColumn('times3_id')
             ->removeColumn('users_id')
             ->removeColumn('token')
-            // ->removeColumn('note')
             ->addIndexColumn()
             ->rawColumns(['attend', 'detail'])
             ->make(true);
@@ -660,7 +659,11 @@ class ActivitiesController extends Controller
 
     public function adminBooking()
     {
-        $model = Booking::where('status',3)->get();
+        $model = Booking::where(function($model){
+            $model->where('status',1)
+                  ->orWhere('status',2)
+                  ->orWhere('status',3);
+        })->get();
         return DataTables::of($model)
             ->editColumn('date1', function($model){
                 $date = date('d M Y', strtotime($model->date1));
@@ -705,7 +708,12 @@ class ActivitiesController extends Controller
             ->addColumn('unique', function($model){
                 return $model->orders->unique;
             })
-            ->editColumn('status', function($model){
+            ->addColumn('detail', function($model){
+                $button = 
+'<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>';
+                return $button;
+            })
+            ->addColumn('action', function($model){
                 if ($model->status == 1){
                     return 'Menunggu konfirmasi pada email Anda';
                 }
@@ -713,20 +721,12 @@ class ActivitiesController extends Controller
                     return 'Menunggu konfirmasi dari Dosen Pembimbing Anda';
                 }
                 else if ($model->status == 3){
-                    return 'Menunggu konfirmasi dari Admin';
-                }
-            })
-            ->addColumn('detail', function($model){
-                $button = 
-'<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>';
-                return $button;
-            })
-            ->addColumn('action', function($model){
-                $button = 
+                    $button = 
 '<a href="'.route('verify.showConfirm', $model->id).'" class="btn btn-primary btn-sm modal-show" name="Confirm: '.$model->no_form.'">Confirm</a>
 <a href="'.route('verify.showReschedule', $model->id).'" class="btn btn-warning btn-sm modal-show" name="Reschedule: '.$model->no_form.'">Reschedule</a>
 <a href="'.route('verify.showReject', $model->id).'" class="btn btn-danger btn-sm modal-show" name="Reject: '.$model->no_form.'">Reject</a>';
-                return $button;
+                    return $button;
+                }
             })
             ->removeColumn('id')
             ->removeColumn('times1_id')

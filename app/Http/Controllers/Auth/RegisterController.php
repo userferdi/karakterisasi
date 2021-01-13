@@ -59,6 +59,9 @@ class RegisterController extends Controller
         else if($user=='userumum'){
             return view('auth.register.userumum');
         }
+        else if($user=='admin'){
+            return view('auth.register.admin');
+        }
         else{
             abort(404);
         }
@@ -75,11 +78,11 @@ class RegisterController extends Controller
             $user = User::create([
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
-                'name' => $data['name']
+                'name' => $data['name'],
+                'email_verified_at' => date('Y-m-d H:i:s')
             ]);
-            Auth::login($user);
             auth()->user()->assignRole('Admin');
-            $user->sendEmailVerificationNotification();
+            Auth::login($user);
             return redirect()->route('home');
         }
         else if($data['user']=='dosenunpad'){
@@ -98,55 +101,8 @@ class RegisterController extends Controller
                 'name' => $data['name']
             ]);
             $id = DB::getPdo()->lastInsertId();
-            Auth::login($user);
             auth()->user()->assignRole('Dosen Unpad');
-            if($data->file('image')!=null){
-                $directory = '/upload/users/'.$id.'/';
-                $filename = $data->name.'.'.$data->image->getClientOriginalExtension();
-                $image = $directory.$filename;
-                $data->image->move(public_path($directory), $filename);
-                $profile = Profile::create([
-                    'user_id' => $id,
-                    'no_id' => $data->no_id,
-                    'no_hp' => $data->no_hp,
-                    'image' => $image,
-                    'university' => 'Universitas Padjadjaran',
-                    'faculty' => Faculty::find($data->faculty)->name,
-                    'study_program' => study_program::find($data->study_program)->name
-                ]);
-            }
-            else{
-                $profile = Profile::create([
-                    'user_id' => $id,
-                    'no_id' => $data->no_id,
-                    'no_hp' => $data->no_hp,
-                    'university' => 'Universitas Padjadjaran',
-                    'faculty' => Faculty::find($data->faculty)->name,
-                    'study_program' => study_program::find($data->study_program)->name
-                ]);
-            }
-            $user->sendEmailVerificationNotification();
-            return redirect()->route('home');
-        }
-        else if($data['user']=='dosennonunpad'){
-            $data->validate([
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => ['required', 'string', 'min:8', 'confirmed'],
-                'name' => ['required', 'string', 'max:255'],
-                'no_id' => ['required', 'digits_between:8,24'],
-                'no_hp' => ['required', 'digits_between:8,16'],
-                'university' => ['required', 'string', 'max:255'],
-                'faculty' => ['required', 'string', 'max:255'],
-                'study_program' => ['required', 'string', 'max:255']
-            ]);
-            $user = User::create([
-                'email' => $data['email'],
-                'password' => Hash::make($data['password']),
-                'name' => $data['name']
-            ]);
-            $id = DB::getPdo()->lastInsertId();
             Auth::login($user);
-            auth()->user()->assignRole('Dosen Non Unpad');
             if($data->file('image')!=null){
                 $directory = '/upload/users/'.$id.'/';
                 $filename = $data->name.'.'.$data->image->getClientOriginalExtension();
@@ -157,9 +113,9 @@ class RegisterController extends Controller
                     'no_id' => $data->no_id,
                     'no_hp' => $data->no_hp,
                     'image' => $image,
-                    'university' => $data->university,
-                    'faculty' => $data->faculty,
-                    'study_program' => $data->study_program
+                    'university' => 'Universitas Padjadjaran',
+                    'faculty' => Faculty::find($data->faculty)->name,
+                    'study_program' => study_program::find($data->study_program)->name
                 ]);
             }
             else{
@@ -167,9 +123,9 @@ class RegisterController extends Controller
                     'user_id' => $id,
                     'no_id' => $data->no_id,
                     'no_hp' => $data->no_hp,
-                    'university' => $data->university,
-                    'faculty' => $data->faculty,
-                    'study_program' => $data->study_program
+                    'university' => 'Universitas Padjadjaran',
+                    'faculty' => Faculty::find($data->faculty)->name,
+                    'study_program' => study_program::find($data->study_program)->name
                 ]);
             }
             $user->sendEmailVerificationNotification();
@@ -224,56 +180,6 @@ class RegisterController extends Controller
                     'university' => 'Universitas Padjadjaran',
                     'faculty' => Faculty::find($data->faculty)->name,
                     'study_program' => study_program::find($data->study_program)->name,
-                    'email_lecturer' => $data->email_lecturer
-                ]);
-            }
-            $user->sendEmailVerificationNotification();
-            return redirect()->route('home');
-        }
-        else if($data['user']=='mahasiswanonunpad'){
-            $data->validate([
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => ['required', 'string', 'min:8', 'confirmed'],
-                'name' => ['required', 'string', 'max:255'],
-                'no_id' => ['required', 'digits_between:8,24'],
-                'no_hp' => ['required', 'digits_between:8,16'],
-                'university' => ['required', 'string', 'max:255'],
-                'faculty' => ['required', 'string', 'max:255'],
-                'study_program' => ['required', 'string', 'max:255'],
-                'email_lecturer' => ['required', 'string', 'email', 'max:255']
-            ]);
-            $user = User::create([
-                'email' => $data['email'],
-                'password' => Hash::make($data['password']),
-                'name' => $data['name']
-            ]);
-            $id = DB::getPdo()->lastInsertId();
-            Auth::login($user);
-            auth()->user()->assignRole('Mahasiswa Non Unpad');
-            if($data->file('image')!=null){
-                $directory = '/upload/users/'.$id.'/';
-                $filename = $data->name.'.'.$data->image->getClientOriginalExtension();
-                $image = $directory.$filename;
-                $data->image->move(public_path($directory), $filename);
-                $profile = Profile::create([
-                    'user_id' => $id,
-                    'no_id' => $data->no_id,
-                    'no_hp' => $data->no_hp,
-                    'image' => $image,
-                    'university' => $data->university,
-                    'faculty' => $data->faculty,
-                    'study_program' => $data->study_program,
-                    'email_lecturer' => $data->email_lecturer
-                ]);
-            }
-            else{
-                $profile = Profile::create([
-                    'user_id' => $id,
-                    'no_id' => $data->no_id,
-                    'no_hp' => $data->no_hp,
-                    'university' => $data->university,
-                    'faculty' => $data->faculty,
-                    'study_program' => $data->study_program,
                     'email_lecturer' => $data->email_lecturer
                 ]);
             }

@@ -25,7 +25,6 @@
   <div class="container page-section">
     <h4 class="page-section-heading text-center text-uppercase text-dark">Informasi Layanan</h4>
     <div class="row ml-auto">
-      <!-- Sebelum melakukan akses, silahkan login -->
       <ol>
         <ul>
           <h4>Registrasi</h4>
