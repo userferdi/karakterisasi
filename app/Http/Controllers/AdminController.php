@@ -59,11 +59,17 @@ class AdminController extends Controller
         $request->validate([
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users']
         ]);
-        $model = User::find($id)->update([
-            'email' => $request->email,
-            'email_verified_at' => NULL
+        $model = User::find($id);
+        $profiles = Profile::where('email_lecturer',$model->email)->get();
+        foreach($profiles as &$profile){
+            $save = $profile->update([
+                'email_lecturer' => $request->email
+            ]);
+        }
+        $save = User::find($id)->update([
+            'email' => $request->email
         ]);
-        // return response()->json();
+        return response()->json($save);
     }
 
     public function account()
@@ -166,11 +172,18 @@ class AdminController extends Controller
     public function updateLecturer(Request $request)
     {
         $request->validate([
-            'email_lecturer' => ['required'],
-            'password' => ['required'],
+            'email_lecturer' => ['required', 'string', 'email', 'max:255'],
+            'password' => ['required', 'string', 'min:8']
         ]);
         $model = Auth()->User();
         if(password_verify($request->password, $model->password)){
+            $lecturer = User::where('email',$request->email_lecturer)->first();
+            if($lecturer==NULL){
+                $returnData = array(
+                    'errors' => ['email_lecturer'=>'Lecturer has not registered yet']
+                );
+                return response()->json($returnData, 422);
+            }
             $model = Profile::where('user_id',$model->id)->update([
                 'email_lecturer' => $request->email_lecturer
             ]);
@@ -215,18 +228,17 @@ class AdminController extends Controller
             ->addColumn('role', function($model){
                 return $model->roles[0]->name;
             })
-            ->addColumn('change', function($model){
-                $button = 
-'<a href="'.route('account.edit',$model->id).'" class="btn btn-primary modal-show" name="Ganti Email: '.$model->name.'">Ganti Email</a>';
-                return $button;
+            ->editColumn('email', function($model){
+                $email = '<p>'.$model->email.'</p><a href="'.route('account.edit',$model->id).'" class="btn btn-danger btn-sm modal-show" name="Ganti Email: '.$model->name.'">Ganti Email</a>';
+                return $email;
             })
             ->addColumn('show', function($model){
                 $button = 
-'<a href="'.route('account.show',$model->id).'" class="btn btn-primary btn-sm">Lihat</a>';
+'<a href="'.route('account.show',$model->id).'" class="btn btn-danger btn-sm">Lihat</a>';
                 return $button;
             })
             ->addIndexColumn()
-            ->rawColumns(['change', 'show'])
+            ->rawColumns(['email','show'])
             ->make(true);
     }
 }

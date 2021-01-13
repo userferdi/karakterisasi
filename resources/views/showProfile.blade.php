@@ -27,14 +27,10 @@
                 <td>{{$model->profiles->no_id}}</td>
             </tr>
             <tr>
-                <td><b>Dosen Penanggung Jawab</b></td>
+                <td><b>Dosen Pembimbing</b></td>
               @if($model->profiles->email_lecturer!=NULL)
                 <td>
-                  {{$model->lecturer}}
-                </td>
-              @else
-                <td>
-                  <a href="{{ route('settings.edit.lecturer') }}" class="btn-sm btn-primary">Insert Email Dosen</a>
+                  {{$model->lecturer}} ({{$model->profiles->email_lecturer}})
                 </td>
               @endif
               @endif

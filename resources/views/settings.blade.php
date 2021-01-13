@@ -39,6 +39,7 @@
               @if($model->profiles->email_lecturer!=NULL)
                 <td>
                   {{$model->lecturer}}
+                  <a href="{{ route('settings.edit.lecturer') }}" class="btn-sm btn-primary">Ganti Dosen Pembimbing</a>
                 </td>
               @else
                 <td>

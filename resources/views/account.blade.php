@@ -26,8 +26,9 @@
     columns: [
       {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, width: '5%', className: 'dt-center'},
       {title: 'Nama', data: 'name', name: 'name', width: '20%', className: 'dt-head-center'},
-      {title: 'Email', data: 'email', name: 'email', width: '20%', className: 'dt-head-center'},
-      {title: 'Change Email', data: 'change', name: 'change', width: '20%', className: 'dt-center'},
+      {title: 'Email', data: 'email', name: 'email', width: '20%', className: 'dt-center'},
+      {title: 'Role', data: 'role', name: 'role', width: '20%', className: 'dt-center'},
+      // {title: 'Change Email', data: 'change', name: 'change', width: '20%', className: 'dt-center'},
       {title: '', data: 'show', name: 'show', width: '20%', className: 'dt-center'},
     ],
   });
