@@ -11,7 +11,7 @@ class CreateCostsTable extends Migration
         Schema::table('payments', function (Blueprint $table) {
             $table->dropColumn('quantity');
             $table->dropColumn('service');
-            // $table->dropColumn('total');
+            $table->dropColumn('total');
         });
         Schema::create('costs', function (Blueprint $table) {
             $table->bigIncrements('id');
