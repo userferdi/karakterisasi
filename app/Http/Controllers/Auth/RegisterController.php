@@ -101,8 +101,8 @@ class RegisterController extends Controller
                 'name' => $data['name']
             ]);
             $id = DB::getPdo()->lastInsertId();
-            auth()->user()->assignRole('Dosen Unpad');
             Auth::login($user);
+            auth()->user()->assignRole('Dosen Unpad');
             if($data->file('image')!=null){
                 $directory = '/upload/users/'.$id.'/';
                 $filename = $data->name.'.'.$data->image->getClientOriginalExtension();

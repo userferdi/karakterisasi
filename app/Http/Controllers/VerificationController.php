@@ -106,7 +106,7 @@ class VerificationController extends Controller
                         $mail->SMTPSecure = 'tls';
                         $mail->Port = 587;
                         $mail->SetFrom('functionalnanopowder@gmail.com', 'FINDER');
-                        $mail->AddAddress('functionalnanopowder@gmail.com');
+                        $mail->AddAddress('support.finder@unpad.ac.id');
                         $mail->Subject = 'Permintaan Verifikasi Booking Alat';
                         if($model->orders->users->hasRole('User Umum')){
                             $mail->Body = '
@@ -164,7 +164,7 @@ class VerificationController extends Controller
                     $mail->SMTPSecure = 'tls';
                     $mail->Port = 587;
                     $mail->SetFrom('functionalnanopowder@gmail.com', 'FINDER');
-                    $mail->AddAddress('functionalnanopowder@gmail.com');
+                    $mail->AddAddress('support.finder@unpad.ac.id');
                     $mail->Subject = 'Permintaan Verifikasi Booking Alat';
                     $mail->Body = '
 <p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br>
@@ -320,7 +320,7 @@ class VerificationController extends Controller
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 587;
                 $mail->SetFrom('functionalnanopowder@gmail.com', 'FINDER');
-                $mail->AddAddress('functionalnanopowder@gmail.com');
+                $mail->AddAddress('support.finder@unpad.ac.id');
                 $mail->Subject = 'Permintaan Verifikasi Booking Alat';
                 $mail->Body = '
 <p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FINDER) Unpad menerima permintaan penggunaan alat dari:</p><br>
@@ -739,7 +739,7 @@ class VerificationController extends Controller
                     $mail->SMTPSecure = 'ssl';
                     $mail->Port = 465;
                     $mail->SetFrom('functionalnanopowder@gmail.com');
-                    $mail->AddAddress('functionalnanopowder@gmail.com');
+                    $mail->AddAddress('support.finder@unpad.ac.id');
                     $mail->Subject = 'Permintaan Verifikasi Booking Alat';
                     if($model->orders->users->roles[0]->name=='Dosen Unpad'||$model->orders->users->roles[0]->name=='Dosen Non Unpad'){
                     $mail->Body = '

@@ -226,7 +226,15 @@ class AdminController extends Controller
         });
         return DataTables::of($model)
             ->addColumn('role', function($model){
-                return $model->roles[0]->name;
+                $role = $model->roles()->exists();
+                if($role){
+                    return $model->roles[0]->name;
+                }
+                else{
+                    $button = 
+'<a href="'.route('role.Dosen',$model->id).'" class="btn btn-danger btn-sm">Insert Role Dosen</a>';
+                    return $button;
+                }
             })
             ->editColumn('email', function($model){
                 $email = '<p>'.$model->email.'</p><a href="'.route('account.edit',$model->id).'" class="btn btn-danger btn-sm modal-show" name="Ganti Email: '.$model->name.'">Ganti Email</a>';
@@ -238,7 +246,14 @@ class AdminController extends Controller
                 return $button;
             })
             ->addIndexColumn()
-            ->rawColumns(['email','show'])
+            ->rawColumns(['role', 'email','show'])
             ->make(true);
+    }
+
+    public function roleDosen($id)
+    {
+        $model = User::find($id);
+        $model = $model->assignRole('Dosen Unpad');
+        return response()->json($model);
     }
 }
