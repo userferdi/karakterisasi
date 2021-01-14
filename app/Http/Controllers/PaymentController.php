@@ -7,12 +7,14 @@ use App\Payment;
 use App\Price;
 use App\Plan;
 use App\Order;
+use App\Cost;
 
 use PDF;
 use Auth;
 use DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
 {
@@ -121,7 +123,10 @@ class PaymentController extends Controller
     public function showBill($id)
     {
         $model = Payment::find($id);
-        $price = Price::get();
+        $model['total'] = 0;
+        foreach($model->costs as &$cost){
+            $model['total'] += $cost->price*$cost->quantity;
+        }
         if($model->approves->orders->plans_id == 3){
             $email_lecturer = $model->approves->orders->users->profiles->email_lecturer;
             $model['name'] = User::where('email',$email_lecturer)->value('name');
@@ -131,13 +136,16 @@ class PaymentController extends Controller
         }
         $date = date('d F Y',strtotime($model->approves->date));
         $model['datetime'] = $date.' '.$model->approves->times->name;
-        return view('payment.showbill', ['model' => $model, 'price'=>$price]);
+        return view('payment.showbill', ['model' => $model]);
     }
 
     public function pdfBill($id)
     {
         $model = Payment::find($id);
-        $price = Price::get();
+        $model['total'] = 0;
+        foreach($model->costs as &$cost){
+            $model['total'] += $cost->price*$cost->quantity;
+        }
         if($model->approves->orders->plans_id == 3){
             $email_lecturer = $model->approves->orders->users->profiles->email_lecturer;
             $model['name'] = User::where('email',$email_lecturer)->value('name');
@@ -147,7 +155,7 @@ class PaymentController extends Controller
         }
         $date = date('d F Y',strtotime($model->approves->date));
         $model['datetime'] = $date.' '.$model->approves->times->name;
-        $pdf = PDF::loadview('payment.streambill', ['model' => $model, 'price' => $price]);
+        $pdf = PDF::loadview('payment.streambill', ['model' => $model]);
         return $pdf->stream();
     }
 
@@ -169,68 +177,6 @@ class PaymentController extends Controller
             $no+=1;
             $payment['no_invoice'] = $no.'/INV/'.$model->orders->tools->labs->code.'/'.$model->orders->tools->code.date('/m/Y');
 
-            if($model->orders->users->hasRole('Dosen Unpad|Mahasiswa Unpad')){
-                $price = Price::where('id',$request->service1)->first();
-                $price = $price->price1;
-                $quantity = $request->quantity1;
-                $total = $price*$quantity;
-                for($i=1;$i<$request->many;$i++){
-                    $quantity = 'quantity'.($i+1);
-                    $quantity = $request->$quantity;
-                    $service = 'service'.($i+1);
-                    $service = $request->$service;
-                    $price = Price::where('id',$service)->first();
-                    $discount = $price->discount;
-                    $price = $price->price1;
-                    $total = $total+($price*$quantity*(100-$discount)/100);
-                }
-            }
-            else if($model->orders->users->hasRole('Dosen Non Unpad|Mahasiswa Non Unpad')){
-                $price = Price::where('id',$request->service1)->first();
-                $price = $price->price2;
-                $quantity = $request->quantity1;
-                $total = $price*$quantity;
-                for($i=1;$i<$request->many;$i++){
-                    $quantity = 'quantity'.($i+1);
-                    $quantity = $request->$quantity;
-                    $service = 'service'.($i+1);
-                    $service = $request->$service;
-                    $price = Price::where('id',$service)->first();
-                    $discount = $price->discount;
-                    $price = $price->price2;
-                    $total = $total+($price*$quantity*(100-$discount)/100);
-                }
-            }
-            else if($model->orders->users->hasRole('User Umum')){
-                $price = Price::where('id',$request->service1)->first();
-                $price = $price->price3;
-                $quantity = $request->quantity1;
-                $total = $price*$quantity;
-                for($i=1;$i<$request->many;$i++){
-                    $quantity = 'quantity'.($i+1);
-                    $quantity = $request->$quantity;
-                    $service = 'service'.($i+1);
-                    $service = $request->$service;
-                    $price = Price::where('id',$service)->first();
-                    $discount = $price->discount;
-                    $price = $price->price3;
-                    $total = $total+($price*$quantity*(100-$discount)/100);
-                }
-            }
-
-            $payment['quantity'] = $request->quantity1.' ';
-            $payment['service'] = $request->service1.' ';
-            for($i=1;$i<$request->many;$i++){
-                $quantity = 'quantity'.($i+1);
-                $service = 'service'.($i+1);
-                $payment['quantity'] .= $request->$quantity.' ';
-                $payment['service'] .= $request->$service.' ';
-            }
-            $payment['approves_id'] = $id;
-            $payment['total'] = $total;
-            $save = Approve::findOrFail($id)->update([
-                'status' => 2
-            ]);
             if($model->orders->plans_id == 1){
                 $payment['status'] = 1;
             }
@@ -240,72 +186,29 @@ class PaymentController extends Controller
             else{
                 $payment['status'] = 3;
             }
+            $payment['approves_id'] = $id;
             $save = $payment->save();
+            $idPayment = DB::getPdo()->lastInsertId();
+
+            for($i=0; $i<$request->many; $i++){
+                $profile = Cost::create([
+                    'payments_id' => $idPayment,
+                    'service' => $request->service[$i],
+                    'price' => $request->price[$i],
+                    'quantity' => $request->quantity[$i]
+                ]);
+            }
+
+            $save = Approve::findOrFail($id)->update([
+                'status' => 2
+            ]);
             return response()->json($save);
         }
         if($model->status==2){
             $save = Order::where('id', $model->orders_id)->update([
                 'plans_id' => $request->plans_id
             ]);
-            if($model->orders->users->hasRole('Dosen Unpad|Mahasiswa Unpad')){
-                $price = Price::where('id',$request->service1)->first();
-                $price = $price->price1;
-                $quantity = $request->quantity1;
-                $total = $price*$quantity;
-                for($i=1;$i<$request->many;$i++){
-                    $quantity = 'quantity'.($i+1);
-                    $quantity = $request->$quantity;
-                    $service = 'service'.($i+1);
-                    $service = $request->$service;
-                    $price = Price::where('id',$service)->first();
-                    $discount = $price->discount;
-                    $price = $price->price1;
-                    $total = $total+($price*$quantity*(100-$discount)/100);
-                }
-            }
-            else if($model->orders->users->hasRole('Dosen Non Unpad|Mahasiswa Non Unpad')){
-                $price = Price::where('id',$request->service1)->first();
-                $price = $price->price2;
-                $quantity = $request->quantity1;
-                $total = $price*$quantity;
-                for($i=1;$i<$request->many;$i++){
-                    $quantity = 'quantity'.($i+1);
-                    $quantity = $request->$quantity;
-                    $service = 'service'.($i+1);
-                    $service = $request->$service;
-                    $price = Price::where('id',$service)->first();
-                    $discount = $price->discount;
-                    $price = $price->price2;
-                    $total = $total+($price*$quantity*(100-$discount)/100);
-                }
-            }
-            else if($model->orders->users->hasRole('User Umum')){
-                $price = Price::where('id',$request->service1)->first();
-                $price = $price->price3;
-                $quantity = $request->quantity1;
-                $total = $price*$quantity;
-                for($i=1;$i<$request->many;$i++){
-                    $quantity = 'quantity'.($i+1);
-                    $quantity = $request->$quantity;
-                    $service = 'service'.($i+1);
-                    $service = $request->$service;
-                    $price = Price::where('id',$service)->first();
-                    $discount = $price->discount;
-                    $price = $price->price3;
-                    $total = $total+($price*$quantity*(100-$discount)/100);
-                }
-            }
 
-            $payment['quantity'] = $request->quantity1.' ';
-            $payment['service'] = $request->service1.' ';
-            for($i=1;$i<$request->many;$i++){
-                $quantity = 'quantity'.($i+1);
-                $service = 'service'.($i+1);
-                $payment['quantity'] .= $request->$quantity.' ';
-                $payment['service'] .= $request->$service.' ';
-            }
-            $payment['approves_id'] = $id;
-            $payment['total'] = $total;
             if($model->orders->plans_id == 1){
                 $payment['status'] = 1;
             }
@@ -315,7 +218,17 @@ class PaymentController extends Controller
             else{
                 $payment['status'] = 3;
             }
-            $save = Payment::where('approves_id',$id)->update($payment);
+            $payment = Payment::find($model->payments->id)->update($payment);
+
+            $cost = Cost::where('payments_id', $model->payments->id)->delete();
+            for($i=0; $i<$request->many; $i++){
+                $profile = Cost::create([
+                    'payments_id' => $model->payments->id,
+                    'service' => $request->service[$i],
+                    'price' => $request->price[$i],
+                    'quantity' => $request->quantity[$i]
+                ]);
+            }
             return response()->json($save);
         }
         else{
@@ -372,6 +285,10 @@ class PaymentController extends Controller
         }
         return DataTables::of($model)
             ->editColumn('total', function($model){
+                $model['total'] = 0;
+                foreach($model->costs as &$cost){
+                    $model['total'] += $cost->price*$cost->quantity;
+                }
                 $total = 'Rp ';
                 $total .= number_format($model->total, 0, ',', '.');
                 return $total;
@@ -478,12 +395,12 @@ class PaymentController extends Controller
                     if($model->payments->status==1|$model->payments->status==2|$model->payments->status==3){
                         $button =
 '<a href="'.route('payment.form', $model->id).'" class="btn btn-primary btn-sm modal-show" name="'.$model->no_regis.'">Edit</a>
-<a href="'.route('payment.showBill', $model->id).'" class="btn btn-primary btn-sm">Lihat</a>';
+<a href="'.route('payment.showBill', $model->payments->id).'" class="btn btn-primary btn-sm">Lihat</a>';
                         return $button;
                     }
                     else{
                         $button =
-'<a href="'.route('payment.showBill', $model->id).'" class="btn btn-primary btn-sm">Lihat</a>';
+'<a href="'.route('payment.showBill', $model->payments->id).'" class="btn btn-primary btn-sm">Lihat</a>';
                         return $button;
                     }
                 }
@@ -510,7 +427,10 @@ class PaymentController extends Controller
     public function showReceipt($id)
     {
         $model = Payment::find($id);
-        $price = Price::get();
+        $model['total'] = 0;
+        foreach($model->costs as &$cost){
+            $model['total'] += $cost->price*$cost->quantity;
+        }
         if($model->approves->orders->plans_id == 3){
             $email_lecturer = $model->approves->orders->users->profiles->email_lecturer;
             $model['name'] = User::where('email',$email_lecturer)->value('name');
@@ -520,13 +440,16 @@ class PaymentController extends Controller
         }
         $date = date('d F Y',strtotime($model->approves->date));
         $model['datetime'] = $date.' '.$model->approves->times->name;
-        return view('payment.showreceipt', ['model' => $model, 'price'=>$price]);
+        return view('payment.showreceipt', ['model' => $model]);
     }
 
     public function pdfReceipt($id)
     {
         $model = Payment::find($id);
-        $price = Price::get();
+        $model['total'] = 0;
+        foreach($model->costs as &$cost){
+            $model['total'] += $cost->price*$cost->quantity;
+        }
         if($model->approves->orders->plans_id == 3){
             $email_lecturer = $model->approves->orders->users->profiles->email_lecturer;
             $model['name'] = User::where('email',$email_lecturer)->value('name');
@@ -536,7 +459,7 @@ class PaymentController extends Controller
         }
         $date = date('d F Y',strtotime($model->approves->date));
         $model['datetime'] = $date.' '.$model->approves->times->name;
-        $pdf = PDF::loadview('payment.streamreceipt', ['model' => $model, 'price' => $price]);
+        $pdf = PDF::loadview('payment.streamreceipt', ['model' => $model]);
         return $pdf->stream();
     }
 
@@ -622,6 +545,10 @@ class PaymentController extends Controller
         })->get();
         return DataTables::of($model)
             ->editColumn('total', function($model){
+                $model['total'] = 0;
+                foreach($model->costs as &$cost){
+                    $model['total'] += $cost->price*$cost->quantity;
+                }
                 $total = 'Rp ';
                 $total .= number_format($model->total, 0, ',', '.');
                 return $total;

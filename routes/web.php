@@ -1,5 +1,6 @@
 <?php
 
+// Sementara
 Route::get('del/{user}', 'AdminController@del')->name('del');
 
 Route::get('/', 'HomeController@welcome')->name('welcome');
@@ -250,10 +251,6 @@ Route::middleware('auth', 'verified')->group(function(){
 		Route::put('updateaccount/{id}', 'AdminController@updateAccount')->name('account.update');
 		Route::get('show/{id}', 'AdminController@showAccount')->name('account.show');
 		Route::get('datatable', 'AdminController@dataAccount')->name('account.dt');
-
-		Route::prefix('roles')->group(function(){
-			Route::get('dosen/{id}', 'AdminController@roleDosen')->name('role.Dosen');
-		});
 	});
 
 	Route::get('contact', function () {

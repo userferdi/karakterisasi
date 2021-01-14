@@ -45,46 +45,6 @@
         <br/>
         <br/>
       </div>
-
-<?php
-$array = str_split($model->quantity);
-$i=0; $j=0; $k=0; $l=0;
-  foreach ($array as $char){
-    if($char == ' '){
-      $quantity[$k] = 0;
-      for($j=$l;$j<$i;$j++){
-        if(empty($quantity[$k])){
-          $quantity[$k] = $array[$j];
-        }
-        else{
-          $quantity[$k] .= $array[$j];
-        }
-      }
-      $l=$i+1;
-      $k++;
-    }
-    $i++;
-  }
-$array = str_split($model->service);
-$i=0; $j=0; $k=0; $l=0;
-  foreach ($array as $char){
-    if($char == ' '){
-      $service[$k] = 0;
-      for($j=$l;$j<$i;$j++){
-        if(empty($service[$k])){
-          $service[$k] = $array[$j];
-        }
-        else{
-          $service[$k] .= $array[$j];
-        }
-      }
-      $l=$i+1;
-      $k++;
-    }
-    $i++;
-  }
-?>
-
       <div class="col-lg-12">
         <h4 class="mb-3">Detail Tagihan</h4>
         <table id="table" class="table row-border hover order-column text-sm" style="width:100%">
@@ -103,31 +63,13 @@ $i=0; $j=0; $k=0; $l=0;
                 <td> </td>
                 <td> </td>
             </tr>
-            <?php $i=0; ?>
-            @foreach($service as $s)
-            <?php 
-              if($model->approves->orders->users->hasRole('Dosen Unpad|Mahasiswa Unpad')){ 
-                $harga = $price[$s-1]->price1;
-                $diskon = $price[$s-1]->discount;
-              }
-              if($model->approves->orders->users->hasRole('Dosen Non Unpad|Mahasiswa Non Unpad')){ 
-                $harga = $price[$s-1]->price2;
-                $diskon = $price[$s-1]->discount;
-              }
-              if($model->approves->orders->users->hasRole('User Umum')){ 
-                $harga = $price[$s-1]->price3;
-                $diskon = $price[$s-1]->discount;
-              }
-              $banyak = $quantity[$i];
-              $total = $banyak*$harga*(100-$diskon)/100;
-            ?>
+            @foreach($model->costs as $cost)
             <tr>
-                <td>{{$price[$s-1]->service}}</td>
-                <td>{{$quantity[$i]}}</td>
-                <td>Rp {{ number_format($harga, 0, ',', '.') }}</td>
-                <td>Rp {{ number_format($total, 0, ',', '.') }}</td>
+                <td>{{ $cost->service }}</td>
+                <td>{{ $cost->quantity }}</td>
+                <td>Rp {{ number_format($cost->price, 0, ',', '.') }}</td>
+                <td>Rp {{ number_format($cost->quantity*$cost->price, 0, ',', '.') }}</td>
             </tr>
-            <?php $i=$i+1; ?>
             @endforeach
             <tr>
                 <td><b>Total</b></td>

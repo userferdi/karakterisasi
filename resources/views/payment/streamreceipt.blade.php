@@ -1,48 +1,8 @@
-<?php
-	$array = str_split($model->quantity);
-	$i=0; $j=0; $k=0; $l=0;
-	  foreach ($array as $char){
-	    if($char == ' '){
-	      $quantity[$k] = 0;
-	      for($j=$l;$j<$i;$j++){
-	        if(empty($quantity[$k])){
-	          $quantity[$k] = $array[$j];
-	        }
-	        else{
-	          $quantity[$k] .= $array[$j];
-	        }
-	      }
-	      $l=$i+1;
-	      $k++;
-	    }
-	    $i++;
-	  }
-	$array = str_split($model->service);
-	$i=0; $j=0; $k=0; $l=0;
-  foreach ($array as $char){
-    if($char == ' '){
-      $service[$k] = 0;
-      for($j=$l;$j<$i;$j++){
-        if(empty($service[$k])){
-          $service[$k] = $array[$j];
-        }
-        else{
-          $service[$k] .= $array[$j];
-        }
-      }
-      $l=$i+1;
-      $k++;
-    }
-    $i++;
-  }
-?>
-
 <html>
 	<head>
 	<style type="text/css">
 		body {
 		  background: white;
-		  /*border: 1px solid black;*/
 		  padding: 1.8cm;
 		  padding-left: 1.68cm;
 		}
@@ -174,10 +134,6 @@
           <td><b>The sum of</b></td>
           <td><b>Rp {{ number_format($model->total, 0, ',', '.') }}</b></td>
         </tr>
-<!--         <tr>
-          <td><b>Rest of the bill</b></td>
-          <td>-</td>
-        </tr> -->
       </tbody>
     </table>
     <br/>
@@ -199,31 +155,13 @@
             <td> </td>
             <td> </td>
         </tr>
-        <?php $i=0; ?>
-        @foreach($service as $s)
-        <?php 
-          if($model->approves->orders->users->hasRole('Dosen Unpad|Mahasiswa Unpad')){ 
-            $harga = $price[$s-1]->price1;
-            $diskon = $price[$s-1]->discount;
-          }
-          if($model->approves->orders->users->hasRole('Dosen Non Unpad|Mahasiswa Non Unpad')){ 
-            $harga = $price[$s-1]->price2;
-            $diskon = $price[$s-1]->discount;
-          }
-          if($model->approves->orders->users->hasRole('User Umum')){ 
-            $harga = $price[$s-1]->price3;
-            $diskon = $price[$s-1]->discount;
-          }
-          $banyak = $quantity[$i];
-          $total = $banyak*$harga*(100-$diskon)/100;
-        ?>
+        @foreach($model->costs as $cost)
         <tr>
-            <td>{{$price[$s-1]->service}}</td>
-            <td class="center">{{$quantity[$i]}}</td>
-            <td class="center">Rp {{ number_format($harga, 0, ',', '.') }}</td>
-            <td class="center">Rp {{ number_format($total, 0, ',', '.') }}</td>
+	        <td>{{ $cost->service }}</td>
+	        <td class="center">{{ $cost->quantity }}</td>
+	        <td class="center">Rp {{ number_format($cost->price, 0, ',', '.') }}</td>
+	        <td class="center">Rp {{ number_format($cost->quantity*$cost->price, 0, ',', '.') }}</td>
         </tr>
-        <?php $i=$i+1; ?>
         @endforeach
         <tr>
             <td><b>Total</b></td>

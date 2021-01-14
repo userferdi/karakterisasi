@@ -230,11 +230,7 @@ class AdminController extends Controller
                 if($role){
                     return $model->roles[0]->name;
                 }
-                else{
-                    $button = 
-'<a href="'.route('role.Dosen',$model->id).'" class="btn btn-danger btn-sm">Insert Role Dosen</a>';
-                    return $button;
-                }
+                return ' ';
             })
             ->editColumn('email', function($model){
                 $email = '<p>'.$model->email.'</p><a href="'.route('account.edit',$model->id).'" class="btn btn-danger btn-sm modal-show" name="Ganti Email: '.$model->name.'">Ganti Email</a>';
@@ -246,7 +242,7 @@ class AdminController extends Controller
                 return $button;
             })
             ->addIndexColumn()
-            ->rawColumns(['role', 'email','show'])
+            ->rawColumns(['email','show'])
             ->make(true);
     }
 
