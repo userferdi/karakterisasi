@@ -70,10 +70,10 @@ class VerificationController extends Controller
 <p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
 <p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br>
 <p>Anda diminta untuk melakukan verifikasi sebagai Dosen Penanggungjawab terhadap permintaan penggunaan alat dari Mahasiswa tersebut. Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$newtoken).'">di sini!</a></p>
-<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SILA FiNder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
+<p>Untuk melihat detail pemesanan silahkan Log-In ke Website FiNder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
 <p>Silahkan Masuk ke Menu <b>My Students -> Booking Request</b> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda. Apabila Anda tidak melakukan verifikasi maka mahasiswa Anda tidak dapat melanjutkan proses permintaan penggunaan alat.</p><br>
 <p>Hormat Kami,</p>
-<p>Sekretariat SILA FiNder</p>
+<p>Sekretariat FiNder</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
                             $mail->isHTML(true);
                             $mail->Send();
