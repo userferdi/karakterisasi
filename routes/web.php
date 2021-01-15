@@ -166,8 +166,6 @@ Route::middleware('auth', 'verified')->group(function(){
 		Route::get('datatable', 'StudentController@datatable')->name('student.dt');
 		Route::get('booking', 'StudentController@booking')->name('student.booking');
 		Route::get('booking/datatable', 'StudentController@dataBooking')->name('student.databooking');
-		// Route::get('receipt', 'StatusController@index')->name('payment.receipt');
-		// Route::get('history', 'StatusController@index')->name('payment.history');
 	});
 
 	Route::prefix('payment')->group(function(){
@@ -177,6 +175,7 @@ Route::middleware('auth', 'verified')->group(function(){
 		Route::get('form/{id}', 'PaymentController@form')->name('payment.form');
 		Route::get('upload/form/{id}', 'PaymentController@formUpload')->name('payment.formUpload');
 		Route::put('upload/update/{id}', 'PaymentController@updateUpload')->name('payment.updateUpload');
+
 		// Informasi Tagihan (Invoice) dan Upload Bukti Transfer
 		Route::get('bill', 'PaymentController@bill')->name('payment.bill');
 		Route::get('bill/show/{id}', 'PaymentController@showBill')->name('payment.showBill');

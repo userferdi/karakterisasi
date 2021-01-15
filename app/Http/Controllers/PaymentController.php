@@ -74,18 +74,149 @@ class PaymentController extends Controller
         }
         $save = $model->update();
         if($save==true){
-            $save = Approve::where('id', $model->approves_id)->update([
-                'status' => 2
-            ]);
             if($model->status==2){
                 $save = Payment::find($id)->update([
                     'status' => 4
                 ]);
+                $mail = new PHPMailer(true);
+                try{
+                    $mail->Encoding = 'base64';
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.gmail.com';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'functionalnanopowder@gmail.com';
+                    $mail->Password = '1w3r!W#R';
+                    $mail->SMTPSecure = 'tls';
+                    $mail->Port = 587;
+                    $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
+                    $mail->AddAddress('support.finder@unpad.ac.id');
+                    $mail->Subject = 'Telah Melakukan Pembayaran';
+
+                if($model->orders->users->hasRole('User Umum')){
+                    $mail->Body = '
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima <b>pembayaran</b> penggunaan alat dari:</p><br>
+<p>Nama : <b>'.$model->orders->users->name.'</b></p>
+<p>No ID : <b>'.$model->orders->users->profiles->no_id.'</b></p>
+<p>Email : <b>'.$model->orders->users->email.'</b></p>
+<p>Institusi : <b>'.$model->orders->users->profiles->institution.'</b></p>
+<p>Alamat : <b>'.$model->orders->users->profiles->address.'</b></p><br>
+<p>Penggunaan Alat : <b>'.$model->orders->tools->name.'</b></p>
+<p>Jadwal Penggunaan Alat : <b>'.$date.'</b></p><br>
+<p>Anda sebagai Admin diminta untuk memverifikasi pembayaran dan membuat receipt.</p><br>
+<p>Hormat Kami,</p>
+<p>Sekretariat FiNder</p>
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
+                }
+                else if($model->orders->users->hasRole('Dosen Unpad')){
+                    $mail->Body = '
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima <b>pembayaran</b> penggunaan alat dari:</p><br>
+<p>Nama Dosen : <b>'.$model->orders->users->name.'</b></p>
+<p>NIDN : <b>'.$model->orders->users->profiles->no_id.'</b></p>
+<p>Email : <b>'.$model->orders->users->email.'</b></p>
+<p>Program Studi : <b>'.$model->orders->users->profiles->study_program.'</b></p>
+<p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
+<p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br>
+<p>Penggunaan Alat : <b>'.$model->orders->tools->name.'</b></p>
+<p>Jadwal Penggunaan Alat : <b>'.$date.'</b></p><br>
+<p>Anda sebagai Admin diminta untuk memverifikasi pembayaran dan membuat receipt.</p><br>
+<p>Hormat Kami,</p>
+<p>Sekretariat FiNder</p>
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
+                }
+                else{
+                    $mail->Body = '
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima <b>pembayaran</b> penggunaan alat dari:</p><br>
+<p>Nama Mahasiswa : <b>'.$model->orders->users->name.'</b></p>
+<p>NIM : <b>'.$model->orders->users->profiles->no_id.'</b></p>
+<p>Email : <b>'.$model->orders->users->email.'</b></p>
+<p>Program Studi : <b>'.$model->orders->users->profiles->study_program.'</b></p>
+<p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
+<p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br>
+<p>Penggunaan Alat : <b>'.$model->orders->tools->name.'</b></p>
+<p>Jadwal Penggunaan Alat : <b>'.$date.'</b></p><br>
+<p>Anda sebagai Admin diminta untuk memverifikasi pembayaran dan membuat receipt.</p><br>
+<p>Hormat Kami,</p>
+<p>Sekretariat FiNder</p>
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
+                }
+                    $mail->isHTML(true);
+                    $mail->Send();
+                }catch (Exception $e) {
+                    return response()->json(error);
+                }
+
+
             }
             if($model->status==3){
                 $save = Payment::find($id)->update([
                     'status' => 5
                 ]);
+                $mail = new PHPMailer(true);
+                try{
+                    $mail->Encoding = 'base64';
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.gmail.com';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'functionalnanopowder@gmail.com';
+                    $mail->Password = '1w3r!W#R';
+                    $mail->SMTPSecure = 'tls';
+                    $mail->Port = 587;
+                    $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
+                    $mail->AddAddress('support.finder@unpad.ac.id');
+                    $mail->Subject = 'Telah Melakukan Pembayaran';
+                if($model->orders->users->hasRole('User Umum')){
+                    $mail->Body = '
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima <b>pembayaran</b> penggunaan alat dari:</p><br>
+<p>Nama : <b>'.$model->orders->users->name.'</b></p>
+<p>No ID : <b>'.$model->orders->users->profiles->no_id.'</b></p>
+<p>Email : <b>'.$model->orders->users->email.'</b></p>
+<p>Institusi : <b>'.$model->orders->users->profiles->institution.'</b></p>
+<p>Alamat : <b>'.$model->orders->users->profiles->address.'</b></p><br>
+<p>Penggunaan Alat : <b>'.$model->orders->tools->name.'</b></p>
+<p>Jadwal Penggunaan Alat : <b>'.$date.'</b></p><br>
+<p>Anda sebagai Admin diminta untuk memverifikasi pembayaran dan membuat receipt.</p><br>
+<p>Hormat Kami,</p>
+<p>Sekretariat FiNder</p>
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
+                }
+                else if($model->orders->users->hasRole('Dosen Unpad')){
+                    $mail->Body = '
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima <b>pembayaran</b> penggunaan alat dari:</p><br>
+<p>Nama Dosen : <b>'.$model->orders->users->name.'</b></p>
+<p>NIDN : <b>'.$model->orders->users->profiles->no_id.'</b></p>
+<p>Email : <b>'.$model->orders->users->email.'</b></p>
+<p>Program Studi : <b>'.$model->orders->users->profiles->study_program.'</b></p>
+<p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
+<p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br>
+<p>Penggunaan Alat : <b>'.$model->orders->tools->name.'</b></p>
+<p>Jadwal Penggunaan Alat : <b>'.$date.'</b></p><br>
+<p>Anda sebagai Admin diminta untuk memverifikasi pembayaran dan membuat receipt.</p><br>
+<p>Hormat Kami,</p>
+<p>Sekretariat FiNder</p>
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
+                }
+                else{
+                    $mail->Body = '
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima <b>pembayaran</b> penggunaan alat dari:</p><br>
+<p>Nama Mahasiswa : <b>'.$model->orders->users->name.'</b></p>
+<p>NIM : <b>'.$model->orders->users->profiles->no_id.'</b></p>
+<p>Email : <b>'.$model->orders->users->email.'</b></p>
+<p>Program Studi : <b>'.$model->orders->users->profiles->study_program.'</b></p>
+<p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
+<p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br>
+<p>Penggunaan Alat : <b>'.$model->orders->tools->name.'</b></p>
+<p>Jadwal Penggunaan Alat : <b>'.$date.'</b></p><br>
+<p>Anda sebagai Admin diminta untuk memverifikasi pembayaran dan membuat receipt.</p><br>
+<p>Hormat Kami,</p>
+<p>Sekretariat FiNder</p>
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
+                }
+                    $mail->isHTML(true);
+                    $mail->Send();
+                }catch (Exception $e) {
+                    return response()->json(error);
+                }
+
             }
         }
         return response()->json($save);
@@ -202,6 +333,33 @@ class PaymentController extends Controller
             $save = Approve::findOrFail($id)->update([
                 'status' => 2
             ]);
+
+            $mail = new PHPMailer(true);
+            try{
+                $mail->Encoding = 'base64';
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'functionalnanopowder@gmail.com';
+                $mail->Password = '1w3r!W#R';
+                $mail->SMTPSecure = 'tls';
+                $mail->Port = 587;
+                $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
+                $mail->AddAddress($model->orders->users->email);
+                $mail->Subject = 'Menunggu Pembayaran Penggunaan Alat';
+                $mail->Body = '
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad</p><br>
+<p>Permintaan penggunaan alat Anda telah dilakukan.</p>
+<p>Harap untuk segera melakukan pembayaran</p><br>
+<p>Untuk melihat detail pemesanan silahkan Log-In ke Website FiNder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p><br>
+<p>Hormat Kami,</p>
+<p>Sekretariat FiNder</p>
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
+                $mail->isHTML(true);
+                $mail->Send();
+            }catch (Exception $e) {
+                return response()->json(error);
+            }
             return response()->json($save);
         }
         if($model->status==2){
@@ -498,6 +656,10 @@ class PaymentController extends Controller
         }
         return DataTables::of($model)
             ->editColumn('total', function($model){
+                $model['total'] = 0;
+                foreach($model->costs as &$cost){
+                    $model['total'] += $cost->price*$cost->quantity;
+                }
                 $total = 'Rp ';
                 $total .= number_format($model->total, 0, ',', '.');
                 return $total;
@@ -645,6 +807,31 @@ class PaymentController extends Controller
                 'status' => 3
             ]);
             $save = Payment::findOrFail($id)->update($payment);
+            $mail = new PHPMailer(true);
+            try{
+                $mail->Encoding = 'base64';
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'functionalnanopowder@gmail.com';
+                $mail->Password = '1w3r!W#R';
+                $mail->SMTPSecure = 'tls';
+                $mail->Port = 587;
+                $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
+                $mail->AddAddress($model->orders->users->email);
+                $mail->Subject = 'Pembayaran Sukses';
+                $mail->Body = '
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad</p><br>
+<p>Pembayaran Anda telah kami terima.</p>
+<p>Terima kasih telah menggunakan layanan kami</p><br>
+<p>Hormat Kami,</p>
+<p>Sekretariat FiNder</p>
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
+                $mail->isHTML(true);
+                $mail->Send();
+            }catch (Exception $e) {
+                return response()->json(error);
+            }
             return response()->json($save);
         }
         else{
@@ -711,6 +898,10 @@ class PaymentController extends Controller
                 return $model->approves->orders->tools->name;
             })
             ->addColumn('total', function($model){
+                $model['total'] = 0;
+                foreach($model->costs as &$cost){
+                    $model['total'] += $cost->price*$cost->quantity;
+                }
                 $total = 'Rp ';
                 $total .= number_format($model->total, 0, ',', '.');
                 return $total;

@@ -132,7 +132,7 @@ class ActivitiesController extends Controller
 <p>Silahkan Masuk ke Menu <strong>My Activities -> Registration of Tool Usage</strong> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda.</p>
 <p>Jika bukan Anda yang melakukan transaksi tersebut, harap mengabaikan pesan ini.</p><br>
 <p>Hormat Kami,</p>
-<p>Sekretariat SILA FINDER</p>
+<p>Sekretariat FiNder</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
                 $mail->isHTML(true);
                 $mail->Send();
@@ -900,8 +900,12 @@ class ActivitiesController extends Controller
                 return $model->orders->plans->name;
             })
             ->editColumn('total', function($model){
+                $model['total'] = 0;
+                foreach($model->payments->costs as &$cost){
+                    $model['total'] += $cost->price*$cost->quantity;
+                }
                 $total = 'Rp ';
-                $total .= number_format($model->payments->total, 0, ',', '.');
+                $total .= number_format($model->total, 0, ',', '.');
                 return $total;
             })
             ->addColumn('confirm', function($model){

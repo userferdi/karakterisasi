@@ -4,8 +4,8 @@
 
 @section('content')
 <h2 style="padding-top:10px;">Selamat Datang, <strong>{{$user->name}}</strong></h2>
-<a href="https://drive.google.com/file/d/142zFeP5azsKwT9Gw2PJTeC4ZE5Ztz7Fv/view?usp=sharing" class="btn btn-outline-danger btn-sm">Unduh Workflow Booking Alat</a> &ensp;
-<a href="https://drive.google.com/file/d/1E_BrpwhQE12ToEpAF-VQr0Qokimc8owo/view?usp=sharing" class="btn btn-outline-danger btn-sm">Unduh Aturan Registrasi Akun</a><br><br>
+<a href="https://drive.google.com/file/d/1S8rFjQIAtw4VlDuJ0Myl9wV1Li5z2sln/view?usp=sharing" class="btn btn-outline-danger btn-sm">Unduh Workflow Booking Alat</a> &ensp;
+<a href="https://drive.google.com/file/d/1fenWsPhHWntsP1_WAfjwq42GCMq4D6ua/view?usp=sharing" class="btn btn-outline-danger btn-sm">Unduh Aturan Registrasi Akun</a><br><br>
 <div class="row">
   <div class="col-lg-3">
     <!-- small box -->

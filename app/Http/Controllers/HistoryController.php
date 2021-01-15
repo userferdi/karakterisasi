@@ -59,8 +59,12 @@ class HistoryController extends Controller
                 return $model->orders->tools->name;
             })
             ->addColumn('total', function($model){
+                $model['total'] = 0;
+                foreach($model->payments->costs as &$cost){
+                    $model['total'] += $cost->price*$cost->quantity;
+                }
                 $total = 'Rp ';
-                $total .= number_format($model->payments->total, 0, ',', '.');
+                $total .= number_format($model->total, 0, ',', '.');
                 return $total;
             })
             ->editColumn('date', function($model){
@@ -147,8 +151,12 @@ class HistoryController extends Controller
                 return $model->orders->users->name;
             })
             ->addColumn('total', function($model){
+                $model['total'] = 0;
+                foreach($model->payments->costs as &$cost){
+                    $model['total'] += $cost->price*$cost->quantity;
+                }
                 $total = 'Rp ';
-                $total .= number_format($model->payments->total, 0, ',', '.');
+                $total .= number_format($model->total, 0, ',', '.');
                 return $total;
             })
             ->addColumn('status', function($model){
@@ -220,8 +228,12 @@ class HistoryController extends Controller
                 return $model->orders->tools->name;
             })
             ->addColumn('total', function($model){
+                $model['total'] = 0;
+                foreach($model->payments->costs as &$cost){
+                    $model['total'] += $cost->price*$cost->quantity;
+                }
                 $total = 'Rp ';
-                $total .= number_format($model->payments->total, 0, ',', '.');
+                $total .= number_format($model->total, 0, ',', '.');
                 return $total;
             })
             ->addColumn('status', function($model){
