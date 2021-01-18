@@ -143,7 +143,7 @@
       </div>
       @if($model->status==2|$model->status==3)
       <div class="col-lg-12">
-        <p><b>Silakan Transfer ke No Rekening : 988-00411-07000000 FINDER - BNI.</b></p>
+        <p><b>Silakan Transfer ke No Rekening : 988-06190-20200214 KST - BNI.</b></p>
         <p><b>Silakan upload bukti transfer Anda dan tunggu sampai admin kami mengkonfirmasi pembayaran Anda.</b></p>
       </div>
       @endif

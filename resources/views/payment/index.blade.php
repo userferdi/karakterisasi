@@ -38,7 +38,7 @@
             Lakukan transfer sesuai dengan jumlah tagihan.
           </li>
           <li class="numbering">
-            Silakan Transfer ke No Rekening <b>KST</b>
+            Silakan Transfer ke No Rekening <b>988-06190-20200214 KST - BNI</b>
           </li>
           <li class="numbering">
             Upload Bukti Transfer berupa gambar dalam format jpg/png.
