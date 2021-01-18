@@ -266,7 +266,7 @@
 	</div>
 	<br><br>
 	<div class="border-bottom"></div>
-	<p class="center" style="font-size: 8px; padding-top: 4px;"><a class="red" href="https://finder.ac.id">https://finder.ac.id</a> · <a class="red" href="mailto:support.finder@unpad.ac.id">cloud.finder@unpad.ac.id</a></p>
+	<p class="center" style="font-size: 8px; padding-top: 4px;"><a class="red" href="https://finder.ac.id">https://finder.ac.id</a> · <a class="red" href="mailto:support.finder@unpad.ac.id">support.finder@unpad.ac.id</a></p>
 	<div class="footer-3"></div>
 </body>
 </html>
