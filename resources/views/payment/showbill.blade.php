@@ -102,7 +102,7 @@
           <thead class="thead-light">
             <tr>
               <th> </th>
-              <th>Quantity</th>
+              <th>Kuantitas</th>
               <th>Harga</th>
               <th>Total</th>
             </tr>
