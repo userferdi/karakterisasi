@@ -290,6 +290,7 @@ class PaymentController extends Controller
         $date = date('d F Y',strtotime($model->approves->date));
         $model['datetime'] = $date.' '.$model->approves->times->name;
         $pdf = PDF::loadview('payment.streambill', ['model' => $model]);
+        PDF::setOptions(['dpi' => 150, 'defaultFont' => 'Montserrat']);
         return $pdf->stream();
     }
 

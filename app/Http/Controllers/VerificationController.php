@@ -60,18 +60,17 @@ class VerificationController extends Controller
                             $mail->Port = 587;
                             $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
                             $mail->AddAddress($model->orders->users->profiles->email_lecturer);
-                            $mail->Subject = 'Permintaan Verifikasi Booking Alat';
+                            $mail->Subject = 'Verifikasi Booking Alat';
                             $mail->Body = '
-<p> Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima permintaan penggunaan alat dari:</p><br>
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima permintaan penggunaan alat dari:</p><br>
 <p>Nama Mahasiswa : <b>'.$model->orders->users->name.'</b></p>
 <p>NIM : <b>'.$model->orders->users->profiles->no_id.'</b></p>
 <p>Email : <b>'.$model->orders->users->email.'</b></p>
 <p>Program Studi : <b>'.$model->orders->users->profiles->study_program.'</b></p>
 <p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
 <p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br>
-<p>Anda diminta untuk melakukan verifikasi sebagai Dosen Penanggungjawab terhadap permintaan penggunaan alat dari Mahasiswa tersebut. Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$newtoken).'">di sini!</a></p>
-<p>Untuk melihat detail pemesanan silahkan Log-In ke Website FiNder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
-<p>Silahkan Masuk ke Menu <b>My Students -> Booking Request</b> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda. Apabila Anda tidak melakukan verifikasi maka mahasiswa Anda tidak dapat melanjutkan proses permintaan penggunaan alat.</p><br>
+<p>Anda diminta untuk melakukan verifikasi sebagai Dosen Pembimbing terhadap pemesanan booking alat dari Mahasiswa tersebut. Untuk melihat detail pemesanan dan melakukan verifikasi silahkan Log-In ke Website FiNder melalui akun Anda dengan link berikut: <a href="'.route('student.booking').'">Login!</a></p>
+<p>Apabila Anda tidak melakukan verifikasi maka mahasiswa Anda tidak dapat melanjutkan proses permintaan penggunaan alat.</p><br>
 <p>Hormat Kami,</p>
 <p>Sekretariat FiNder</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
@@ -106,7 +105,7 @@ class VerificationController extends Controller
                         $mail->Port = 587;
                         $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
                         $mail->AddAddress('support.finder@unpad.ac.id');
-                        $mail->Subject = 'Permintaan Verifikasi Booking Alat';
+                        $mail->Subject = 'Confirm Booking Alat';
                         if($model->orders->users->hasRole('User Umum')){
                             $mail->Body = '
 <p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima permintaan penggunaan alat dari:</p><br>
@@ -115,7 +114,7 @@ class VerificationController extends Controller
 <p>Email : <b>'.$model->orders->users->email.'</b></p>
 <p>Institusi : <b>'.$model->orders->users->profiles->institution.'</b></p>
 <p>Alamat : <b>'.$model->orders->users->profiles->address.'</b></p><br>
-<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari User Umum tersebut. Untuk melihat detail pemesanan dan melakukan verifikasi silahkan Log-In ke Website SILA FiNder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
+<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari User Umum tersebut. Untuk melihat detail pemesanan dan melakukan verifikasi silahkan Log-In ke Website FiNder melalui akun Anda dengan link berikut: <a href="'.route('status.booking').'">Login!</a></p>
 <p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melihat detail pemesanan dan melakukan verifikasi terhadap permintaan penggunaan alat.</p><br>
 <p>Hormat Kami,</p>
 <p>Sekretariat FiNder</p>
@@ -130,7 +129,7 @@ class VerificationController extends Controller
 <p>Program Studi : <b>'.$model->orders->users->profiles->study_program.'</b></p>
 <p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
 <p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br>
-<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Dosen tersebut. Untuk melihat detail pemesanan dan melakukan verifikasi silahkan Log-In ke Website FiNder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
+<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Dosen tersebut. Untuk melihat detail pemesanan dan melakukan verifikasi silahkan Log-In ke Website FiNder melalui akun Anda dengan link berikut: <a href="'.route('status.booking').'">Login!</a></p>
 <p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melihat detail pemesanan dan melakukan verifikasi terhadap permintaan penggunaan alat.</p><br>
 <p>Hormat Kami,</p>
 <p>Sekretariat FiNder</p>
@@ -164,7 +163,7 @@ class VerificationController extends Controller
                     $mail->Port = 587;
                     $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
                     $mail->AddAddress('support.finder@unpad.ac.id');
-                    $mail->Subject = 'Permintaan Verifikasi Booking Alat';
+                    $mail->Subject = 'Confirm Booking Alat';
                     $mail->Body = '
 <p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima permintaan penggunaan alat dari:</p><br>
 <p>Nama Mahasiswa : <b>'.$model->orders->users->name.'</b></p>
@@ -173,7 +172,7 @@ class VerificationController extends Controller
 <p>Program Studi : <b>'.$model->orders->users->profiles->study_program.'</b></p>
 <p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
 <p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br>
-<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Mahasiswa tersebut. Untuk melihat detail pemesanan dan melakukan verifikasi silahkan Log-In ke Website SILA FiNder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
+<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Mahasiswa tersebut. Untuk melihat detail pemesanan dan melakukan verifikasi silahkan Log-In ke Website FiNder melalui akun Anda dengan link berikut: <a href="'.route('status.booking').'">Login!</a></p>
 <p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melihat detail pemesanan dan melakukan verifikasi terhadap permintaan penggunaan alat.</p><br>
 <p>Hormat Kami,</p>
 <p>Sekretariat FiNder</p>
@@ -207,6 +206,31 @@ class VerificationController extends Controller
 	            'status' => 7,
                 'note' => $request->note,
 	        ]);
+            $mail = new PHPMailer(true);
+            try{
+                $mail->Encoding = 'base64';
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'functionalnanopowder@gmail.com';
+                $mail->Password = '1w3r!W#R';
+                $mail->SMTPSecure = 'tls';
+                $mail->Port = 587;
+                $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
+                $mail->AddAddress($model->orders->users->email);
+                $mail->Subject = 'Reject Booking Alat';
+                $mail->Body = '
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad</p><br>
+<p>Permintaan penggunaan alat Anda ditolak oleh Dosen Pembimbing</p>
+<p>Untuk melihat detail pemesanan silahkan Log-In ke Website FiNder melalui akun Anda dan masuk ke menu <b>My Activities -> Reject List</b> dengan link berikut: <a href="'.route('status.rejected').'">Login!</a></p><br>
+<p>Hormat Kami,</p>
+<p>Sekretariat FiNder</p>
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
+                $mail->isHTML(true);
+                $mail->Send();
+            }catch (Exception $e) {
+                return response()->json(error);
+            }
             return redirect()->route('verify.success');
         }
         else if($model['status']==3){
@@ -215,6 +239,31 @@ class VerificationController extends Controller
 	            'status' => 8,
                 'note' => $request->note,
 	        ]);
+            $mail = new PHPMailer(true);
+            try{
+                $mail->Encoding = 'base64';
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'functionalnanopowder@gmail.com';
+                $mail->Password = '1w3r!W#R';
+                $mail->SMTPSecure = 'tls';
+                $mail->Port = 587;
+                $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
+                $mail->AddAddress($model->orders->users->email);
+                $mail->Subject = 'Reject Booking Alat';
+                $mail->Body = '
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad</p><br>
+<p>Permintaan penggunaan alat Anda ditolak oleh Admin</p>
+<p>Untuk melihat detail pemesanan silahkan Log-In ke Website FiNder melalui akun Anda dan masuk ke menu <b>My Activities -> Reject List</b> dengan link berikut: <a href="'.route('status.rejected').'">Login!</a></p><br>
+<p>Hormat Kami,</p>
+<p>Sekretariat FiNder</p>
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
+                $mail->isHTML(true);
+                $mail->Send();
+            }catch (Exception $e) {
+                return response()->json(error);
+            }
             return redirect()->route('verify.success');
         }
     }
@@ -288,7 +337,7 @@ class VerificationController extends Controller
             }
         }
         if($model->status == 3){
-            if(Auth()->user()->id == $model->orders->users_id){
+            if(Auth()->User()->hasRole('Admin')){
                 
                 return view('verify.formreject', ['model' => $model]);
             }
@@ -329,7 +378,7 @@ class VerificationController extends Controller
 <p>Program Studi : <b>'.$model->orders->users->profiles->study_program.'</b></p>
 <p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
 <p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br>
-<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Mahasiswa tersebut. Untuk melihat detail pemesanan dan melakukan verifikasi silahkan Log-In ke Website SILA FiNder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
+<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Mahasiswa tersebut. Untuk melihat detail pemesanan dan melakukan verifikasi silahkan Log-In ke Website FiNder melalui akun Anda dengan link berikut: <a href="'.route('login').'">Login!</a></p>
 <p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melihat detail pemesanan dan melakukan verifikasi terhadap permintaan penggunaan alat.</p><br>
 <p>Hormat Kami,</p>
 <p>Sekretariat FiNder</p>
@@ -361,8 +410,8 @@ class VerificationController extends Controller
                 $mail->Subject = 'Konfirmasi Jadwal Booking Alat';
                 $mail->Body = '
 <p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad</p><br>
-<p>Permintaan penggunaan alat Anda telah direspon oleh Admin.</p>
-<p>Harap untuk melakukan konfirmasi jadwal yang telah ditetapkan oleh Admin dengan link berikut: <a href="'.route('status.confirmation').'">disini!</a>.</p>
+<p>Permintaan penggunaan alat Anda telah dikonfirmasi oleh Admin.</p>
+<p>Harap untuk melakukan konfirmasi jadwal yang telah ditetapkan oleh Admin dengan link berikut: <a href="'.route('status.confirmation').'">di sini!</a>.</p><br>
 <p>Hormat Kami,</p>
 <p>Sekretariat FiNder</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
@@ -500,9 +549,9 @@ class VerificationController extends Controller
     {
         $model = Booking::find($id);
         if($model->status == 3){
-            $model = $request->all();
-            $model['status'] = 5;
-            $model = Booking::findOrFail($id)->update($model);
+            $booking = $request->all();
+            $booking['status'] = 5;
+            $booking = Booking::findOrFail($id)->update($booking);
             $mail = new PHPMailer(true);
             try{
                 $mail->Encoding = 'base64';
@@ -515,67 +564,27 @@ class VerificationController extends Controller
                 $mail->Port = 587;
                 $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
                 $mail->AddAddress($model->orders->users->email);
-                $mail->Subject = 'Konfirmasi Booking Alat';
-                if($model->orders->users->hasRole('User Umum')){
-                    $mail->Body = '
-<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima <b>konfirmasi</b> penggunaan alat dari:</p><br>
-<p>Nama : <b>'.$model->orders->users->name.'</b></p>
-<p>No ID : <b>'.$model->orders->users->profiles->no_id.'</b></p>
-<p>Email : <b>'.$model->orders->users->email.'</b></p>
-<p>Institusi : <b>'.$model->orders->users->profiles->institution.'</b></p>
-<p>Alamat : <b>'.$model->orders->users->profiles->address.'</b></p><br>
-<p>Penggunaan Alat : <b>'.$model->orders->tools->name.'</b></p>
-<p>Jadwal Penggunaan Alat : <b>'.$date.'</b></p><br>
-<p>Anda sebagai Admin diminta untuk mempersiapkan penggunaan alat sesuai dengan jadwal.</p><br>
+                $mail->Subject = 'Reschedule Booking Alat';
+                $mail->Body = '
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad</p><br>
+<p>Pemesanan penggunaan alat Anda akan dilakukan reschedule.</p>
+<p>Untuk melihat detail pemesanan silahkan Log-In ke Website FiNder melalui akun Anda dan masuk ke menu <b>My Activities -> Reschedule Offered List</b> dengan link berikut: <a href="'.route('status.reschedule').'">Login!</a></p><br>
 <p>Hormat Kami,</p>
 <p>Sekretariat FiNder</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
-                }
-                else if($model->orders->users->hasRole('Dosen Unpad')){
-                    $mail->Body = '
-<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima <b>konfirmasi</b> penggunaan alat dari:</p><br>
-<p>Nama Dosen : <b>'.$model->orders->users->name.'</b></p>
-<p>NIDN : <b>'.$model->orders->users->profiles->no_id.'</b></p>
-<p>Email : <b>'.$model->orders->users->email.'</b></p>
-<p>Program Studi : <b>'.$model->orders->users->profiles->study_program.'</b></p>
-<p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
-<p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br>
-<p>Penggunaan Alat : <b>'.$model->orders->tools->name.'</b></p>
-<p>Jadwal Penggunaan Alat : <b>'.$date.'</b></p><br>
-<p>Anda sebagai Admin diminta untuk mempersiapkan penggunaan alat sesuai dengan jadwal.</p><br>
-<p>Hormat Kami,</p>
-<p>Sekretariat FiNder</p>
-<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
-                }
-                else{
-                    $mail->Body = '
-<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima <b>konfirmasi</b> penggunaan alat dari:</p><br>
-<p>Nama Mahasiswa : <b>'.$model->orders->users->name.'</b></p>
-<p>NIM : <b>'.$model->orders->users->profiles->no_id.'</b></p>
-<p>Email : <b>'.$model->orders->users->email.'</b></p>
-<p>Program Studi : <b>'.$model->orders->users->profiles->study_program.'</b></p>
-<p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
-<p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br>
-<p>Penggunaan Alat : <b>'.$model->orders->tools->name.'</b></p>
-<p>Jadwal Penggunaan Alat : <b>'.$date.'</b></p><br>
-<p>Anda sebagai Admin diminta untuk mempersiapkan penggunaan alat sesuai dengan jadwal.</p><br>
-<p>Hormat Kami,</p>
-<p>Sekretariat FiNder</p>
-<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
-                }
                 $mail->isHTML(true);
                 $mail->Send();
+                return response()->json(true);
             }catch (Exception $e) {
                 return response()->json(error);
             }
-            return response()->json($model);
         }
-        if($model->status == 5){
+        else if($model->status == 5){
             $token = str::random(60);
-            $model = $request->all();
-            $model['token'] = $token;
-            $model['status'] = 1;
-            $model = Booking::findOrFail($id)->update($model);
+            $booking = $request->all();
+            $booking['token'] = $token;
+            $booking['status'] = 1;
+            $booking = Booking::findOrFail($id)->update($booking);
             if($model == true){
                 $mail = new PHPMailer(true);
                 $mail->CharSet = 'UTF-8';
@@ -586,23 +595,18 @@ class VerificationController extends Controller
                     $mail->SMTPAuth = true;
                     $mail->Username = 'functionalnanopowder@gmail.com';
                     $mail->Password = '1w3r!W#R';
-                    // SSL: 465, TLS: 587
                     $mail->SMTPSecure = 'ssl';
                     $mail->Port = 465;
                     $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
                     $mail->AddAddress(Auth()->User()->email);
-                    $mail->Subject = 'Permintaan Verifikasi Booking Alat';
+                    $mail->Subject = 'Verifikasi Booking Alat';
                     $mail->Body = '
-<p>Functional Nano Powder (FiNder) Unpad menerima permintaan reschedule penggunaan alat dari Anda.</p>
-<p>Sebelum melanjutkan proses pemesanan, kami perlu memastikan bahwa ini memang Anda.</p>
-<p>Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$token).'">di sini!</a></p><br/>
-<p>Untuk melihat detail pemesanan silahkan Log-In ke Website FiNder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
-<p>Silahkan Masuk ke Menu <strong>My Activities -> Registration of Tool Usage</strong> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda.</p>
-<p>Jika bukan Anda yang melakukan transaksi tersebut, harap mengabaikan pesan ini.</p><br/><br/>
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima permintaan penggunaan alat dari Anda.</p><br>
+<p>Sebelum melanjutkan proses pemesanan, kami perlu memastikan bahwa ini memang Anda. Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$token).'">di sini!</a></p>
+<p>Untuk melihat detail pemesanan silahkan Log-In ke Website FiNder melalui akun Anda dan masuk ke menu <b>My Activities -> Booking Request</b> dengan link berikut: <a href="'.route('status.booking').'">Login!</a></p><br>
 <p>Hormat Kami,</p>
 <p>Sekretariat FiNder</p>
-<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>
-';
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
                     $mail->isHTML(true);
                     $mail->Send();
                     return response()->json(true);
@@ -620,10 +624,10 @@ class VerificationController extends Controller
     {
         $model = Booking::find($id);
         if($model->status == 2){
-            $model = $request->all();
-            $model['token'] = NULL;
-            $model['status'] = 8;
-            $model = Booking::findOrFail($id)->update($model);
+            $booking = $request->all();
+            $booking['token'] = NULL;
+            $booking['status'] = 8;
+            $booking = Booking::findOrFail($id)->update($booking);
             $mail = new PHPMailer(true);
             try{
                 $mail->Encoding = 'base64';
@@ -640,7 +644,7 @@ class VerificationController extends Controller
                 $mail->Body = '
 <p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad</p><br>
 <p>Permintaan penggunaan alat Anda ditolak oleh Dosen Pembimbing</p>
-<p>Untuk detailnya silahkan login dan masuk ke menu Reject List</p><br>
+<p>Untuk melihat detail pemesanan silahkan Log-In ke Website FiNder melalui akun Anda dan masuk ke menu <b>My Activities -> Reject List</b> dengan link berikut: <a href="'.route('status.rejected').'">Login!</a></p><br>
 <p>Hormat Kami,</p>
 <p>Sekretariat FiNder</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
@@ -649,13 +653,13 @@ class VerificationController extends Controller
             }catch (Exception $e) {
                 return response()->json(error);
             }
-            return response()->json($model);
+            return response()->json($booking);
         }
         if($model->status == 3){
-            $model = $request->all();
-            $model['token'] = NULL;
-            $model['status'] = 8;
-            $model = Booking::findOrFail($id)->update($model);
+            $booking = $request->all();
+            $booking['token'] = NULL;
+            $booking['status'] = 8;
+            $booking = Booking::findOrFail($id)->update($booking);
             $mail = new PHPMailer(true);
             try{
                 $mail->Encoding = 'base64';
@@ -672,7 +676,7 @@ class VerificationController extends Controller
                 $mail->Body = '
 <p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad</p><br>
 <p>Permintaan penggunaan alat Anda ditolak oleh Admin</p>
-<p>Untuk detailnya silahkan login dan masuk ke menu Reject List</p><br>
+<p>Untuk melihat detail pemesanan silahkan Log-In ke Website FiNder melalui akun Anda dan masuk ke menu <b>My Activities -> Reject List</b> dengan link berikut: <a href="'.route('status.rejected').'">Login!</a></p><br>
 <p>Hormat Kami,</p>
 <p>Sekretariat FiNder</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
@@ -681,7 +685,7 @@ class VerificationController extends Controller
             }catch (Exception $e) {
                 return response()->json(error);
             }
-            return response()->json($model);
+            return response()->json($booking);
         }
         else{
             abort(404);
@@ -690,25 +694,27 @@ class VerificationController extends Controller
 
     public function updateCancel($id)
     {
-        $model = Booking::find($id)->update([
+        $model = Booking::find($id);
+        $booking = Booking::find($id)->update([
             'token' => NULL,
             'status' => 9,
         ]);
-        $mail = new PHPMailer(true);
-        try{
-            $mail->Encoding = 'base64';
-            $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
-            $mail->SMTPAuth = true;
-            $mail->Username = 'functionalnanopowder@gmail.com';
-            $mail->Password = '1w3r!W#R';
-            $mail->SMTPSecure = 'tls';
-            $mail->Port = 587;
-            $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
-            $mail->AddAddress('support.finder@unpad.ac.id');
-            $mail->Subject = 'Cancel Booking Alat';
-            if($model->orders->users->hasRole('User Umum')){
-                $mail->Body = '
+        if($model->status!=1){
+            $mail = new PHPMailer(true);
+            try{
+                $mail->Encoding = 'base64';
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'functionalnanopowder@gmail.com';
+                $mail->Password = '1w3r!W#R';
+                $mail->SMTPSecure = 'tls';
+                $mail->Port = 587;
+                $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
+                $mail->AddAddress('support.finder@unpad.ac.id');
+                $mail->Subject = 'Cancel Booking Alat';
+                if($model->orders->users->hasRole('User Umum')){
+                    $mail->Body = '
 <p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima <b>pembatalan</b> penggunaan alat dari:</p><br>
 <p>Nama : <b>'.$model->orders->users->name.'</b></p>
 <p>No ID : <b>'.$model->orders->users->profiles->no_id.'</b></p>
@@ -720,9 +726,9 @@ class VerificationController extends Controller
 <p>Hormat Kami,</p>
 <p>Sekretariat FiNder</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
-            }
-            else if($model->orders->users->hasRole('Dosen Unpad')){
-                $mail->Body = '
+                }
+                else if($model->orders->users->hasRole('Dosen Unpad')){
+                    $mail->Body = '
 <p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima <b>pembatalan</b> penggunaan alat dari:</p><br>
 <p>Nama Dosen : <b>'.$model->orders->users->name.'</b></p>
 <p>NIDN : <b>'.$model->orders->users->profiles->no_id.'</b></p>
@@ -735,9 +741,9 @@ class VerificationController extends Controller
 <p>Hormat Kami,</p>
 <p>Sekretariat FiNder</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
-            }
-            else{
-                $mail->Body = '
+                }
+                else{
+                    $mail->Body = '
 <p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima <b>pembatalan</b> penggunaan alat dari:</p><br>
 <p>Nama Mahasiswa : <b>'.$model->orders->users->name.'</b></p>
 <p>NIM : <b>'.$model->orders->users->profiles->no_id.'</b></p>
@@ -750,13 +756,14 @@ class VerificationController extends Controller
 <p>Hormat Kami,</p>
 <p>Sekretariat FiNder</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
+                }
+                $mail->isHTML(true);
+                $mail->Send();
+            }catch (Exception $e) {
+                return response()->json(error);
             }
-            $mail->isHTML(true);
-            $mail->Send();
-        }catch (Exception $e) {
-            return response()->json(error);
         }
-        return response()->json($model);
+        return response()->json($booking);
     }
 
     public function success()
@@ -782,22 +789,18 @@ class VerificationController extends Controller
                     $mail->SMTPAuth = true;
                     $mail->Username = 'functionalnanopowder@gmail.com';
                     $mail->Password = '1w3r!W#R';
-                    // SSL: 465, TLS: 587
                     $mail->SMTPSecure = 'ssl';
                     $mail->Port = 465;
                     $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
                     $mail->AddAddress($model->orders->users->email);
-                    $mail->Subject = 'Permintaan Verifikasi Booking Alat';
+                    $mail->Subject = 'Verifikasi Booking Alat';
                     $mail->Body = '
-<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima permintaan penggunaan alat dari Anda.</p>
-<p>Sebelum melanjutkan proses pemesanan, kami perlu memastikan bahwa ini memang Anda. Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$newtoken).'">di sini!</a></p><br/>
-<p>Untuk melihat detail pemesanan silahkan Log-In ke Website SILA FiNder melalui akun Anda dengan link berikut: <a href="'.route('status.booking').'">login!</a></p>
-<p>Silahkan Masuk ke Menu <strong>My Activities -> Registration of Tool Usage</strong> untuk melakukan verifikasi terhadap permintaan penggunaan alat dari mahasiswa Anda.</p>
-<p>Jika bukan Anda yang melakukan transaksi tersebut, harap mengabaikan pesan ini.</p><br/><br/>
-<p>Hormat Kami,</p><br/>
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima permintaan penggunaan alat dari Anda.</p><br>
+<p>Sebelum melanjutkan proses pemesanan, kami perlu memastikan bahwa ini memang Anda. Klik tautan berikut untuk memverifikasi: <a href="'.route('verify',$newtoken).'">di sini!</a></p>
+<p>Untuk melihat detail pemesanan silahkan Log-In ke Website FiNder melalui akun Anda dan masuk ke menu <b>My Activities -> Booking Request</b> dengan link berikut: <a href="'.route('status.booking').'">Login!</a></p><br>
+<p>Hormat Kami,</p>
 <p>Sekretariat FiNder</p>
-<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>
-';
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
                     $mail->isHTML(true);
                     $mail->Send();
                     return response()->json(true);
@@ -820,22 +823,21 @@ class VerificationController extends Controller
                     $mail->SMTPAuth = true;
                     $mail->Username = 'functionalnanopowder@gmail.com';
                     $mail->Password = '1w3r!W#R';
-                    // SSL: 465, TLS: 587
                     $mail->SMTPSecure = 'ssl';
                     $mail->Port = 465;
                     $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
                     $mail->AddAddress($model->orders->users->profiles->email_lecturer);
-                    $mail->Subject = 'Permintaan Verifikasi Booking Alat';
+                    $mail->Subject = 'Verifikasi Booking Alat';
                     $mail->Body = '
-<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima permintaan penggunaan alat dari:</p><br/>
-<p>Nama Mahasiswa : <strong>'.$model->orders->users->name.'</strong></p>
-<p>NIM : <strong>'.$model->orders->users->profiles->no_id.'</strong></p>
-<p>Email : <strong>'.$model->orders->users->email.'</strong></p>
-<p>Program Studi : <strong>'.$model->orders->users->profiles->study_program.'</strong></p>
-<p>Fakultas : <strong>'.$model->orders->users->profiles->faculty.'</strong></p>
-<p>Universitas : <strong>'.$model->orders->users->profiles->university.'</strong></p><br/>
-<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Dosen tersebut. Untuk melihat detail pemesanan dan melakukan verifikasi silahkan Log-In ke Website SILA FiNder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
-<p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melihat detail pemesanan dan melakukan verifikasi terhadap permintaan penggunaan alat.</p><br>
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima permintaan penggunaan alat dari:</p><br>
+<p>Nama Mahasiswa : <b>'.$model->orders->users->name.'</b></p>
+<p>NIM : <b>'.$model->orders->users->profiles->no_id.'</b></p>
+<p>Email : <b>'.$model->orders->users->email.'</b></p>
+<p>Program Studi : <b>'.$model->orders->users->profiles->study_program.'</b></p>
+<p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
+<p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br>
+<p>Anda diminta untuk melakukan verifikasi sebagai Dosen Pembimbing terhadap pemesanan penggunaan alat dari Mahasiswa tersebut. Untuk melihat detail pemesanan dan melakukan verifikasi silahkan Log-In ke Website FiNder melalui akun Anda dengan link berikut: <a href="'.route('student.booking').'">Login!</a></p>
+<p>Apabila Anda tidak melakukan verifikasi maka mahasiswa Anda tidak dapat melanjutkan proses permintaan penggunaan alat.</p><br>
 <p>Hormat Kami,</p>
 <p>Sekretariat FiNder</p>
 <p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
@@ -844,7 +846,6 @@ class VerificationController extends Controller
                     return response()->json(true);
                 }catch (Exception $e) {
                     return response()->json(error);
-                    // echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
                 }
             }
         }
@@ -862,61 +863,54 @@ class VerificationController extends Controller
                     $mail->SMTPAuth = true;
                     $mail->Username = 'functionalnanopowder@gmail.com';
                     $mail->Password = '1w3r!W#R';
-                    // SSL: 465, TLS: 587
                     $mail->SMTPSecure = 'ssl';
                     $mail->Port = 465;
                     $mail->SetFrom('functionalnanopowder@gmail.com');
                     $mail->AddAddress('support.finder@unpad.ac.id');
-                    $mail->Subject = 'Permintaan Verifikasi Booking Alat';
+                    $mail->Subject = 'Confirm Booking Alat';
                     if($model->orders->users->roles[0]->name=='Dosen Unpad'||$model->orders->users->roles[0]->name=='Dosen Non Unpad'){
-                    $mail->Body = '
-<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima permintaan penggunaan alat dari:</p><br/>
+                        $mail->Body = '
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima permintaan penggunaan alat dari:</p><br>
 <p>Nama Dosen : <b>'.$model->orders->users->name.'</b></p>
 <p>NIDN : <b>'.$model->orders->users->profiles->no_id.'</b></p>
 <p>Email : <b>'.$model->orders->users->email.'</b></p>
 <p>Program Studi : <b>'.$model->orders->users->profiles->study_program.'</b></p>
 <p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
-<p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br/>
-<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Dosen tersebut.</p>
-<p>Untuk melakukan verifikasi silahkan Log-In ke Website FiNder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
-<p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melakukan verifikasi terhadap permintaan penggunaan alat.</p><br/><br/>
-<p>Hormat Kami,</p><br/>
+<p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br>
+<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Dosen tersebut. Untuk melihat detail pemesanan dan melakukan verifikasi silahkan Log-In ke Website FiNder melalui akun Anda dengan link berikut: <a href="'.route('status.booking').'">Login!</a></p>
+<p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melihat detail pemesanan dan melakukan verifikasi terhadap permintaan penggunaan alat.</p><br>
+<p>Hormat Kami,</p>
 <p>Sekretariat FiNder</p>
-<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>
-';
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
                     }
                     else if($model->orders->users->roles[0]->name=='Mahasiswa Unpad'||$model->orders->users->roles[0]->name=='Mahasiswa Non Unpad'){
                     $mail->Body = '
-<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima permintaan penggunaan alat dari:</p><br/>
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima permintaan penggunaan alat dari:</p><br>
 <p>Nama Mahasiswa : <b>'.$model->orders->users->name.'</b></p>
 <p>NIM : <b>'.$model->orders->users->profiles->no_id.'</b></p>
 <p>Email : <b>'.$model->orders->users->email.'</b></p>
 <p>Program Studi : <b>'.$model->orders->users->profiles->study_program.'</b></p>
 <p>Fakultas : <b>'.$model->orders->users->profiles->faculty.'</b></p>
-<p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br/>
-<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Mahasiswa tersebut.</p>
-<p>Untuk melakukan verifikasi silahkan Log-In ke Website FiNder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
-<p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melakukan verifikasi terhadap permintaan penggunaan alat.</p><br/><br/>
-<p>Hormat Kami,</p><br/>
+<p>Universitas : <b>'.$model->orders->users->profiles->university.'</b></p><br>
+<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari Mahasiswa tersebut. Untuk melihat detail pemesanan dan melakukan verifikasi silahkan Log-In ke Website FiNder melalui akun Anda dengan link berikut: <a href="'.route('status.booking').'">Login!</a></p>
+<p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melihat detail pemesanan dan melakukan verifikasi terhadap permintaan penggunaan alat.</p><br>
+<p>Hormat Kami,</p>
 <p>Sekretariat FiNder</p>
-<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>
-';
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
                     }
                     else if($model->orders->users->roles[0]->name=='User Umum'){
-                    $mail->Body = '
-<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima permintaan penggunaan alat dari:</p><br/>
-<p>Nama Lengkap : <b>'.$model->orders->users->name.'</b></p>
+                        $mail->Body = '
+<p>Sistem Informasi Pengelolaan Layanan Functional Nano Powder (FiNder) Unpad menerima permintaan penggunaan alat dari:</p><br>
+<p>Nama : <b>'.$model->orders->users->name.'</b></p>
 <p>No ID : <b>'.$model->orders->users->profiles->no_id.'</b></p>
 <p>Email : <b>'.$model->orders->users->email.'</b></p>
-<p>Lembaga : <b>'.$model->orders->users->profiles->institution.'</b></p>
-<p>Alamat : <b>'.$model->orders->users->profiles->address.'</b></p>
-<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat tersebut.</p>
-<p>Untuk melakukan verifikasi silahkan Log-In ke Website FiNder melalui akun Anda dengan link berikut: <a href="'.route('login').'">login!</a></p>
-<p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melakukan verifikasi terhadap permintaan penggunaan alat.</p><br/><br/>
-<p>Hormat Kami,</p><br/>
+<p>Institusi : <b>'.$model->orders->users->profiles->institution.'</b></p>
+<p>Alamat : <b>'.$model->orders->users->profiles->address.'</b></p><br>
+<p>Anda diminta untuk melakukan verifikasi sebagai Admin terhadap permintaan penggunaan alat dari User Umum tersebut. Untuk melihat detail pemesanan dan melakukan verifikasi silahkan Log-In ke Website FiNder melalui akun Anda dengan link berikut: <a href="'.route('status.booking').'">Login!</a></p>
+<p>Silahkan Masuk ke Menu <b>Client Activities -> Booking Request</b> untuk melihat detail pemesanan dan melakukan verifikasi terhadap permintaan penggunaan alat.</p><br>
+<p>Hormat Kami,</p>
 <p>Sekretariat FiNder</p>
-<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>
-';
+<p>Jl. Raya Bandung-Sumedang KM. 21 Jawa Barat 45363.</p>';
                     }
                     else{
                         abort(404);
