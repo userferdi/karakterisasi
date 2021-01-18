@@ -96,14 +96,14 @@
 			right: 0;
 			width: 11rem;
 			background: #5E5E5E;
-    }
+    	}
 		h5 {
 		  font-size: 24px;
 		  color: #FF0000;
 	    letter-spacing: 1.75px;
 	    text-decoration: none; 
 	    position: relative; 
-	  }
+		}
 		h6:after {
 			position: absolute;
 			content: '';
@@ -114,24 +114,23 @@
 			right: 0;
 			width: 11rem;
 			background: #5E5E5E;
-    }
+	    }
 		th {
 		  font-size: 12px;
 		  font-weight: 600;
+		  line-height: 0;
 		  color: #FF0000;
 		  padding-top: 29px;
 		  padding-bottom: 18px;
-		  line-height: 0;
 		  margin: 0;
 		}
 		td {
 		  font-size: 12px;
-		  line-height: 12px;
+		  line-height: 9px;
 		  padding-top: 11px;
 		  padding-bottom: 18px;
 		  padding-left: 5px;
 		  padding-right: 5px;
-		  line-height: 0;
 		  margin: 0;
 		}
 		.row {
@@ -227,7 +226,7 @@
 	    </tr>
 	    <?php $i++; ?>
 	    @endforeach
-	    @for(;$i<10;$i++)
+	    @for(;$i<8;$i++)
 	    <tr>
 	        <td></td>
 	        <td></td>

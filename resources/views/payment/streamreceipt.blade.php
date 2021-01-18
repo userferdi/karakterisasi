@@ -126,12 +126,11 @@
 		}
 		td {
 		  font-size: 12px;
-		  line-height: 12px;
+		  line-height: 9px;
 		  padding-top: 11px;
 		  padding-bottom: 18px;
 		  padding-left: 5px;
 		  padding-right: 5px;
-		  line-height: 0;
 		  margin: 0;
 		}
 		.row {
@@ -228,7 +227,7 @@
 	    </tr>
 	    <?php $i++; ?>
 	    @endforeach
-	    @for(;$i<10;$i++)
+	    @for(;$i<8;$i++)
 	    <tr>
 	        <td></td>
 	        <td></td>
