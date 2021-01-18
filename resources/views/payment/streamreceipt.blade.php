@@ -202,7 +202,7 @@
 			<p style="font-weight: 600;">{{ $model->name }}</p>
 			<p style="font-size: 10px; font-weight: 500;">DI TEMPAT</p>
 		</div>
-		<div class="header-2" style="padding-left: 8.5cm;">
+		<div class="header-2" style="padding-left: 8cm; margin-right: -1cm">
 			<p style="font-weight: 600;">No. Invoice &nbsp; : {{$model->no_invoice}}</p>
 			<p style="font-weight: 600; letter-spacing: 1.1px;">No. Kuitansi : {{ $model->no_receipt }}</p>
 			<p style="font-weight: 600;">Tanggal &nbsp; &nbsp; &nbsp; &nbsp;: {{ date('d F Y', strtotime("$model->date_invoice")) }}</p>
