@@ -94,7 +94,7 @@
 			bottom: 49rem; 
 			left: 0.25cm;
 			right: 0;
-			width: 11rem;
+			width: 12rem;
 			background: #5E5E5E;
     }
 		h5 {
@@ -194,7 +194,7 @@
 			<p style="font-weight: 500;">Website: <a href="https://finder.ac.id">https://finder.ac.id</a></p>
 		</div>
 	</div>
-	<h5 style="margin-top: -5rem; padding-left: 1cm">INVOICE</h5>
+	<h5 style="margin-top: -5rem; padding-left: 1cm">KUITANSI</h5>
 	<br>
 	<div class="row" style="margin-bottom: -1rem;">
 		<div class="header-1">
