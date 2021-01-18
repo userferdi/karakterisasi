@@ -162,6 +162,15 @@
 			font-size: 12px;
 			line-height: 3px;
 		}
+		.footer-3{
+			background-color:red;
+			position:fixed;
+			bottom:0cm;
+			height:25px;
+			margin-left:-1.25cm;
+			margin-right:-1.25cm;
+			margin-bottom:-1.25cm;
+		}
 		.pt{
 			padding-top: 29px;
 		}
@@ -251,8 +260,6 @@
 	<br><br><br>
 	<div class="border-bottom"></div>
 	<p class="center" style="font-size: 8px; padding-top: 4px;"><a class="red" href="https://finder.ac.id">https://finder.ac.id</a> · <a class="red" href="mailto:support.finder@unpad.ac.id">cloud.finder@unpad.ac.id</a></p>
-	<div style="padding-top: 1.6cm; margin-bottom: -2.55cm;">
-		<p style="border-bottom: 25px solid #f00; margin-left: -2.2cm; margin-right: -2.2cm"></p>
-	</div>
+	<div class="footer-3"></div>
 </body>
 </html>
