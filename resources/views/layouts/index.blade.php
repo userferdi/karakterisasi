@@ -128,6 +128,12 @@
                     <p>Rejected List</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="{{ route('status.canceled') }}" class="nav-link {{ (request()->is('activities/status/canceled*')) ? 'active' : '' }}">
+                    <i class="fas fa-caret-right nav-icon"></i>
+                    <p>Canceled List</p>
+                  </a>
+                </li>
               </ul>
             </li>
             <li class="nav-item has-treeview">

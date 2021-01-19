@@ -588,9 +588,14 @@ class ActivitiesController extends Controller
 
     public function datatableCanceled()
     {
-        $model = Booking::whereHas('orders', function ($query){
-            return $query->where('users_id', '=', Auth()->User()->id);
-        })->where('status',9)->get();
+        if(Auth()->User()->hasRole('Admin')){
+            $model = Booking::where('status',9)->get();
+        }
+        else{
+            $model = Booking::whereHas('orders', function ($query){
+                return $query->where('users_id', '=', Auth()->User()->id);
+            })->where('status',9)->get();
+        }
         return DataTables::of($model)
             ->editColumn('date1', function($model){
                 $date = date('d M Y', strtotime($model->date1));
