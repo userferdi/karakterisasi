@@ -22,6 +22,9 @@ class HistoryController extends Controller
     {
         $model = Booking::get();
         return DataTables::of($model)
+            ->addColumn('user', function($model){
+                return $model->orders->users->name;
+            })
             ->addIndexColumn()
             ->rawColumns(['attend', 'detail', 'action'])
             ->make(true);
