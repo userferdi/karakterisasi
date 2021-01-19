@@ -6,6 +6,7 @@ use App\Tool;
 use App\Approve;
 use App\Price;
 use App\User;
+use App\Booking;
 
 use Auth;
 use DataTables;
@@ -13,6 +14,19 @@ use Illuminate\Http\Request;
 
 class HistoryController extends Controller
 {
+    public function liatsemua()
+    {
+        return view('activities.status.liat');
+    }
+    public function dtliatsemua()
+    {
+        $model = Booking::get();
+        return DataTables::of($model)
+            ->addIndexColumn()
+            ->rawColumns(['attend', 'detail', 'action'])
+            ->make(true);
+    }
+
     public function activities()
     {
         $model=Auth()->User();
