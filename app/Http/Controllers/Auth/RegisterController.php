@@ -161,27 +161,54 @@ class RegisterController extends Controller
                 $filename = $data->name.'.'.$data->image->getClientOriginalExtension();
                 $image = $directory.$filename;
                 $data->image->move(public_path($directory), $filename);
-                $profile = Profile::create([
-                    'user_id' => $id,
-                    'no_id' => $data->no_id,
-                    'no_hp' => $data->no_hp,
-                    'image' => $image,
-                    'university' => 'Universitas Padjadjaran',
-                    'faculty' => Faculty::find($data->faculty)->name,
-                    'study_program' => study_program::find($data->study_program)->name,
-                    'email_lecturer' => $data->email_lecturer
-                ]);
+                if($data->faculty==17){
+                    $profile = Profile::create([
+                        'user_id' => $id,
+                        'no_id' => $data->no_id,
+                        'no_hp' => $data->no_hp,
+                        'image' => $image,
+                        'university' => 'Universitas Padjadjaran',
+                        'faculty' => $data->faculty2,
+                        'study_program' => $data->study_program,
+                        'email_lecturer' => $data->email_lecturer
+                    ]);
+                }
+                else{
+                    $profile = Profile::create([
+                        'user_id' => $id,
+                        'no_id' => $data->no_id,
+                        'no_hp' => $data->no_hp,
+                        'image' => $image,
+                        'university' => 'Universitas Padjadjaran',
+                        'faculty' => Faculty::find($data->faculty)->name,
+                        'study_program' => study_program::find($data->study_program)->name,
+                        'email_lecturer' => $data->email_lecturer
+                    ]);
+                }
             }
             else{
-                $profile = Profile::create([
-                    'user_id' => $id,
-                    'no_id' => $data->no_id,
-                    'no_hp' => $data->no_hp,
-                    'university' => 'Universitas Padjadjaran',
-                    'faculty' => Faculty::find($data->faculty)->name,
-                    'study_program' => study_program::find($data->study_program)->name,
-                    'email_lecturer' => $data->email_lecturer
-                ]);
+                if($data->faculty==17){
+                    $profile = Profile::create([
+                        'user_id' => $id,
+                        'no_id' => $data->no_id,
+                        'no_hp' => $data->no_hp,
+                        'university' => 'Universitas Padjadjaran',
+                        'faculty' => $data->faculty2,
+                        'study_program' => $data->study_program,
+                        'email_lecturer' => $data->email_lecturer
+                    ]);
+                }
+                else{
+                    $profile = Profile::create([
+                        'user_id' => $id,
+                        'no_id' => $data->no_id,
+                        'no_hp' => $data->no_hp,
+                        'university' => 'Universitas Padjadjaran',
+                        'faculty' => Faculty::find($data->faculty)->name,
+                        'study_program' => study_program::find($data->study_program)->name,
+                        'email_lecturer' => $data->email_lecturer
+                    ]);
+                }
             }
             $user->sendEmailVerificationNotification();
             return redirect()->route('home');

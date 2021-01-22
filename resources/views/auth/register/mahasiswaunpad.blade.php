@@ -164,15 +164,28 @@
     });
 
     function onSelectFaculty(value,childEl) {
-        $('#study_program').empty();
-        $('#study_program').append('<option value="0" disabled selected>Choose Study Program</option>');
-        $.ajax({
-            type: 'GET',
-            url: '/register/datatable/studyprogram/' + value,
-            success: function (response) {
-                $('#study_program').append(response);
+        console.log(value, childEl);
+        if(value==17){
+            $('#faculty').after('<input id="faculty2" type="text" class="form-control" name="faculty2" value="" required>');
+            $('#study_program').after('<input id="studyprogram" type="text" class="form-control" name="study_program" value="" required>');
+            $('#study_program').remove();
+        }
+        else{
+            if($('#faculty2').length){
+                $('#studyprogram').after('<select id="study_program" type="text" class="form-control" name="study_program" value="{{ old('study_program') }}"><option></option></select>');
+                $('#studyprogram').remove();
+                $('#faculty2').remove();
             }
-        });
+            $('#study_program').empty();
+            $('#study_program').append('<option value="0" disabled selected>Choose Study Program</option>');
+            $.ajax({
+                type: 'GET',
+                url: '/register/datatable/studyprogram/' + value,
+                success: function (response) {
+                    $('#study_program').append(response);
+                }
+            });
+        }
     }
 </script>
 @endpush
