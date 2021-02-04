@@ -9,6 +9,7 @@ use App\Plan;
 use App\Order;
 use App\Cost;
 use App\User;
+use File;
 
 use PDF;
 use Auth;
@@ -65,7 +66,8 @@ class PaymentController extends Controller
         $model = Payment::find($id);
         if ($request->file('image')!=null){
             if ($model->image !== NULL){
-                unlink(public_path($model->image));
+                $file_path = app_path($model->image);
+                if(File::exists($file_path)) unlink(public_path($model->image));
             }
         }
         $model['image'] = null;
