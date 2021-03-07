@@ -20,7 +20,7 @@ class Order extends Model
         return $this->hasOne('App\Schedule');
     }
     public function bookings(){
-        return $this->hasOne('App\Booking');
+        return $this->hasOne('App\Booking', 'orders_id');
     }
     public function approves(){
         return $this->hasOne('App\Approve', 'orders_id');

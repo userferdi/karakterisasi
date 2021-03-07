@@ -234,6 +234,7 @@ Route::middleware('auth', 'verified')->group(function(){
 		Route::put('update/reschedule/{id}', 'VerificationController@updateReschedule')->name('verify.updateReschedule');
 		Route::put('update/reject/{id}', 'VerificationController@updateReject')->name('verify.updateReject');
 		Route::put('update/cancel/{id}', 'VerificationController@updateCancel')->name('verify.updateCancel');
+		Route::put('hide/{id}', 'VerificationController@hide')->name('verify.hide');
 		Route::get('resend/{id}', 'VerificationController@resend')->name('verify.resend');
 	});
 
@@ -246,6 +247,11 @@ Route::middleware('auth', 'verified')->group(function(){
 		Route::put('updateemail', 'AdminController@updateEmail')->name('settings.update.email');
 		Route::put('updatelecturer', 'AdminController@updateLecturer')->name('settings.update.lecturer');
 		Route::put('password', 'AdminController@password')->name('settings.password');
+	});
+
+	Route::prefix('export')->group(function(){
+		Route::get('/', 'ExportController@index')->name('export.index');
+		Route::post('download', 'ExportController@download')->name('export.download');
 	});
 
 	Route::prefix('account')->group(function(){

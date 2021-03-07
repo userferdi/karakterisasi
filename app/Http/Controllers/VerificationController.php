@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Approve;
+use App\Order;
 use App\Booking;
 use App\Schedule;
 use App\Time;
@@ -38,6 +39,9 @@ class VerificationController extends Controller
 
     public function confirm(Request $request, $token)
     {
+        $model = Booking::find($id)->update([
+            'hide' => 0
+        ]);
         $model = Booking::where('token', $token)->first();
         if($model['status']==1){
             if($model->orders->users->hasRole('Mahasiswa Unpad|Mahasiswa Non Unpad')){
@@ -192,6 +196,9 @@ class VerificationController extends Controller
 
     public function reject(Request $request, $token)
     {
+        $model = Booking::find($id)->update([
+            'hide' => 0
+        ]);
         $model = Booking::where('token', $token)->first();
         if($model['status']==1){
 	        $save = Booking::where('token', $token)->update([
@@ -270,6 +277,9 @@ class VerificationController extends Controller
 
     public function cancel(Request $request, $token)
     {
+        $model = Booking::find($id)->update([
+            'hide' => 0
+        ]);
         $model = Booking::where('token', $token)->first();
         if($model['status']==1){
             $save = Booking::where('token', $token)->update([
@@ -349,6 +359,9 @@ class VerificationController extends Controller
 
     public function updateConfirm(Request $request, $id)
     {
+        $model = Booking::find($id)->update([
+            'hide' => 0
+        ]);
         $model = Booking::find($id);
         if($model->status == 2){
             $newtoken = str::random(60);
@@ -547,6 +560,9 @@ class VerificationController extends Controller
 
     public function updateReschedule(Request $request, $id)
     {
+        $model = Booking::find($id)->update([
+            'hide' => 0
+        ]);
         $model = Booking::find($id);
         if($model->status == 3){
             $booking = $request->all();
@@ -622,6 +638,9 @@ class VerificationController extends Controller
 
     public function updateReject(Request $request, $id)
     {
+        $model = Booking::find($id)->update([
+            'hide' => 0
+        ]);
         $model = Booking::find($id);
         if($model->status == 2){
             $booking = $request->all();
@@ -694,6 +713,9 @@ class VerificationController extends Controller
 
     public function updateCancel($id)
     {
+        $model = Booking::find($id)->update([
+            'hide' => 0
+        ]);
         $model = Booking::find($id);
         $booking = Booking::find($id)->update([
             'token' => NULL,
@@ -925,4 +947,11 @@ class VerificationController extends Controller
         }
     }
 
+    public function hide($id)
+    {
+        $model = Booking::find($id)->update([
+            'hide' => 1
+        ]);
+        return response()->json($model);
+    }
 }

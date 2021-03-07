@@ -665,7 +665,7 @@ class ActivitiesController extends Controller
             $model->where('status',1)
                   ->orWhere('status',2)
                   ->orWhere('status',3);
-        })->get();
+        })->where('hide',0)->get();
         return DataTables::of($model)
             ->editColumn('date1', function($model){
                 $date = date('d M Y', strtotime($model->date1));
@@ -717,10 +717,14 @@ class ActivitiesController extends Controller
             })
             ->addColumn('action', function($model){
                 if ($model->status == 1){
-                    return 'Menunggu konfirmasi pada email Anda';
+                    $button = 
+'<a href="'.route('verify.hide', $model->id).'" class="btn btn-danger btn-sm hide" name="'.$model->no_form.'">Done</a>';
+                    return 'Menunggu konfirmasi pada email Anda'.$button;
                 }
                 else if ($model->status == 2){
-                    return 'Menunggu konfirmasi dari Dosen Pembimbing Anda';
+                    $button = 
+'<a href="'.route('verify.hide', $model->id).'" class="btn btn-danger btn-sm hide" name="'.$model->no_form.'">Done</a>';
+                    return 'Menunggu konfirmasi dari Dosen Pembimbing Anda'.$button;
                 }
                 else if ($model->status == 3){
                     $button = 

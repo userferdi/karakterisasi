@@ -191,6 +191,14 @@
               </ul>
             </li>
             <li class="nav-item has-treeview">
+              <a href="{{ route('export.index') }}" class="nav-link {{ request()->is('export*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-file-export"></i>
+                <p>
+                  Export Activities
+                </p>
+              </a>
+            </li>
+            <li class="nav-item has-treeview">
               <a href="{{ route('account') }}" class="nav-link {{ request()->is('account*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-users"></i>
                 <p>

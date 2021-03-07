@@ -140,7 +140,7 @@
             })
             Toast.fire({
               type: 'success',
-              text: 'Data has been deleted'
+              text: 'Data has been canceled'
             })
           },
           error: function(xhr){
@@ -253,6 +253,63 @@
               .after('<div class="invalid-feedback d-block">'+value+'</div>');
           });
         }
+      }
+    });
+  });
+
+  $('body').on('click', '.hide', function (event) {
+    event.preventDefault();
+
+    var me = $(this),
+        url = me.attr('href'),
+        name = me.attr('name'),
+        csrf_token = $('meta[name="csrf-token"]').attr('content');
+
+    swal({
+      title: "Apa Anda yakin ingin menyembunyikan '" + name + "'?",
+      text: "Jika dilakukan data ini tidak akan dapat dikembalikan!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ok, saya yakin!',
+      cancelButtonText: 'Tidak jadi',
+    }).then((result)=>{
+      if(result.value){
+        $.ajax({
+          url: url,
+          type: "PUT",
+          data: {
+            '_method': 'PUT',
+            '_token': csrf_token
+          },
+          success: function(response){
+            $('#table').DataTable().ajax.reload();
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              background: '#BD362F',
+              onOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            })
+            Toast.fire({
+              type: 'success',
+              text: 'Data has been saved'
+            })
+          },
+          error: function(xhr){
+            swal({
+              type: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!'
+            });
+          }
+        });
       }
     });
   });
