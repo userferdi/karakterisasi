@@ -11,6 +11,6 @@ class Payment extends Model
         return $this->belongsTo('App\Approve');
     }
     public function costs(){
-        return $this->hasMany('App\Cost', 'payments_id');
+        return $this->hasMany('App\Cost', 'payments_id', 'id');
     }
 }
