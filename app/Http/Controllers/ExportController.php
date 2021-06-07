@@ -22,14 +22,18 @@ class ExportController extends Controller
     public function download(Request $request)
     {
         if(Auth()->User()->hasRole('Admin')){
-	    	$schedules = Schedule::whereBetween('start', [$request->start, $request->end])->get();
+        	if($request->start && $request->end){
+		    	$schedules = Schedule::whereBetween('start', [$request->start, $request->end])->get();
+        	} else {
+		    	$schedules = Schedule::get();
+        	}
 			foreach($schedules as $i=>$schedule){
 	            $model[$i]['No'] = $i+1;
 	            $model[$i]['No Formulir'] = $schedule->orders->bookings->no_form;
 	            $model[$i]['No Registrasi'] = $schedule->orders->approves->no_regis;
 	            if($schedule->orders->approves->payments()->exists()){
-		            $model[$i]['No Invoice'] = $schedule->orders->payments;
-		            $model[$i]['No Receipt'] = $schedule->orders->payments;
+		            $model[$i]['No Invoice'] = $schedule->orders->approves->payments->no_invoice;
+		            $model[$i]['No Receipt'] = $schedule->orders->approves->payments->no_receipt;
 	            }
 	            else{
 		            $model[$i]['No Invoice'] = null;
