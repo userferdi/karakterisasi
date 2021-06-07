@@ -28,8 +28,8 @@ class ExportController extends Controller
 	            $model[$i]['No Formulir'] = $schedule->orders->bookings->no_form;
 	            $model[$i]['No Registrasi'] = $schedule->orders->approves->no_regis;
 	            if($schedule->orders->approves->payments()->exists()){
-		            $model[$i]['No Invoice'] = $schedule->orders->payments['no_invoice'];
-		            $model[$i]['No Receipt'] = $schedule->orders->payments['no_receipt'];
+		            $model[$i]['No Invoice'] = $schedule->orders->payments->no_invoice;
+		            $model[$i]['No Receipt'] = $schedule->orders->payments->no_receipt;
 	            }
 	            else{
 		            $model[$i]['No Invoice'] = null;
