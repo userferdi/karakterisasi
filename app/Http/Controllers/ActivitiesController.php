@@ -661,11 +661,11 @@ class ActivitiesController extends Controller
 
     public function adminBooking()
     {
-        $model = Booking::where(function($model){
+        $model = Booking::where('hide',0)->where(function($model){
             $model->where('status',1)
                   ->orWhere('status',2)
                   ->orWhere('status',3);
-        })->where('hide',0)->get();
+        })->get();
         return DataTables::of($model)
             ->editColumn('date1', function($model){
                 $date = date('d M Y', strtotime($model->date1));

@@ -42,7 +42,7 @@
     responsive: true,
     serverSide: true,
     scrollX: true,
-    ajax: "{{ route('status.canceled.dt') }}",
+    ajax: "{{ route('dt.liatsemua') }}",
     order: [[ 1, "asc" ]],
     columns: [
       {title: 'No', data: 'DT_RowIndex', name: 'no', orderable:false, className: 'dt-center'},

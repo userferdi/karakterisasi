@@ -39,7 +39,7 @@ class VerificationController extends Controller
 
     public function confirm(Request $request, $token)
     {
-        $model = Booking::find($id)->update([
+        $model = Booking::where('token', $token)->update([
             'hide' => 0
         ]);
         $model = Booking::where('token', $token)->first();
@@ -196,7 +196,7 @@ class VerificationController extends Controller
 
     public function reject(Request $request, $token)
     {
-        $model = Booking::find($id)->update([
+        $model = Booking::where('token', $token)->update([
             'hide' => 0
         ]);
         $model = Booking::where('token', $token)->first();
@@ -277,7 +277,7 @@ class VerificationController extends Controller
 
     public function cancel(Request $request, $token)
     {
-        $model = Booking::find($id)->update([
+        $model = Booking::where('token', $token)->update([
             'hide' => 0
         ]);
         $model = Booking::where('token', $token)->first();
