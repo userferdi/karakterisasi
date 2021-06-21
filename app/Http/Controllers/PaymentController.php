@@ -91,8 +91,8 @@ class PaymentController extends Controller
                     $mail->isSMTP();
                     $mail->Host = 'smtp.gmail.com';
                     $mail->SMTPAuth = true;
-                    $mail->Username = 'functionalnanopowder@gmail.com';
-                    $mail->Password = 'printgadmin';
+                    $mail->Username = \config('mail.username');
+                    $mail->Password = \config('mail.password');
                     $mail->SMTPSecure = 'tls';
                     $mail->Port = 587;
                     $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
@@ -163,8 +163,8 @@ class PaymentController extends Controller
                     $mail->isSMTP();
                     $mail->Host = 'smtp.gmail.com';
                     $mail->SMTPAuth = true;
-                    $mail->Username = 'functionalnanopowder@gmail.com';
-                    $mail->Password = 'printgadmin';
+                    $mail->Username = \config('mail.username');
+                    $mail->Password = \config('mail.password');
                     $mail->SMTPSecure = 'tls';
                     $mail->Port = 587;
                     $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
@@ -347,8 +347,8 @@ class PaymentController extends Controller
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
-                $mail->Username = 'functionalnanopowder@gmail.com';
-                $mail->Password = 'printgadmin';
+                $mail->Username = \config('mail.username');
+                $mail->Password = \config('mail.password');
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 587;
                 $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
@@ -820,8 +820,8 @@ class PaymentController extends Controller
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
-                $mail->Username = 'functionalnanopowder@gmail.com';
-                $mail->Password = 'printgadmin';
+                $mail->Username = \config('mail.username');
+                $mail->Password = \config('mail.password');
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 587;
                 $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');

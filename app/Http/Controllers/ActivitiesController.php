@@ -116,8 +116,8 @@ class ActivitiesController extends Controller
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
-                $mail->Username = 'functionalnanopowder@gmail.com';
-                $mail->Password = 'printgadmin';
+                $mail->Username = \config('mail.username');
+                $mail->Password = \config('mail.password');
                 // SSL: 465, TLS: 587
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 587;
