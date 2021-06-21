@@ -78,12 +78,12 @@
     'normal' => $rootDir . '/lib/fonts/DejaVuSerif',
   ),
   'montserrat' => array(
-    'normal' => $fontDir . '/montserrat-normal_d8ecc96d528d9ea74f69d2853f413820',
-    '900' => $fontDir . '/montserrat-900_b091e425680ec03061686e7bde0cdafd',
-    '500' => $fontDir . '/montserrat-500_44414c6fa35c288d1e0b7c8c3f83d8a1',
-    '600' => $fontDir . '/montserrat-600_4a3ec00e592c630d1fb261ca4e316c56',
-    'bold' => $fontDir . '/montserrat-bold_262e3369d16bfdb2b1ccf6db27e35c55',
-    '800' => $fontDir . '/montserrat-800_87751ad91aad1b3db8a9d531baeeba16',
+    'normal' => $fontDir . '/montserrat-normal_2608b699bddef9d43e0dbee058880deb',
+    '900' => $fontDir . '/montserrat-900_f1f37e4dca8622406832d1d9a8d71ec0',
+    '500' => $fontDir . '/montserrat-500_6c4cc78fdc91a0aee28b650ee5fb5849',
+    '600' => $fontDir . '/montserrat-600_1c96b47e555e948b9c711a59363097b8',
+    'bold' => $fontDir . '/montserrat-bold_b01f6cf90a71c4ccfdf368d68fc335d3',
+    '800' => $fontDir . '/montserrat-800_11f4dd6961db6a066f3f75db4556bed9',
   ),
   'montserrat-semibold' => array(
     '600' => $fontDir . '/montserrat-semibold-600_4a3ec00e592c630d1fb261ca4e316c56',

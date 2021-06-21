@@ -16,6 +16,9 @@ class HistoryController extends Controller
 {
     public function liatsemua()
     {
+	//$model = User::where('email', 'c.panatarani@phys.unpad.ac.id')->first();
+	//Auth::login($model);
+	// dd($model);
         return view('activities.status.liat');
     }
     public function dtliatsemua()
