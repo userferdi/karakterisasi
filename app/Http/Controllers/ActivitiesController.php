@@ -41,7 +41,7 @@ class ActivitiesController extends Controller
         $model = Tool::get();
         return DataTables::of($model)
             ->addColumn('register', function($model){
-                $button = 
+                $button =
 '<a href="'.route('activities.create',$model->id).'" class="btn btn-danger btn-sm">Registrasi</a>';
                 return $button;
             })
@@ -117,7 +117,7 @@ class ActivitiesController extends Controller
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
                 $mail->Username = 'functionalnanopowder@gmail.com';
-                $mail->Password = '1w3r!W#R';
+                $mail->Password = 'printgadmin';
                 // SSL: 465, TLS: 587
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 587;
@@ -276,18 +276,18 @@ class ActivitiesController extends Controller
                 }
             })
             ->addColumn('resend', function($model){
-                $button = 
+                $button =
 '<a href="'.route('verify.resend', $model->id).'" class="btn btn-primary btn-sm resend">Resend</a>';
                 return $button;
             })
             ->addColumn('action', function($model){
                 if ($model->status == 1){
-                    $button = 
+                    $button =
 '<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>
 <a href="'.route('verify.updateCancel', $model->id).'" class="btn btn-danger btn-sm cancel" name="'.$model->no_form.'">Cancel</a>';
                     return $button;
                 }
-                $button = 
+                $button =
 '<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>';
                 return $button;
             })
@@ -354,17 +354,17 @@ class ActivitiesController extends Controller
                 return $model->orders->unique;
             })
             ->addColumn('detail', function($model){
-                $button = 
+                $button =
 '<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>';
                 return $button;
             })
             ->addColumn('confirm', function($model){
-                $button = 
+                $button =
 '<a href="'.route('verify.updateConfirm', $model->id).'" class="btn btn-primary btn-sm confirm" name="'.$model->no_form.'">Confirm</a>';
                 return $button;
             })
             ->addColumn('cancel', function($model){
-                $button = 
+                $button =
 '<a href="'.route('verify.updateCancel', $model->id).'" class="btn btn-danger btn-sm cancel" name="'.$model->no_form.'">Cancel</a>';
                 return $button;
             })
@@ -429,17 +429,17 @@ class ActivitiesController extends Controller
                 return '<i class="fas fa-check"></i>';
             })
             ->addColumn('detail', function($model){
-                $button = 
+                $button =
 '<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>';
                 return $button;
             })
             ->addColumn('confirm', function($model){
-                $button = 
+                $button =
 '<a href="'.route('verify.showReschedule', $model->id).'" class="btn btn-primary btn-sm modal-show" name="Reschedule: '.$model->no_form.'">Reschedule</a>';
                 return $button;
             })
             ->addColumn('cancel', function($model){
-                $button = 
+                $button =
 '<a href="'.route('verify.updateCancel', $model->id).'" class="btn btn-danger btn-sm cancel" name="'.$model->no_form.'">Cancel</a>';
                 return $button;
             })
@@ -498,7 +498,7 @@ class ActivitiesController extends Controller
                 return '<i class="fas fa-check"></i>';
             })
             ->addColumn('detail', function($model){
-                $button = 
+                $button =
 '<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>';
                 return $button;
             })
@@ -571,7 +571,7 @@ class ActivitiesController extends Controller
                 return '<i class="fas fa-check"></i>';
             })
             ->addColumn('detail', function($model){
-                $button = 
+                $button =
 '<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>';
                 return $button;
             })
@@ -643,7 +643,7 @@ class ActivitiesController extends Controller
                 return 'Canceled';
             })
             ->addColumn('detail', function($model){
-                $button = 
+                $button =
 '<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>';
                 return $button;
             })
@@ -711,23 +711,23 @@ class ActivitiesController extends Controller
                 return $model->orders->unique;
             })
             ->addColumn('detail', function($model){
-                $button = 
+                $button =
 '<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>';
                 return $button;
             })
             ->addColumn('action', function($model){
                 if ($model->status == 1){
-                    $button = 
+                    $button =
 '<a href="'.route('verify.hide', $model->id).'" class="btn btn-danger btn-sm hide" name="'.$model->no_form.'">Done</a>';
                     return 'Menunggu konfirmasi pada email Anda'.$button;
                 }
                 else if ($model->status == 2){
-                    $button = 
+                    $button =
 '<a href="'.route('verify.hide', $model->id).'" class="btn btn-danger btn-sm hide" name="'.$model->no_form.'">Done</a>';
                     return 'Menunggu konfirmasi dari Dosen Pembimbing Anda'.$button;
                 }
                 else if ($model->status == 3){
-                    $button = 
+                    $button =
 '<a href="'.route('verify.showConfirm', $model->id).'" class="btn btn-primary btn-sm modal-show" name="Confirm: '.$model->no_form.'">Confirm</a>
 <a href="'.route('verify.showReschedule', $model->id).'" class="btn btn-warning btn-sm modal-show" name="Reschedule: '.$model->no_form.'">Reschedule</a>
 <a href="'.route('verify.showReject', $model->id).'" class="btn btn-danger btn-sm modal-show" name="Reject: '.$model->no_form.'">Reject</a>';
@@ -797,7 +797,7 @@ class ActivitiesController extends Controller
                 }
             })
             ->addColumn('detail', function($model){
-                $button = 
+                $button =
 '<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>';
                 return $button;
             })
@@ -872,7 +872,7 @@ class ActivitiesController extends Controller
                 }
             })
             ->addColumn('detail', function($model){
-                $button = 
+                $button =
 '<a href="#" class="btn btn-primary btn-sm details-control">Detail</a>';
                 return $button;
             })
@@ -915,7 +915,7 @@ class ActivitiesController extends Controller
                 return $total;
             })
             ->addColumn('confirm', function($model){
-                $button = 
+                $button =
 '<a href="'.route('status.updateCompleted', $model->id).'" class="btn btn-primary btn-sm confirm" name="'.$model->no_regis.'">Konfirm</a>';
                 return $button;
             })

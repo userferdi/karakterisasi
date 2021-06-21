@@ -92,7 +92,7 @@ class PaymentController extends Controller
                     $mail->Host = 'smtp.gmail.com';
                     $mail->SMTPAuth = true;
                     $mail->Username = 'functionalnanopowder@gmail.com';
-                    $mail->Password = '1w3r!W#R';
+                    $mail->Password = 'printgadmin';
                     $mail->SMTPSecure = 'tls';
                     $mail->Port = 587;
                     $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
@@ -164,7 +164,7 @@ class PaymentController extends Controller
                     $mail->Host = 'smtp.gmail.com';
                     $mail->SMTPAuth = true;
                     $mail->Username = 'functionalnanopowder@gmail.com';
-                    $mail->Password = '1w3r!W#R';
+                    $mail->Password = 'printgadmin';
                     $mail->SMTPSecure = 'tls';
                     $mail->Port = 587;
                     $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
@@ -348,7 +348,7 @@ class PaymentController extends Controller
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
                 $mail->Username = 'functionalnanopowder@gmail.com';
-                $mail->Password = '1w3r!W#R';
+                $mail->Password = 'printgadmin';
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 587;
                 $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
@@ -821,7 +821,7 @@ class PaymentController extends Controller
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
                 $mail->Username = 'functionalnanopowder@gmail.com';
-                $mail->Password = '1w3r!W#R';
+                $mail->Password = 'printgadmin';
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 587;
                 $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');

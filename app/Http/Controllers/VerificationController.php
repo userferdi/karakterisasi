@@ -59,7 +59,7 @@ class VerificationController extends Controller
                             $mail->Host = 'smtp.gmail.com';
                             $mail->SMTPAuth = true;
                             $mail->Username = 'functionalnanopowder@gmail.com';
-                            $mail->Password = '1w3r!W#R';
+                            $mail->Password = 'printgadmin';
                             $mail->SMTPSecure = 'tls';
                             $mail->Port = 587;
                             $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
@@ -104,7 +104,7 @@ class VerificationController extends Controller
                         $mail->Host = 'smtp.gmail.com';
                         $mail->SMTPAuth = true;
                         $mail->Username = 'functionalnanopowder@gmail.com';
-                        $mail->Password = '1w3r!W#R';
+                        $mail->Password = 'printgadmin';
                         $mail->SMTPSecure = 'tls';
                         $mail->Port = 587;
                         $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
@@ -162,7 +162,7 @@ class VerificationController extends Controller
                     $mail->Host = 'smtp.gmail.com';
                     $mail->SMTPAuth = true;
                     $mail->Username = 'functionalnanopowder@gmail.com';
-                    $mail->Password = '1w3r!W#R';
+                    $mail->Password = 'printgadmin';
                     $mail->SMTPSecure = 'tls';
                     $mail->Port = 587;
                     $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
@@ -220,7 +220,7 @@ class VerificationController extends Controller
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
                 $mail->Username = 'functionalnanopowder@gmail.com';
-                $mail->Password = '1w3r!W#R';
+                $mail->Password = 'printgadmin';
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 587;
                 $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
@@ -253,7 +253,7 @@ class VerificationController extends Controller
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
                 $mail->Username = 'functionalnanopowder@gmail.com';
-                $mail->Password = '1w3r!W#R';
+                $mail->Password = 'printgadmin';
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 587;
                 $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
@@ -342,13 +342,13 @@ class VerificationController extends Controller
         $model = Booking::find($id);
         if($model->status == 2){
             if(Auth()->user()->email == $model->orders->users->profiles->email_lecturer){
-                
+
                 return view('verify.formreject', ['model' => $model]);
             }
         }
         if($model->status == 3){
             if(Auth()->User()->hasRole('Admin')){
-                
+
                 return view('verify.formreject', ['model' => $model]);
             }
         }
@@ -377,7 +377,7 @@ class VerificationController extends Controller
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
                 $mail->Username = 'functionalnanopowder@gmail.com';
-                $mail->Password = '1w3r!W#R';
+                $mail->Password = 'printgadmin';
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 587;
                 $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
@@ -415,7 +415,7 @@ class VerificationController extends Controller
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
                 $mail->Username = 'functionalnanopowder@gmail.com';
-                $mail->Password = '1w3r!W#R';
+                $mail->Password = 'printgadmin';
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 587;
                 $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
@@ -455,7 +455,7 @@ class VerificationController extends Controller
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
                 $mail->Username = 'functionalnanopowder@gmail.com';
-                $mail->Password = '1w3r!W#R';
+                $mail->Password = 'printgadmin';
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 587;
                 $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
@@ -575,7 +575,7 @@ class VerificationController extends Controller
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
                 $mail->Username = 'functionalnanopowder@gmail.com';
-                $mail->Password = '1w3r!W#R';
+                $mail->Password = 'printgadmin';
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 587;
                 $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
@@ -610,7 +610,7 @@ class VerificationController extends Controller
                     $mail->Host = 'smtp.gmail.com';
                     $mail->SMTPAuth = true;
                     $mail->Username = 'functionalnanopowder@gmail.com';
-                    $mail->Password = '1w3r!W#R';
+                    $mail->Password = 'printgadmin';
                     $mail->SMTPSecure = 'ssl';
                     $mail->Port = 465;
                     $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
@@ -654,7 +654,7 @@ class VerificationController extends Controller
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
                 $mail->Username = 'functionalnanopowder@gmail.com';
-                $mail->Password = '1w3r!W#R';
+                $mail->Password = 'printgadmin';
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 587;
                 $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
@@ -686,7 +686,7 @@ class VerificationController extends Controller
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
                 $mail->Username = 'functionalnanopowder@gmail.com';
-                $mail->Password = '1w3r!W#R';
+                $mail->Password = 'printgadmin';
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 587;
                 $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
@@ -729,7 +729,7 @@ class VerificationController extends Controller
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
                 $mail->Username = 'functionalnanopowder@gmail.com';
-                $mail->Password = '1w3r!W#R';
+                $mail->Password = 'printgadmin';
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 587;
                 $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
@@ -810,7 +810,7 @@ class VerificationController extends Controller
                     $mail->Host = 'smtp.gmail.com';
                     $mail->SMTPAuth = true;
                     $mail->Username = 'functionalnanopowder@gmail.com';
-                    $mail->Password = '1w3r!W#R';
+                    $mail->Password = 'printgadmin';
                     $mail->SMTPSecure = 'ssl';
                     $mail->Port = 465;
                     $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
@@ -844,7 +844,7 @@ class VerificationController extends Controller
                     $mail->Host = 'smtp.gmail.com';
                     $mail->SMTPAuth = true;
                     $mail->Username = 'functionalnanopowder@gmail.com';
-                    $mail->Password = '1w3r!W#R';
+                    $mail->Password = 'printgadmin';
                     $mail->SMTPSecure = 'ssl';
                     $mail->Port = 465;
                     $mail->SetFrom('functionalnanopowder@gmail.com', 'FiNder');
@@ -884,7 +884,7 @@ class VerificationController extends Controller
                     $mail->Host = 'smtp.gmail.com';
                     $mail->SMTPAuth = true;
                     $mail->Username = 'functionalnanopowder@gmail.com';
-                    $mail->Password = '1w3r!W#R';
+                    $mail->Password = 'printgadmin';
                     $mail->SMTPSecure = 'ssl';
                     $mail->Port = 465;
                     $mail->SetFrom('functionalnanopowder@gmail.com');
